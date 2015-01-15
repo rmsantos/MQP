@@ -1,16 +1,16 @@
 # =============== #
 # Unity generated #
 # =============== #
-[Tt]emp/
-[Oo]bj/
-[Bb]uild
-[Ll]ibrary/
+Temp/
+Obj/
+Build
+Library/
 sysinfo.txt
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
-[Ee]xported[Oo]bj/
+ExportedObj/
 /*.userprefs
 /*.csproj
 /*.pidb
