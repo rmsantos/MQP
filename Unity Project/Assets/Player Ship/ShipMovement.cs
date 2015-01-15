@@ -84,11 +84,12 @@ public class ShipMovement : MonoBehaviour {
 		leftHeld = false;
 		rightHeld = false;
 
-		//Initialize the boundary variables to the appropriate parametes
-		top = 6;
-		bottom = -5;
-		left = -10;
-		right = 10;
+		//Initialize the boundary variables to the appropriate parameters
+		//We store the boundaries in relation to the what the camera can see
+		top = Camera.main.camera.orthographicSize + 1; 
+		bottom = -Camera.main.camera.orthographicSize + 1; 
+		left = -(Camera.main.orthographicSize * Screen.width / Screen.height);
+		right = Camera.main.orthographicSize * Screen.width / Screen.height;
 
 	}
 	
@@ -107,6 +108,11 @@ public class ShipMovement : MonoBehaviour {
 		//None
 
 		//Read input from the user. Set flags to determine which buttons are being held.
+
+		print ("Top " + top);
+		print ("Bottom " + bottom);
+		print ("Left " + left);
+		print ("Right " + right);
 
 		//Up or 'w'
 		if(Input.GetKeyDown("w") || Input.GetKeyDown ("up"))
