@@ -1,8 +1,16 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\ShipMovement.cs">
     <Files>
       <File FileName="Assets\Player Ship\ShipMovement.cs" Line="330" Column="16" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy Spawner\Spawner.cs">
+    <Files>
+      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="65" Column="46" />
+      <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="33" Column="19" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
