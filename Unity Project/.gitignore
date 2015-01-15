@@ -19,6 +19,15 @@ ExportedObj/
 /*.user
 /*.unityproj
 /*.booproj
+
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln*
+*.user
+*.unityproj
+*.booproj
  
 # ============ #
 # OS generated #
