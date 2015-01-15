@@ -34,7 +34,17 @@ public class ShipMovement : MonoBehaviour {
 	float xPos;
 	float yPos;
 
-	//Variable used to implement acceleration
+	//Will hold the Z rotation for the player ship
+	float zRotation;
+
+	//Variables to store the max and min rotation angles
+	float maxRotate;
+	float minRotate;
+
+	//Variable to store rotation rate
+	float rotationRate;
+
+	//Variables used to implement acceleration
 	//One for x and y acceleration
 	float xAcceleration;
 	float yAcceleration;
@@ -74,6 +84,16 @@ public class ShipMovement : MonoBehaviour {
 		xPos = transform.position.x;
 		yPos = transform.position.y;
 
+		//Store the Z rotation of the ship
+		zRotation = transform.rotation.z;
+
+		//Store the max and min rotation angles
+		maxRotate = 15;
+		minRotate = -15;
+
+		//Initialize rotation rate
+		rotationRate = 1;
+
 		//Initialize acceleration to 0
 		xAcceleration = 0;
 		yAcceleration = 0;
@@ -108,11 +128,6 @@ public class ShipMovement : MonoBehaviour {
 		//None
 
 		//Read input from the user. Set flags to determine which buttons are being held.
-
-		print ("Top " + top);
-		print ("Bottom " + bottom);
-		print ("Left " + left);
-		print ("Right " + right);
 
 		//Up or 'w'
 		if(Input.GetKeyDown("w") || Input.GetKeyDown ("up"))
@@ -174,6 +189,9 @@ public class ShipMovement : MonoBehaviour {
 				yAcceleration+= accelerationRate;
 			}
 
+			//Increment the rotation of the ship by 1 to tilt up upwards when going up
+			zRotation = zRotation + rotationRate;
+
 			//Adjust the ships new position
 			yPos = yPos + yAcceleration;
 
@@ -187,6 +205,9 @@ public class ShipMovement : MonoBehaviour {
 				//If not then slow down
 				yAcceleration-= accelerationRate;
 			}
+
+			//Decrement the rotation of the ship by 1 to tilt up downwards when going down
+			zRotation = zRotation - rotationRate;
 
 			//Adjust the ships new position
 			yPos = yPos + yAcceleration;
@@ -246,7 +267,7 @@ public class ShipMovement : MonoBehaviour {
 		//If no vertical keys are being held
 		if(!upHeld && !downHeld)
 		{
-			//If the vertical acceleration is not 0, then decrease until it is 0
+			//If the vertical acceleration is not 0, then increase or decrease until it is 0
 			if(yAcceleration > 0f)
 			{
 				yAcceleration-=accelerationRate;
@@ -254,6 +275,16 @@ public class ShipMovement : MonoBehaviour {
 			else if(yAcceleration < 0f)
 			{
 				yAcceleration+=accelerationRate;
+			}
+
+			//If the zRotation is not 0, then increase or decrease until it is 0
+			if(zRotation > 0)
+			{
+				zRotation -= rotationRate;
+			}
+			else if(zRotation < 0)
+			{
+				zRotation += rotationRate;
 			}
 
 			//The acceleration will most likely not hit exactly after moving some. In this case
@@ -290,8 +321,20 @@ public class ShipMovement : MonoBehaviour {
 			xAcceleration = 0;
 		}
 
+
+		//Check if the ship has rotation outside of the allowed angle
+		//If so then reset it to that magnitude
+		if(zRotation > maxRotate)
+			zRotation = maxRotate;
+		else if(zRotation < minRotate)
+			zRotation = minRotate;
+
 		//Update new ship position
 		transform.position = new Vector3 (xPos, yPos, transform.position.z);
+
+		//Update the ships new rotation
+		transform.rotation = Quaternion.AngleAxis (zRotation, Vector3.forward);
+
 
 	}
 }
