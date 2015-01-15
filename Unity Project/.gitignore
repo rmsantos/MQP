@@ -1,42 +1,12 @@
-# =============== #
-# Unity generated #
-# =============== #
-Temp/
-Obj/
-Build
-Library/
-sysinfo.txt
- 
-# ===================================== #
-# Visual Studio / MonoDevelop generated #
-# ===================================== #
-ExportedObj/
-/*.userprefs
-/*.csproj
-/*.pidb
-/*.suo
-/*.sln*
-/*.user
-/*.unityproj
-/*.booproj
-
-.userprefs
-.csproj
-.pidb
-.suo
-.sln*
-.user
-.unityproj
-.booproj
-Unity Project.userprefs
- 
-# ============ #
-# OS generated #
-# ============ #
-.DS_Store*
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-[Tt]humbs.db
+*.sln
+*.userprefs
+*.csproj
+*.pidb
+*.unityproj
+.DS_Store
+/Library/FailedAssetImports.txt
+/Library/cache/
+/Library/previews/
+/Library/ScriptAssemblies
+/obj
+/Temp
