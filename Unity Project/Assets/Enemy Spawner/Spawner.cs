@@ -7,12 +7,6 @@
  *
  * Date        : 2015/1/15
  *
- * History:
- * Revision      Date          Changed By
- * --------      ----------    ----------
- * 01.00         2015/1/15    jbmorse
- * 
- * First release.
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
  */
@@ -23,11 +17,17 @@ using UnityEngine;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
-//None
+//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
+//The instances should follow a particular naming pattern.
+string[] instances = new string[1];
+instances[1] = "Instance1Prefab";
 
 public class Spawner : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
+	
+	//Randomizer object
+	public GameObject random;
 
 	//Variable to store the time until next spawn
 	float spawnTimer;
@@ -79,7 +79,9 @@ public class Spawner : MonoBehaviour {
 				spawning = true;
 				spawnTimer = timeBetweenSpawning;
 
-				//TODO Include some logic that creates another prefab that has spawning logic on it.
+				string randomInstance = instances[random.GetRandom(instances.length - 1)];
+				
+				Instantiate(Resources.Load<GameObject>(randomInstance));
 				
 			}
 		}
