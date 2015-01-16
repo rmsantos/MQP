@@ -7,6 +7,10 @@
  *
  * Date        : 2015/1/15
  *
+<<<<<<< HEAD
+ * First release.
+=======
+>>>>>>> 0abe857366c6ffc52b9effe57e028886599b81eb
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
  */
