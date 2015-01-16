@@ -63,9 +63,10 @@ public class Instance1 : MonoBehaviour {
 		timer++;
 
 		if (timer >= finalTime) {
+			timer = -999999;
 			//Destroys itself and notifies the master spawner
 			spawner.SpawningHasStopped();
-			Destroy(this.gameObject);
+			//Destroy(this.gameObject);
 		}
 	}
 

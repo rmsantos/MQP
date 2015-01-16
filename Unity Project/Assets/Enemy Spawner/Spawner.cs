@@ -89,9 +89,9 @@ public class Spawner : MonoBehaviour {
 				spawning = true;
 				spawnTimer = timeBetweenSpawning;
 
-				//string randomInstance = "Instances" + instances[random.GetRandom(instances.GetLength(0) - 1)];
+				string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0) - 1)];
 				
-				Instantiate(Resources.Load<GameObject>("Instances/Instance1"));
+				Instantiate(Resources.Load<GameObject>(randomInstance));
 				
 			}
 		}

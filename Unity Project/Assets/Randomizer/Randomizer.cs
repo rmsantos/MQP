@@ -24,7 +24,7 @@ public class Randomizer : MonoBehaviour {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Random variable
-	protected System.Random random;
+	protected static System.Random random;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
