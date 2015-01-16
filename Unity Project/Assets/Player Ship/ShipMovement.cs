@@ -61,11 +61,8 @@ public class ShipMovement : MonoBehaviour {
 	//Variable to store the max acceleration
 	public float maxAcceleration;
 
-	//Variables to store boundaries
-	float top;
-	float bottom;
-	float left;
-	float right;
+	//Stores the boundaries script to access later
+	Boundaries boundaries;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -104,12 +101,9 @@ public class ShipMovement : MonoBehaviour {
 		leftHeld = false;
 		rightHeld = false;
 
-		//Initialize the boundary variables to the appropriate parameters
-		//We store the boundaries in relation to the what the camera can see
-		top = Camera.main.camera.orthographicSize + 1; 
-		bottom = -Camera.main.camera.orthographicSize + 1; 
-		left = -(Camera.main.orthographicSize * Screen.width / Screen.height);
-		right = Camera.main.orthographicSize * Screen.width / Screen.height;
+
+		//Pull the boundaries script from the main camera object and store it
+		boundaries = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Boundaries>(); 
 
 	}
 	
@@ -123,9 +117,6 @@ public class ShipMovement : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
-		
-		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-		//None
 
 		//Read input from the user. Set flags to determine which buttons are being held.
 
@@ -299,25 +290,25 @@ public class ShipMovement : MonoBehaviour {
 
 		//Check if the ship has moved outside of the boundaries
 		//If so then set the ships position to that boundary and reset acceleration
-		if(yPos >= top)
+		if(yPos >= boundaries.getTop())
 		{
-			yPos = top;
+			yPos = boundaries.getTop();
 			yAcceleration = 0;
 		}
-		else if(yPos <= bottom)
+		else if(yPos <= boundaries.getBottom ())
 		{
-			yPos = bottom;
+			yPos = boundaries.getBottom ();
 			yAcceleration = 0;
 		}
 
-		if(xPos >= right)
+		if(xPos >= boundaries.getRight ())
 		{
-			xPos = right;
+			xPos = boundaries.getRight ();
 			xAcceleration = 0;
 		}
-		else if(xPos <= left)
+		else if(xPos <= boundaries.getLeft ())
 		{
-			xPos = left;
+			xPos = boundaries.getLeft();
 			xAcceleration = 0;
 		}
 
@@ -336,5 +327,20 @@ public class ShipMovement : MonoBehaviour {
 		transform.rotation = Quaternion.AngleAxis (zRotation, Vector3.forward);
 
 
+	}
+
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getPosition()
+	 *
+	 * Description : Returns the current position of the ship.
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Vector3 : Position of the players ship
+	 */
+	public Vector3 getPosition()
+	{
+		return transform.position;
 	}
 }
