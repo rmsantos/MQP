@@ -6,13 +6,8 @@
  * Description : This file stores the boundaries of the screen based on the
  * 				camera view.
  *
- * Date        : 2015/1/165
+ * Date        : 2015/1/16
  *
- * History:
- * Revision      Date          Changed By
- * --------      ----------    ----------
- * 01.00         2016/1/15    rmsantos
- * 
  * First release.
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.

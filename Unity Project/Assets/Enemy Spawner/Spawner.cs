@@ -7,11 +7,6 @@
  *
  * Date        : 2015/1/15
  *
- * History:
- * Revision      Date          Changed By
- * --------      ----------    ----------
- * 01.00         2015/1/15    jbmorse
- * 
  * First release.
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.

@@ -6,11 +6,6 @@
  * Description : This file controls the movement of the player ship.
  *
  * Date        : 2015/1/15
- *
- * History:
- * Revision      Date          Changed By
- * --------      ----------    ----------
- * 01.00         2015/1/15    rmsantos
  * 
  * First release.
  *
@@ -103,7 +98,7 @@ public class ShipMovement : MonoBehaviour {
 
 
 		//Pull the boundaries script from the main camera object and store it
-		boundaries = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Boundaries>(); 
+		boundaries = Camera.main.GetComponent<Boundaries>(); 
 
 	}
 	
