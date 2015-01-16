@@ -7,7 +7,6 @@
  *
  * Date        : 2015/1/16
  * 
- * First release.
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
  */
@@ -26,17 +25,30 @@ public class Gunner : MonoBehaviour {
 	//The prefab object for the bullet
 	public GameObject bulletPrefab;
 
+	//Is the player ready to shoot?
+	bool ready;
+
+	//Counter for reloading
+	int shootTimer;
+
+	//Time before the player can shoot again 
+	public int reloadTime;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Not used here.
+	 * Description : Initializes the fire rate variables
 	 *
 	 * Parameters  : None
 	 *
 	 * Returns     : Void
 	 */
 	void Start () {
-	
+		//Defualtly be ready to shoot
+		ready = true;
+
+		//Set the shoot timer to its reload time
+		shootTimer = reloadTime;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -44,6 +56,7 @@ public class Gunner : MonoBehaviour {
 	 *
 	 * Description : Spawns a bullet object, rotates it towards the mouse click location.
 	 * 				Also sends the mouse click location to the bullet object.
+	 * 				Also deals with firing rates and reloading time.
 	 *
 	 * Parameters  : None
 	 *
@@ -51,8 +64,22 @@ public class Gunner : MonoBehaviour {
 	 */
 	void Update () {
 
+		//If the player is "reloading", don't decrement the timer
+		if (!ready) {
+			
+			//Decrements the shoot timer
+			shootTimer--;
+			
+			//If the shoot timer has reached 0, reset it and flag that the player can shoot
+			if (shootTimer <= 0) {
+				
+				ready = true;
+				shootTimer = reloadTime;
+			}
+		}
+
 		//If the user clicked the left mouse button
-		if(Input.GetMouseButtonDown(0))
+		if(ready && Input.GetMouseButtonDown(0))
 		{
 
 			/* -- LOCAL VARIABLES  --------------------------------------------------- */
@@ -80,6 +107,9 @@ public class Gunner : MonoBehaviour {
 
 			//Send the mouse position in world space to the bullet
 			bullet.GetComponent<Bullet>().setMousePosition(mouseWorldPos);
+
+			//Flag that player has just shot
+			ready = false;
 		
 		}
 	
