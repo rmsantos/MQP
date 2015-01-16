@@ -7,7 +7,6 @@
  *
  * Date        : 2015/1/16
  * 
- * First release.
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
  */
