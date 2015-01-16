@@ -14,7 +14,7 @@
 /* -- INCLUDE FILES ------------------------------------------------------ */
 
 using UnityEngine;
-using System.Collections;
+using System;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
@@ -24,7 +24,7 @@ public class Randomizer : MonoBehaviour {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Random variable
-	Random random;
+	protected System.Random random;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -38,23 +38,23 @@ public class Randomizer : MonoBehaviour {
 
 	void Start () {
 	
-		random = new Random((int) DateTime.Now.Ticks & 0x0000FFFF);
+		random = new System.Random((int) DateTime.Now.Ticks & 0x0000FFFF);
 
 	}
 
-	int GetRandom (int max) {
+	public int GetRandom (int max) {
 
 		return random.Next(max);
 
 	}
 	
-	int GetAnyRandom () {
+	public int GetAnyRandom () {
 	
 		return random.Next();
 	
 	}
 	
-	int GetRandomInRange (int min, int max) {
+	public int GetRandomInRange (int min, int max) {
 	
 		return random.Next(min, max);
 	

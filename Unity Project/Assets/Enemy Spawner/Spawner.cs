@@ -17,26 +17,30 @@ using UnityEngine;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
-//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
-//The instances should follow a particular naming pattern.
-string[] instances = new string[1];
-instances[1] = "Instance1Prefab";
+
+
 
 public class Spawner : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
+
+	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
+	//The instances should follow a particular naming pattern.
+
+	string[] instances = new string[1] {"Instance1"};
 	
-	//Randomizer object
-	public GameObject random;
+	//Randomizer script
+	public GameObject randomizer;
+	Randomizer random;
 
 	//Variable to store the time until next spawn
-	float spawnTimer;
+	static float spawnTimer;
 
 	//Flag to say if spawning is occurring
-	bool spawning;
+	static bool spawning;
 
 	//Variable, changed in Unity prefab, that is used to reset the spawn timer to a set amount
-	public float timeBetweenSpawning;
+	public static float timeBetweenSpawning;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -50,6 +54,8 @@ public class Spawner : MonoBehaviour {
 
 	void Start () {
 	
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
+
 		spawnTimer = timeBetweenSpawning;
 		spawning = false;
 
@@ -79,25 +85,26 @@ public class Spawner : MonoBehaviour {
 				spawning = true;
 				spawnTimer = timeBetweenSpawning;
 
-				string randomInstance = instances[random.GetRandom(instances.length - 1)];
+				//string randomInstance = "Instances" + instances[random.GetRandom(instances.GetLength(0) - 1)];
 				
-				Instantiate(Resources.Load<GameObject>(randomInstance));
+				Instantiate(Resources.Load<GameObject>("Instances/Instance1"));
 				
 			}
 		}
 	}
 
-	void SpawningHasStopped () {
+	public void SpawningHasStopped () {
 
 		spawning = false;
 
 	}
 
-	void SetSpawnTimer (int time) {
+	public void SetSpawnTimer (int time) {
 
 		spawnTimer = time;
 
 	}
+
 }
 
 
