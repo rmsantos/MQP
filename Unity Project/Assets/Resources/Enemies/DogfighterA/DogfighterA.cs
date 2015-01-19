@@ -1,9 +1,9 @@
-﻿/* Module      : DogfighterA.cs
+﻿/* Module      : DogFighterA.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the DogfighterA
+ * Description : This file controls the behavior of the DogFighterA
  *
  * Date        : 2015/1/16
  * 
@@ -18,34 +18,34 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class DogfighterA : MonoBehaviour {
-
+public class DogFighterA : MonoBehaviour {
+	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
-
+	
 	//The speed at which the enemy will move
 	public float speed;
-
+	
 	//Is the enemy ready to shoot?
 	bool ready;
-
+	
 	//Counter for reloading
 	int shootTimer;
 	
 	//Time before the enemy can shoot again 
 	public int reloadTime;
-
+	
 	//Prefab of the enemy bullet
 	public GameObject bulletPrefab;
-
+	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
-
+	
 	//Value of destroying this enemy
 	public int value;
-
+	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -57,16 +57,16 @@ public class DogfighterA : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
-
+		
 		//The enemy can shoot right when it spawns
 		ready = true;
-
+		
 		//Set the shooting timer
 		shootTimer = reloadTime;
-
+		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
-
+		
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
 	}
@@ -81,15 +81,15 @@ public class DogfighterA : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
-
+		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-
+		
 		//The new position of the enemy after moving
 		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
-
+		
 		//Apply the movement
 		transform.position = newPos;
-
+		
 		//If the enemy is "reloading", don't decrement the timer
 		if (!ready) {
 			
@@ -103,7 +103,7 @@ public class DogfighterA : MonoBehaviour {
 				shootTimer = reloadTime;
 			}
 		}
-
+		
 		//If the enemy can shoot
 		if(ready)
 		{
@@ -112,7 +112,7 @@ public class DogfighterA : MonoBehaviour {
 			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
 		}
-
+		
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
 		if (transform.position.x < (boundaries.getLeft() * 1.2))
@@ -120,9 +120,9 @@ public class DogfighterA : MonoBehaviour {
 			//Destroy the enemy
 			Destroy (this.gameObject);
 		}
-
+		
 	}
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnCollisionEnter(Collision col)
 	 *
@@ -140,10 +140,10 @@ public class DogfighterA : MonoBehaviour {
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
 			Destroy (this.gameObject);
-
+			
 			//Update the players score
 			score.UpdateScore(value);
-
+			
 		}
 	}
 }

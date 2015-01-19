@@ -24,7 +24,7 @@ public class Instance1 : MonoBehaviour {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Enemies possible to spawn
-	string[] enemies = new string[2] {"DogFighterB/DogFighterB", "DogfighterA/DogfighterA"};
+	string[] enemies = new string[2] {"DogFighterB/DogFighterB", "DogFighterA/DogFighterA"};
 	
 	//The spawner object
 	public GameObject enemySpawner;
