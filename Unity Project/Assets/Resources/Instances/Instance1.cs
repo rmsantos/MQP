@@ -34,7 +34,7 @@ public class Instance1 : MonoBehaviour {
 	int timer;
 	
 	//The final time of the instance when it self destructs
-	public int finalTime;
+	int finalTime;
 
 	//Stores the boundaries of the game
 	Boundaries boundaries;
@@ -60,8 +60,8 @@ public class Instance1 : MonoBehaviour {
 
 	void Start () {
 
-		//Initializes the timer to 0
 		timer = 0;
+		finalTime = 1000;
 
 		//Get the script that created this instance
 		spawner = (Spawner) enemySpawner.GetComponent("Spawner");
