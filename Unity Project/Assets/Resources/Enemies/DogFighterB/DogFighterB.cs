@@ -43,6 +43,12 @@ public class DogFighterB : MonoBehaviour {
 	//Player script
 	GameObject player;
 
+	//Value of destroying this enemy
+	public int value;
+	
+	//ScoreHandler object to track players score
+	ScoreHandler score;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -66,6 +72,9 @@ public class DogFighterB : MonoBehaviour {
 
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
+
+		//Search for the ScoreHandler object for tracking score
+		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
 
 	}
 	
@@ -111,5 +120,29 @@ public class DogFighterB : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : OnCollisionEnter(Collision col)
+	 *
+	 * Description : Deals with collisions between the player bullets and this enemy.
+	 *
+	 * Parameters  : Collision col : The other object collided with
+	 *
+	 * Returns     : Void
+	 */
+	void OnCollisionEnter (Collision col)
+	{
+		//If this is hit by a player bullet
+		if(col.gameObject.tag == "PlayerBullet")
+		{
+			//Destroy the player bullet and this object
+			Destroy(col.gameObject);
+			Destroy (this.gameObject);
+			
+			//Update the players score
+			score.UpdateScore(value);
+			
+		}
 	}
 }
