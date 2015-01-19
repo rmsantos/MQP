@@ -52,9 +52,9 @@
      <Compile Include="Assets\Player Ship\Gunner.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
-     <Compile Include="Assets\Resources\Enemies\BasicEnemy\BasicEnemy.cs" />
-     <Compile Include="Assets\Resources\Enemies\BasicEnemy\BasicEnemyBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
+     <Compile Include="Assets\Resources\Enemies\DogfighterA\DogfighterA.cs" />
+     <Compile Include="Assets\Resources\Enemies\DogfighterA\DogfighterABullet.cs" />
      <Compile Include="Assets\Resources\Instances\Instance1.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
