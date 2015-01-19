@@ -43,11 +43,11 @@ public class Boundaries : MonoBehaviour {
 	 */
 	void Start () {
 	
-		//Top boundary (with some tweaking with the +1)
-		top = Camera.main.camera.orthographicSize + 1; 
+		//Top boundary
+		top = Camera.main.camera.orthographicSize; 
 
-		//Bottom boundary (with some tweaking with the +1)
-		bottom = -Camera.main.camera.orthographicSize + 1;
+		//Bottom boundary
+		bottom = -Camera.main.camera.orthographicSize ;
 
 		//Left boundary
 		left = -(Camera.main.orthographicSize * Screen.width / Screen.height);
