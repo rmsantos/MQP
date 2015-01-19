@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[1] {"Instance1"};
+	string[] instances = new string[1] {"Instance2"};
 	
 	//Randomizer script
 	public GameObject randomizer;
@@ -88,7 +88,7 @@ public class Spawner : MonoBehaviour {
 				spawning = true;
 				spawnTimer = timeBetweenSpawning;
 
-				string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0) - 1)];
+				string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0))];
 				
 				Instantiate(Resources.Load<GameObject>(randomInstance));
 				

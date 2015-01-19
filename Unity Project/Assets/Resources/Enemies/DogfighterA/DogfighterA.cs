@@ -109,10 +109,8 @@ public class DogfighterA : MonoBehaviour {
 		{
 			//Then shoot and mark that he has shot
 			ready = false;
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
-			//Tell the bullet to ignore collisions with the Dogfighter enemies
-			//Physics.IgnoreCollision(bullet.collider, collider);
 		}
 
 		//If the enemy leaves the game space

@@ -56,6 +56,7 @@
      <Compile Include="Assets\Resources\Enemies\DogfighterA\DogfighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogfighterA\DogfighterABullet.cs" />
      <Compile Include="Assets\Resources\Instances\Instance1.cs" />
+     <Compile Include="Assets\Resources\Instances\Instance2.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />

@@ -19,12 +19,12 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Instance1 : MonoBehaviour {
+public class Instance2 : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Enemies possible to spawn
-	string[] enemies = new string[2] {"DogFighterB/DogFighterB", "DogfighterA/DogfighterA"};
+	string[] enemies = new string[1] {"DogfighterA/DogfighterA"};
 	
 	//The spawner object
 	public GameObject enemySpawner;
@@ -34,7 +34,7 @@ public class Instance1 : MonoBehaviour {
 	int timer;
 	
 	//The final time of the instance when it self destructs
-	public int finalTime;
+	int finalTime;
 
 	//Stores the boundaries of the game
 	Boundaries boundaries;
@@ -43,6 +43,9 @@ public class Instance1 : MonoBehaviour {
 	float top;
 	float bottom;
 	float right;
+
+	//Keeps track of which enemy has spawned
+	int enemyNumber;
 
 	//Randomizer script
 	public GameObject randomizer;
@@ -59,6 +62,9 @@ public class Instance1 : MonoBehaviour {
 	 */
 
 	void Start () {
+
+		enemyNumber = 0;
+		finalTime = 250;
 
 		//Initializes the timer to 0
 		timer = 0;
@@ -93,8 +99,9 @@ public class Instance1 : MonoBehaviour {
 		//Increment the timer at each pass
 		timer++;
 
-		if (timer % 100 == 0 && timer >= 0) {
-			SpawnEnemy();
+		if (timer % 50 == 0 && timer >= 0) {
+			SpawnEnemy(enemyNumber);
+			enemyNumber++;
 		}
 
 		if (timer >= finalTime) {
@@ -105,21 +112,22 @@ public class Instance1 : MonoBehaviour {
 		}
 	}
 
-	float GetRandomLocation() {
+	float GetEnemyLocation(int enemyNumber) {
 
-		return (top - bottom) / (100 / (float) (random.GetRandom(100)+1)) - ((top - bottom) / 2);
+		return (top - bottom) * ((float) enemyNumber / 10f);
+
 	}
 
 	//Uses some logic to spawn enemies
-	void SpawnEnemy () {
+	void SpawnEnemy (int enemyNumber) {
 
 		//Get a random vertical location
-
-		float randomLocation = GetRandomLocation();
+		float enemyLocation = GetEnemyLocation(enemyNumber);
 
 		string randomEnemy = "Enemies/" + enemies[random.GetRandom(enemies.GetLength(0))];
 		GameObject enemy = Resources.Load<GameObject> (randomEnemy);
-		Instantiate(enemy, new Vector3(right * 1.2f, randomLocation, 0), Quaternion.identity);
+		Instantiate(enemy, new Vector3(right * 1.2f, enemyLocation + .5f, 0), Quaternion.identity);
+		Instantiate(enemy, new Vector3(right * 1.2f, 0 - enemyLocation - .5f, 0), Quaternion.identity);
 
 	}
 	
