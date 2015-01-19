@@ -42,6 +42,7 @@ public class ScoreHandler : MonoBehaviour {
 
 	public long UpdateScore(long amount) {
 		score += amount;
+		print ("Score: " + score);
 		return score;
 	}
 
