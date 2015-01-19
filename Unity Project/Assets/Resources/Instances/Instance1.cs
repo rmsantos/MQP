@@ -22,6 +22,9 @@ using System.Collections;
 public class Instance1 : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
+
+	//Enemies possible to spawn
+	string[] enemies = new string[2] {"DogFighterB/DogFighterB", "BasicEnemy/Basic Enemy"};
 	
 	//The spawner object
 	public GameObject enemySpawner;
@@ -114,7 +117,8 @@ public class Instance1 : MonoBehaviour {
 
 		float randomLocation = GetRandomLocation();
 
-		GameObject enemy = Resources.Load<GameObject> ("Enemies/BasicEnemy/Basic Enemy");
+		string randomEnemy = "Enemies/" + enemies[random.GetRandom(enemies.GetLength(0) - 1)];
+		GameObject enemy = Resources.Load<GameObject> (randomEnemy);
 		Instantiate(enemy, new Vector3(right * 1.2f, randomLocation, 0), Quaternion.identity);
 
 	}
