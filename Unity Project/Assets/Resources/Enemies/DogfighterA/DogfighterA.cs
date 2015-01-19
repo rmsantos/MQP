@@ -40,6 +40,8 @@ public class DogfighterA : MonoBehaviour {
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
+	GameObject player;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -100,7 +102,10 @@ public class DogfighterA : MonoBehaviour {
 		{
 			//Then shoot and mark that he has shot
 			ready = false;
-			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
+			//Tell the bullet to ignore collisions with the Dogfighter enemies
+			Physics.IgnoreCollision(bullet.collider, collider);
 		}
 
 		//If the enemy leaves the game space
@@ -111,5 +116,25 @@ public class DogfighterA : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : OnCollisionEnter(Collision col)
+	 *
+	 * Description : Deals with collisions between the player bullets and this enemy.
+	 *
+	 * Parameters  : Collision col : The other object collided with
+	 *
+	 * Returns     : Void
+	 */
+	void OnCollisionEnter (Collision col)
+	{
+		//If this is hit by a player bullet
+		if(col.gameObject.tag == "PlayerBullet")
+		{
+			//Destroy the player bullet and this object
+			Destroy(col.gameObject);
+			Destroy (this.gameObject);
+		}
 	}
 }
