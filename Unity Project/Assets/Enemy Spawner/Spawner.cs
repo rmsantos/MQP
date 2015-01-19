@@ -54,8 +54,11 @@ public class Spawner : MonoBehaviour {
 
 	void Start () {
 	
+		//Get the randomizer script
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
 
+		//Initialize spawning variables
+		timeBetweenSpawning = 300;
 		spawnTimer = timeBetweenSpawning;
 		spawning = false;
 

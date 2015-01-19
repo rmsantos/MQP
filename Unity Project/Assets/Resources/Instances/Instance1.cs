@@ -33,6 +33,18 @@ public class Instance1 : MonoBehaviour {
 	//The final time of the instance when it self destructs
 	public int finalTime;
 
+	//Stores the boundaries of the game
+	Boundaries boundaries;
+
+	//The right, top, and bottom boundaries of the map
+	float top;
+	float bottom;
+	float right;
+
+	//Randomizer script
+	public GameObject randomizer;
+	Randomizer random;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -44,8 +56,23 @@ public class Instance1 : MonoBehaviour {
 	 */
 
 	void Start () {
+
+		//Initializes the timer to 0
 		timer = 0;
+
+		//Get the script that created this instance
 		spawner = (Spawner) enemySpawner.GetComponent("Spawner");
+
+		//Pull the boundaries script from the main camera object and store it
+		boundaries = Camera.main.GetComponent<Boundaries>();
+
+		//Get the top, bottom, and right boundaries
+		top = boundaries.getTop();
+		bottom = boundaries.getBottom();
+		right = boundaries.getRight();
+
+		//Get the randomizer script
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -60,7 +87,12 @@ public class Instance1 : MonoBehaviour {
 
 	void Update () {
 
+		//Increment the timer at each pass
 		timer++;
+
+		if (timer % 100 == 0 && timer >= 0) {
+			SpawnEnemy();
+		}
 
 		if (timer >= finalTime) {
 			timer = -999999;
@@ -70,7 +102,23 @@ public class Instance1 : MonoBehaviour {
 		}
 	}
 
+	float GetRandomLocation() {
 
+		return (top - bottom) / (100 / (float) (random.GetRandom(99)+1)) - ((top - bottom) / 2);
+	}
+
+	//Uses some logic to spawn enemies
+	void SpawnEnemy () {
+
+		//Get a random vertical location
+
+		float randomLocation = GetRandomLocation();
+
+		GameObject enemy = Resources.Load<GameObject> ("Enemies/BasicEnemy/Basic Enemy");
+		Instantiate(enemy, new Vector3(right * (float) 1.2, randomLocation, 0), Quaternion.identity);
+
+	}
+	
 }
 
 
