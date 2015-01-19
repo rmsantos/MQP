@@ -112,7 +112,7 @@ public class DogfighterA : MonoBehaviour {
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
 			//Tell the bullet to ignore collisions with the Dogfighter enemies
-			Physics.IgnoreCollision(bullet.collider, collider);
+			//Physics.IgnoreCollision(bullet.collider, collider);
 		}
 
 		//If the enemy leaves the game space
