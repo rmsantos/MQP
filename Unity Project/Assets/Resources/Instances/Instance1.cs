@@ -114,7 +114,7 @@ public class Instance1 : MonoBehaviour {
 
 		float randomLocation = GetRandomLocation();
 
-		GameObject enemy = Resources.Load<GameObject> ("Enemies/BasicEnemy/Basic Enemy");
+		GameObject enemy = Resources.Load<GameObject> ("Enemies/DogfighterA/DogfighterA");
 		Instantiate(enemy, new Vector3(right * (float) 1.2, randomLocation, 0), Quaternion.identity);
 
 	}

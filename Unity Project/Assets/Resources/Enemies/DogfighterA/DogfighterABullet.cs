@@ -1,9 +1,9 @@
-﻿/* Module      : BasicEnemy.cs
+﻿/* Module      : DogfighterABullet.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the BasicEnemy
+ * Description : This file controls the behavior of the DogfighterA Bullet
  *
  * Date        : 2015/1/16
  * 
@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class BasicEnemyBullet : MonoBehaviour {
+public class DogfighterABullet : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
