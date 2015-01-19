@@ -40,7 +40,11 @@ public class DogfighterA : MonoBehaviour {
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
-	GameObject player;
+	//Value of destroying this enemy
+	public int value;
+
+	//ScoreHandler object to track players score
+	ScoreHandler score;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -62,6 +66,8 @@ public class DogfighterA : MonoBehaviour {
 
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
+
+		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -135,6 +141,10 @@ public class DogfighterA : MonoBehaviour {
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
 			Destroy (this.gameObject);
+
+			//Update the players score
+			score.UpdateScore(value);
+
 		}
 	}
 }
