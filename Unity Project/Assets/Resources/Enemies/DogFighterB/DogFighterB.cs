@@ -40,6 +40,9 @@ public class DogFighterB : MonoBehaviour {
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
+	//Player script
+	GameObject player;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -60,6 +63,10 @@ public class DogFighterB : MonoBehaviour {
 
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
+
+		//Search for player
+		player = GameObject.FindGameObjectWithTag ("Player");
+
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -75,14 +82,13 @@ public class DogFighterB : MonoBehaviour {
 
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
-		//The new position of the enemy after moving
-		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
-		transform.position = newPos;
+		//follow the player
+		transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
 
 		if (!ready) {
 
 			shootTimer--;
-			
+
 			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
 			if (shootTimer <= 0) {
 				
