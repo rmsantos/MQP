@@ -127,16 +127,17 @@ public class Boundaries : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : inBoundaries(Vector3 position)
+	/* Function    : inBoundaries(Vector3 position, float modifier)
 	 *
 	 * Description : Returns true if the position is in the game boundaries
 	 *
 	 * Parameters  : Vector3 position : The position being tested
+	 * 				float modifier : Multiplies the boundaries to tweaking
 	 *
 	 * Returns     : bool : True if the position is inside the boundaries, false otherwise
 	 */
-	public bool inBoundaries(Vector3 position)
+	public bool inBoundaries(Vector3 position, float modifier)
 	{
-		return (position.y > bottom && position.y < top && position.x > left && position.x < right);
+		return (position.y > bottom * modifier && position.y < top * modifier && position.x > left * modifier && position.x < right * modifier);
 	}
 }

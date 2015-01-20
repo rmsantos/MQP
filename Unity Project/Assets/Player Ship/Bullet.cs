@@ -79,10 +79,7 @@ public class Bullet : MonoBehaviour {
 
 		//If the bullet leaves the game space
 		//Leave some room for the bullet to fully exit the visible screen (by multiplying 1.2)
-		if (transform.position.x > (boundaries.getRight() * 1.2) ||
-			transform.position.x < (boundaries.getLeft() * 1.2) ||
-			transform.position.y > (boundaries.getTop() * 1.2) ||
-			transform.position.y < (boundaries.getBottom() * 1.2))
+		if (!boundaries.inBoundaries(transform.position, 1.2f))
 		{
 			//Destroy the bullet
 			Destroy (this.gameObject);
