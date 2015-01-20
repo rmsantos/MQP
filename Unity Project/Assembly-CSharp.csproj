@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Background.cs" />
      <Compile Include="Assets\Camera\Boundaries.cs" />
      <Compile Include="Assets\Enemy Spawner\Spawner.cs" />
      <Compile Include="Assets\Player Ship\Bullet.cs" />

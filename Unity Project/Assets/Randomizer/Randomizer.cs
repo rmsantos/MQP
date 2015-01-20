@@ -36,7 +36,7 @@ public class Randomizer : MonoBehaviour {
 	 * Returns     : Void
 	 */
 
-	void Start () {
+	void Awake() {
 	
 		random = new System.Random((int) DateTime.Now.Ticks & 0x0000FFFF);
 
