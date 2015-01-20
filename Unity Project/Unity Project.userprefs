@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy Spawner\Spawner.cs">
     <Files>
@@ -8,6 +9,17 @@
       <File FileName="Assets\Resources\Instances\Instance1.cs" Line="1" Column="1" />
       <File FileName="Assets\Background.cs" Line="1" Column="1" />
       <File FileName="Assets\Randomizer\Randomizer.cs" Line="42" Column="1" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Seeker\Seeker.cs">
+    <Files>
+      <File FileName="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="123" Column="56" />
+      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="107" Column="18" />
+      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Camera\Boundaries.cs" Line="130" Column="49" />
+      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="1" Column="1" />
+>>>>>>> 68a63287dd48270639c2422b3d24a2292abcd79c
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

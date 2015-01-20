@@ -107,7 +107,7 @@ public class DogFighterA : MonoBehaviour {
 		}
 		
 		//If the enemy can shoot
-		if(ready)
+		if(ready && boundaries.inBoundaries(transform.position,1))
 		{
 			//Then shoot and mark that he has shot
 			ready = false;

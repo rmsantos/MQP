@@ -120,11 +120,25 @@ public class Seeker : MonoBehaviour {
 		}
 		
 		//If the enemy can shoot
-		if(ready)
+		if(ready & boundaries.inBoundaries(transform.position,1))
 		{
-			//Then shoot and mark that he has shot
+			//Flag that a missile was shot
 			ready = false;
-			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
+			//Spawn the missle and store it
+			GameObject missile = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			
+			//Store the direction of the missile
+			Vector3 direction = transform.position-missile.transform.position;
+			
+			//Look at the player
+			missile.transform.LookAt(direction,Vector3.up);
+			
+			//Rotate 90 degrees along the x so that the cylinder is facing the target (like a bullet)
+			missile.transform.Rotate(90,0,0);
+			
+			//Flag that player has just shot
+			ready = false;
 			
 		}		
 	}
