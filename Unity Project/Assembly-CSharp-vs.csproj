@@ -60,6 +60,7 @@
      <Compile Include="Assets\Resources\Instances\Instance1.cs" />
      <Compile Include="Assets\Resources\Instances\Instance2.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
+     <Compile Include="Assets\Utilities\Utilities.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
