@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\DogFighterA\DogfighterA.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy Spawner\Spawner.cs">
     <Files>
+      <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="35" Column="2" />
       <File FileName="Assets\Resources\Enemies\DogFighterA\DogfighterA.cs" Line="150" Column="1" />
-      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\DogfighterA\DogfighterA.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Instances\Instance2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="152" Column="1" />
+      <File FileName="Assets\Resources\Enemies\DogfighterA\DogfighterA.cs" Line="150" Column="1" />
+      <File FileName="Assets\Resources\Instances\Instance2.cs" Line="137" Column="1" />
+      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="129" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

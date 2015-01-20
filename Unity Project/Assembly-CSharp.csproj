@@ -52,8 +52,8 @@
      <Compile Include="Assets\Player Ship\Gunner.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
-     <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" />
+     <Compile Include="Assets\Resources\Enemies\DogFighterA\DogfighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
      <Compile Include="Assets\Resources\Instances\Instance1.cs" />
      <Compile Include="Assets\Resources\Instances\Instance2.cs" />
