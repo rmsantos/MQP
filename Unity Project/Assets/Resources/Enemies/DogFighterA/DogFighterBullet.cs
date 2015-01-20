@@ -62,9 +62,8 @@ public class DogFighterBullet : MonoBehaviour {
 		//Apply the movement
 		transform.position = newPos;
 
-		//If the bullet leaves the game space
-		//Leave some room for the bullet to fully exit the visible screen (by multiplying 1.2)
-		if (transform.position.x < (boundaries.getLeft() * 1.2))
+		//Delete the bullet if it goes off screen
+		if (!boundaries.inBoundaries(transform.position,1.2f))
 		{
 			//Destroy the bullet
 			Destroy (this.gameObject);
