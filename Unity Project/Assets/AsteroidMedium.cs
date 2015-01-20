@@ -54,7 +54,7 @@ public class AsteroidMedium : MonoBehaviour {
 		speed = Random.Range(1.5f, 3f);
 		rotation = Random.Range(15f, 150f);
 		float x = -1f;
-		float y = Random.Range(-.3f, .3f);
+		float y = Random.Range(-.2f, .2f);
 		direction = new Vector3(x, y);
 		
 	}

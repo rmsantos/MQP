@@ -54,7 +54,7 @@ public class AsteroidLarge : MonoBehaviour {
 		speed = Random.Range(1f, 2f);
 		rotation = Random.Range(10f, 100f);
 		float x = -1f;
-		float y = Random.Range(-.3f, .3f);
+		float y = Random.Range(-.1f, .1f);
 		direction = new Vector3(x, y);
 		
 	}
