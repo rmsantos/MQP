@@ -49,6 +49,9 @@ public class Seeker : MonoBehaviour {
 	//Speed in the x direction
 	float xSpeed;
 
+	//Player script
+	GameObject player;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -75,6 +78,9 @@ public class Seeker : MonoBehaviour {
 
 		//Set the x speed to move to the left 
 		xSpeed = -speed;
+
+		//Search for player
+		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -114,7 +120,7 @@ public class Seeker : MonoBehaviour {
 			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
 			if (shootTimer <= 0) {
 				
-				ready = true;
+				ready = false;
 				shootTimer = reloadTime;
 			}
 		}
@@ -127,15 +133,15 @@ public class Seeker : MonoBehaviour {
 
 			//Spawn the missle and store it
 			GameObject missile = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-			
-			//Store the direction of the missile
-			Vector3 direction = transform.position-missile.transform.position;
-			
-			//Look at the player
-			missile.transform.LookAt(direction,Vector3.up);
-			
-			//Rotate 90 degrees along the x so that the cylinder is facing the target (like a bullet)
-			missile.transform.Rotate(90,0,0);
+
+			//Store the direction of the player in respect to the missile
+			Vector3 direction = player.transform.position-missile.transform.position;
+
+			//Set the z to 0 so that it moves only in 2D
+			direction.z = 0;
+
+			//Rotate the missile towards the player
+			missile.transform.rotation = Quaternion.LookRotation(direction);
 			
 			//Flag that player has just shot
 			ready = false;

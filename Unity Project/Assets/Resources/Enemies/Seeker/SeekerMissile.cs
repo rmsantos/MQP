@@ -64,14 +64,14 @@ public class SeekerMissile : MonoBehaviour {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
-		//follow the player
-		transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
-			
-		//Move to the left
-		transform.position = new Vector3 (transform.position.x - (speed * 2f), transform.position.y, transform.position.z);
+		transform.Translate( transform.forward * speed, Space.World);
 
-		//If the enemy leaves the game space
-		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
+		Vector3 targetDir = player.transform.position - transform.position;
+		float step = 0.01f;
+		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
+
+		transform.rotation = Quaternion.LookRotation(newDir);
+
 		if (transform.position.x < (boundaries.getLeft() * 1.2))
 		{
 			//Destroy the enemy
