@@ -126,8 +126,8 @@ public class Instance2 : MonoBehaviour {
 
 		string randomEnemy = "Enemies/" + enemies[random.GetRandom(enemies.GetLength(0))];
 		GameObject enemy = Resources.Load<GameObject> (randomEnemy);
-		Instantiate(enemy, new Vector3(right * 1.2f, enemyLocation + .5f, 0), Quaternion.identity);
-		Instantiate(enemy, new Vector3(right * 1.2f, 0 - enemyLocation - .5f, 0), Quaternion.identity);
+		Instantiate(enemy, new Vector3(right * 1.2f, enemyLocation + .5f, -.1f), Quaternion.identity);
+		Instantiate(enemy, new Vector3(right * 1.2f, 0 - enemyLocation - .5f, -.1f), Quaternion.identity);
 
 	}
 	

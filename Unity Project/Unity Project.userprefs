@@ -1,15 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Background.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemy Spawner\Spawner.cs">
     <Files>
       <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="91" Column="94" />
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogfighterA.cs" Line="116" Column="22" />
       <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="98" Column="3" />
-      <File FileName="Assets\Resources\Enemies\DogfighterA\DogfighterA.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Instances\Instance2.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="76" Column="3" />
-      <File FileName="Assets\Background.cs" Line="23" Column="2" />
-      <File FileName="Assets\Randomizer\Randomizer.cs" Line="39" Column="2" />
+      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Background.cs" Line="1" Column="1" />
+      <File FileName="Assets\Randomizer\Randomizer.cs" Line="42" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
