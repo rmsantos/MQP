@@ -118,9 +118,9 @@ public class Seeker : MonoBehaviour {
 			shootTimer--;
 			
 			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
-			if (shootTimer <= 0) {
-				
-				ready = false;
+			if (shootTimer <= 0) 
+			{
+				ready = true;
 				shootTimer = reloadTime;
 			}
 		}

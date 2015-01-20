@@ -22,7 +22,7 @@ public class SeekerMissile : MonoBehaviour {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
-	//The speed at which the bullet will move
+	//The speed at which the missile will move
 	public float speed;
 		
 	//Stores the boundaries of the game
@@ -30,6 +30,9 @@ public class SeekerMissile : MonoBehaviour {
 	
 	//Player script
 	GameObject player;
+
+	//The speed at which the missile will rotate
+	public float rotationSpeed;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -64,15 +67,20 @@ public class SeekerMissile : MonoBehaviour {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
+		//Move the missile forwards
 		transform.Translate( transform.forward * speed, Space.World);
 
+		//Find the direction of the player
 		Vector3 targetDir = player.transform.position - transform.position;
-		float step = 0.01f;
-		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
 
+		//The the position of the player
+		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed, 0);
+
+		//Rotate towards that position
 		transform.rotation = Quaternion.LookRotation(newDir);
 
-		if (transform.position.x < (boundaries.getLeft() * 1.2))
+		//Delete the bullet if it goes off screen
+		if (!boundaries.inBoundaries(transform.position,1.2f))
 		{
 			//Destroy the enemy
 			Destroy (this.gameObject);
@@ -83,7 +91,7 @@ public class SeekerMissile : MonoBehaviour {
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnCollisionEnter(Collision col)
 	 *
-	 * Description : Deals with collisions between the player bullets and this enemy.
+	 * Description : Deals with collisions between the player bullets and .
 	 *
 	 * Parameters  : Collision col : The other object collided with
 	 *
