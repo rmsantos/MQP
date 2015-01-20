@@ -109,7 +109,7 @@ public class DogFighterB : MonoBehaviour {
 			}
 		}
 
-		if(ready)
+		if(ready && boundaries.inBoundaries(transform.position))
 		{
 			ready = false;
 			Instantiate(bulletPrefab,transform.position,Quaternion.identity);

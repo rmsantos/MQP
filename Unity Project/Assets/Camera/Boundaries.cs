@@ -47,7 +47,7 @@ public class Boundaries : MonoBehaviour {
 		top = Camera.main.camera.orthographicSize; 
 
 		//Bottom boundary
-		bottom = -Camera.main.camera.orthographicSize ;
+		bottom = -Camera.main.camera.orthographicSize;
 
 		//Left boundary
 		left = -(Camera.main.orthographicSize * Screen.width / Screen.height);
@@ -124,5 +124,19 @@ public class Boundaries : MonoBehaviour {
 	public float getBottom()
 	{
 		return bottom;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : inBoundaries(Vector3 position)
+	 *
+	 * Description : Returns true if the position is in the game boundaries
+	 *
+	 * Parameters  : Vector3 position : The position being tested
+	 *
+	 * Returns     : bool : True if the position is inside the boundaries, false otherwise
+	 */
+	public bool inBoundaries(Vector3 position)
+	{
+		return (position.y > bottom && position.y < top && position.x > left && position.x < right);
 	}
 }
