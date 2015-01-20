@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[2] {"Instance1", "Instance2"};
+	string[] instances = new string[3] {"Instance1", "Instance2", "Instance3"};
 	
 	//Randomizer script
 	public GameObject randomizer;

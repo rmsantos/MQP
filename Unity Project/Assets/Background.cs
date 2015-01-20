@@ -1,4 +1,17 @@
-﻿using UnityEngine;
+﻿/* Module      : Background.cs
+ * Author      : Josh Morse
+ * Email       : jbmorse@wpi.edu
+ * Course      : IMGD MQP
+ *
+ * Description : This file controls the behavior of the Background
+ *
+ * Date        : 2015/1/20
+ * 
+ *
+ * (c) Copyright 2015, Worcester Polytechnic Institute.
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class Background : MonoBehaviour {
