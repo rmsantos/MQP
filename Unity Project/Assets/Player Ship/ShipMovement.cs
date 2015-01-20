@@ -71,6 +71,8 @@ public class ShipMovement : MonoBehaviour {
 	 */
 	void Start () {
 
+		gameObject.transform.Rotate(90, 180, 0);
+
 		//Store X and Y positions of the ship
 		xPos = transform.position.x;
 		yPos = transform.position.y;
@@ -320,6 +322,7 @@ public class ShipMovement : MonoBehaviour {
 		//Update the ships new rotation
 		transform.rotation = Quaternion.AngleAxis (zRotation, Vector3.forward);
 
+		gameObject.transform.Rotate(90, 180, 0);
 
 	}
 
