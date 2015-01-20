@@ -119,7 +119,7 @@ public class Instance1 : MonoBehaviour {
 
 		string randomEnemy = "Enemies/" + enemies[random.GetRandom(enemies.GetLength(0))];
 		GameObject enemy = Resources.Load<GameObject> (randomEnemy);
-		Instantiate(enemy, new Vector3(right * 1.2f, randomLocation, 0), Quaternion.identity);
+		Instantiate(enemy, new Vector3(right * 1.2f, randomLocation, -.1f), Quaternion.identity);
 
 	}
 	

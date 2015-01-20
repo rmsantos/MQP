@@ -1,13 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Seeker\Seeker.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Instances\Instance3.cs">
     <Files>
-      <File FileName="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="123" Column="56" />
-      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="107" Column="18" />
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Camera\Boundaries.cs" Line="130" Column="49" />
-      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="91" Column="94" />
+      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="152" Column="1" />
+      <File FileName="Assets\Resources\Instances\Instance3.cs" Line="40" Column="24" />
+      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="129" Column="1" />
+      <File FileName="Assets\Background.cs" Line="1" Column="1" />
+      <File FileName="Assets\Randomizer\Randomizer.cs" Line="66" Column="1" />
+      <File FileName="Assets\AsteroidLarge.cs" Line="1" Column="1" />
+      <File FileName="Assets\AsteroidMedium.cs" Line="21" Column="3" />
+      <File FileName="Assets\AsteroidSmall.cs" Line="54" Column="17" />
+      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="169" Column="2" />
+      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" Line="74" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" Line="104" Column="1" />
+      <File FileName="Assets\Player Ship\Bullet.cs" Line="106" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
