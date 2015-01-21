@@ -18,4 +18,10 @@ public class Interceptor : BasicEnemy {
 	{
 		print ("Interceptor!");
 	}
+
+	public override int getCollisionDamage()
+	{
+		return 0;
+	}
+
 }

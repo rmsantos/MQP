@@ -52,6 +52,12 @@ public class Grenadier : BasicEnemy {
 	//The health of this enemy
 	public int health;
 
+	//Stores the damage colliding with the player does
+	public int collisionDamage;
+	
+	//Stores the damage the bullet does
+	public int bulletDamage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -124,6 +130,24 @@ public class Grenadier : BasicEnemy {
 
 			//Spawn the third bullet and store it
 			GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
+			//Cast the first bullet to a bullet type
+			GrenadierBullet grenadierBullet1 = (GrenadierBullet)bullet1.GetComponent(typeof(GrenadierBullet));
+						
+			//Set the damage of the bullet
+			grenadierBullet1.setDamage(bulletDamage);
+
+			//Cast the second bullet to a bullet type
+			GrenadierBullet grenadierBullet2 = (GrenadierBullet)bullet2.GetComponent(typeof(GrenadierBullet));
+			
+			//Set the damage of the bullet
+			grenadierBullet2.setDamage(bulletDamage);
+
+			//Cast the third bullet to a bullet type
+			GrenadierBullet grenadierBullet3 = (GrenadierBullet)bullet3.GetComponent(typeof(GrenadierBullet));
+			
+			//Set the damage of the bullet
+			grenadierBullet3.setDamage(bulletDamage);
 
 			//Create a Quaternion that points directly to the left side of the screen (-x direction)
 			Quaternion leftAlign = Quaternion.LookRotation(new Vector3(-1,0,0));
@@ -203,5 +227,19 @@ public class Grenadier : BasicEnemy {
 			//Update the players score
 			score.UpdateScore(value);
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Collision damage
+	 */
+	public override int getCollisionDamage()
+	{
+		return collisionDamage;
 	}
 }

@@ -1,11 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\BasicEnemy.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
     <Files>
-      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" Line="120" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\BasicEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="52" Column="4" />
+      <File FileName="Assets\Resources\Enemies\BasicEnemy.cs" Line="36" Column="2" />
+      <File FileName="Assets\Resources\Enemies\BasicBullet.cs" Line="13" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

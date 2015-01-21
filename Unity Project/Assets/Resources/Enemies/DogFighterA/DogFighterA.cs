@@ -48,7 +48,13 @@ public class DogFighterA : BasicEnemy {
 
 	//The health of this enemy
 	public int health;
+
+	//Stores the damage colliding with the player does
+	public int collisionDamage;
 	
+	//Stores the damage the bullet does
+	public int bulletDamage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -116,7 +122,13 @@ public class DogFighterA : BasicEnemy {
 			ready = false;
 			
 			//Spawn the bullet and store it
-			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
+			//Cast to an bullet type
+			DogFighterBullet dogfighterBullet = (DogFighterBullet)bullet.GetComponent(typeof(DogFighterBullet));
+			
+			//Set the damage of the bullet
+			dogfighterBullet.setDamage(bulletDamage);
 		}	
 		
 		//If the enemy leaves the game space
@@ -180,4 +192,19 @@ public class DogFighterA : BasicEnemy {
 			score.UpdateScore(value);
 		}
 	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Collision damage
+	 */
+	public override int getCollisionDamage()
+	{
+		return collisionDamage;
+	}
+
 }

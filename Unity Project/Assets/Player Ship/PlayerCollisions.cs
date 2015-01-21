@@ -32,27 +32,43 @@ public class PlayerCollisions : MonoBehaviour {
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>();
 	}
-	
+
 	void OnCollisionEnter (Collision col)
 	{
 		if(col.gameObject.tag == "EnemyBullets")
 		{
 			//Destroy the enemy bullet
 			Destroy(col.gameObject);
-			health -= 5;
+			//health -= 5;
+
+			//Find the abstract class of this collision
+			BasicBullet bullet = (BasicBullet)col.gameObject.GetComponent(typeof(BasicBullet));
+
+			//Subtract the health based on that bullet
+			health -= bullet.getBulletDamage();
 
 			print (health);
 			
 		}
 
-		if(col.gameObject.tag == "Enemies" || col.gameObject.tag == "Asteroids")
+		if(col.gameObject.tag == "Enemies")
 		{
 			//Destroy the enemy
 			Destroy(col.gameObject);
-			health -= 10;
+
+			//Find the abstract class of this collision
+			BasicEnemy enemy = (BasicEnemy)col.gameObject.GetComponent(typeof(BasicEnemy));
+
+			//Subtract the health based on that enemy
+			health -= enemy.getCollisionDamage();
 			
 			print (health);
 			
+		}
+
+		if(col.gameObject.tag == "Asteroids")
+		{
+			print("BOOP");
 		}
 
 		if(col.gameObject.tag == "Money")
@@ -71,4 +87,9 @@ public class PlayerCollisions : MonoBehaviour {
 		}
 	}
 
+
+	public void takeDamage(int damage)
+	{
+		health -= damage;
+	}
 }

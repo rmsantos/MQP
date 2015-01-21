@@ -54,6 +54,12 @@ public class Saboteur : BasicEnemy {
 
 	//The health of this enemy
 	public int health;
+
+	//Stores the damage colliding with the player does
+	public int collisionDamage;
+	
+	//Stores the damage the bullet does
+	public int bulletDamage;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -155,7 +161,13 @@ public class Saboteur : BasicEnemy {
 			ready = false;
 			
 			//Spawn the bullet and store it
-			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
+			//Cast the second bullet to a bullet type
+			SaboteurBullet saboteurBullet = (SaboteurBullet)bullet.GetComponent(typeof(SaboteurBullet));
+			
+			//Set the damage of the bullet
+			saboteurBullet.setDamage(bulletDamage);
 		}	
 	}
 	
@@ -209,5 +221,19 @@ public class Saboteur : BasicEnemy {
 			//Update the players score
 			score.UpdateScore(value);
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Collision damage
+	 */
+	public override int getCollisionDamage()
+	{
+		return collisionDamage;
 	}
 }
