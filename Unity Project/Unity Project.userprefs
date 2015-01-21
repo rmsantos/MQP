@@ -1,35 +1,12 @@
 ﻿<Properties>
-<<<<<<< HEAD
-<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AsteroidLarge.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\ShipMovement.cs">
     <Files>
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="152" Column="1" />
-      <File FileName="Assets\AsteroidSmall.cs" Line="46" Column="3" />
-      <File FileName="Assets\AsteroidMedium.cs" Line="112" Column="1" />
-      <File FileName="Assets\AsteroidLarge.cs" Line="112" Column="1" />
-      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="69" Column="27" />
-      <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="38" Column="2" />
-      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="129" Column="1" />
-      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="344" Column="3" />
-=======
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs">
-=======
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Saboteur\Saboteur.cs">
->>>>>>> 0b36262e94832f6da189bf161f6555d5efb6670c
-    <Files>
-      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="122" Column="5" />
-      <File FileName="Assets\Resources\Enemies\Saboteur\Saboteur.cs" Line="107" Column="36" />
       <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" Line="73" Column="1" />
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
-      <File FileName="Assets\Resources\Enemies\Saboteur\SaboteurBullet.cs" Line="55" Column="4" />
->>>>>>> 0b36262e94832f6da189bf161f6555d5efb6670c
+      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="1" Column="1" />
+      <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="344" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

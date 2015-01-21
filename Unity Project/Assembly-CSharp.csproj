@@ -46,16 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AsteroidLarge.cs" />
-     <Compile Include="Assets\AsteroidMedium.cs" />
-     <Compile Include="Assets\AsteroidSmall.cs" />
-     <Compile Include="Assets\Background.cs" />
+     <Compile Include="Assets\Background\Background.cs" />
      <Compile Include="Assets\Camera\Boundaries.cs" />
      <Compile Include="Assets\Enemy Spawner\Spawner.cs" />
      <Compile Include="Assets\Player Ship\Bullet.cs" />
      <Compile Include="Assets\Player Ship\Gunner.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
+     <Compile Include="Assets\Resources\Enemies\Ambusher\Ambusher.cs" />
+     <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" />
+     <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" />
+     <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />

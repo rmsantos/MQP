@@ -1,11 +1,11 @@
-﻿/* Module      : DogFighterB.cs
+﻿/* Module      : Ambusher.cs
  * Author      : Josh Morse
- * Email       : rmsantos@wpi.edu
+ * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the DogFighterB
+ * Description : This file controls the behavior of the BasicEnemy
  *
- * Date        : 2015/1/16
+ * Date        : 2015/1/21
  * 
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
@@ -18,37 +18,30 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class DogFighterB : MonoBehaviour {
-
+public class Ambusher : MonoBehaviour {
+	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
-
+	
 	//The speed at which the enemy will move
 	public float speed;
-
-	//Is the enemy ready to shoot?
-	bool ready;
-
-	//Counter for reloading
-	int shootTimer;
 	
-	//Time before the enemy can shoot again 
-	public int reloadTime;
-
-	//Prefab of the enemy bullet
-	public GameObject bulletPrefab;
-
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
+	//Invisibility counter and boolean
+	int counter;
+	bool invisible;
+	float alpha;
+	
 	//Player script
 	GameObject player;
-
+	
 	//Value of destroying this enemy
 	public int value;
 	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -60,24 +53,22 @@ public class DogFighterB : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
+		
+		//gameObject.transform.Rotate(90, 180, 0);
 
-		gameObject.transform.Rotate(90, 180, 0);
-
-		//The enemy can shoot right when it spawns
-		ready = true;
-
-		//Set the shooting timer
-		shootTimer = reloadTime;
-
+		invisible = false;
+		counter = 200;
+		alpha = 1f;
+		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
-
+		
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
-
+		
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
-
+		
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -90,37 +81,12 @@ public class DogFighterB : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
-
+		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-
+		
 		//follow the player
 		transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
-
-		//Move to the left
-		transform.position = new Vector3 (transform.position.x - (speed * 2f), transform.position.y, transform.position.z);
-
-		if (!ready) {
-
-			shootTimer--;
-
-			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
-			if (shootTimer <= 0) {
-				
-				ready = true;
-				shootTimer = reloadTime;
-			}
-		}
-
-		//If the enemy can shoot and is in bounds
-		if(ready & boundaries.inBoundaries(transform.position,1))
-		{
-			//Flag that a bullet was shot
-			ready = false;
-			
-			//Spawn the bullet and store it
-			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-		}	
-
+		
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
 		if (transform.position.x < (boundaries.getLeft() * 1.2))
@@ -129,8 +95,32 @@ public class DogFighterB : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
+		counter -= 1;
+		if (invisible && counter <= 0) {
+			if (alpha < 1.0f) {
+				alpha += .05f;
+				var originalColour = renderer.material.color;
+				renderer.material.color = new Color(originalColour.r, originalColour.g, originalColour.b, alpha);
+			}
+			else {
+				invisible = false;
+				counter = 50;
+			}
+		}
+		else if (!invisible && counter <= 0) {
+			if (alpha > .20f) {
+				alpha -= .05f;
+				var originalColour = renderer.material.color;
+				renderer.material.color = new Color(originalColour.r, originalColour.g, originalColour.b, alpha);
+			}
+			else {
+				invisible = true;
+				counter = 150;
+			}
+		}
+		
 	}
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnCollisionEnter(Collision col)
 	 *

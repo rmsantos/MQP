@@ -1,9 +1,9 @@
-﻿/* Module      : AsteroidMedium.cs
+﻿/* Module      : AsteroidLarge.cs
  * Author      : Josh Morse
  * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the Medium Asteroid
+ * Description : This file controls the behavior of the Large Asteroid
  *
  * Date        : 2015/1/20
  * 
@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidMedium : MonoBehaviour {
+public class AsteroidLarge : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -51,10 +51,10 @@ public class AsteroidMedium : MonoBehaviour {
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
 		
-		speed = Random.Range(1.5f, 3f);
-		rotation = Random.Range(15f, 150f);
+		speed = Random.Range(1f, 2f);
+		rotation = Random.Range(10f, 100f);
 		float x = -1f;
-		float y = Random.Range(-.2f, .2f);
+		float y = Random.Range(-.1f, .1f);
 		direction = new Vector3(x, y);
 		
 	}
@@ -102,8 +102,15 @@ public class AsteroidMedium : MonoBehaviour {
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
-			Destroy (this.gameObject);
-			
+
+			GameObject mediumAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidMedium");
+			var position = gameObject.transform.position;
+
+			Destroy(this.gameObject);
+
+			Instantiate(mediumAsteroid, new Vector3(position.x, position.y - .5f, position.z), Quaternion.identity);
+			Instantiate(mediumAsteroid, new Vector3(position.x, position.y + .5f, position.z), Quaternion.identity);
+
 			//Update the players score
 			score.UpdateScore(value);
 			
