@@ -1,9 +1,9 @@
-﻿/* Module      : AsteroidSmall.cs
+﻿/* Module      : AsteroidLarge.cs
  * Author      : Josh Morse
  * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the Small Asteroid
+ * Description : This file controls the behavior of the Large Asteroid
  *
  * Date        : 2015/1/20
  * 
@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidSmall : MonoBehaviour {
+public class AsteroidLarge : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -22,7 +22,7 @@ public class AsteroidSmall : MonoBehaviour {
 	float speed;
 	float rotation;
 	Vector2 direction;
-
+	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 	
@@ -31,7 +31,7 @@ public class AsteroidSmall : MonoBehaviour {
 	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -50,11 +50,11 @@ public class AsteroidSmall : MonoBehaviour {
 		
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
-
-		speed = Random.Range(2f, 4f);
-		rotation = Random.Range(20f, 200f);
+		
+		speed = Random.Range(1f, 2f);
+		rotation = Random.Range(10f, 100f);
 		float x = -1f;
-		float y = Random.Range(-.3f, .3f);
+		float y = Random.Range(-.1f, .1f);
 		direction = new Vector3(x, y);
 		
 	}
@@ -72,7 +72,7 @@ public class AsteroidSmall : MonoBehaviour {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		
-		//Move in the random direction and rotation
+		//Move in the random direction
 		transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 		transform.Rotate(Vector3.forward * Time.deltaTime * rotation, Space.World);
 		
@@ -102,8 +102,15 @@ public class AsteroidSmall : MonoBehaviour {
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
-			Destroy (this.gameObject);
-			
+
+			GameObject mediumAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidMedium");
+			var position = gameObject.transform.position;
+
+			Destroy(this.gameObject);
+
+			Instantiate(mediumAsteroid, new Vector3(position.x, position.y - .5f, position.z), Quaternion.identity);
+			Instantiate(mediumAsteroid, new Vector3(position.x, position.y + .5f, position.z), Quaternion.identity);
+
 			//Update the players score
 			score.UpdateScore(value);
 			

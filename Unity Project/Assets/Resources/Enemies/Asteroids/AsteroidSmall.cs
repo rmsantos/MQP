@@ -1,9 +1,9 @@
-﻿/* Module      : AsteroidMedium.cs
+﻿/* Module      : AsteroidSmall.cs
  * Author      : Josh Morse
  * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the Medium Asteroid
+ * Description : This file controls the behavior of the Small Asteroid
  *
  * Date        : 2015/1/20
  * 
@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidMedium : MonoBehaviour {
+public class AsteroidSmall : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -22,7 +22,7 @@ public class AsteroidMedium : MonoBehaviour {
 	float speed;
 	float rotation;
 	Vector2 direction;
-	
+
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 	
@@ -31,7 +31,7 @@ public class AsteroidMedium : MonoBehaviour {
 	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-	
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -50,11 +50,11 @@ public class AsteroidMedium : MonoBehaviour {
 		
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
-		
-		speed = Random.Range(1.5f, 3f);
-		rotation = Random.Range(15f, 150f);
+
+		speed = Random.Range(2f, 4f);
+		rotation = Random.Range(20f, 200f);
 		float x = -1f;
-		float y = Random.Range(-.2f, .2f);
+		float y = Random.Range(-.3f, .3f);
 		direction = new Vector3(x, y);
 		
 	}
@@ -72,7 +72,7 @@ public class AsteroidMedium : MonoBehaviour {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		
-		//Move in the random direction
+		//Move in the random direction and rotation
 		transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
 		transform.Rotate(Vector3.forward * Time.deltaTime * rotation, Space.World);
 		
@@ -100,9 +100,16 @@ public class AsteroidMedium : MonoBehaviour {
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")
 		{
+
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
-			Destroy (this.gameObject);
+			
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+			var position = gameObject.transform.position;
+			
+			Destroy(this.gameObject);
+			
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
 			
 			//Update the players score
 			score.UpdateScore(value);
