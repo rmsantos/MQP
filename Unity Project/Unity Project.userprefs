@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AsteroidLarge.cs">
     <Files>
@@ -10,6 +11,16 @@
       <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="38" Column="2" />
       <File FileName="Assets\Resources\Instances\Instance1.cs" Line="129" Column="1" />
       <File FileName="Assets\Player Ship\ShipMovement.cs" Line="344" Column="3" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs">
+    <Files>
+      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="122" Column="5" />
+      <File FileName="Assets\Resources\Enemies\Saboteur\Saboteur.cs" Line="66" Column="3" />
+      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="117" Column="5" />
+      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="130" Column="4" />
+      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" Line="73" Column="1" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

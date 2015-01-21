@@ -106,14 +106,15 @@ public class DogFighterA : MonoBehaviour {
 			}
 		}
 		
-		//If the enemy can shoot
-		if(ready && boundaries.inBoundaries(transform.position,1))
+		//If the enemy can shoot and is in bounds
+		if(ready & boundaries.inBoundaries(transform.position,1))
 		{
-			//Then shoot and mark that he has shot
+			//Flag that a bullet was shot
 			ready = false;
-			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 			
-		}
+			//Spawn the bullet and store it
+			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+		}	
 		
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
