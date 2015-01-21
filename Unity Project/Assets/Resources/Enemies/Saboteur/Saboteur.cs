@@ -1,11 +1,11 @@
-﻿/* Module      : Seeker.cs
+﻿/* Module      : Saboteur.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the Seeker
+ * Description : This file controls the behavior of the Saboteur
  *
- * Date        : 2015/1/20
+ * Date        : 2015/1/21
  * 
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Seeker : MonoBehaviour {
+public class Saboteur : MonoBehaviour {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -45,13 +45,13 @@ public class Seeker : MonoBehaviour {
 	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-
+	
 	//Speed in the x direction
 	float xSpeed;
-
+	
 	//Player script
 	GameObject player;
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -75,10 +75,10 @@ public class Seeker : MonoBehaviour {
 		
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
-
+		
 		//Set the x speed to move to the left 
-		xSpeed = -speed;
-
+		xSpeed = speed;
+		
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
 	}
@@ -87,7 +87,7 @@ public class Seeker : MonoBehaviour {
 	/* Function    : Update()
 	 *
 	 * Description : Moves the enemy to a fixed x position then moves 
-	 * 				it upwards and downwards and periodically shoots missiles
+	 * 				it upwards and downwards to track the player and shoots.
 	 *
 	 * Parameters  : None
 	 *
@@ -96,21 +96,38 @@ public class Seeker : MonoBehaviour {
 	void Update () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-
-		//Stop the enemy when it hits right right bound of the screen
-		if (transform.position.x < boundaries.getRight())
+		
+		//Stop the enemy when it hits the left bound of the screen
+		if (transform.position.x > boundaries.getLeft())
 			xSpeed = 0;
 
-		//The new position of the enemy after moving
-		Vector3 newPos = new Vector3 (transform.position.x +xSpeed, transform.position.y + speed, transform.position.z);
+		//Direction the enemy should move
+		float direction = 0;
 
-		//If hitting either top or bottom boundaries, reverse the direction
-		if(newPos.y >= boundaries.getTop() || newPos.y <= boundaries.getBottom())
-			speed = -speed;
+		//Track the movement of the player and follow it
+		if(player.transform.position.y > transform.position.y)
+		{
+			//Move up
+			direction =  Mathf.Abs(speed);
+		}
+		//If the within a certain threshold of the player
+		else if(Mathf.Abs(transform.position.y-player.transform.position.y) < 0.1)
+		{
+			//Don't move
+			direction = 0;
+		}
+		else
+		{
+			//Move down
+			direction = -Mathf.Abs (speed);
+		}
+
+		//The new position of the enemy after moving
+		Vector3 newPos = new Vector3 (transform.position.x +xSpeed, transform.position.y + direction, transform.position.z);
 
 		//Apply the movement
 		transform.position = newPos;
-
+		
 		//If the enemy is "reloading", don't decrement the timer
 		if (!ready) {
 			
@@ -128,24 +145,14 @@ public class Seeker : MonoBehaviour {
 		//If the enemy can shoot and is in bounds
 		if(ready & boundaries.inBoundaries(transform.position,1))
 		{
-			//Spawn the missle and store it
-			GameObject missile = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
-			//Store the direction of the player in respect to the missile
-			Vector3 direction = player.transform.position-missile.transform.position;
-
-			//Set the z to 0 so that it moves only in 2D
-			direction.z = 0;
-
-			//Rotate the missile towards the player
-			missile.transform.rotation = Quaternion.LookRotation(direction);
-			
-			//Flag that player has just shot
+			//Flag that a bullet was shot
 			ready = false;
 			
-		}		
+			//Spawn the bullet and store it
+			Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+		}	
 	}
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnCollisionEnter(Collision col)
 	 *
