@@ -57,7 +57,7 @@ public class Ambusher : BasicEnemy {
 	 */
 	void Start () {
 		
-		//gameObject.transform.Rotate(90, 180, 0);
+		gameObject.transform.Rotate(90, 180, 0);
 
 		invisible = false;
 		counter = 200;

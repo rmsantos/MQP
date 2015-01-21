@@ -5,6 +5,8 @@ public class Interceptor : BasicEnemy {
 
 	// Use this for initialization
 	void Start () {
+
+		gameObject.transform.Rotate(90, 180, 0);
 	
 	}
 	

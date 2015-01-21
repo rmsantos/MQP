@@ -1,22 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-<<<<<<< HEAD
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Money\Money.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UI\UpdateMoney.cs">
     <Files>
-      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="30" Column="1" />
+      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Money\Money.cs" Line="1" Column="1" />
       <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="28" Column="17" />
-      <File FileName="Assets\Resources\Enemies\Ambusher\Ambusher.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Ambusher\Ambusher.cs" Line="179" Column="1" />
       <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" Line="120" Column="1" />
-=======
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\BasicEnemy.cs">
-    <Files>
-      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" Line="120" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\BasicEnemy.cs" Line="1" Column="1" />
->>>>>>> origin/master
+      <File FileName="Assets\UI\UpdateMoney.cs" Line="23" Column="33" />
+      <File FileName="Assets\Score Handler\ScoreHandler.cs" Line="59" Column="1" />
+      <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="57" Column="3" />
+      <File FileName="Assets\Resources\Enemies\Interceptor\Interceptor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Saboteur\Saboteur.cs" Line="83" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

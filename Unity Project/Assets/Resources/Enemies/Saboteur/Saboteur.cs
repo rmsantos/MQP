@@ -66,6 +66,8 @@ public class Saboteur : BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		gameObject.transform.Rotate(90, 180, 0);
 		
 		//The enemy can shoot right when it spawns
 		ready = true;
