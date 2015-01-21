@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Seeker : MonoBehaviour {
+public class Seeker : BasicEnemy {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -52,6 +52,9 @@ public class Seeker : MonoBehaviour {
 	//Player script
 	GameObject player;
 
+	//The health of this enemy
+	public float health;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -81,6 +84,7 @@ public class Seeker : MonoBehaviour {
 
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
+
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -162,11 +166,38 @@ public class Seeker : MonoBehaviour {
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
-			Destroy (this.gameObject);
-			
+
+			//Get the damage the player bullet will deal
+			int damage = col.gameObject.GetComponent<Bullet>().getDamage();
+
+			//Deal the damage to this enemy
+			takeDamage(damage);
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : takeDamage(float damage)
+	 *
+	 * Description : Deals damage to the enemies health
+	 *
+	 * Parameters  : int damage : The damage to be dealt
+	 *
+	 * Returns     : Void
+	 */
+	public override void takeDamage(int damage)
+	{
+	
+		//Subtract health from the enemy
+		health -= damage;
+
+		//If health hits 0, then the enemy dies
+		if(health <= 0)
+		{
+			//Destroy the enemy
+			Destroy (this.gameObject);	
+
 			//Update the players score
 			score.UpdateScore(value);
-			
 		}
 	}
 }

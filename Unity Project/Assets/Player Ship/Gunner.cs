@@ -34,6 +34,9 @@ public class Gunner : MonoBehaviour {
 	//Time before the player can shoot again 
 	public int reloadTime;
 
+	//The damage the gunner will deal
+	public int damage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -107,6 +110,9 @@ public class Gunner : MonoBehaviour {
 
 			//Send the mouse position in world space to the bullet
 			bullet.GetComponent<Bullet>().setMousePosition(mouseWorldPos);
+
+			//Send the damage the bullet will dela to the bullet
+			bullet.GetComponent<Bullet>().setDamage(damage);
 
 			//Flag that player has just shot
 			ready = false;

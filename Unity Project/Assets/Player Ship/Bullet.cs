@@ -34,6 +34,9 @@ public class Bullet : MonoBehaviour {
 	//The speed of the bullets
 	public float speed;
 
+	//The damage this bullet deals
+	int damage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -101,5 +104,35 @@ public class Bullet : MonoBehaviour {
 	{
 		//Store the position of the mouse
 		mousePos = newPos;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setDamage()
+	 *
+	 * Description : Used to store the damage the gunner will deal.
+	 * 				Called from Gunner.cs.
+	 *
+	 * Parameters  : int newDamage : The new damage amount
+	 *
+	 * Returns     : Void
+	 */
+	public void setDamage(int newDamage)
+	{
+		damage = newDamage;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getDamage()
+	 *
+	 * Description : Used to retrieve the damage the gunner will deal.
+	 * 				Called from Gunner.cs.
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : int : The damage the bullet will deal
+	 */
+	public int getDamage()
+	{
+		return damage;
 	}
 }

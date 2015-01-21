@@ -33,6 +33,12 @@ public class SeekerMissile : MonoBehaviour {
 
 	//The speed at which the missile will rotate
 	public float rotationSpeed;
+
+	//The radius of the explosion
+	public float explosionRadius;
+
+	//The damage this missile will deal
+	public int damage;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -91,7 +97,7 @@ public class SeekerMissile : MonoBehaviour {
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnCollisionEnter(Collision col)
 	 *
-	 * Description : Deals with collisions between the player bullets and .
+	 * Description : Deals with collisions between the player bullets and this missile
 	 *
 	 * Parameters  : Collision col : The other object collided with
 	 *
@@ -102,8 +108,31 @@ public class SeekerMissile : MonoBehaviour {
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")
 		{
-			//Destroy the player bullet and this object
-			Destroy(col.gameObject);
+			//Draw a sphere at this position and track everything that overlaps it
+			Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);
+
+			//For each item that overlaps the sphere
+			foreach( Collider collide in hitColliders)
+			{
+				//Find the component that extends BasicEnemy (the enemy script)
+				BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
+
+				//If it doesnt exist then this is not an enemy
+				//If so then deal damage
+				if(enemy != null)
+				{
+					enemy.takeDamage(damage);
+				}
+
+				//Delete it if it has the appripriate tag. Asteroids and enemy bullets will be destroyed
+				//in on hit.
+				//This sumulates the "explosion"
+				if(collide.tag == "EnemyBullets" || collide.tag == "Asteroids")
+					Destroy (collide.gameObject);
+			}
+
+			//Delete the missile and the player bullet
+			Destroy (col.gameObject);
 			Destroy (this.gameObject);
 			
 		}
