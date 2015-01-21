@@ -59,6 +59,8 @@
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
+     <Compile Include="Assets\Resources\Enemies\Grenadier\Grenadier.cs" />
+     <Compile Include="Assets\Resources\Enemies\Grenadier\GrenadierBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\Saboteur.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\SaboteurBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />

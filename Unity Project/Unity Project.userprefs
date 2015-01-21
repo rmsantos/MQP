@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Saboteur\Saboteur.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Grenadier\Grenadier.cs">
     <Files>
-      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="122" Column="5" />
-      <File FileName="Assets\Resources\Enemies\Saboteur\Saboteur.cs" Line="107" Column="36" />
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" Line="73" Column="1" />
-      <File FileName="Assets\Resources\Enemies\Saboteur\SaboteurBullet.cs" Line="55" Column="4" />
+      <File FileName="Assets\Resources\Enemies\Grenadier\Grenadier.cs" Line="49" Column="57" />
+      <File FileName="Assets\Resources\Enemies\Grenadier\GrenadierBullet.cs" Line="60" Column="52" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
