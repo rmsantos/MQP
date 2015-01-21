@@ -53,7 +53,7 @@ public class Seeker : BasicEnemy {
 	GameObject player;
 
 	//The health of this enemy
-	public float health;
+	public int health;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
