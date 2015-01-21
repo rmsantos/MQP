@@ -100,9 +100,16 @@ public class AsteroidSmall : MonoBehaviour {
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")
 		{
+
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
-			Destroy (this.gameObject);
+			
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+			var position = gameObject.transform.position;
+			
+			Destroy(this.gameObject);
+			
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
 			
 			//Update the players score
 			score.UpdateScore(value);

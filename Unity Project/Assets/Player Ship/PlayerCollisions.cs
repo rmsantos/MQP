@@ -18,17 +18,26 @@ using System.Collections;
 
 public class PlayerCollisions : MonoBehaviour {
 
-	int health;
+	public int health;
+	public int moneyValue;
+	public int scoreFromMoney;
+
+	//ScoreHandler object to track players score and money
+	ScoreHandler score;
 
 	void Start () {
+
 		health = 100;
+
+		//Search for the ScoreHandler object for tracking score
+		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>();
 	}
 	
 	void OnCollisionEnter (Collision col)
 	{
 		if(col.gameObject.tag == "EnemyBullets")
 		{
-			//Destroy the player bullet and this object
+			//Destroy the enemy bullet
 			Destroy(col.gameObject);
 			health -= 5;
 
@@ -38,11 +47,22 @@ public class PlayerCollisions : MonoBehaviour {
 
 		if(col.gameObject.tag == "Enemies" || col.gameObject.tag == "Asteroids")
 		{
-			//Destroy the player bullet and this object
+			//Destroy the enemy
 			Destroy(col.gameObject);
 			health -= 10;
 			
 			print (health);
+			
+		}
+
+		if(col.gameObject.tag == "Money")
+		{
+			//Destroy the money
+			Destroy(col.gameObject);
+
+			//Update the players score
+			score.UpdateScore(scoreFromMoney);
+			score.UpdateMoney(moneyValue);
 			
 		}
 
