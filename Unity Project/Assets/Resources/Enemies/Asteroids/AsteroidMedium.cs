@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidMedium : MonoBehaviour {
+public class AsteroidMedium : BasicAsteroid {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -103,17 +103,37 @@ public class AsteroidMedium : MonoBehaviour {
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
 
-			GameObject smallAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidSmall");
-			var position = gameObject.transform.position;
-			
-			Destroy(this.gameObject);
-			
-			Instantiate(smallAsteroid, new Vector3(position.x, position.y + .3f, position.z), Quaternion.identity);
-			Instantiate(smallAsteroid, new Vector3(position.x, position.y - .3f, position.z), Quaternion.identity);
-			
-			//Update the players score
-			score.UpdateScore(value);
+			//Shatter this asteroid
+			shatter();
 			
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : shatter()
+	 *
+	 * Description : Shatters the asteroid into smaller asteroids
+	 *
+	 * Parameters  : Collision col : The other object collided with
+	 *
+	 * Returns     : Void
+	 */
+	public override void shatter ()
+	{
+		//Load the medium asteroid prefab
+		GameObject smallAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidSmall");
+		
+		//Position of the asteroid
+		var position = gameObject.transform.position;
+		
+		//Destroy this asteroid
+		Destroy(this.gameObject);
+		
+		//Create two new small asteroids
+		Instantiate(smallAsteroid, new Vector3(position.x, position.y + .3f, position.z), Quaternion.identity);
+		Instantiate(smallAsteroid, new Vector3(position.x, position.y - .3f, position.z), Quaternion.identity);
+		
+		//Update the players score
+		score.UpdateScore(value);
 	}
 }
