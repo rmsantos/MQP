@@ -1,5 +1,6 @@
 ﻿<Properties>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AsteroidLarge.cs">
     <Files>
@@ -14,13 +15,21 @@
 =======
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs">
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Saboteur\Saboteur.cs">
+>>>>>>> 0b36262e94832f6da189bf161f6555d5efb6670c
     <Files>
       <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="122" Column="5" />
-      <File FileName="Assets\Resources\Enemies\Saboteur\Saboteur.cs" Line="66" Column="3" />
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="117" Column="5" />
-      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="130" Column="4" />
+      <File FileName="Assets\Resources\Enemies\Saboteur\Saboteur.cs" Line="107" Column="36" />
+      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterBullet.cs" Line="73" Column="1" />
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+      <File FileName="Assets\Resources\Enemies\Saboteur\SaboteurBullet.cs" Line="55" Column="4" />
+>>>>>>> 0b36262e94832f6da189bf161f6555d5efb6670c
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

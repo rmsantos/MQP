@@ -98,8 +98,11 @@ public class Saboteur : MonoBehaviour {
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		
 		//Stop the enemy when it hits the left bound of the screen
+		//We actually make the enemy move extremely slowly
+		//Because of an issue with collisions, we can't hit 
+		//it unless its moving somehow
 		if (transform.position.x > boundaries.getLeft())
-			xSpeed = 0;
+			xSpeed = 0.000001f;
 
 		//Direction the enemy should move
 		float direction = 0;
