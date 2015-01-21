@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidSmall : MonoBehaviour {
+public class AsteroidSmall : BasicAsteroid {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -104,16 +104,35 @@ public class AsteroidSmall : MonoBehaviour {
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
 			
-			GameObject money = Resources.Load<GameObject>("Money/Money");
-			var position = gameObject.transform.position;
-			
-			Destroy(this.gameObject);
-			
-			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
-			
-			//Update the players score
-			score.UpdateScore(value);
-			
+			//Shatter this asteroid
+			shatter();			
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : shatter()
+	 *
+	 * Description : Destroys the small asteroid and creates money
+	 *
+	 * Parameters  : Collision col : The other object collided with
+	 *
+	 * Returns     : Void
+	 */
+	public override void shatter ()
+	{
+		//Load the money prefab
+		GameObject money = Resources.Load<GameObject>("Money/Money");
+
+		//Store the position of the asteroid
+		var position = gameObject.transform.position;
+
+		//Destroy the asteroid
+		Destroy(this.gameObject);
+
+		//Create money at this location
+		Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+		
+		//Update the players score
+		score.UpdateScore(value);
 	}
 }

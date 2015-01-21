@@ -1,10 +1,10 @@
-﻿/* Module      : BasicEnemy.cs
+﻿/* Module      : BasicAsteroid.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file is an abstract class for all enemies. It 
- * 				contains their damage functions and variables
+ * Description : This file is an abstract class for all asteroids. It 
+ * 				contains their shattering functions.
  *
  * Date        : 2015/1/21
  * 
@@ -19,16 +19,16 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public abstract class BasicEnemy : MonoBehaviour {
-
+public abstract class BasicAsteroid : MonoBehaviour {
+	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : takeDamage(int damage)
+	/* Function    : shatter()
 	 *
-	 * Description : Calls the corresponding takeDamage function for all enemies
+	 * Description : Calls the corresponding shatter function for all asteroids
 	 *
-	 * Parameters  : int damage : The damage that will be dealt
+	 * Parameters  : None
 	 *
 	 * Returns     : Void
 	 */
-	public abstract void takeDamage(int damage);
+	public abstract void shatter();
 }

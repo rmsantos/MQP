@@ -124,11 +124,20 @@ public class SeekerMissile : MonoBehaviour {
 					enemy.takeDamage(damage);
 				}
 
-				//Delete it if it has the appripriate tag. Asteroids and enemy bullets will be destroyed
-				//in on hit.
-				//This sumulates the "explosion"
-				if(collide.tag == "EnemyBullets" || collide.tag == "Asteroids")
+				//Delete the object if it is an enemy bullet
+				if(collide.tag == "EnemyBullets")
 					Destroy (collide.gameObject);
+
+				//If the object is an asteroid
+				if(collide.tag == "Asteroids")
+				{
+					//Cast to an asteroid type
+					BasicAsteroid asteroid = (BasicAsteroid)collide.GetComponent(typeof(BasicAsteroid));
+
+					//And shatter the asteroid
+					asteroid.shatter();
+	
+				}
 			}
 
 			//Delete the missile and the player bullet
