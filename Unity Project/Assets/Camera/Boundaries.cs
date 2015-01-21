@@ -55,19 +55,6 @@ public class Boundaries : MonoBehaviour {
 		//Right boundary
 		right = (Camera.main.orthographicSize * Screen.width / Screen.height);
 	}
-	
-	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
-	 *
-	 * Description : Update is not used here.
-	 *
-	 * Parameters  : None
-	 *
-	 * Returns     : Void
-	 */
-	void Update () {
-	
-	}
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : getLeft()
