@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Grenadier : MonoBehaviour {
+public class Grenadier : BasicEnemy {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -48,7 +48,10 @@ public class Grenadier : MonoBehaviour {
 
 	//Angle at which the grenadier will shoot the "shotgun"
 	public float angle;
-	
+
+	//The health of this enemy
+	public int health;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -166,11 +169,39 @@ public class Grenadier : MonoBehaviour {
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
-			Destroy (this.gameObject);
+			
+			//Get the damage the player bullet will deal
+			int damage = col.gameObject.GetComponent<Bullet>().getDamage();
+			
+			//Deal the damage to this enemy
+			takeDamage(damage);
+			
+		}
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : takeDamage(float damage)
+	 *
+	 * Description : Deals damage to the enemies health
+	 *
+	 * Parameters  : int damage : The damage to be dealt
+	 *
+	 * Returns     : Void
+	 */
+	public override void takeDamage(int damage)
+	{
+		
+		//Subtract health from the enemy
+		health -= damage;
+		
+		//If health hits 0, then the enemy dies
+		if(health <= 0)
+		{
+			//Destroy the enemy
+			Destroy (this.gameObject);	
 			
 			//Update the players score
 			score.UpdateScore(value);
-			
 		}
 	}
 }
