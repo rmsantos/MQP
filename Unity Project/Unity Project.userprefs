@@ -1,5 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\ShipMovement.cs">
     <Files>
       <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="1" Column="1" />
@@ -7,6 +8,12 @@
       <File FileName="Assets\Enemy Spawner\Spawner.cs" Line="1" Column="1" />
       <File FileName="Assets\Resources\Instances\Instance1.cs" Line="1" Column="1" />
       <File FileName="Assets\Player Ship\ShipMovement.cs" Line="344" Column="1" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Grenadier\Grenadier.cs">
+    <Files>
+      <File FileName="Assets\Resources\Enemies\Grenadier\Grenadier.cs" Line="49" Column="57" />
+      <File FileName="Assets\Resources\Enemies\Grenadier\GrenadierBullet.cs" Line="60" Column="52" />
+>>>>>>> d3f7c2012cbf5ebd6af3d9b73e7d7ea817c1e5ab
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
