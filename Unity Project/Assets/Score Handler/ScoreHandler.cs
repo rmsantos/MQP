@@ -14,6 +14,7 @@
 /* -- INCLUDE FILES ------------------------------------------------------ */
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
@@ -23,6 +24,8 @@ public class ScoreHandler : MonoBehaviour {
 	
 	public static long score;
 	public static long money;
+
+	public UpdateMoney updateMoney;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -36,8 +39,12 @@ public class ScoreHandler : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
+
 		score = 0;
 		money = 0;
+
+		//Search for the ScoreHandler object for tracking score
+		updateMoney = GameObject.FindGameObjectWithTag ("MoneyText").GetComponent<UpdateMoney>(); 
 	}
 
 	public long UpdateScore(long amount) {
@@ -48,6 +55,9 @@ public class ScoreHandler : MonoBehaviour {
 
 	public long UpdateMoney(long amount) {
 		money += amount;
+
+		updateMoney.UpdateText (money);
+
 		return money;
 	}
 
@@ -65,6 +75,9 @@ public class ScoreHandler : MonoBehaviour {
 
 	public void ResetMoney() {
 		money = 0;
+
+		updateMoney.UpdateText (money);
+
 	}
 
 }
