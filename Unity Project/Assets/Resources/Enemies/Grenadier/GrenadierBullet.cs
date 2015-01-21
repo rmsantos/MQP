@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class GrenadierBullet : MonoBehaviour {
+public class GrenadierBullet : BasicBullet {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -27,7 +27,10 @@ public class GrenadierBullet : MonoBehaviour {
 	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
-	
+
+	//The damage this missile will deal
+	int damage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -66,5 +69,34 @@ public class GrenadierBullet : MonoBehaviour {
 			//Destroy the bullet
 			Destroy (this.gameObject);
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setDamage(int newDamage)
+	 *
+	 * Description : Sets the damage this missile will deal.
+	 *
+	 * Parameters  : int newDamage : The new damage amount
+	 *
+	 * Returns     : Void
+	 */
+	public void setDamage(int newDamage)
+	{
+		damage = newDamage;
+	}
+	
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getBulletDamage()
+	 *
+	 * Description : Returns the bullet damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Bullet damage
+	 */
+	public override int getBulletDamage ()
+	{
+		return damage;
 	}
 }

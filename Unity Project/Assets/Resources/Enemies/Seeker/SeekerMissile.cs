@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class SeekerMissile : MonoBehaviour {
+public class SeekerMissile : BasicBullet {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -38,7 +38,7 @@ public class SeekerMissile : MonoBehaviour {
 	public float explosionRadius;
 
 	//The damage this missile will deal
-	public int damage;
+	int damage;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -108,6 +108,8 @@ public class SeekerMissile : MonoBehaviour {
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")
 		{
+			print (damage);
+
 			//Draw a sphere at this position and track everything that overlaps it
 			Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);
 
@@ -145,5 +147,34 @@ public class SeekerMissile : MonoBehaviour {
 			Destroy (this.gameObject);
 			
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setDamage(int newDamage)
+	 *
+	 * Description : Sets the damage this missile will deal.
+	 *
+	 * Parameters  : int newDamage : The new damage amount
+	 *
+	 * Returns     : Void
+	 */
+	public void setDamage(int newDamage)
+	{
+		damage = newDamage;
+	}
+
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getBulletDamage()
+	 *
+	 * Description : Returns the bullet damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Bullet damage
+	 */
+	public override int getBulletDamage ()
+	{
+		return damage;
 	}
 }

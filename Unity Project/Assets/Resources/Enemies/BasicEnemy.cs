@@ -31,4 +31,17 @@ public abstract class BasicEnemy : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	public abstract void takeDamage(int damage);
+
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for that enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Collision damage
+	 */
+	public abstract int getCollisionDamage();
+
 }

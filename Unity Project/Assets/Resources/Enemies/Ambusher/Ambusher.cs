@@ -44,7 +44,10 @@ public class Ambusher : BasicEnemy {
 
 	//The health of this enemy
 	public int health;
-	
+
+	//Stores the damage colliding with the player does
+	public int collisionDamage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -174,5 +177,19 @@ public class Ambusher : BasicEnemy {
 			//Update the players score
 			score.UpdateScore(value);
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Collision damage
+	 */
+	public override int getCollisionDamage()
+	{
+		return collisionDamage;
 	}
 }

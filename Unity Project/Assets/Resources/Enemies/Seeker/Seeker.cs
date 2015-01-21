@@ -55,6 +55,12 @@ public class Seeker : BasicEnemy {
 	//The health of this enemy
 	public int health;
 
+	//Stores the damage colliding with the player does
+	public int collisionDamage;
+
+	//Stores the damage the missile does
+	public int missileDamage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -137,6 +143,7 @@ public class Seeker : BasicEnemy {
 			//Spawn the missle and store it
 			GameObject missile = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
+		
 			//Store the direction of the player in respect to the missile
 			Vector3 direction = player.transform.position-missile.transform.position;
 
@@ -145,7 +152,13 @@ public class Seeker : BasicEnemy {
 
 			//Rotate the missile towards the player
 			missile.transform.rotation = Quaternion.LookRotation(direction);
-			
+
+			//Cast to an missile type
+			SeekerMissile seekerMissile = (SeekerMissile)missile.GetComponent(typeof(SeekerMissile));
+
+			//Set the damage of the missile
+			seekerMissile.setDamage(missileDamage);
+
 			//Flag that player has just shot
 			ready = false;
 			
@@ -188,7 +201,6 @@ public class Seeker : BasicEnemy {
 	 */
 	public override void takeDamage(int damage)
 	{
-	
 		//Subtract health from the enemy
 		health -= damage;
 
@@ -201,5 +213,19 @@ public class Seeker : BasicEnemy {
 			//Update the players score
 			score.UpdateScore(value);
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Collision damage
+	 */
+	public override int getCollisionDamage()
+	{
+		return collisionDamage;
 	}
 }

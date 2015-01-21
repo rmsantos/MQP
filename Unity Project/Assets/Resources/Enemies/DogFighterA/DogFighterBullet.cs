@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class DogFighterBullet : MonoBehaviour {
+public class DogFighterBullet : BasicBullet {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
@@ -28,6 +28,8 @@ public class DogFighterBullet : MonoBehaviour {
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
+	//The damage this bullet will deal
+	int damage;
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -68,5 +70,35 @@ public class DogFighterBullet : MonoBehaviour {
 			//Destroy the bullet
 			Destroy (this.gameObject);
 		}
+	}
+
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setDamage(int newDamage)
+	 *
+	 * Description : Sets the damage this missile will deal.
+	 *
+	 * Parameters  : int newDamage : The new damage amount
+	 *
+	 * Returns     : Void
+	 */
+	public void setDamage(int newDamage)
+	{
+		damage = newDamage;
+	}
+	
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getBulletDamage()
+	 *
+	 * Description : Returns the bullet damage for this enemy
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : int:  Bullet damage
+	 */
+	public override int getBulletDamage ()
+	{
+		return damage;
 	}
 }
