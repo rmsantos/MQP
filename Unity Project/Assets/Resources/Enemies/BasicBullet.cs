@@ -16,7 +16,7 @@
 using UnityEngine;
 using System.Collections;
 
-public abstract class BasicBullet : MonoBehaviour {
+public interface BasicBullet {
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : getBulletDamage()
@@ -27,5 +27,5 @@ public abstract class BasicBullet : MonoBehaviour {
 	 *
 	 * Returns     : int:  Bullet damage
 	 */
-	public abstract int getBulletDamage();
+	int getBulletDamage();
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Interceptor : BasicEnemy {
+public class Interceptor : MonoBehaviour, BasicEnemy {
 
 	// Use this for initialization
 	void Start () {
@@ -16,12 +16,12 @@ public class Interceptor : BasicEnemy {
 	}
 
 
-	public override void takeDamage(int damage)
+	public void takeDamage(int damage)
 	{
 		print ("Interceptor!");
 	}
 
-	public override int getCollisionDamage()
+	public int getCollisionDamage()
 	{
 		return 0;
 	}

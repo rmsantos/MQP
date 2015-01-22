@@ -68,7 +68,16 @@ public class PlayerCollisions : MonoBehaviour {
 
 		if(col.gameObject.tag == "Asteroids")
 		{
-			print("BOOP");
+			//Find the abstract class of this collision
+			BasicAsteroid asteroid = (BasicAsteroid)col.gameObject.GetComponent(typeof(BasicAsteroid));
+
+			//Subtract the health based on that asteroid
+			health -= asteroid.getCollisionDamage();
+
+			//Shatter the asteroid into smaller asteroids or money
+			asteroid.shatter();
+			
+			print (health);
 		}
 
 		if(col.gameObject.tag == "Money")

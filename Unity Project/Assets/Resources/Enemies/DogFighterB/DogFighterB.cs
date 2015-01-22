@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class DogFighterB : BasicEnemy {
+public class DogFighterB : MonoBehaviour, BasicEnemy {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
@@ -181,7 +181,7 @@ public class DogFighterB : BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	public override void takeDamage(int damage)
+	public void takeDamage(int damage)
 	{
 		
 		//Subtract health from the enemy
@@ -207,7 +207,7 @@ public class DogFighterB : BasicEnemy {
 	 *
 	 * Returns     : int:  Collision damage
 	 */
-	public override int getCollisionDamage()
+	public int getCollisionDamage()
 	{
 		return collisionDamage;
 	}

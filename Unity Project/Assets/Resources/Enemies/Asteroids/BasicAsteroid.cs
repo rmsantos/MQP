@@ -19,7 +19,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public abstract class BasicAsteroid : MonoBehaviour {
+public interface BasicAsteroid {
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : shatter()
@@ -30,5 +30,16 @@ public abstract class BasicAsteroid : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	public abstract void shatter();
+	void shatter();
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Calls the corresponding getCollisionDamage function for all asteroids
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	int getCollisionDamage();
 }

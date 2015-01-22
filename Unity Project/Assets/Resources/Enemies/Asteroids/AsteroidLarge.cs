@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidLarge : BasicAsteroid {
+public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -31,7 +31,10 @@ public class AsteroidLarge : BasicAsteroid {
 	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-	
+
+	//The damage from colliding with this asteroid
+	public int collisionDamage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -118,7 +121,7 @@ public class AsteroidLarge : BasicAsteroid {
 	 *
 	 * Returns     : Void
 	 */
-	public override void shatter ()
+	public void shatter ()
 	{
 		//Load the medium asteroid prefab
 		GameObject mediumAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidMedium");
@@ -135,5 +138,19 @@ public class AsteroidLarge : BasicAsteroid {
 		
 		//Update the players score
 		score.UpdateScore(value);
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for this asteroid
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : int : The damage when colliding with this asteroid
+	 */
+	public int getCollisionDamage()
+	{
+		return collisionDamage;
 	}
 }

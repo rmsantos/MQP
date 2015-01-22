@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class GrenadierBullet : BasicBullet {
+public class GrenadierBullet : MonoBehaviour, BasicBullet {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -98,7 +98,7 @@ public class GrenadierBullet : BasicBullet {
 	 *
 	 * Returns     : int:  Bullet damage
 	 */
-	public override int getBulletDamage ()
+	public int getBulletDamage ()
 	{
 		return damage;
 	}
