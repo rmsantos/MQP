@@ -48,6 +48,7 @@ public class Bullet : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
+
 		//Store the initial position of the bullet
 		startPos = transform.position;
 
