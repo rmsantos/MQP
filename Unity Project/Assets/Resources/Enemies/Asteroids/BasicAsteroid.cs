@@ -31,4 +31,15 @@ public interface BasicAsteroid {
 	 * Returns     : Void
 	 */
 	void shatter();
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Calls the corresponding getCollisionDamage function for all asteroids
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	int getCollisionDamage();
 }

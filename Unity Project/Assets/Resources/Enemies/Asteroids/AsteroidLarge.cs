@@ -31,7 +31,10 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-	
+
+	//The damage from colliding with this asteroid
+	public int collisionDamage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -135,5 +138,19 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 		
 		//Update the players score
 		score.UpdateScore(value);
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getCollisionDamage()
+	 *
+	 * Description : Returns the collision damage for this asteroid
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : int : The damage when colliding with this asteroid
+	 */
+	public int getCollisionDamage()
+	{
+		return collisionDamage;
 	}
 }
