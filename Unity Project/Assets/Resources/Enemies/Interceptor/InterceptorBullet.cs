@@ -1,11 +1,11 @@
-﻿/* Module      : DogFighterBullet.cs
+﻿/* Module      : InterceptorBullet.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the DogFighter Bullet
+ * Description : This file controls the behavior of the Interceptor Bullet
  *
- * Date        : 2015/1/16
+ * Date        : 2015/1/22
  * 
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
@@ -18,18 +18,19 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class DogFighterBullet : MonoBehaviour, BasicBullet {
-
+public class InterceptorBullet : MonoBehaviour, BasicBullet {
+	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
-
+	
 	//The speed the bullet will move
 	public float speed;
-
+	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
-
+	
 	//The damage this bullet will deal
 	int damage;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -41,12 +42,12 @@ public class DogFighterBullet : MonoBehaviour, BasicBullet {
 	 */
 	void Start () {
 
-		gameObject.transform.Rotate(90, 180, 0);
+		transform.Rotate (0, 0, 90);
 
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>(); 
 	}
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Update()
 	 *
@@ -58,16 +59,12 @@ public class DogFighterBullet : MonoBehaviour, BasicBullet {
 	 * Returns     : Void
 	 */
 	void Update () {
-
-		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-
-		//The new position of the enemy after moving
-		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
 		
-		//Apply the movement
-		transform.position = newPos;
-
-
+		/* -- LOCAL VARIABLES ---------------------------------------------------- */
+	
+		//Move the bullet forwards
+		transform.Translate( transform.forward * speed, Space.World);
+		
 		//Delete the bullet if it goes off screen
 		if (!boundaries.inBoundaries(transform.position,1.2f))
 		{
@@ -75,12 +72,12 @@ public class DogFighterBullet : MonoBehaviour, BasicBullet {
 			Destroy (this.gameObject);
 		}
 	}
-
+	
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setDamage(int newDamage)
 	 *
-	 * Description : Sets the damage this missile will deal.
+	 * Description : Sets the damage this bullet will deal.
 	 *
 	 * Parameters  : int newDamage : The new damage amount
 	 *
