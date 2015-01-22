@@ -68,6 +68,9 @@
      <Compile Include="Assets\Resources\Enemies\Grenadier\GrenadierBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />
      <Compile Include="Assets\Resources\Enemies\Interceptor\InterceptorBullet.cs" />
+     <Compile Include="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" />
+     <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautBullet.cs" />
+     <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautShield.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\Saboteur.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\SaboteurBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />

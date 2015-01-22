@@ -40,6 +40,12 @@ public class SeekerMissile : MonoBehaviour, BasicBullet {
 	//The radius of the explosion
 	public float explosionRadius;
 
+	//The time before the missile blows up on its own
+	public int timeToExplosion;
+
+	//Timer to count to explosion
+	int timer;
+
 	//The damage this missile will deal
 	int damage;
 	
@@ -77,6 +83,16 @@ public class SeekerMissile : MonoBehaviour, BasicBullet {
 	void Update () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
+
+		//Increment the explosion timer
+		timer++;
+
+		//If enough time has passed
+		if(timer == timeToExplosion)
+		{
+			//Explode
+			explode ();
+		}
 
 		//Move the missile forwards
 		transform.Translate( transform.forward * speed, Space.World);
@@ -126,45 +142,60 @@ public class SeekerMissile : MonoBehaviour, BasicBullet {
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")
 		{
-			print (damage);
+			//explode this missile
+			explode();
 
-			//Draw a sphere at this position and track everything that overlaps it
-			Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);
-
-			//For each item that overlaps the sphere
-			foreach( Collider collide in hitColliders)
-			{
-				//Find the component that extends BasicEnemy (the enemy script)
-				BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
-
-				//If it doesnt exist then this is not an enemy
-				//If so then deal damage
-				if(enemy != null)
-				{
-					enemy.takeDamage(damage);
-				}
-
-				//Delete the object if it is an enemy bullet
-				if(collide.tag == "EnemyBullets")
-					Destroy (collide.gameObject);
-
-				//If the object is an asteroid
-				if(collide.tag == "Asteroids")
-				{
-					//Cast to an asteroid type
-					BasicAsteroid asteroid = (BasicAsteroid)collide.GetComponent(typeof(BasicAsteroid));
-
-					//And shatter the asteroid
-					asteroid.shatter();
-	
-				}
-			}
-
-			//Delete the missile and the player bullet
+			//Destroy the player bullet
 			Destroy (col.gameObject);
-			Destroy (this.gameObject);
 			
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : explode()
+	 *
+	 * Description : Explodes the missile and damages enemies in the area
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void explode()
+	{
+		//Draw a sphere at this position and track everything that overlaps it
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);
+		
+		//For each item that overlaps the sphere
+		foreach( Collider collide in hitColliders)
+		{
+			//Find the component that extends BasicEnemy (the enemy script)
+			BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
+			
+			//If it doesnt exist then this is not an enemy
+			//If so then deal damage
+			if(enemy != null)
+			{
+				enemy.takeDamage(damage);
+			}
+			
+			//Delete the object if it is an enemy bullet
+			if(collide.tag == "EnemyBullets")
+				Destroy (collide.gameObject);
+			
+			//If the object is an asteroid
+			if(collide.tag == "Asteroids")
+			{
+				//Cast to an asteroid type
+				BasicAsteroid asteroid = (BasicAsteroid)collide.GetComponent(typeof(BasicAsteroid));
+				
+				//And shatter the asteroid
+				asteroid.shatter();
+				
+			}
+		}
+		
+		//Delete the missile 
+		Destroy (this.gameObject);
 	}
 
 	/* ----------------------------------------------------------------------- */

@@ -68,6 +68,9 @@
      <Compile Include="Assets\Resources\Enemies\Grenadier\GrenadierBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />
      <Compile Include="Assets\Resources\Enemies\Interceptor\InterceptorBullet.cs" />
+     <Compile Include="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" />
+     <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautBullet.cs" />
+     <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautShield.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\Saboteur.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\SaboteurBullet.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />
@@ -91,7 +94,7 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/rmsantos/Desktop/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/jbmorse/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
