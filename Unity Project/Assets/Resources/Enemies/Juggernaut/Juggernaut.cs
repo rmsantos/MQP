@@ -1,11 +1,11 @@
-﻿/* Module      : Grenadier.cs
+﻿/* Module      : Juggernaut.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the Grenadier
+ * Description : This file controls the behavior of the Juggernaut
  *
- * Date        : 2015/1/21
+ * Date        : 2015/1/22
  * 
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Grenadier : MonoBehaviour, BasicEnemy {
+public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -45,18 +45,28 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	
 	//ScoreHandler object to track players score
 	ScoreHandler score;
-
-	//Angle at which the grenadier will shoot the "shotgun"
-	public float angle;
-
+	
 	//The health of this enemy
 	public int health;
-
+	
 	//Stores the damage colliding with the player does
 	public int collisionDamage;
 	
 	//Stores the damage the bullet does
 	public int bulletDamage;
+
+	//Store the transform of the first shield of this enemy
+	public Transform shield1;
+
+	//Store the transform of the second shield of this enemy
+	public Transform shield2;
+
+	//Angle at which the juggernaut will shoot the "shotgun"
+	public float angle;
+
+	//Shield rotation
+	Transform shieldRotation;
+	
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -70,8 +80,6 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	 */
 	void Start () {
 
-		gameObject.transform.Rotate(90, 180, 0);
-		
 		//The enemy can shoot right when it spawns
 		ready = true;
 		
@@ -83,12 +91,15 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 		
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
+
+		//Store the rotation of the shield
+		shieldRotation = shield1.transform;
 	}
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Update()
 	 *
-	 * Description : Moves the enemy slowly to the left and periodically shoots bullets in a shotgun pattern
+	 * Description : Moves the enemy slowly to the left and periodically shoots bullets
 	 *
 	 * Parameters  : None
 	 *
@@ -97,7 +108,11 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	void Update () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-		
+
+		//Rotate the shields around the enemy
+		shield1.RotateAround (transform.position, Vector3.forward, speed * 20);
+		shield2.RotateAround (transform.position, Vector3.forward, speed * 20);
+
 		//The new position of the enemy after moving
 		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
 		
@@ -123,51 +138,77 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 		{
 			//Flag that a bullet was shot
 			ready = false;
-			
+
 			//Spawn the first bullet and store it
 			GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
+			
 			//Spawn the second bullet and store it
 			GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
+			
 			//Spawn the third bullet and store it
 			GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
+			//Spawn the fourth bullet and store it
+			GameObject bullet4 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			
+			//Spawn the fifth bullet and store it
+			GameObject bullet5 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			
+			//Spawn the sixths bullet and store it
+			GameObject bullet6 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
 			//Cast the first bullet to a bullet type
-			GrenadierBullet grenadierBullet1 = (GrenadierBullet)bullet1.GetComponent(typeof(GrenadierBullet));
-						
+			JuggernautBullet juggernautBullet1 = (JuggernautBullet)bullet1.GetComponent(typeof(JuggernautBullet));
+			
 			//Set the damage of the bullet
-			grenadierBullet1.setDamage(bulletDamage);
+			juggernautBullet1.setDamage(bulletDamage);
 
 			//Cast the second bullet to a bullet type
-			GrenadierBullet grenadierBullet2 = (GrenadierBullet)bullet2.GetComponent(typeof(GrenadierBullet));
+			JuggernautBullet juggernautBullet2 = (JuggernautBullet)bullet2.GetComponent(typeof(JuggernautBullet));
 			
 			//Set the damage of the bullet
-			grenadierBullet2.setDamage(bulletDamage);
+			juggernautBullet2.setDamage(bulletDamage);
 
 			//Cast the third bullet to a bullet type
-			GrenadierBullet grenadierBullet3 = (GrenadierBullet)bullet3.GetComponent(typeof(GrenadierBullet));
+			JuggernautBullet juggernautBullet3 = (JuggernautBullet)bullet3.GetComponent(typeof(JuggernautBullet));
 			
 			//Set the damage of the bullet
-			grenadierBullet3.setDamage(bulletDamage);
+			juggernautBullet3.setDamage(bulletDamage);
 
-			//Create a Quaternion that points directly to the left side of the screen (-x direction)
-			Quaternion leftAlign = Quaternion.LookRotation(new Vector3(-1,0,0));
+			//Cast the fourth bullet to a bullet type
+			JuggernautBullet juggernautBullet4 = (JuggernautBullet)bullet4.GetComponent(typeof(JuggernautBullet));
+			
+			//Set the damage of the bullet
+			juggernautBullet4.setDamage(bulletDamage);
 
-			//Set all bullets to look towards leftAlign
-			bullet1.transform.rotation = leftAlign;
-			bullet2.transform.rotation = leftAlign;
-			bullet3.transform.rotation = leftAlign;
+			//Cast the fifth bullet to a bullet type
+			JuggernautBullet juggernautBullet5 = (JuggernautBullet)bullet5.GetComponent(typeof(JuggernautBullet));
+			
+			//Set the damage of the bullet
+			juggernautBullet5.setDamage(bulletDamage);
 
-			//Bullet 1 will move only in a straight line
+			//Cast the sixth bullet to a bullet type
+			JuggernautBullet juggernautBullet6 = (JuggernautBullet)bullet6.GetComponent(typeof(JuggernautBullet));
+			
+			//Set the damage of the bullet
+			juggernautBullet6.setDamage(bulletDamage);
 
-			//Bullet 2 will shoot at a +degree angle
-			bullet2.transform.Rotate(angle,0,0);
+			bullet1.transform.rotation = shieldRotation.rotation;
+			bullet2.transform.rotation = shieldRotation.rotation;
+			bullet2.transform.Rotate(new Vector3(0,0,angle));
 
-			//Bullet 3 will shoot at a -degree angle
-			bullet3.transform.Rotate(-angle,0,0);
+			bullet3.transform.rotation = shieldRotation.rotation;
+			bullet3.transform.Rotate(new Vector3(0,0,-angle));
 
-		}	
+			bullet4.transform.rotation = shieldRotation.rotation;
+			bullet4.transform.Rotate(new Vector3(0,180,0));
+
+			bullet5.transform.rotation = shieldRotation.rotation;
+			bullet5.transform.Rotate(new Vector3(0,180,angle));
+
+			bullet6.transform.rotation = shieldRotation.rotation;
+			bullet6.transform.Rotate(new Vector3(0,180,-angle));
+		}
 		
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
@@ -230,7 +271,7 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 			score.UpdateScore(value);
 		}
 	}
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : getCollisionDamage()
 	 *
@@ -244,4 +285,5 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	{
 		return collisionDamage;
 	}
+	
 }
