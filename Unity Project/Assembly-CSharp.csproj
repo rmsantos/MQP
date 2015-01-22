@@ -74,6 +74,7 @@
      <Compile Include="Assets\Resources\Instances\Instance1.cs" />
      <Compile Include="Assets\Resources\Instances\Instance2.cs" />
      <Compile Include="Assets\Resources\Instances\Instance3.cs" />
+     <Compile Include="Assets\Resources\Instances\Instance4.cs" />
      <Compile Include="Assets\Resources\Money\Money.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
      <Compile Include="Assets\UI\UpdateMoney.cs" />

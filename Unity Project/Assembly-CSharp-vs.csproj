@@ -74,6 +74,7 @@
      <Compile Include="Assets\Resources\Instances\Instance1.cs" />
      <Compile Include="Assets\Resources\Instances\Instance2.cs" />
      <Compile Include="Assets\Resources\Instances\Instance3.cs" />
+     <Compile Include="Assets\Resources\Instances\Instance4.cs" />
      <Compile Include="Assets\Resources\Money\Money.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
      <Compile Include="Assets\UI\UpdateMoney.cs" />
@@ -89,7 +90,7 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/rmsantos/Desktop/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/jbmorse/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
