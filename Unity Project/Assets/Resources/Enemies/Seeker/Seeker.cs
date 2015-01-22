@@ -76,8 +76,6 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 	 */
 	void Start () {
 
-		gameObject.transform.Rotate(90, 180, 0);
-		
 		//The enemy can shoot right when it spawns
 		ready = true;
 		
@@ -189,7 +187,7 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")

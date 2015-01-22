@@ -103,10 +103,10 @@ public class Gunner : MonoBehaviour {
 			Vector3 direction = mouseWorldPos-bullet.transform.position;
 
 			//Look at the mouse click 
-			bullet.transform.LookAt(direction,Vector3.up);
+			//bullet.transform.LookAt(direction,Vector3.up);
 
 			//Rotate 90 degrees along the x so that the cylinder is facing the target (like a bullet)
-			bullet.transform.Rotate(90,0,0);
+			//bullet.transform.Rotate(90,0,0);
 
 			//Send the mouse position in world space to the bullet
 			bullet.GetComponent<Bullet>().setMousePosition(mouseWorldPos);

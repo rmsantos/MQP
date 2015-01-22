@@ -39,8 +39,6 @@ public class Money : MonoBehaviour {
 	 */
 	void Start () {
 		
-		gameObject.transform.Rotate(90, 180, 0);
-		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 

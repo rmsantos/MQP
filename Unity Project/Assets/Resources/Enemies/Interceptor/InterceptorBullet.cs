@@ -42,8 +42,6 @@ public class InterceptorBullet : MonoBehaviour, BasicBullet {
 	 */
 	void Start () {
 
-		transform.Rotate (0, 0, 90);
-
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>(); 
 	}

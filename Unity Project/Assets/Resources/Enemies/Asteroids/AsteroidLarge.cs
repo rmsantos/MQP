@@ -45,8 +45,6 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	 * Returns     : Void
 	 */
 	void Start () {
-
-		gameObject.transform.Rotate(90, 180, 0);
 		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
@@ -98,7 +96,7 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	 *
 	 * Returns     : Void
 	 */
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")

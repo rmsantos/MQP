@@ -62,8 +62,6 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
-		
-		gameObject.transform.Rotate(90, 180, 0);
 
 		invisible = false;
 		counter = 200;
@@ -152,7 +150,7 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")

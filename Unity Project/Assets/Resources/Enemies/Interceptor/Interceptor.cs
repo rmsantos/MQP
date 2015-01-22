@@ -211,7 +211,7 @@ public class Interceptor :  MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")

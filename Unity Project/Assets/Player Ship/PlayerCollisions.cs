@@ -33,7 +33,7 @@ public class PlayerCollisions : MonoBehaviour {
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>();
 	}
 
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		if(col.gameObject.tag == "EnemyBullets")
 		{

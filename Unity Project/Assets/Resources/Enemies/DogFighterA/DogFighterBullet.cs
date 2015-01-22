@@ -41,8 +41,6 @@ public class DogFighterBullet : MonoBehaviour, BasicBullet {
 	 */
 	void Start () {
 
-		gameObject.transform.Rotate(90, 180, 0);
-
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>(); 
 	}
@@ -66,7 +64,6 @@ public class DogFighterBullet : MonoBehaviour, BasicBullet {
 		
 		//Apply the movement
 		transform.position = newPos;
-
 
 		//Delete the bullet if it goes off screen
 		if (!boundaries.inBoundaries(transform.position,1.2f))
