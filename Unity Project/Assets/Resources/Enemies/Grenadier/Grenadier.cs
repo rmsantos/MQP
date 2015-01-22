@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Grenadier : BasicEnemy {
+public class Grenadier : MonoBehaviour, BasicEnemy {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -214,7 +214,7 @@ public class Grenadier : BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	public override void takeDamage(int damage)
+	public void takeDamage(int damage)
 	{
 		
 		//Subtract health from the enemy
@@ -240,7 +240,7 @@ public class Grenadier : BasicEnemy {
 	 *
 	 * Returns     : int:  Collision damage
 	 */
-	public override int getCollisionDamage()
+	public int getCollisionDamage()
 	{
 		return collisionDamage;
 	}

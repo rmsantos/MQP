@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidMedium : BasicAsteroid {
+public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -118,7 +118,7 @@ public class AsteroidMedium : BasicAsteroid {
 	 *
 	 * Returns     : Void
 	 */
-	public override void shatter ()
+	public void shatter ()
 	{
 		//Load the medium asteroid prefab
 		GameObject smallAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidSmall");

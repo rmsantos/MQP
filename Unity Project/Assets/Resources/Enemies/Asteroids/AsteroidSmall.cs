@@ -14,7 +14,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidSmall : BasicAsteroid {
+public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
@@ -118,7 +118,7 @@ public class AsteroidSmall : BasicAsteroid {
 	 *
 	 * Returns     : Void
 	 */
-	public override void shatter ()
+	public void shatter ()
 	{
 		//Load the money prefab
 		GameObject money = Resources.Load<GameObject>("Money/Money");

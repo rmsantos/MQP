@@ -19,7 +19,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public abstract class BasicEnemy : MonoBehaviour {
+public interface BasicEnemy {
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : takeDamage(int damage)
@@ -30,7 +30,7 @@ public abstract class BasicEnemy : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	public abstract void takeDamage(int damage);
+	void takeDamage(int damage);
 
 
 	/* ----------------------------------------------------------------------- */
@@ -42,6 +42,6 @@ public abstract class BasicEnemy : MonoBehaviour {
 	 *
 	 * Returns     : int:  Collision damage
 	 */
-	public abstract int getCollisionDamage();
+	int getCollisionDamage();
 
 }
