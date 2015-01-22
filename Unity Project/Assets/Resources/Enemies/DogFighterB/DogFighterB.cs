@@ -103,7 +103,8 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
 		//follow the player
-		transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+		if(player != null)
+			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
 
 		//Move to the left
 		transform.position = new Vector3 (transform.position.x - (speed * 2f), transform.position.y, transform.position.z);

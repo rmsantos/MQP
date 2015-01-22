@@ -31,6 +31,9 @@ public class SeekerMissile : MonoBehaviour, BasicBullet {
 	//Player script
 	GameObject player;
 
+	//Player position
+	Vector3 playerPosition;
+
 	//The speed at which the missile will rotate
 	public float rotationSpeed;
 
@@ -78,8 +81,21 @@ public class SeekerMissile : MonoBehaviour, BasicBullet {
 		//Move the missile forwards
 		transform.Translate( transform.forward * speed, Space.World);
 
+		//Store the players position
+		//If the player was destroyed
+		if(player == null)
+		{
+			//Tell the missile to move off screen to the left
+			playerPosition = transform.position+Vector3.left;
+		}
+		else
+		{
+			//Otherwise move towards the players position
+			playerPosition = player.transform.position;
+		}
+
 		//Find the direction of the player
-		Vector3 targetDir = player.transform.position - transform.position;
+		Vector3 targetDir = playerPosition - transform.position;
 
 		//The the position of the player
 		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed, 0);

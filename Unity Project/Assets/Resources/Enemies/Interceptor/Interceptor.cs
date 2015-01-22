@@ -51,6 +51,9 @@ public class Interceptor :  MonoBehaviour, BasicEnemy {
 	
 	//Player script
 	GameObject player;
+
+	//Player position
+	Vector3 playerPosition;
 	
 	//The health of this enemy
 	public int health;
@@ -164,9 +167,21 @@ public class Interceptor :  MonoBehaviour, BasicEnemy {
 		{
 			//Spawn the bullet and store it
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-				
+
+			//If the player was destroyed
+			if(player == null)
+			{
+				//Tell the enemy to move off screen to the left
+				playerPosition = transform.position+Vector3.left;
+			}
+			else
+			{
+				//Otherwise move towards the players position
+				playerPosition = player.transform.position;
+			}
+		
 			//Store the direction of the player in respect to the bullet
-			Vector3 direction = player.transform.position-bullet.transform.position;
+			Vector3 direction = playerPosition-bullet.transform.position;
 				
 			//Set the z to 0 so that it moves only in 2D
 			direction.z = 0;

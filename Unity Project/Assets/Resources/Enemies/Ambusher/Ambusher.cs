@@ -35,7 +35,10 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 	
 	//Player script
 	GameObject player;
-	
+
+	//Player position
+	Vector3 playerPosition;
+
 	//Value of destroying this enemy
 	public int value;
 	
@@ -71,7 +74,7 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 		
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
-		
+
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
 		
@@ -89,9 +92,22 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 	void Update () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-		
+
+		//Store the players position
+		//If the player was destroyed
+		if(player == null)
+		{
+			//Tell the enemy to move off screen to the left
+			playerPosition = transform.position+Vector3.left;
+		}
+		else
+		{
+			//Otherwise move towards the players position
+			playerPosition = player.transform.position;
+		}
+
 		//follow the player
-		transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+		transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed);
 		
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)

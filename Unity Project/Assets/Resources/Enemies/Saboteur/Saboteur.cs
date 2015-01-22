@@ -117,18 +117,18 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 
 		//Direction the enemy should move
 		float direction = 0;
-
-		//Track the movement of the player and follow it
-		if(player.transform.position.y > transform.position.y)
-		{
-			//Move up
-			direction =  Mathf.Abs(speed);
-		}
+	
 		//If the within a certain threshold of the player
-		else if(Mathf.Abs(transform.position.y-player.transform.position.y) < 0.1)
+		if(player == null || (Mathf.Abs(transform.position.y-player.transform.position.y) < 0.1))
 		{
 			//Don't move
 			direction = 0;
+		}
+		//Track the movement of the player and follow it
+		else if(player.transform.position.y > transform.position.y)
+		{
+			//Move up
+			direction =  Mathf.Abs(speed);
 		}
 		else
 		{
