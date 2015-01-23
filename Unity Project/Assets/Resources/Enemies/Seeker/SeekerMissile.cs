@@ -160,7 +160,7 @@ public class SeekerMissile : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void explode()
+	public void explode()
 	{
 		//Draw a sphere at this position and track everything that overlaps it
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);

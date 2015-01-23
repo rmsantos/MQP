@@ -45,7 +45,7 @@ public class PlayerCollisions : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) 
 	{
 		//If the player triggers the shield
-		if(other.gameObject.tag == "Shield")
+		if(other.gameObject.tag == "EnemyShield")
 		{
 			//The only enemy with a shield is a juggernaut
 			//Cast to that class
@@ -65,13 +65,27 @@ public class PlayerCollisions : MonoBehaviour {
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
+		if(col.gameObject.tag == "EnemyMissile")
+		{
+			//Find the class of this missile
+			SeekerMissile missile = (SeekerMissile)col.gameObject.GetComponent(typeof(SeekerMissile));
+
+			//Subtract the health based on that bullet
+			health -= missile.getBulletDamage();
+
+			//Explode the missile
+			missile.explode();
+
+			print (health);
+
+		}
+
 		if(col.gameObject.tag == "EnemyBullets")
 		{
 			//Destroy the enemy bullet
 			Destroy(col.gameObject);
-			//health -= 5;
 
-			//Find the abstract class of this collision
+			//Find the class of this collision
 			SimpleEnemyBullet bullet = (SimpleEnemyBullet)col.gameObject.GetComponent(typeof(SimpleEnemyBullet));
 
 			//Subtract the health based on that bullet
