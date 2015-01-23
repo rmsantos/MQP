@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class SeekerMissile : MonoBehaviour, BasicBullet {
+public class SeekerMissile : MonoBehaviour {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	

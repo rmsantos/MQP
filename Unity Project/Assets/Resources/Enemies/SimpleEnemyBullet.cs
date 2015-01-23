@@ -1,11 +1,11 @@
-﻿/* Module      : JuggernautBullet.cs
+﻿/* Module      : SimpleEnemyBullet.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the Juggernaut bullet
+ * Description : This file controls the behavior of simple bullets
  *
- * Date        : 2015/1/22
+ * Date        : 2015/1/23
  * 
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
@@ -18,17 +18,17 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class JuggernautBullet : MonoBehaviour, BasicBullet {
+public class SimpleEnemyBullet : MonoBehaviour {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
-	//The speed at which the missile will move
+	//The speed at which the bullet will move
 	public float speed;
 	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 	
-	//The damage this missile will deal
+	//The damage this bullet will deal
 	int damage;
 	
 	/* ----------------------------------------------------------------------- */
@@ -59,10 +59,10 @@ public class JuggernautBullet : MonoBehaviour, BasicBullet {
 	void Update () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-
-		//Move the missile forwards
-		transform.Translate( transform.right * speed, Space.World);
-
+		
+		//Move the bullet to the left 
+		transform.Translate( -transform.right * speed, Space.World);
+		
 		//Delete the bullet if it goes off screen
 		if (!boundaries.inBoundaries(transform.position,1.2f))
 		{
