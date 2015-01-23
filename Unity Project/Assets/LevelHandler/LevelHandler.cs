@@ -81,7 +81,7 @@ public class LevelHandler : MonoBehaviour {
 		//TODO this is an unused variable. It could be used for pausing at the end of levels, shooting fireworks, displaying UI, or whatever
 		levelCompleted = false;
 
-		updateLevel = GameObject.FindGameObjectWithTag("LevelText").GetComponent<UpdateLevel>(); 
+		updateLevel = GameObject.Find("UI/UIPanel/LevelText").GetComponent<UpdateLevel>(); 
 	}
 	
 	/* ----------------------------------------------------------------------- */

@@ -45,8 +45,8 @@ public class ScoreHandler : MonoBehaviour {
 		money = 0;
 
 		//Search for the ScoreHandler object for tracking score
-		updateMoney = GameObject.FindGameObjectWithTag("MoneyText").GetComponent<UpdateMoney>(); 
-		updateScore = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<UpdateScore>(); 
+		updateMoney = GameObject.Find("/UI/UIPanel/MoneyText").GetComponent<UpdateMoney>(); 
+		updateScore = GameObject.Find("/UI/UIPanel/ScoreText").GetComponent<UpdateScore>(); 
 	}
 
 	public long UpdateScore(long amount) {
