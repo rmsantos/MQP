@@ -20,18 +20,27 @@ using System.Collections;
 //NONE
 
 
-public class Spawner : MonoBehaviour {
+public class LevelHandler : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[1] {"Instance4"};
+	string[] instances = new string[1] {"Instance2"};
+	string[] bosses = new string[1] {"Boss1"};
+
+	//Level tracker variables
+	static int level;
+	static int wave;
 	
 	//Randomizer script
 	public GameObject randomizer;
 	Randomizer random;
+
+	//Randomizer script
+	public GameObject backgroundObject;
+	static Background background;
 
 	//Variable to store the time until next spawn
 	static float spawnTimer;
@@ -57,10 +66,15 @@ public class Spawner : MonoBehaviour {
 		//Get the randomizer script
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
 
+		background = (Background)backgroundObject.GetComponent("Background");
+
 		//Initialize spawning variables
-		timeBetweenSpawning = 300;
+		timeBetweenSpawning = 100;
 		spawnTimer = timeBetweenSpawning;
 		spawning = false;
+
+		level = 1;
+		wave = 0;
 
 	}
 	
@@ -87,25 +101,37 @@ public class Spawner : MonoBehaviour {
 				
 				spawning = true;
 				spawnTimer = timeBetweenSpawning;
+				wave++;
 
-				string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0))];
-				
-				Instantiate(Resources.Load<GameObject>(randomInstance));
+				if (wave <= 1) {
+					//TODO have a more advanced instance picker
+					string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0))];
+					Instantiate(Resources.Load<GameObject>(randomInstance));
+				}
+				else {
+					Instantiate(Resources.Load<GameObject>("BossInstances/" + bosses[0]));
+					background.StopBackground();
+				}
 				
 			}
 		}
 	}
 
-	public void SpawningHasStopped () {
-
+	public void LevelComplete() {
 		spawning = false;
+		level++;
+		wave = 0;
+		background.ChangeBackground();
+		//TODO Perhaps change scene or do something with buying
+		//More level completion stuff can be put here
+	}
 
+	public void SpawningHasStopped () {
+		spawning = false;
 	}
 
 	public void SetSpawnTimer (int time) {
-
 		spawnTimer = time;
-
 	}
 
 }

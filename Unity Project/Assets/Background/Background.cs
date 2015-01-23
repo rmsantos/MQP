@@ -16,13 +16,15 @@ using System.Collections;
 
 public class Background : MonoBehaviour {
 
-	public Texture[] backgrounds;
+	public Sprite[] backgrounds;
 	public float speed;
 
 	//Randomizer script
 	public GameObject randomizer;
 	Randomizer random;
-	bool started;
+	static bool started;
+	static bool stopped;
+	Vector3 initialPosition;
 
 	// Use this for initialization
 	void Start() {
@@ -32,25 +34,34 @@ public class Background : MonoBehaviour {
 
 		started = false;
 
+		initialPosition = transform.position;
 	}
 
 	void Update() {
 
-		if (started) {
-			transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
-		} 
-		else {
-			ChangeBackground();
+		if (!started) {
+			GetComponent<SpriteRenderer>().sprite = backgrounds[random.GetRandom(backgrounds.GetLength(0))];
+			transform.position = initialPosition;
 			started = true;
 		}
 
-	}
-
-	void ChangeBackground() {
-
-		renderer.material.mainTexture = backgrounds[random.GetRandom(backgrounds.GetLength(0))];
+		if (!stopped) {
+			transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
+		} 
 
 	}
 
+	public void ChangeBackground() {
+		started = false;
+		stopped = false;
+	}
 
+	public void StopBackground() {
+		stopped = true;
+	}
+
+	public void StartBackground() {
+		stopped = false;	
+	}
+	
 }

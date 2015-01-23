@@ -1,11 +1,11 @@
-/* Module      : Instance1.cs
+/* Module      : Boss1.cs
  * Author      : Joshua Morse
  * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
  * Description : This is the first created instance for the game
  *
- * Date        : 2015/1/16
+ * Date        : 2015/1/23
  *
  *
  * (c) Copyright 2015, Worcester Polytechnic Institute.
@@ -19,12 +19,12 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Instance1 : MonoBehaviour {
+public class Boss1 : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Enemies possible to spawn
-	string[] enemies = new string[4] {"DogFighterB/DogFighterB", "DogFighterA/DogFighterA", "Asteroids/AsteroidSmall", "Seeker/Seeker"};
+	string boss = "Flagship/Flagship";
 	
 	//The spawner object
 	public GameObject enemySpawner;
@@ -44,6 +44,11 @@ public class Instance1 : MonoBehaviour {
 	float bottom;
 	float right;
 
+	//Boss checker variables
+	bool spawned;
+	static bool killed;
+	int bossTimer;
+
 	//Randomizer script
 	public GameObject randomizer;
 	Randomizer random;
@@ -62,6 +67,9 @@ public class Instance1 : MonoBehaviour {
 
 		timer = 0;
 		finalTime = 1000;
+		spawned = false;
+		killed = false;
+		bossTimer = 0;
 
 		//Get the script that created this instance
 		levelHandler = (LevelHandler) enemySpawner.GetComponent("LevelHandler");
@@ -90,37 +98,40 @@ public class Instance1 : MonoBehaviour {
 
 	void Update () {
 
-		//Increment the timer at each pass
-		timer++;
+		//TODO Notify the player via the character audio handler and probably some UI elements that a boss is coming
 
-		if (timer % 100 == 0 && timer >= 0) {
-			SpawnEnemy();
+		if (!spawned) {
+			//Increment the timer at each pass
+			timer++;
+
+			if (timer % 100 == 0 && timer >= 0) {
+				SpawnEnemy();
+			}
 		}
-
-		if (timer >= finalTime) {
-			timer = -999999;
-			//Destroys itself and notifies the master spawner
-			levelHandler.SpawningHasStopped();
-			gameObject.SetActive(false);
+		else {
+			if (!killed) {
+				bossTimer++;
+				//TODO probably have the timer here that will kill the player or something
+			}
+			else {
+				levelHandler.LevelComplete();
+				gameObject.SetActive(false);
+			}
 		}
 	}
-
-	float GetRandomLocation() {
-
-		return (top - bottom) / (100 / (float) (random.GetRandom(100)+1)) - ((top - bottom) / 2);
-	}
-
-	//Uses some logic to spawn enemies
+	
 	void SpawnEnemy () {
 
-		//Get a random vertical location
+		string bossPath = "Enemies/" + boss;
+		GameObject enemy = Resources.Load<GameObject> (bossPath);
+		Instantiate(enemy, new Vector3(right * 1.2f, 0f, 0f), Quaternion.identity);
 
-		float randomLocation = GetRandomLocation();
+		spawned = true;
 
-		string randomEnemy = "Enemies/" + enemies[random.GetRandom(enemies.GetLength(0))];
-		GameObject enemy = Resources.Load<GameObject> (randomEnemy);
-		Instantiate(enemy, new Vector3(right * 1.2f, randomLocation, -.1f), Quaternion.identity);
+	}
 
+	public void BossDied() {
+		killed = true;
 	}
 	
 }

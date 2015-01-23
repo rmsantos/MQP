@@ -32,7 +32,7 @@ public class Instance4 : MonoBehaviour {
 	
 	//The spawner object
 	public GameObject enemySpawner;
-	Spawner spawner;
+	LevelHandler levelHandler;
 	
 	//The current time of the instance
 	int timer;
@@ -70,7 +70,7 @@ public class Instance4 : MonoBehaviour {
 		timer = 0;
 
 		//Get the script that created this instance
-		spawner = (Spawner) enemySpawner.GetComponent("Spawner");
+		levelHandler = (LevelHandler) enemySpawner.GetComponent("LevelHandler");
 
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
@@ -107,7 +107,7 @@ public class Instance4 : MonoBehaviour {
 		if (enemyNumber >= 13) {
 			timer = -999999;
 			//Destroys itself and notifies the master spawner
-			spawner.SpawningHasStopped();
+			levelHandler.SpawningHasStopped();
 			gameObject.SetActive(false);
 		}
 	}
