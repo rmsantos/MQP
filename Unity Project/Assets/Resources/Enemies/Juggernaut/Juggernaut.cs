@@ -109,9 +109,25 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
+		print (transform.position);
+
+		shield1.transform.position += (shield1.transform.rotation*transform.position);
+		
+		if (RotateX)
+			transform.rotation *= Quaternion.AngleAxis(45*Time.deltaTime, Vector3.right);
+		if (RotateY)
+			transform.rotation *= Quaternion.AngleAxis(45*Time.deltaTime, Vector3.up);
+		if (RotateZ)
+			transform.rotation *= Quaternion.AngleAxis(45*Time.deltaTime, Vector3.forward);
+		
+		transform.position -= (transform.rotation*Pivot);
+
 		//Rotate the shields around the enemy
-		shield1.RotateAround (transform.position, Vector3.forward, speed * 20);
+		//shield1.RotateAround (transform.position, Vector3.forward, speed * 20);
 		shield2.RotateAround (transform.position, Vector3.forward, speed * 20);
+
+		//shield2.rigidbody2D.velocity = Vector3.zero;
+
 
 		//The new position of the enemy after moving
 		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);

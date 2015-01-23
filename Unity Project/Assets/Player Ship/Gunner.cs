@@ -100,7 +100,7 @@ public class Gunner : MonoBehaviour {
 			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
 
 			//Store the direction of the mouse click
-			Vector3 direction = mouseWorldPos-bullet.transform.position;
+			//Vector3 direction = mouseWorldPos-bullet.transform.position;
 
 			//Look at the mouse click 
 			//bullet.transform.LookAt(direction,Vector3.up);
