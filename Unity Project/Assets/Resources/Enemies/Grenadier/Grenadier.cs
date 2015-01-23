@@ -47,7 +47,7 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	ScoreHandler score;
 
 	//Angle at which the grenadier will shoot the "shotgun"
-	public float angle;
+	public float shootAngle;
 
 	//The health of this enemy
 	public int health;
@@ -160,10 +160,10 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 			//Bullet 1 will move only in a straight line
 
 			//Bullet 2 will shoot at a +degree angle
-			bullet2.transform.Rotate(angle,0,0);
+			bullet2.transform.Rotate(shootAngle,0,0);
 
 			//Bullet 3 will shoot at a -degree angle
-			bullet3.transform.Rotate(-angle,0,0);
+			bullet3.transform.Rotate(-shootAngle,0,0);
 
 		}	
 		

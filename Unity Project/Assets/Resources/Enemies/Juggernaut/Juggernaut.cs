@@ -62,7 +62,10 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	public Transform shield2;
 
 	//Angle at which the juggernaut will shoot the "shotgun"
-	public float angle;
+	public float shootAngle;
+
+	//Rotation speed for the shields
+	public float rotationSpeed;
 
 	//Shield rotation
 	Transform shieldRotation;
@@ -109,25 +112,9 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
-		print (transform.position);
-
-		shield1.transform.position += (shield1.transform.rotation*transform.position);
-		
-		if (RotateX)
-			transform.rotation *= Quaternion.AngleAxis(45*Time.deltaTime, Vector3.right);
-		if (RotateY)
-			transform.rotation *= Quaternion.AngleAxis(45*Time.deltaTime, Vector3.up);
-		if (RotateZ)
-			transform.rotation *= Quaternion.AngleAxis(45*Time.deltaTime, Vector3.forward);
-		
-		transform.position -= (transform.rotation*Pivot);
-
 		//Rotate the shields around the enemy
-		//shield1.RotateAround (transform.position, Vector3.forward, speed * 20);
-		shield2.RotateAround (transform.position, Vector3.forward, speed * 20);
-
-		//shield2.rigidbody2D.velocity = Vector3.zero;
-
+		shield1.RotateAround (transform.position, Vector3.forward, rotationSpeed);
+		shield2.RotateAround (transform.position, Vector3.forward, rotationSpeed);
 
 		//The new position of the enemy after moving
 		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
@@ -142,8 +129,8 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 			shootTimer--;
 			
 			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
-			if (shootTimer <= 0) {
-				
+			if (shootTimer <= 0) 
+			{
 				ready = true;
 				shootTimer = reloadTime;
 			}
@@ -209,21 +196,28 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 			//Set the damage of the bullet
 			juggernautBullet6.setDamage(bulletDamage);
 
+			//Bullet 1 shoots perpindicular to the shield
 			bullet1.transform.rotation = shieldRotation.rotation;
+
+			//Bullet 2 shoots perpendicular and shootAngle to the shield
 			bullet2.transform.rotation = shieldRotation.rotation;
-			bullet2.transform.Rotate(new Vector3(0,0,angle));
+			bullet2.transform.Rotate(new Vector3(0,0,shootAngle));
 
+			//Bullet 3 shoots perpendicular and -shootAngle to the shield
 			bullet3.transform.rotation = shieldRotation.rotation;
-			bullet3.transform.Rotate(new Vector3(0,0,-angle));
+			bullet3.transform.Rotate(new Vector3(0,0,-shootAngle));
 
+			//Bullet 4 shoots -perpendicular to the shield
 			bullet4.transform.rotation = shieldRotation.rotation;
 			bullet4.transform.Rotate(new Vector3(0,180,0));
 
+			//Bullet 5 shoots -perpendicular and shootAngle to the shield
 			bullet5.transform.rotation = shieldRotation.rotation;
-			bullet5.transform.Rotate(new Vector3(0,180,angle));
+			bullet5.transform.Rotate(new Vector3(0,180,shootAngle));
 
+			//Bullet 6 shoots -perpendicular and -shootAngle to the shield
 			bullet6.transform.rotation = shieldRotation.rotation;
-			bullet6.transform.Rotate(new Vector3(0,180,-angle));
+			bullet6.transform.Rotate(new Vector3(0,180,-shootAngle));
 		}
 		
 		//If the enemy leaves the game space
@@ -237,7 +231,7 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter(Collision col)
+	/* Function    : OnCollisionEnter2D (Collision2D col)
 	 *
 	 * Description : Deals with collisions between the player bullets and this enemy.
 	 *
@@ -245,7 +239,7 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")

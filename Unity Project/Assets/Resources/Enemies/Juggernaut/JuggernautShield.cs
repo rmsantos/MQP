@@ -4,7 +4,7 @@ using System.Collections;
 public class JuggernautShield : MonoBehaviour {
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter(Collision col)
+	/* Function    : OnCollisionEnter2D (Collision2D col)
 	 *
 	 * Description : Deals with collisions between the player bullets and this shield
 	 *
@@ -12,7 +12,7 @@ public class JuggernautShield : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void OnCollisionEnter (Collision col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		print ("Meep?");
 
