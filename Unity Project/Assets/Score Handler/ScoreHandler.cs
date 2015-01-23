@@ -3,7 +3,7 @@
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the movement of the player ship.
+ * Description : This file controls the score and money handling of the game.
  *
  * Date        : 2015/1/16
  * 
@@ -25,7 +25,8 @@ public class ScoreHandler : MonoBehaviour {
 	public static long score;
 	public static long money;
 
-	public UpdateMoney updateMoney;
+	UpdateMoney updateMoney;
+	UpdateScore updateScore;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -45,11 +46,14 @@ public class ScoreHandler : MonoBehaviour {
 
 		//Search for the ScoreHandler object for tracking score
 		updateMoney = GameObject.FindGameObjectWithTag ("MoneyText").GetComponent<UpdateMoney>(); 
+		updateScore = GameObject.FindGameObjectWithTag ("ScoreText").GetComponent<UpdateScore>(); 
 	}
 
 	public long UpdateScore(long amount) {
 		score += amount;
-		print ("Score: " + score);
+
+		updateScore.UpdateText (score);
+
 		return score;
 	}
 
@@ -71,13 +75,14 @@ public class ScoreHandler : MonoBehaviour {
 
 	public void ResetScore() {
 		score = 0;
+
+		updateScore.UpdateText (score);
 	}
 
 	public void ResetMoney() {
 		money = 0;
 
 		updateMoney.UpdateText (money);
-
 	}
 
 }

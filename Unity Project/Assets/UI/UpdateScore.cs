@@ -1,9 +1,9 @@
-﻿/* Module      : UpdateLevel.cs
+﻿/* Module      : UpdateScore.cs
  * Author      : Josh Morse
  * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file updates the level in the UI
+ * Description : This file updates the score in the UI
  *
  * Date        : 2015/1/23
  * 
@@ -15,11 +15,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class UpdateLevel : MonoBehaviour {
+public class UpdateScore : MonoBehaviour {
 
 	public Text text;
 
-	public void UpdateText(int level) {
-		text.text = "Level : " + level.ToString ();
+	public void UpdateText(long score) {
+		text.text = score.ToString ();
 	}
 }
