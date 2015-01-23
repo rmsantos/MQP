@@ -33,6 +33,36 @@ public class PlayerCollisions : MonoBehaviour {
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>();
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : OnCollisionEnter2D (Collision2D col)
+	 *
+	 * Description : Deals with triggers between the player and other objects
+	 *
+	 * Parameters  : Collision2D other : The other object triggered with
+	 *
+	 * Returns     : Void
+	 */
+	void OnTriggerEnter2D(Collider2D other) 
+	{
+		//If the player triggers the shield
+		if(other.gameObject.tag == "Shield")
+		{
+			//The only enemy with a shield is a juggernaut
+			//Cast to that class
+			JuggernautShield shield = (JuggernautShield)other.gameObject.GetComponent(typeof(JuggernautShield));
+
+			//Subtract the appropriate damage
+			health -= shield.getCollisionDamage();
+
+			//Disable and make the shield invisible
+			//It will be deleted along with the juggernaut later
+			other.enabled = false;
+			other.renderer.enabled = false;
+
+			print (health);
+		}
+	}
+
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		if(col.gameObject.tag == "EnemyBullets")
