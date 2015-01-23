@@ -160,9 +160,6 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 			//Store the direction of the player in respect to the missile
 			Vector3 direction = playerPosition-missile.transform.position;
 
-			//Set the z to 0 so that it moves only in 2D
-			direction.z = 0;
-
 			//Rotate the missile towards the player
 			missile.transform.rotation = Quaternion.LookRotation(direction);
 
