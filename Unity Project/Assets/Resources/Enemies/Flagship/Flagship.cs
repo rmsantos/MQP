@@ -133,7 +133,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			if(transform.position == Vector3.zero)
 			{
 				//TODO: Add some randomization here
-				phase = 3;
+				phase = 1;
 			}
 
 
