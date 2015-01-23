@@ -165,40 +165,40 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 			GameObject bullet6 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
 			//Cast the first bullet to a bullet type
-			JuggernautBullet juggernautBullet1 = (JuggernautBullet)bullet1.GetComponent(typeof(JuggernautBullet));
+			SimpleEnemyBullet simpleEnemyBullet1 = (SimpleEnemyBullet)bullet1.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			juggernautBullet1.setDamage(bulletDamage);
+			simpleEnemyBullet1.setDamage(bulletDamage);
 
 			//Cast the second bullet to a bullet type
-			JuggernautBullet juggernautBullet2 = (JuggernautBullet)bullet2.GetComponent(typeof(JuggernautBullet));
+			SimpleEnemyBullet simpleEnemyBullet2 = (SimpleEnemyBullet)bullet2.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			juggernautBullet2.setDamage(bulletDamage);
+			simpleEnemyBullet2.setDamage(bulletDamage);
 
 			//Cast the third bullet to a bullet type
-			JuggernautBullet juggernautBullet3 = (JuggernautBullet)bullet3.GetComponent(typeof(JuggernautBullet));
+			SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			juggernautBullet3.setDamage(bulletDamage);
+			simpleEnemyBullet3.setDamage(bulletDamage);
 
 			//Cast the fourth bullet to a bullet type
-			JuggernautBullet juggernautBullet4 = (JuggernautBullet)bullet4.GetComponent(typeof(JuggernautBullet));
+			SimpleEnemyBullet simpleEnemyBullet4 = (SimpleEnemyBullet)bullet4.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			juggernautBullet4.setDamage(bulletDamage);
+			simpleEnemyBullet4.setDamage(bulletDamage);
 
 			//Cast the fifth bullet to a bullet type
-			JuggernautBullet juggernautBullet5 = (JuggernautBullet)bullet5.GetComponent(typeof(JuggernautBullet));
+			SimpleEnemyBullet simpleEnemyBullet5 = (SimpleEnemyBullet)bullet5.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			juggernautBullet5.setDamage(bulletDamage);
+			simpleEnemyBullet5.setDamage(bulletDamage);
 
 			//Cast the sixth bullet to a bullet type
-			JuggernautBullet juggernautBullet6 = (JuggernautBullet)bullet6.GetComponent(typeof(JuggernautBullet));
+			SimpleEnemyBullet simpleEnemyBullet6 = (SimpleEnemyBullet)bullet6.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			juggernautBullet6.setDamage(bulletDamage);
+			simpleEnemyBullet6.setDamage(bulletDamage);
 
 			//Bullet 1 shoots perpindicular to the shield
 			bullet1.transform.rotation = shieldRotation.rotation;

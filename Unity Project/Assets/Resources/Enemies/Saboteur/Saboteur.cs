@@ -163,11 +163,14 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 			//Spawn the bullet and store it
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
-			//Cast the second bullet to a bullet type
-			SaboteurBullet saboteurBullet = (SaboteurBullet)bullet.GetComponent(typeof(SaboteurBullet));
+			//Rotate the bullet around to move towards the right side of the screen
+			bullet.transform.Rotate (0,0,180);
+
+			//Cast to a bullet type
+			SimpleEnemyBullet simpleEnemyBullet = (SimpleEnemyBullet)bullet.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			saboteurBullet.setDamage(bulletDamage);
+			simpleEnemyBullet.setDamage(bulletDamage);
 		}	
 	}
 	

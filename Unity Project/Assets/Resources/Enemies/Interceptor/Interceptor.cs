@@ -179,22 +179,23 @@ public class Interceptor :  MonoBehaviour, BasicEnemy {
 				//Otherwise move towards the players position
 				playerPosition = player.transform.position;
 			}
-		
+				
+
 			//Store the direction of the player in respect to the bullet
 			Vector3 direction = playerPosition-bullet.transform.position;
-				
-			//Set the z to 0 so that it moves only in 2D
-			direction.z = 0;
-				
+		
 			//Rotate the bullet towards the player
 			bullet.transform.rotation = Quaternion.LookRotation(direction);
-				
-			//Cast to an bullet type
-			InterceptorBullet interceptorBullet = (InterceptorBullet)bullet.GetComponent(typeof(InterceptorBullet));
-				
-			//Set the damage of the bullet
-			interceptorBullet.setDamage(bulletDamage);
 
+			//Rotate the bullet along the y so that it faces the camera
+			bullet.transform.Rotate(0,90,0);
+
+			//Cast to a bullet type
+			SimpleEnemyBullet simpleEnemyBullet = (SimpleEnemyBullet)bullet.GetComponent(typeof(SimpleEnemyBullet));
+			
+			//Set the damage of the bullet
+			simpleEnemyBullet.setDamage(bulletDamage);
+			
 			//Flag that player has just shot
 			ready = false;
 

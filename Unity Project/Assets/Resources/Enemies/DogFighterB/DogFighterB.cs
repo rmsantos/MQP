@@ -127,12 +127,12 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 			
 			//Spawn the bullet and store it
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-			
+
 			//Cast to an bullet type
-			DogFighterBullet dogfighterBullet = (DogFighterBullet)bullet.GetComponent(typeof(DogFighterBullet));
+			SimpleEnemyBullet simpleEnemyBullet = (SimpleEnemyBullet)bullet.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			dogfighterBullet.setDamage(bulletDamage);
+			simpleEnemyBullet.setDamage(bulletDamage);
 		}	
 
 		//If the enemy leaves the game space

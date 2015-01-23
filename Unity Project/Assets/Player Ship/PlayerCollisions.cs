@@ -72,7 +72,7 @@ public class PlayerCollisions : MonoBehaviour {
 			//health -= 5;
 
 			//Find the abstract class of this collision
-			BasicBullet bullet = (BasicBullet)col.gameObject.GetComponent(typeof(BasicBullet));
+			SimpleEnemyBullet bullet = (SimpleEnemyBullet)col.gameObject.GetComponent(typeof(SimpleEnemyBullet));
 
 			//Subtract the health based on that bullet
 			health -= bullet.getBulletDamage();

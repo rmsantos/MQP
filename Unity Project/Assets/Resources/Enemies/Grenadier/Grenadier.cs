@@ -132,38 +132,30 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 			GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
 			//Cast the first bullet to a bullet type
-			GrenadierBullet grenadierBullet1 = (GrenadierBullet)bullet1.GetComponent(typeof(GrenadierBullet));
-						
+			SimpleEnemyBullet simpleEnemyBullet1 = (SimpleEnemyBullet)bullet1.GetComponent(typeof(SimpleEnemyBullet));
+			
 			//Set the damage of the bullet
-			grenadierBullet1.setDamage(bulletDamage);
+			simpleEnemyBullet1.setDamage(bulletDamage);
 
 			//Cast the second bullet to a bullet type
-			GrenadierBullet grenadierBullet2 = (GrenadierBullet)bullet2.GetComponent(typeof(GrenadierBullet));
+			SimpleEnemyBullet simpleEnemyBullet2 = (SimpleEnemyBullet)bullet2.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			grenadierBullet2.setDamage(bulletDamage);
+			simpleEnemyBullet2.setDamage(bulletDamage);
 
 			//Cast the third bullet to a bullet type
-			GrenadierBullet grenadierBullet3 = (GrenadierBullet)bullet3.GetComponent(typeof(GrenadierBullet));
+			SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
 			
 			//Set the damage of the bullet
-			grenadierBullet3.setDamage(bulletDamage);
-
-			//Create a Quaternion that points directly to the left side of the screen (-x direction)
-			Quaternion leftAlign = Quaternion.LookRotation(new Vector3(-1,0,0));
-
-			//Set all bullets to look towards leftAlign
-			bullet1.transform.rotation = leftAlign;
-			bullet2.transform.rotation = leftAlign;
-			bullet3.transform.rotation = leftAlign;
+			simpleEnemyBullet3.setDamage(bulletDamage);
 
 			//Bullet 1 will move only in a straight line
 
 			//Bullet 2 will shoot at a +degree angle
-			bullet2.transform.Rotate(shootAngle,0,0);
+			bullet2.transform.Rotate(0,0,shootAngle);
 
 			//Bullet 3 will shoot at a -degree angle
-			bullet3.transform.Rotate(-shootAngle,0,0);
+			bullet3.transform.Rotate(0,0,-shootAngle);
 
 		}	
 		
