@@ -97,6 +97,10 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 
 		//Store the rotation of the shield
 		shieldRotation = shield1.transform;
+
+		//Set the collision damage that the shields will do
+		shield1.GetComponentInParent<JuggernautShield> ().setCollisionDamage (collisionDamage/2);
+		shield2.GetComponentInParent<JuggernautShield> ().setCollisionDamage (collisionDamage/2);
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -235,7 +239,7 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	 *
 	 * Description : Deals with collisions between the player bullets and this enemy.
 	 *
-	 * Parameters  : Collision col : The other object collided with
+	 * Parameters  : Collision2D col : The other object collided with
 	 *
 	 * Returns     : Void
 	 */
