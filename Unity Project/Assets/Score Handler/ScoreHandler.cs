@@ -25,8 +25,8 @@ public class ScoreHandler : MonoBehaviour {
 	public static long score;
 	public static long money;
 
-	UpdateMoney updateMoney;
-	UpdateScore updateScore;
+	static UpdateMoney updateMoney;
+	static UpdateScore updateScore;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -45,8 +45,8 @@ public class ScoreHandler : MonoBehaviour {
 		money = 0;
 
 		//Search for the ScoreHandler object for tracking score
-		updateMoney = GameObject.FindGameObjectWithTag ("MoneyText").GetComponent<UpdateMoney>(); 
-		updateScore = GameObject.FindGameObjectWithTag ("ScoreText").GetComponent<UpdateScore>(); 
+		updateMoney = GameObject.FindGameObjectWithTag("MoneyText").GetComponent<UpdateMoney>(); 
+		updateScore = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<UpdateScore>(); 
 	}
 
 	public long UpdateScore(long amount) {
