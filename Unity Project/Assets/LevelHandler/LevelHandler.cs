@@ -27,12 +27,13 @@ public class LevelHandler : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[1] {"Instance2"};
+	string[] instances = new string[2] {"Instance2", "Instance3"};
 	string[] bosses = new string[1] {"Boss1"};
 
 	//Level tracker variables
 	static int level;
 	static int wave;
+	static bool levelCompleted;
 	
 	//Randomizer script
 	public GameObject randomizer;
@@ -50,6 +51,8 @@ public class LevelHandler : MonoBehaviour {
 
 	//Variable, changed in Unity prefab, that is used to reset the spawn timer to a set amount
 	public static float timeBetweenSpawning;
+
+	static UpdateLevel updateLevel;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -75,6 +78,10 @@ public class LevelHandler : MonoBehaviour {
 
 		level = 1;
 		wave = 0;
+		//TODO this is an unused variable. It could be used for pausing at the end of levels, shooting fireworks, displaying UI, or whatever
+		levelCompleted = false;
+
+		updateLevel = GameObject.FindGameObjectWithTag ("LevelText").GetComponent<UpdateLevel>(); 
 
 	}
 	
@@ -120,6 +127,7 @@ public class LevelHandler : MonoBehaviour {
 	public void LevelComplete() {
 		spawning = false;
 		level++;
+		updateLevel.UpdateText (level);
 		wave = 0;
 		background.ChangeBackground();
 		//TODO Perhaps change scene or do something with buying
