@@ -52,4 +52,18 @@ public class PauseController : MonoBehaviour {
 		return paused;
 	}
 
+	public void SetPause(bool pauseState) {
+		if (pauseState != paused) {
+			paused = pauseState;
+			if (paused) {
+				Time.timeScale = 0;
+				resumeButton.active = true;
+			}
+			else {
+				Time.timeScale = 1;
+				resumeButton.active = false;
+			}
+		}
+	}
+
 }
