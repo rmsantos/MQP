@@ -37,7 +37,7 @@ public class Background : MonoBehaviour {
 		initialPosition = transform.position;
 	}
 
-	void Update() {
+	void FixedUpdate() {
 
 		if (!started) {
 			GetComponent<SpriteRenderer>().sprite = backgrounds[random.GetRandom(backgrounds.GetLength(0))];

@@ -80,7 +80,7 @@ public class SeekerMissile : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 

@@ -112,7 +112,7 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 

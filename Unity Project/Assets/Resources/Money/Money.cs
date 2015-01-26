@@ -53,7 +53,7 @@ public class Money : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		

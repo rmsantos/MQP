@@ -92,7 +92,7 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		

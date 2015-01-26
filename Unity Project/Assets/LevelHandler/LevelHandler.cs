@@ -27,7 +27,7 @@ public class LevelHandler : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[2] {"Instance2", "Instance3"};
+	string[] instances = new string[1] {"Instance4"};
 	string[] bosses = new string[1] {"Boss1"};
 
 	//Level tracker variables
@@ -94,7 +94,7 @@ public class LevelHandler : MonoBehaviour {
 	 * Returns     : Void
 	 */
 
-	void Update () {
+	void FixedUpdate () {
 
 		//If spawning is occurring, don't decrement the timer
 		if (canSpawn) {

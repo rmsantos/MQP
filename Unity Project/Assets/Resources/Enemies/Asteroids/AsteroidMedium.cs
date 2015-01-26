@@ -19,8 +19,9 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
 	//The translation variables
-	float speed;
-	float rotation;
+	public float speed;
+	public float rotation;
+	public float directionRange;
 	Vector2 direction;
 	
 	//Stores the boundaries of the game
@@ -52,10 +53,10 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 		//Search for the ScoreHandler object for tracking score
 		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
 		
-		speed = Random.Range(1.5f, 3f);
-		rotation = Random.Range(15f, 150f);
+		speed = Random.Range(speed, speed * 2f);
+		rotation = Random.Range(rotation * .1f, rotation);
 		float x = -1f;
-		float y = Random.Range(-.2f, .2f);
+		float y = Random.Range(directionRange * -1f, directionRange);
 		direction = new Vector3(x, y);
 		
 	}

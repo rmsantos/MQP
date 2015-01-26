@@ -96,7 +96,7 @@ public class Boss1 : MonoBehaviour {
 	 * Returns     : Void
 	 */
 
-	void Update () {
+	void FixedUpdate () {
 
 		//TODO Notify the player via the character audio handler and probably some UI elements that a boss is coming
 

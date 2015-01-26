@@ -56,7 +56,7 @@ public class SimpleEnemyBullet : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		

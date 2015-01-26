@@ -102,7 +102,7 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		

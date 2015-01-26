@@ -88,7 +88,7 @@ public class Instance1 : MonoBehaviour {
 	 * Returns     : Void
 	 */
 
-	void Update () {
+	void FixedUpdate () {
 
 		//Increment the timer at each pass
 		timer++;
