@@ -14,6 +14,7 @@
 /* -- INCLUDE FILES ------------------------------------------------------ */
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
@@ -27,7 +28,7 @@ public class LevelHandler : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[1] {"Instance4"};
+	string[] instances = new string[1] {"Instance2"};
 	string[] bosses = new string[1] {"Boss1"};
 
 	//Level tracker variables
@@ -54,6 +55,9 @@ public class LevelHandler : MonoBehaviour {
 	
 	public GameObject levelText;
 	static UpdateLevel updateLevel;
+
+	public Slider bossHealthSlider;
+	static int bossHealth;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -83,6 +87,9 @@ public class LevelHandler : MonoBehaviour {
 		levelCompleted = false;
 		
 		updateLevel = (UpdateLevel)levelText.GetComponent("UpdateLevel");
+
+		bossHealthSlider.active = false;
+		bossHealth = 100;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -96,6 +103,8 @@ public class LevelHandler : MonoBehaviour {
 	 */
 
 	void FixedUpdate () {
+
+		bossHealthSlider.value = bossHealth;
 
 		//If spawning is occurring, don't decrement the timer
 		if (canSpawn) {
@@ -118,6 +127,7 @@ public class LevelHandler : MonoBehaviour {
 				else {
 					Instantiate(Resources.Load<GameObject>("BossInstances/" + bosses[0]));
 					background.StopBackground();
+					bossHealthSlider.active = true;
 				}
 				
 			}
@@ -144,6 +154,10 @@ public class LevelHandler : MonoBehaviour {
 
 	public void SetSpawnTimer (int time) {
 		spawnTimer = time;
+	}
+
+	public void UpdateBossHealth(int health) {
+		bossHealth = health;
 	}
 
 }

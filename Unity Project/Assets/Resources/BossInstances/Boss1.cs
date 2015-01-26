@@ -133,7 +133,7 @@ public class Boss1 : MonoBehaviour {
 	public void BossDied() {
 		killed = true;
 	}
-	
+
 }
 
 
