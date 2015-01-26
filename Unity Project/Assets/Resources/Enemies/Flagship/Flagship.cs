@@ -1,5 +1,5 @@
 ﻿/* Module      : Flagship.cs
- * Author      : Josh Morse
+ * Author      : Ryan Santos
  * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
@@ -25,6 +25,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	//The speed at which the enemy will move
 	public float speed;
 
+	//The movement speed of the boss. This variable is meant to be modified
 	float moveSpeed;
 
 	//Is the enemy ready to shoot?
@@ -61,23 +62,31 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	public GameObject boss1;
 	Boss1 bossInstance;
 
+	//The angle at which the bullets will rotate in the spinning phase
 	int rotateCount;
 
+	//The state that the boss is in
 	int phase;
 
+	//The timer for boss bullets that arent main bullets
 	int secondShoot;
 
-
+	//The prefab for missiles
 	public GameObject missilePrefab;
 
+	//The prefab for ambushers
 	public GameObject ambusherPrefab;
 
+	//Variable to keep track of where to move the boss next in phase 3
 	int movePhase;
 
+	//The last position (in phase 2) before the boss starts moving
 	Vector3 lastPos;
 
+	//The damage the missiles will do
 	public int missileDamage;
 
+	//The starting health of the boss
 	int startingHealth;
 
 	//Player script
@@ -86,8 +95,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Initializes the firing rate variables.
-	 * 				Also stores the boundaries of the game.
+	 * Description : Initializes the boss variables.
 	 *
 	 * Parameters  : None
 	 *
@@ -110,12 +118,19 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		//Get the script that created this boss
 		bossInstance = (Boss1) boss1.GetComponent("Boss1");
 
+		//Initialize phase to 0 to move into place
 		phase = 0;
+
+		//Move phase is initially 0
 		movePhase = 0;
+
+		//Move speed is set to speed
 		moveSpeed = speed;
+
+		//Second shoot is also initialized to 0
 		secondShoot = 0;
 
-
+		//Store the starting health
 		startingHealth = health;
 
 		//Search for player
@@ -123,9 +138,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
-	 * Description : Moves the enemy slowly to the left
+	 * Description : Contains the boss state machine
 	 *
 	 * Parameters  : None
 	 *
@@ -135,10 +150,13 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
+		//Phase 0 the boss moves to the center of the screen
 		if(phase == 0)
 		{
+			//Move towards the center of the screen
 			transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, speed);
 
+			//When hitting the center, move to phase 1
 			if(transform.position == Vector3.zero)
 			{
 				phase = 1;
@@ -147,25 +165,31 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 		}
 
-		//Spinny bullet hell mode
+		//Spinny bullet hell state
 		if(phase == 1)
 		{
+			//If the boss takes enough damage, then move to the next phase
 			if(health == startingHealth*3/4)
 			{
 				phase = 2;
 			}
 
+			//If the boss is ready to shoot
 			if(ready)
 			{
+				//Rotate the angle at which the boss will shoot (so that it spins uniformly
 				rotateCount += 11;
+
 				//Flag that a bullet was shot
 				ready = false;
 
+				//Spawn 4 bullets
 				GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 				GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 				GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 				GameObject bullet4 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
+				//Rotate the bullets so that they form a "t" formation, then rotate them by rotateCount
 				bullet1.transform.Rotate(0,0,rotateCount);
 				bullet2.transform.Rotate(0,0,90+rotateCount);
 				bullet3.transform.Rotate(0,0,180+rotateCount);
@@ -198,25 +222,28 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 		}
 
-
+		//Phase two traps the player in one horizontal half of the screen and bobs back and forth while shooting at the player
 		if(phase == 2)
 		{
-			print("PHASE TWO!");
-
 			//The new position of the enemy after moving
 			Vector3 newPos = new Vector3 (transform.position.x + moveSpeed, transform.position.y, transform.position.z);
 			
-			//If hitting either top or bottom boundaries, reverse the direction
+			//If hitting either left or right boundaries, reverse the direction
 			if(newPos.x >= boundaries.getRight() || newPos.x <= boundaries.getLeft())
 				moveSpeed = - moveSpeed;
 
+			//Make the move
 			transform.position = newPos;
 
+			//If ready to shoot
 			if(ready)
 			{
+				//Spawn two bullets
 				GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 				GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
+				//One bullet moves in the opposite direction
+				//This will cut the screen horizontally in half with bullets
 				bullet2.transform.Rotate(0,0,180);
 
 				//Cast to a bullet type
@@ -231,13 +258,18 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				//Set the damage of the bullet
 				simpleEnemyBullet2.setDamage(bulletDamage);
 
+				//Speed these bullets up a bit so they look more uniform
 				simpleEnemyBullet1.speed = simpleEnemyBullet1.speed*2;
 				simpleEnemyBullet2.speed = simpleEnemyBullet2.speed*2;
 
+				//Increment the secondary shooter time
+				//This will increment every 100 updates
 				secondShoot++;
 
+				//For every two main bullets, a third will shoot at the player
 				if(secondShoot % 2 == 0)
 				{
+					//Spawn the bullet
 					GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 
 					//Store the direction of the player in respect to the bullet
@@ -246,7 +278,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 					//Rotate the bullet towards the player
 					bullet3.transform.rotation = Quaternion.LookRotation(direction);
 					
-					//Rotate the bullet along the y so that it faces the camera
+					//Rotate the bullet along the y so that it faces the player
 					bullet3.transform.Rotate(0,90,0);
 
 					//Cast to a bullet type
@@ -256,28 +288,36 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 					simpleEnemyBullet3.setDamage(bulletDamage);
 				}
 
+				//Flag the enemy has fired
 				ready = false;
 
 			}
 	
+			//If the health of the boss reaches a certain point
 			if(health == startingHealth/2)
 			{
+				//Change to the next phase
 				phase = 3;
+
+				//Store this position
 				lastPos = transform.position;
+
+				//Reset the shootcount
+				secondShoot = 0;
 			}
 		}
 
+		//Phase three is missile firing mode
 		if(phase == 3)
 		{
-			print ("PHASE 3");
 
+			//Store the location of the top/bottom left/right corners of the screen
 			Vector3 topLeft = new Vector3(boundaries.getRight()/4-boundaries.getRight (),boundaries.getTop()*3/4, 0);
 			Vector3 topRight = new Vector3(boundaries.getRight()*3/4,boundaries.getTop()*3/4,0);
 			Vector3 botLeft = new Vector3(boundaries.getRight()/4-boundaries.getRight(),boundaries.getTop()/4-boundaries.getTop(),0);
 			Vector3 botRight = new Vector3(boundaries.getRight()*3/4,boundaries.getTop()/4-boundaries.getTop(),0);
 
-			print (topLeft);
-
+			//Determine what move phase the enemy is in
 			if(transform.position == topLeft)
 			{
 				movePhase = 1;
@@ -293,12 +333,11 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			else if(transform.position == botLeft || transform.position == lastPos)
 			{
 				movePhase = 0;
-				print ("HERE");
 			}
-			
+
+			//Move the boss to a certain position depending on its move phase
 			if(movePhase == 0)
 			{
-				print ("HERE TOO");
 				transform.position = Vector3.MoveTowards(transform.position, topLeft, speed);
 			}
 			else if(movePhase == 1)
@@ -314,10 +353,14 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				transform.position = Vector3.MoveTowards(transform.position, botLeft, speed);
 			}
 
+			//If ready to shoot
 			if(ready)
 			{
+				//Increment the secondary shooter time
+				//This will increment every 100 updates
 				secondShoot++;
 
+				//For every three main bullets, a missile will shoot at the player
 				if(secondShoot % 3 == 0)
 				{
 					//Spawn the missle and store it
@@ -330,36 +373,48 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 					seekerMissile.setDamage(missileDamage);
 				}
 
+				//Flag that the enemy has shot
 				ready = false;
 			}
 
+			//If the health of the boss reaches a certain point
 			if(health == startingHealth/4)
 			{
+				//Change to the next phase
 				phase = 4;
+
+				//Reset the shootcount
+				secondShoot = 0;
 			}
 		}
 
+		//Phase 4 spawns ambushers
 		if(phase == 4)
 		{
-			print ("PHASE 4");
-
 			//The new position of the enemy after moving
 			Vector3 newPos = new Vector3 (boundaries.getRight(), transform.position.y + moveSpeed, transform.position.z);
 
+			//Bounce between the top and bottom of the screen
 			if(newPos.y >= boundaries.getTop() || newPos.y <= boundaries.getBottom())
 				moveSpeed = -moveSpeed;
 
+			//Make the move
 			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
 
+			//If ready to shoot
 			if(ready)
 			{
+				//Increment the secondary shooter time
+				//This will increment every 100 updates
 				secondShoot++;
 
+				//For every five main bullets, an ambusher will spawn
 				if(secondShoot % 5 == 0)
 				{
 					Instantiate(ambusherPrefab,transform.position,Quaternion.identity);
 				}
 
+				//Flag that the boss has fired
 				ready = false;
 			}
 		}
@@ -372,9 +427,12 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			shootTimer--;
 			
 			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
-			if (shootTimer <= 0) {
-				
+			if (shootTimer <= 0) 
+			{	
+				//Set ready to fire
 				ready = true;
+
+				//Reset the time
 				shootTimer = reloadTime;
 			}
 		}
@@ -382,7 +440,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter(Collision col)
+	/* Function    : OnCollisionEnter2D (Collision2D col)
 	 *
 	 * Description : Deals with collisions between the player bullets and this enemy.
 	 *
@@ -393,6 +451,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
+		//Ignore collisions while in phase 0
 		if(col.gameObject.tag == "PlayerBullet" && phase != 0)
 		{
 			//Destroy the player bullet and this object
@@ -425,6 +484,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
+			//The boss has died
 			bossInstance.BossDied();
 
 			//Destroy the enemy
