@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Seeker\SeekerMissile.cs">
     <Files>
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="27" Column="28" />
+      <File FileName="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" Line="115" Column="3" />
+      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="165" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

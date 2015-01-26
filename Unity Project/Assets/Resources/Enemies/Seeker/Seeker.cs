@@ -164,6 +164,9 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 			//Rotate the missile towards the player
 			missile.transform.rotation = Quaternion.LookRotation(direction);
 
+			//Rotate the missiles to be oriented correctly
+			missile.transform.Rotate(90,-90,0);
+
 			//Cast to an missile type
 			SeekerMissile seekerMissile = (SeekerMissile)missile.GetComponent(typeof(SeekerMissile));
 
