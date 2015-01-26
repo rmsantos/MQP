@@ -24,7 +24,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	
 	//The speed at which the enemy will move
 	public float speed;
-	
+
+	float moveSpeed;
+
 	//Is the enemy ready to shoot?
 	bool ready;
 	
@@ -63,10 +65,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 	int phase;
 
-	public int phaseLength;
 
-	int phaseCounter;
-			
 	public GameObject missilePrefab;
 
 	public GameObject ambusherPrefab;
@@ -74,6 +73,10 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	int movePhase;
 
 	Vector3 lastPos;
+
+	public int missileDamage;
+
+	int startingHealth;
 
 	//Player script
 	GameObject player;
@@ -106,8 +109,10 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		bossInstance = (Boss1) boss1.GetComponent("Boss1");
 
 		phase = 0;
-		phaseCounter = 0;
 		movePhase = 0;
+		moveSpeed = speed;
+
+		startingHealth = health;
 
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -132,7 +137,6 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 			if(transform.position == Vector3.zero)
 			{
-				//TODO: Add some randomization here
 				phase = 1;
 			}
 
@@ -140,53 +144,54 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		}
 
 		//Spinny bullet hell mode
-		if(phase == 1 && ready)
+		if(phase == 1)
 		{
-			rotateCount += 11;
-			//Flag that a bullet was shot
-			ready = false;
-
-			GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-			GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-			GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-			GameObject bullet4 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
-			bullet1.transform.Rotate(0,0,rotateCount);
-			bullet2.transform.Rotate(0,0,90+rotateCount);
-			bullet3.transform.Rotate(0,0,180+rotateCount);
-			bullet4.transform.Rotate(0,0,270+rotateCount);
-
-			//Cast to a bullet type
-			SimpleEnemyBullet simpleEnemyBullet1 = (SimpleEnemyBullet)bullet1.GetComponent(typeof(SimpleEnemyBullet));
-			
-			//Set the damage of the bullet
-			simpleEnemyBullet1.setDamage(bulletDamage);
-			
-			//Cast to a bullet type
-			SimpleEnemyBullet simpleEnemyBullet2 = (SimpleEnemyBullet)bullet2.GetComponent(typeof(SimpleEnemyBullet));
-			
-			//Set the damage of the bullet
-			simpleEnemyBullet2.setDamage(bulletDamage);
-
-			//Cast to a bullet type
-			SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
-			
-			//Set the damage of the bullet
-			simpleEnemyBullet3.setDamage(bulletDamage);
-			
-			//Cast to a bullet type
-			SimpleEnemyBullet simpleEnemyBullet4 = (SimpleEnemyBullet)bullet4.GetComponent(typeof(SimpleEnemyBullet));
-			
-			//Set the damage of the bullet
-			simpleEnemyBullet4.setDamage(bulletDamage);
-
-			phaseCounter++;
-			if(phaseCounter == phaseLength)
+			if(health == startingHealth*3/4)
 			{
-				//TODO: Add randomization here
-				phaseCounter = 0;
 				phase = 2;
 			}
+
+			if(ready)
+			{
+				rotateCount += 11;
+				//Flag that a bullet was shot
+				ready = false;
+
+				GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+				GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+				GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+				GameObject bullet4 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
+				bullet1.transform.Rotate(0,0,rotateCount);
+				bullet2.transform.Rotate(0,0,90+rotateCount);
+				bullet3.transform.Rotate(0,0,180+rotateCount);
+				bullet4.transform.Rotate(0,0,270+rotateCount);
+
+				//Cast to a bullet type
+				SimpleEnemyBullet simpleEnemyBullet1 = (SimpleEnemyBullet)bullet1.GetComponent(typeof(SimpleEnemyBullet));
+				
+				//Set the damage of the bullet
+				simpleEnemyBullet1.setDamage(bulletDamage);
+				
+				//Cast to a bullet type
+				SimpleEnemyBullet simpleEnemyBullet2 = (SimpleEnemyBullet)bullet2.GetComponent(typeof(SimpleEnemyBullet));
+				
+				//Set the damage of the bullet
+				simpleEnemyBullet2.setDamage(bulletDamage);
+
+				//Cast to a bullet type
+				SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
+				
+				//Set the damage of the bullet
+				simpleEnemyBullet3.setDamage(bulletDamage);
+				
+				//Cast to a bullet type
+				SimpleEnemyBullet simpleEnemyBullet4 = (SimpleEnemyBullet)bullet4.GetComponent(typeof(SimpleEnemyBullet));
+				
+				//Set the damage of the bullet
+				simpleEnemyBullet4.setDamage(bulletDamage);
+			}
+
 		}
 
 
@@ -195,11 +200,11 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			print("PHASE TWO!");
 
 			//The new position of the enemy after moving
-			Vector3 newPos = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z);
+			Vector3 newPos = new Vector3 (transform.position.x + moveSpeed, transform.position.y, transform.position.z);
 			
 			//If hitting either top or bottom boundaries, reverse the direction
 			if(newPos.x >= boundaries.getRight() || newPos.x <= boundaries.getLeft())
-				speed = -speed;
+				moveSpeed = - moveSpeed;
 
 			transform.position = newPos;
 
@@ -241,15 +246,12 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 				ready = false;
 
-				phaseCounter++;
 			}
 	
-			if(phaseCounter == phaseLength)
+			if(health == startingHealth/2)
 			{
-				lastPos = transform.position;
-
 				phase = 3;
-				phaseCounter = 0;
+				lastPos = transform.position;
 			}
 		}
 
@@ -257,10 +259,10 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		{
 			print ("PHASE 3");
 
-			Vector3 topLeft = new Vector3(boundaries.getTop()*3/4,boundaries.getRight()/4,0);
-			Vector3 topRight = new Vector3(boundaries.getTop()*3/4,boundaries.getRight()*3/4,0);
-			Vector3 botLeft = new Vector3(boundaries.getTop()*4,boundaries.getRight()/4,0);
-			Vector3 botRight = new Vector3(boundaries.getTop()*4,boundaries.getRight()*3/4,0);
+			Vector3 topLeft = new Vector3(boundaries.getRight()/4-boundaries.getRight (),boundaries.getTop()*3/4, 0);
+			Vector3 topRight = new Vector3(boundaries.getRight()*3/4,boundaries.getTop()*3/4,0);
+			Vector3 botLeft = new Vector3(boundaries.getRight()/4-boundaries.getRight(),boundaries.getTop()/4-boundaries.getTop(),0);
+			Vector3 botRight = new Vector3(boundaries.getRight()*3/4,boundaries.getTop()/4-boundaries.getTop(),0);
 
 			print (topLeft);
 
@@ -276,17 +278,15 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			{
 				movePhase = 3;
 			}
-			else if(transform.position == botLeft)
-			{
-				movePhase = 1;
-			}
-			else if(transform.position == lastPos)
+			else if(transform.position == botLeft || transform.position == lastPos)
 			{
 				movePhase = 0;
+				print ("HERE");
 			}
 			
 			if(movePhase == 0)
 			{
+				print ("HERE TOO");
 				transform.position = Vector3.MoveTowards(transform.position, topLeft, speed);
 			}
 			else if(movePhase == 1)
@@ -307,39 +307,40 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				//Spawn the missle and store it
 				GameObject missile = (GameObject)Instantiate(missilePrefab,transform.position,Quaternion.identity);
 			
+				//Cast to an missile type
+				SeekerMissile seekerMissile = (SeekerMissile)missile.GetComponent(typeof(SeekerMissile));
+				
+				//Set the damage of the missile
+				seekerMissile.setDamage(missileDamage);
 
 				ready = false;
 			}
 
-			phaseCounter++;
-
-			if(phaseCounter == phaseLength*10)
+			if(health == startingHealth/4)
 			{
 				phase = 4;
-				phaseCounter = 0;
 			}
 		}
 
-		/*if(phase == 4)
+		if(phase == 4)
 		{
 			print ("PHASE 4");
-			
+
+			//The new position of the enemy after moving
+			Vector3 newPos = new Vector3 (boundaries.getRight(), transform.position.y + moveSpeed, transform.position.z);
+
+			if(newPos.y >= boundaries.getTop() || newPos.y <= boundaries.getBottom())
+				moveSpeed = -moveSpeed;
+
+			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
+
 			if(ready)
 			{
 				Instantiate(ambusherPrefab,transform.position,Quaternion.identity);
 
 				ready = false;
 			}
-
-			phaseCounter++;
-			
-			if(phaseCounter == phaseLength)
-			{
-				phase = 4;
-				phaseCounter = 0;
-			}
-		}*/
-
+		}
 
 
 		//If the enemy is "reloading", don't decrement the timer
@@ -370,7 +371,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
-		if(col.gameObject.tag == "PlayerBullet")
+		if(col.gameObject.tag == "PlayerBullet" && phase != 0)
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
