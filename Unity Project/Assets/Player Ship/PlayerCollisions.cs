@@ -136,6 +136,15 @@ public class PlayerCollisions : MonoBehaviour {
 			
 		}
 
+		if(col.gameObject.tag == "Boss")
+		{
+			//Find the class of this collision
+			Flagship boss = (Flagship)col.gameObject.GetComponent(typeof(Flagship));
+
+			//Subtract the health based on that boss
+			health -= boss.getCollisionDamage();
+		}
+
 		if (health <= 0) {
 			Destroy(this.gameObject);
 		}
