@@ -28,6 +28,9 @@ public class Gunner : MonoBehaviour {
 	//Is the player ready to shoot?
 	bool ready;
 
+	//Player is going to shoot
+	bool shooting;
+
 	//Counter for reloading
 	int shootTimer;
 
@@ -36,6 +39,10 @@ public class Gunner : MonoBehaviour {
 
 	//The damage the gunner will deal
 	public int damage;
+
+	//Randomizer script
+	public GameObject pauseObject;
+	PauseController pauseMenu;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -52,6 +59,8 @@ public class Gunner : MonoBehaviour {
 
 		//Set the shoot timer to its reload time
 		shootTimer = reloadTime;
+
+		pauseMenu = (PauseController)pauseObject.GetComponent("PauseController");
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -65,7 +74,7 @@ public class Gunner : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 
 		//If the player is "reloading", don't decrement the timer
 		if (!ready) {
@@ -82,10 +91,11 @@ public class Gunner : MonoBehaviour {
 		}
 
 		//If the user clicked the left mouse button
-		if(ready && Input.GetMouseButtonDown(0))
-		{
+		if (shooting) {
 
-			/* -- LOCAL VARIABLES  --------------------------------------------------- */
+			//Flag that player has just shot
+			ready = false;
+			shooting = false;
 
 			//Instantiate a bullet with bulletPrefab at the players current location
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
@@ -99,25 +109,22 @@ public class Gunner : MonoBehaviour {
 			//Store the mouse's position in world coordinates
 			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
 
-			//Store the direction of the mouse click
-			//Vector3 direction = mouseWorldPos-bullet.transform.position;
-
-			//Look at the mouse click 
-			//bullet.transform.LookAt(direction,Vector3.up);
-
-			//Rotate 90 degrees along the x so that the cylinder is facing the target (like a bullet)
-			//bullet.transform.Rotate(90,0,0);
-
 			//Send the mouse position in world space to the bullet
 			bullet.GetComponent<Bullet>().setMousePosition(mouseWorldPos);
 
 			//Send the damage the bullet will dela to the bullet
 			bullet.GetComponent<Bullet>().setDamage(damage);
-
-			//Flag that player has just shot
-			ready = false;
 		
 		}
 	
 	}
+
+	void Update() {
+
+		if (!pauseMenu.IsPaused() && ready && Input.GetMouseButtonDown(0)) {
+			shooting = true;
+		}
+
+	}
+
 }

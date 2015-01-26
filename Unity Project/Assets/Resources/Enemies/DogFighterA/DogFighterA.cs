@@ -89,7 +89,7 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		

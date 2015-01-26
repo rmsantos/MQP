@@ -69,13 +69,13 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 		
 		//Move in the random direction and rotation
-		transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-		transform.Rotate(Vector3.forward * Time.deltaTime * rotation, Space.World);
+		transform.Translate(direction.normalized * speed, Space.World);
+		transform.Rotate(Vector3.forward * rotation, Space.World);
 		
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
