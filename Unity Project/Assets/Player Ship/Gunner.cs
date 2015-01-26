@@ -109,10 +109,16 @@ public class Gunner : MonoBehaviour {
 			//Store the mouse's position in world coordinates
 			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
 
-			//Send the mouse position in world space to the bullet
-			bullet.GetComponent<Bullet>().setMousePosition(mouseWorldPos);
+			//Store the direction of the player in respect to the bullet
+			Vector3 direction = mouseWorldPos-bullet.transform.position;
+			
+			//Rotate the bullet towards the player
+			bullet.transform.rotation = Quaternion.LookRotation(direction);
+			
+			//Rotate the bullet along the y so that it faces the mouse point
+			bullet.transform.Rotate(0,90,0);
 
-			//Send the damage the bullet will dela to the bullet
+			//Send the damage the bullet will deal to the bullet
 			bullet.GetComponent<Bullet>().setDamage(damage);
 		
 		}
