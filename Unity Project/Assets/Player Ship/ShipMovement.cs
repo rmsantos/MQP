@@ -115,57 +115,47 @@ public class ShipMovement : MonoBehaviour {
 		//Read input from the user. Set flags to determine which buttons are being held.
 
 		//Up or 'w'
-		if(Input.GetKeyDown("w") || Input.GetKeyDown ("up"))
-		{
-			//Flag that up is held
-			upHeld = true;
-		}
-		else if(Input.GetKeyUp ("w") || Input.GetKeyUp("up"))
-		{
-			//Flag that up has been released
-			upHeld = false;
+		if (Input.GetKeyDown ("w") || Input.GetKeyDown ("up")) {
+				//Flag that up is held
+				upHeld = true;
+		} else if (Input.GetKeyUp ("w") || Input.GetKeyUp ("up")) {
+				//Flag that up has been released
+				upHeld = false;
 		}
 
 		//Down or 's'
-		if(Input.GetKeyDown("s") || Input.GetKeyDown ("down"))
-		{
-			//Flag that down is held
-			downHeld = true;
-		}
-		else if(Input.GetKeyUp ("s") || Input.GetKeyUp("down"))
-		{
-			//Flag that down has been released
-			downHeld = false;
+		if (Input.GetKeyDown ("s") || Input.GetKeyDown ("down")) {
+				//Flag that down is held
+				downHeld = true;
+		} else if (Input.GetKeyUp ("s") || Input.GetKeyUp ("down")) {
+				//Flag that down has been released
+				downHeld = false;
 		}
 
 		//Left or 'a'
-		if(Input.GetKeyDown("a") || Input.GetKeyDown ("left"))
-		{
-			//Flag the left is held
-			leftHeld = true;
-		}
-		else if(Input.GetKeyUp ("a") || Input.GetKeyUp("left"))
-		{
-			//Flag that left has been released
-			leftHeld = false;
+		if (Input.GetKeyDown ("a") || Input.GetKeyDown ("left")) {
+				//Flag the left is held
+				leftHeld = true;
+		} else if (Input.GetKeyUp ("a") || Input.GetKeyUp ("left")) {
+				//Flag that left has been released
+				leftHeld = false;
 		}
 
 		//Right or 'd'
-		if(Input.GetKeyDown("d") || Input.GetKeyDown ("right"))
-		{
-			//Flag that right is held
-			rightHeld = true;
-		}
-		else if(Input.GetKeyUp ("d") || Input.GetKeyUp("right"))
-		{
-			//Flag that right has been released
-			rightHeld = false;
+		if (Input.GetKeyDown ("d") || Input.GetKeyDown ("right")) {
+				//Flag that right is held
+				rightHeld = true;
+		} else if (Input.GetKeyUp ("d") || Input.GetKeyUp ("right")) {
+				//Flag that right has been released
+				rightHeld = false;
 		}
 
+	}
 
+	void FixedUpdate() {
 
 		//Is the up key being held?
-		if(upHeld)
+		if (upHeld)
 		{
 			//If so then check if the ship is currently at maximum vertical acceleration
 			if(yAcceleration < maxAcceleration)

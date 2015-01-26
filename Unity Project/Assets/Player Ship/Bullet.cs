@@ -66,7 +66,7 @@ public class Bullet : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void Update () {
+	void FixedUpdate () {
 
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
@@ -79,7 +79,7 @@ public class Bullet : MonoBehaviour {
 		//Move the bullet in the direction of the mouse, at a rate of speed * Time.deltaTime
 		//over the distance. This ensures that all bullets move at the same speed.
 		//Everything is in relation to Space.world.
-		transform.Translate( direction * speed * Time.deltaTime / distance , Space.World);
+		transform.Translate( direction * speed / distance , Space.World);
 
 		//If the bullet leaves the game space
 		//Leave some room for the bullet to fully exit the visible screen (by multiplying 1.2)

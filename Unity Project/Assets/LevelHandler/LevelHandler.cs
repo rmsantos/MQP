@@ -46,8 +46,8 @@ public class LevelHandler : MonoBehaviour {
 	//Variable to store the time until next spawn
 	static float spawnTimer;
 
-	//Flag to say if spawning is occurring
-	static bool spawning;
+	//Flag to say if able to spawn next wave
+	static bool canSpawn;
 
 	//Variable, changed in Unity prefab, that is used to reset the spawn timer to a set amount
 	public static float timeBetweenSpawning;
@@ -74,7 +74,7 @@ public class LevelHandler : MonoBehaviour {
 		//Initialize spawning variables
 		timeBetweenSpawning = 100;
 		spawnTimer = timeBetweenSpawning;
-		spawning = false;
+		canSpawn = true;
 
 		level = 1;
 		wave = 0;
@@ -97,7 +97,7 @@ public class LevelHandler : MonoBehaviour {
 	void Update () {
 
 		//If spawning is occurring, don't decrement the timer
-		if (!spawning) {
+		if (canSpawn) {
 
 			//Decrements the spawn timer
 			spawnTimer--;
@@ -105,7 +105,7 @@ public class LevelHandler : MonoBehaviour {
 			//If the spawn timer has reached 0, initialize an instance of spawning
 			if (spawnTimer <= 0) {
 				
-				spawning = true;
+				canSpawn = false;
 				spawnTimer = timeBetweenSpawning;
 				wave++;
 
@@ -124,17 +124,21 @@ public class LevelHandler : MonoBehaviour {
 	}
 
 	public void LevelComplete() {
-		spawning = false;
-		level++;
-		updateLevel.UpdateText (level);
-		wave = 0;
-		background.ChangeBackground();
 		//TODO Perhaps change scene or do something with buying
 		//More level completion stuff can be put here
+		NextLevel ();
+	}
+
+	public void NextLevel() {
+		level++;
+		wave = 0;
+		canSpawn = true;
+		background.ChangeBackground();
+		updateLevel.UpdateText (level);
 	}
 
 	public void SpawningHasStopped () {
-		spawning = false;
+		canSpawn = true;
 	}
 
 	public void SetSpawnTimer (int time) {
