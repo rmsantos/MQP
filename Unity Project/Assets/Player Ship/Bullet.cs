@@ -22,12 +22,6 @@ public class Bullet : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
-	//The mouse position where the player wants to fire the gun
-	Vector3 mousePos;
-
-	//The spawn point of the bullet
-	Vector3 startPos;
-
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
@@ -49,9 +43,6 @@ public class Bullet : MonoBehaviour {
 	 */
 	void Start () {
 
-		//Store the initial position of the bullet
-		startPos = transform.position;
-
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>(); 
 	}
@@ -70,16 +61,8 @@ public class Bullet : MonoBehaviour {
 
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
-		//Calculate the direction of the mouse position relative to the current position.
-		Vector3 direction = mousePos - startPos;
-
-		//Calculate the distance to the mouse position.
-		float distance = Vector3.Distance (mousePos, startPos);
-
-		//Move the bullet in the direction of the mouse, at a rate of speed * Time.deltaTime
-		//over the distance. This ensures that all bullets move at the same speed.
-		//Everything is in relation to Space.world.
-		transform.Translate( direction * speed / distance , Space.World);
+		//Move the bullet to the right 
+		transform.Translate( -transform.right * speed, Space.World);
 
 		//If the bullet leaves the game space
 		//Leave some room for the bullet to fully exit the visible screen (by multiplying 1.2)
@@ -89,22 +72,6 @@ public class Bullet : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : setMousePosition()
-	 *
-	 * Description : Used to store the position of the mouse when the user clicked.
-	 * 				Called from Gunner.cs.
-	 *
-	 * Parameters  : Vector3 newPos : The position the user clicked.
-	 *
-	 * Returns     : Void
-	 */
-	public void setMousePosition(Vector3 newPos)
-	{
-		//Store the position of the mouse
-		mousePos = newPos;
 	}
 
 	/* ----------------------------------------------------------------------- */
