@@ -13,6 +13,7 @@
 
 /* -- INCLUDE FILES ------------------------------------------------------ */
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
@@ -62,6 +63,10 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	//The Boss Instance Object
 	public GameObject boss1;
 	Boss1 bossInstance;
+
+	//The Level Handler
+	public GameObject levelHandlerObject;
+	LevelHandler levelHandler;
 
 	//The angle at which the bullets will rotate in the spinning phase
 	int rotateCount;
@@ -119,6 +124,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		//Get the script that created this boss
 		bossInstance = (Boss1) boss1.GetComponent("Boss1");
 
+		//Get the script that controls the level
+		levelHandler = (LevelHandler) levelHandlerObject.GetComponent("LevelHandler");
+
 		//Initialize phase to 0 to move into place
 		phase = 0;
 
@@ -148,8 +156,10 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void FixedUpdate () {
-		
-		/* -- LOCAL VARIABLES ---------------------------------------------------- */
+
+		//Update the health
+		levelHandler.UpdateBossHealth (health);
+		print (health);
 
 		//Phase 0 the boss moves to the center of the screen
 		if(phase == 0)
@@ -494,6 +504,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			//Update the players score
 			score.UpdateScore(value);
 		}
+
 	}
 
 	/* ----------------------------------------------------------------------- */

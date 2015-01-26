@@ -24,11 +24,11 @@ public class PauseController : MonoBehaviour {
 	
 	static bool paused;
 
-	public Button resumeButton;
+	public GameObject pauseMenu;
 	
 	void Start () {
 		paused = false;
-		resumeButton.active = false;
+		pauseMenu.active = false;
 	}
 
 	void Update () {
@@ -38,11 +38,11 @@ public class PauseController : MonoBehaviour {
 			paused = !paused;
 			if (paused) {
 				Time.timeScale = 0;
-				resumeButton.active = true;
+				pauseMenu.active = true;
 			}
 			else {
 				Time.timeScale = 1;
-				resumeButton.active = false;
+				pauseMenu.active = false;
 			}
 		}
 
@@ -57,13 +57,20 @@ public class PauseController : MonoBehaviour {
 			paused = pauseState;
 			if (paused) {
 				Time.timeScale = 0;
-				resumeButton.active = true;
+				pauseMenu.active = true;
 			}
 			else {
 				Time.timeScale = 1;
-				resumeButton.active = false;
+				pauseMenu.active = false;
 			}
 		}
+	}
+
+	void OnApplicationFocus(bool focusStatus) {
+		if (!focusStatus) {
+			SetPause (!focusStatus);
+		}
+
 	}
 
 }

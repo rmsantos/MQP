@@ -14,6 +14,7 @@
 /* -- INCLUDE FILES ------------------------------------------------------ */
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class PlayerCollisions : MonoBehaviour {
@@ -25,6 +26,8 @@ public class PlayerCollisions : MonoBehaviour {
 	//ScoreHandler object to track players score
 	public GameObject scoreObject;
 	static ScoreHandler score;
+
+	public Slider healthBar;
 
 	void Start () {
 
@@ -60,7 +63,6 @@ public class PlayerCollisions : MonoBehaviour {
 			other.enabled = false;
 			other.renderer.enabled = false;
 
-			print (health);
 		}
 	}
 
@@ -77,8 +79,6 @@ public class PlayerCollisions : MonoBehaviour {
 			//Explode the missile
 			missile.explode();
 
-			print (health);
-
 		}
 
 		if(col.gameObject.tag == "EnemyBullets")
@@ -91,8 +91,6 @@ public class PlayerCollisions : MonoBehaviour {
 
 			//Subtract the health based on that bullet
 			health -= bullet.getBulletDamage();
-
-			print (health);
 			
 		}
 
@@ -107,8 +105,6 @@ public class PlayerCollisions : MonoBehaviour {
 			//Subtract the health based on that enemy
 			health -= enemy.getCollisionDamage();
 			
-			print (health);
-			
 		}
 
 		if(col.gameObject.tag == "Asteroids")
@@ -121,8 +117,6 @@ public class PlayerCollisions : MonoBehaviour {
 
 			//Shatter the asteroid into smaller asteroids or money
 			asteroid.shatter();
-			
-			print (health);
 		}
 
 		if(col.gameObject.tag == "Money")
@@ -148,6 +142,9 @@ public class PlayerCollisions : MonoBehaviour {
 		if (health <= 0) {
 			Destroy(this.gameObject);
 		}
+
+		print (health);
+		healthBar.value = health;
 	}
 
 
