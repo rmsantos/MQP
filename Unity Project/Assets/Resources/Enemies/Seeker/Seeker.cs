@@ -44,7 +44,8 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 	public int value;
 	
 	//ScoreHandler object to track players score
-	ScoreHandler score;
+	public GameObject scoreObject;
+	static ScoreHandler score;
 
 	//Speed in the x direction
 	float xSpeed;
@@ -86,7 +87,7 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		
 		//Search for the ScoreHandler object for tracking score
-		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
+		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 
 		//Set the x speed to move to the left 
 		xSpeed = -speed;

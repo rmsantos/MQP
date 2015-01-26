@@ -24,9 +24,9 @@ public class Instance4 : MonoBehaviour {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Enemies possible to spawn
-	string[] enemies = new string[13] {"Asteroids/AsteroidSmall", "Asteroids/AsteroidMedium", "Asteroids/AsteroidLarge", 
+	string[] enemies = new string[12] {"Asteroids/AsteroidSmall", "Asteroids/AsteroidMedium", "Asteroids/AsteroidLarge", 
 									  "Ambusher/Ambusher", "Cruiser/Cruiser", "DogfighterA/DogfighterA",
-									  "DogfighterB/DogfighterB", "Flagship/Flagship", "Grenadier/Grenadier",
+									  "DogfighterB/DogfighterB", "Grenadier/Grenadier",
 									  "Interceptor/Interceptor", "Juggernaut/Juggernaut", "Saboteur/Saboteur",
 									  "Seeker/Seeker"};
 	
@@ -104,7 +104,7 @@ public class Instance4 : MonoBehaviour {
 			enemyNumber++;
 		}
 
-		if (enemyNumber >= 13) {
+		if (enemyNumber >= 12) {
 			timer = -999999;
 			//Destroys itself and notifies the master spawner
 			levelHandler.SpawningHasStopped();

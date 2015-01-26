@@ -23,10 +23,12 @@ using System.Collections;
 public class PauseController : MonoBehaviour {
 	
 	static bool paused;
+
+	public Button resumeButton;
 	
 	void Start () {
-
 		paused = false;
+		resumeButton.active = false;
 	}
 
 	void Update () {
@@ -36,9 +38,11 @@ public class PauseController : MonoBehaviour {
 			paused = !paused;
 			if (paused) {
 				Time.timeScale = 0;
+				resumeButton.active = true;
 			}
 			else {
 				Time.timeScale = 1;
+				resumeButton.active = false;
 			}
 		}
 

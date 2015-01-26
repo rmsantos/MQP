@@ -29,12 +29,12 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	
 	//Value of destroying this asteroid
 	public int value;
-	
-	//ScoreHandler object to track players score
-	ScoreHandler score;
 
 	//The damage from colliding with this asteroid
 	public int collisionDamage;
+
+	public GameObject scoreObject;
+	static ScoreHandler score;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -51,7 +51,7 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		
 		//Search for the ScoreHandler object for tracking score
-		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
+		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 
 		speed = Random.Range(speed, speed * 2f);
 		rotation = Random.Range(rotation * .1f, rotation);

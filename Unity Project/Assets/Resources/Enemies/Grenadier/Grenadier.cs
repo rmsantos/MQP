@@ -44,7 +44,8 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	public int value;
 	
 	//ScoreHandler object to track players score
-	ScoreHandler score;
+	public GameObject scoreObject;
+	static ScoreHandler score;
 
 	//Angle at which the grenadier will shoot the "shotgun"
 	public float shootAngle;
@@ -80,7 +81,7 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		
 		//Search for the ScoreHandler object for tracking score
-		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
+		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 	}
 	
 	/* ----------------------------------------------------------------------- */

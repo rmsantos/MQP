@@ -44,7 +44,8 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 	public int value;
 	
 	//ScoreHandler object to track players score
-	ScoreHandler score;
+	public GameObject scoreObject;
+	static ScoreHandler score;
 
 	//The health of this enemy
 	public int health;
@@ -77,7 +78,7 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		
 		//Search for the ScoreHandler object for tracking score
-		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>(); 
+		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 	}
 	
 	/* ----------------------------------------------------------------------- */

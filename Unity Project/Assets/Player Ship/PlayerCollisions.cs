@@ -22,15 +22,16 @@ public class PlayerCollisions : MonoBehaviour {
 	public int moneyValue;
 	public int scoreFromMoney;
 
-	//ScoreHandler object to track players score and money
-	ScoreHandler score;
+	//ScoreHandler object to track players score
+	public GameObject scoreObject;
+	static ScoreHandler score;
 
 	void Start () {
 
 		health = 100;
 
 		//Search for the ScoreHandler object for tracking score
-		score = GameObject.FindGameObjectWithTag ("ScoreHandler").GetComponent<ScoreHandler>();
+		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 	}
 
 	/* ----------------------------------------------------------------------- */

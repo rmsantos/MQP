@@ -51,7 +51,8 @@ public class LevelHandler : MonoBehaviour {
 
 	//Variable, changed in Unity prefab, that is used to reset the spawn timer to a set amount
 	public static float timeBetweenSpawning;
-
+	
+	public GameObject levelText;
 	static UpdateLevel updateLevel;
 
 	/* ----------------------------------------------------------------------- */
@@ -80,8 +81,8 @@ public class LevelHandler : MonoBehaviour {
 		wave = 0;
 		//TODO this is an unused variable. It could be used for pausing at the end of levels, shooting fireworks, displaying UI, or whatever
 		levelCompleted = false;
-
-		updateLevel = GameObject.Find("UI/UIPanel/LevelText").GetComponent<UpdateLevel>(); 
+		
+		updateLevel = (UpdateLevel)levelText.GetComponent("UpdateLevel");
 	}
 	
 	/* ----------------------------------------------------------------------- */
