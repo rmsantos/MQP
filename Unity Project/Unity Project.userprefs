@@ -1,4 +1,5 @@
 ﻿<Properties>
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelHandler\LevelHandler.cs">
     <Files>
@@ -15,6 +16,14 @@
       <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" Line="68" Column="23" />
       <File FileName="Assets\Player Ship\Bullet.cs" Line="55" Column="28" />
       <File FileName="Assets\Player Ship\Gunner.cs" Line="67" Column="27" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\SimpleEnemyBullet.cs">
+    <Files>
+      <File FileName="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Seeker\Seeker.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\SimpleEnemyBullet.cs" Line="91" Column="27" />
+>>>>>>> origin/master
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

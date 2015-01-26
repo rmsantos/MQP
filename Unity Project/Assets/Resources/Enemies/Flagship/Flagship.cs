@@ -65,6 +65,8 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 	int phase;
 
+	int secondShoot;
+
 
 	public GameObject missilePrefab;
 
@@ -111,6 +113,8 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		phase = 0;
 		movePhase = 0;
 		moveSpeed = speed;
+		secondShoot = 0;
+
 
 		startingHealth = health;
 
@@ -227,22 +231,30 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				//Set the damage of the bullet
 				simpleEnemyBullet2.setDamage(bulletDamage);
 
-				GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+				simpleEnemyBullet1.speed = simpleEnemyBullet1.speed*2;
+				simpleEnemyBullet2.speed = simpleEnemyBullet2.speed*2;
 
-				//Store the direction of the player in respect to the bullet
-				Vector3 direction = player.transform.position-bullet3.transform.position;
-				
-				//Rotate the bullet towards the player
-				bullet3.transform.rotation = Quaternion.LookRotation(direction);
-				
-				//Rotate the bullet along the y so that it faces the camera
-				bullet3.transform.Rotate(0,90,0);
-				
-				//Cast to a bullet type
-				SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
-				
-				//Set the damage of the bullet
-				simpleEnemyBullet3.setDamage(bulletDamage);
+				secondShoot++;
+
+				if(secondShoot % 2 == 0)
+				{
+					GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+
+					//Store the direction of the player in respect to the bullet
+					Vector3 direction = player.transform.position-bullet3.transform.position;
+					
+					//Rotate the bullet towards the player
+					bullet3.transform.rotation = Quaternion.LookRotation(direction);
+					
+					//Rotate the bullet along the y so that it faces the camera
+					bullet3.transform.Rotate(0,90,0);
+
+					//Cast to a bullet type
+					SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
+					
+					//Set the damage of the bullet
+					simpleEnemyBullet3.setDamage(bulletDamage);
+				}
 
 				ready = false;
 
@@ -304,14 +316,19 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 			if(ready)
 			{
-				//Spawn the missle and store it
-				GameObject missile = (GameObject)Instantiate(missilePrefab,transform.position,Quaternion.identity);
-			
-				//Cast to an missile type
-				SeekerMissile seekerMissile = (SeekerMissile)missile.GetComponent(typeof(SeekerMissile));
+				secondShoot++;
+
+				if(secondShoot % 3 == 0)
+				{
+					//Spawn the missle and store it
+					GameObject missile = (GameObject)Instantiate(missilePrefab,transform.position,Quaternion.identity);
 				
-				//Set the damage of the missile
-				seekerMissile.setDamage(missileDamage);
+					//Cast to an missile type
+					SeekerMissile seekerMissile = (SeekerMissile)missile.GetComponent(typeof(SeekerMissile));
+					
+					//Set the damage of the missile
+					seekerMissile.setDamage(missileDamage);
+				}
 
 				ready = false;
 			}
@@ -336,7 +353,12 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 			if(ready)
 			{
-				Instantiate(ambusherPrefab,transform.position,Quaternion.identity);
+				secondShoot++;
+
+				if(secondShoot % 5 == 0)
+				{
+					Instantiate(ambusherPrefab,transform.position,Quaternion.identity);
+				}
 
 				ready = false;
 			}
