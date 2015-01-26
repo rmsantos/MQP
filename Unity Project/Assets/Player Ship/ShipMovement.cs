@@ -326,4 +326,14 @@ public class ShipMovement : MonoBehaviour {
 	{
 		return transform.position;
 	}
+
+	void OnApplicationFocus(bool focusStatus) {
+		if (focusStatus) {
+			upHeld = false;
+			downHeld = false;
+			leftHeld = false;
+			rightHeld = false;
+		}
+	}
+
 }

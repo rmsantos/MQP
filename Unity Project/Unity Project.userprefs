@@ -1,8 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Camera\VolumeControl.cs">
     <Files>
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="27" Column="28" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="159" Column="1" />
+      <File FileName="Assets\Menus\PauseController.cs" Line="52" Column="17" />
+      <File FileName="Assets\Resources\Instances\Instance4.cs" Line="78" Column="46" />
+      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="331" Column="21" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" Line="157" Column="1" />
+      <File FileName="Assets\Camera\VolumeControl.cs" Line="36" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
