@@ -61,7 +61,7 @@ public class SeekerMissile : MonoBehaviour {
 	 */
 	void Start () {
 
-		gameObject.transform.Rotate(90, 180, 0);
+		//gameObject.transform.Rotate(90, 180, 0);
 		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
@@ -95,7 +95,7 @@ public class SeekerMissile : MonoBehaviour {
 		}
 
 		//Move the missile forwards
-		transform.Translate( -transform.right * speed, Space.World);
+		transform.Translate( transform.forward * speed, Space.World);
 
 		//Store the players position
 		//If the player was destroyed
@@ -114,13 +114,10 @@ public class SeekerMissile : MonoBehaviour {
 		Vector3 targetDir = playerPosition - transform.position;
 
 		//The the position of the player
-		//Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed, 0);
+		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed, 0);
 
 		//Rotate towards that position
-		transform.rotation = Quaternion.LookRotation(targetDir);
-		//transform.rotation = Quaternion.LookRotation(newDir);
-
-		transform.Rotate(0,90,0);
+		transform.rotation = Quaternion.LookRotation(newDir);
 
 		//Delete the bullet if it goes off screen
 		if (!boundaries.inBoundaries(transform.position,1.2f))
