@@ -163,18 +163,18 @@ public class SeekerMissile : MonoBehaviour {
 	public void explode()
 	{
 		//Draw a sphere at this position and track everything that overlaps it
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, 1);
-		
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
+
 		//For each item that overlaps the sphere
-		foreach( Collider collide in hitColliders)
+		foreach( Collider2D collide in hitColliders)
 		{
-			//Find the component that extends BasicEnemy (the enemy script)
-			BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
-			
-			//If it doesnt exist then this is not an enemy
-			//If so then deal damage
-			if(enemy != null)
+			//If the collision was with an enemy or boss
+			if(collide.tag == "Enemies" || collide.tag == "Boss")
 			{
+				//Find the component that extends BasicEnemy (the enemy script)
+				BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
+
+				//Deal damage to that enemy
 				enemy.takeDamage(damage);
 			}
 			
@@ -190,6 +190,17 @@ public class SeekerMissile : MonoBehaviour {
 				
 				//And shatter the asteroid
 				asteroid.shatter();
+				
+			}
+
+			//If the object is another missile
+			if(collide.tag == "SeekerMissile")
+			{
+				//Cast to an asteroid type
+				SeekerMissile seekerMissile = (SeekerMissile)collide.GetComponent(typeof(SeekerMissile));
+				
+				//And explode the missile
+				seekerMissile.explode();
 				
 			}
 		}
