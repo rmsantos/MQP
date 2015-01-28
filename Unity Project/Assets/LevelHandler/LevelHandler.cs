@@ -28,7 +28,7 @@ public class LevelHandler : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[1] {"MixedAsteroids"};
+	string[] instances = new string[1] {"DogfighterAttack"};
 	string[] bosses = new string[1] {"Boss1"};
 
 	//Level tracker variables
