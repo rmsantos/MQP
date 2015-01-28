@@ -477,7 +477,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	 *
 	 * Description : Deals with collisions between the player bullets and this enemy.
 	 *
-	 * Parameters  : Collision col : The other object collided with
+	 * Parameters  : Collision2D col : The other object collided with
 	 *
 	 * Returns     : Void
 	 */

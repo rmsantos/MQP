@@ -85,7 +85,7 @@ public class Instance4 : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Updates the timer and initializes a spawn if necessary.
 	 *

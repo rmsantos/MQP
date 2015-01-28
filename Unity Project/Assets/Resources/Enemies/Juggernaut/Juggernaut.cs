@@ -105,7 +105,7 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Moves the enemy slowly to the left and periodically shoots bullets
 	 *

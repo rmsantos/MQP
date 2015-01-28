@@ -152,6 +152,15 @@ public class ShipMovement : MonoBehaviour {
 
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : FixedUpdate()
+	 *
+	 * Description : Read in key inputs from the player and moves the ship accordingly.
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	void FixedUpdate() {
 
 		//Is the up key being held?

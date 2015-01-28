@@ -45,7 +45,7 @@ public class Money : MonoBehaviour {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Moves the money
 	 *

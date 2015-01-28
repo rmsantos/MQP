@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Flagship\Flagship.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Instances\Instance1.cs">
     <Files>
-      <File FileName="Assets\Resources\Enemies\Flagship\Flagship.cs" Line="547" Column="1" />
+      <File FileName="Assets\Resources\Instances\Instance1.cs" Line="129" Column="1" />
+      <File FileName="Assets\Resources\Instances\Instance2.cs" Line="137" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

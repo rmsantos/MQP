@@ -93,7 +93,7 @@ public class LevelHandler : MonoBehaviour {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Updates the timer and initializes a spawning instance if necessary.
 	 *

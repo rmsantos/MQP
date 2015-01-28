@@ -94,7 +94,7 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Moves the enemy to a fixed x position then moves 
 	 * 				it upwards and downwards to track the player and shoots.
@@ -176,11 +176,11 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter(Collision col)
+	/* Function    : OnCollisionEnter2D(Collision2D col)
 	 *
 	 * Description : Deals with collisions between the player bullets and this enemy.
 	 *
-	 * Parameters  : Collision col : The other object collided with
+	 * Parameters  : Collision2D col : The other object collided with
 	 *
 	 * Returns     : Void
 	 */

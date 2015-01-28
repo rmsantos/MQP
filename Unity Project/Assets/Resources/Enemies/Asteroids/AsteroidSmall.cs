@@ -62,7 +62,7 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Moves the astroid to the left and rotating it
 	 *
@@ -89,11 +89,11 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter(Collision col)
+	/* Function    : OnCollisionEnter2D(Collision2D col)
 	 *
 	 * Description : Deals with collisions between the player bullets and this enemy.
 	 *
-	 * Parameters  : Collision col : The other object collided with
+	 * Parameters  : Collision2D col : The other object collided with
 	 *
 	 * Returns     : Void
 	 */

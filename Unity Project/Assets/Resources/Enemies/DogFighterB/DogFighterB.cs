@@ -89,7 +89,7 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Moves the enemy slowly to the left and periodically shoots bullets
 	 *
@@ -147,11 +147,11 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter(Collision col)
+	/* Function    : OnCollisionEnter2D(Collision2D col)
 	 *
 	 * Description : Deals with collisions between the player bullets and this enemy.
 	 *
-	 * Parameters  : Collision col : The other object collided with
+	 * Parameters  : Collision2D col : The other object collided with
 	 *
 	 * Returns     : Void
 	 */

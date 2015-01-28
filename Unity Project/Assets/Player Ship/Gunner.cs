@@ -64,7 +64,7 @@ public class Gunner : MonoBehaviour {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Spawns a bullet object, rotates it towards the mouse click location.
 	 * 				Also sends the mouse click location to the bullet object.

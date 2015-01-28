@@ -38,11 +38,11 @@ public class PlayerCollisions : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter2D (Collision2D col)
+	/* Function    : OnTriggerEnter2D (Collider2D other)
 	 *
 	 * Description : Deals with triggers between the player and other objects
 	 *
-	 * Parameters  : Collision2D other : The other object triggered with
+	 * Parameters  : Collider2D other : The other object triggered with
 	 *
 	 * Returns     : Void
 	 */
@@ -66,6 +66,15 @@ public class PlayerCollisions : MonoBehaviour {
 		}
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : OnCollisionEnter2D (Collision2D col)
+	 *
+	 * Description : Deals with collisions between the player bullets and this enemy.
+	 *
+	 * Parameters  : Collision2D col : The other object collided with
+	 *
+	 * Returns     : Void
+	 */
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		if(col.gameObject.tag == "EnemyMissile")

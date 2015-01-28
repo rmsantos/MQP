@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Moves the bullet towards the mouse clicked position at a constant rate.
 	 * 				Destroys the bullet when it moves out of the game space

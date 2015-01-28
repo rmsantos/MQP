@@ -78,7 +78,7 @@ public class SeekerMissile : MonoBehaviour {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : Update()
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Moves the missile slowly towards the player.
 	 *
@@ -135,11 +135,11 @@ public class SeekerMissile : MonoBehaviour {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter(Collision col)
+	/* Function    : OnCollisionEnter2D(Collision2D col)
 	 *
 	 * Description : Deals with collisions between the player bullets and this missile
 	 *
-	 * Parameters  : Collision col : The other object collided with
+	 * Parameters  : Collision2D col : The other object collided with
 	 *
 	 * Returns     : Void
 	 */
