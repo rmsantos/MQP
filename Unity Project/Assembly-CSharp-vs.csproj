@@ -78,6 +78,7 @@
      <Compile Include="Assets\Resources\Instances\DogfighterAttack.cs" />
      <Compile Include="Assets\Resources\Instances\ExampleInstance.cs" />
      <Compile Include="Assets\Resources\Instances\FlyingV.cs" />
+     <Compile Include="Assets\Resources\Instances\JuggernautWave.cs" />
      <Compile Include="Assets\Resources\Instances\LargeAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\MediumAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\MixedAsteroids.cs" />
@@ -99,7 +100,7 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>R:/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Chell/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

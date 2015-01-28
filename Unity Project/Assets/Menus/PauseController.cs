@@ -29,6 +29,7 @@ public class PauseController : MonoBehaviour {
 	void Start () {
 		paused = false;
 		pauseMenu.active = false;
+		Time.timeScale = 1;
 	}
 
 	void Update () {
