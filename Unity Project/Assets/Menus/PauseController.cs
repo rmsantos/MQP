@@ -23,7 +23,9 @@ using System.Collections;
 public class PauseController : MonoBehaviour {
 	
 	static bool paused;
+	bool menu;
 
+	public GameObject returnButton;
 	public GameObject pauseMenu;
 	
 	void Start () {
@@ -47,6 +49,11 @@ public class PauseController : MonoBehaviour {
 			}
 		}
 
+		if(menu && !returnButton.audio.isPlaying)
+		{
+			Application.LoadLevel(0);
+		}
+
 	}
 
 	public bool IsPaused() {
@@ -65,6 +72,11 @@ public class PauseController : MonoBehaviour {
 				pauseMenu.active = false;
 			}
 		}
+	}
+
+	public void setReturn(bool returnMenu)
+	{
+		menu = returnMenu;
 	}
 
 	void OnApplicationFocus(bool focusStatus) {
