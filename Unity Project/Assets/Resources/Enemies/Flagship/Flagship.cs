@@ -98,6 +98,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	//Player script
 	GameObject player;
 
+	//Player position
+	Vector3 playerPosition;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -180,7 +183,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		if(phase == 1)
 		{
 			//If the boss takes enough damage, then move to the next phase
-			if(health == startingHealth*3/4)
+			if(health <= startingHealth*3/4)
 			{
 				phase = 2;
 			}
@@ -305,7 +308,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			}
 	
 			//If the health of the boss reaches a certain point
-			if(health == startingHealth/2)
+			if(health <= startingHealth/2)
 			{
 				//Change to the next phase
 				phase = 3;
@@ -377,6 +380,25 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 					//Spawn the missle and store it
 					GameObject missile = (GameObject)Instantiate(missilePrefab,transform.position,Quaternion.identity);
 				
+					//Store the players position
+					//If the player was destroyed
+					if(player == null)
+					{
+						//Tell the enemy to move off screen to the left
+						playerPosition = transform.position+Vector3.left;
+					}
+					else
+					{
+						//Otherwise move towards the players position
+						playerPosition = player.transform.position;
+					}
+					
+					//Store the direction of the player in respect to the missile
+					Vector3 direction = playerPosition-missile.transform.position;
+					
+					//Rotate the missile towards the player
+					missile.transform.rotation = Quaternion.LookRotation(direction);
+
 					//Cast to an missile type
 					SeekerMissile seekerMissile = (SeekerMissile)missile.GetComponent(typeof(SeekerMissile));
 					
@@ -389,7 +411,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			}
 
 			//If the health of the boss reaches a certain point
-			if(health == startingHealth/4)
+			if(health <= startingHealth/4)
 			{
 				//Change to the next phase
 				phase = 4;

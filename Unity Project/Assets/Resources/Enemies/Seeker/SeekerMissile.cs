@@ -48,6 +48,10 @@ public class SeekerMissile : MonoBehaviour {
 
 	//The damage this missile will deal
 	int damage;
+
+	//Is true if the missile is currently exploding
+	//Prevents infinite looks of exploding missiles
+	bool isExploding;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -68,7 +72,9 @@ public class SeekerMissile : MonoBehaviour {
 		
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
-		
+
+		//The missile is not exploding
+		isExploding = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -162,51 +168,59 @@ public class SeekerMissile : MonoBehaviour {
 	 */
 	public void explode()
 	{
-		//Draw a sphere at this position and track everything that overlaps it
-		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
-
-		//For each item that overlaps the sphere
-		foreach( Collider2D collide in hitColliders)
+		//Only explode if this missile isnt currently in the process of exploding
+		//Prevents infinite loops
+		if(!isExploding)
 		{
-			//If the collision was with an enemy or boss
-			if(collide.tag == "Enemies" || collide.tag == "Boss")
-			{
-				//Find the component that extends BasicEnemy (the enemy script)
-				BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
+			//Flag that the missile is exploding
+			isExploding = true;
 
-				//Deal damage to that enemy
-				enemy.takeDamage(damage);
+			//Draw a sphere at this position and track everything that overlaps it
+			Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
+
+			//For each item that overlaps the sphere
+			foreach( Collider2D collide in hitColliders)
+			{
+				//If the collision was with an enemy or boss
+				if(collide.tag == "Enemies" || collide.tag == "Boss")
+				{
+					//Find the component that extends BasicEnemy (the enemy script)
+					BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
+
+					//Deal damage to that enemy
+					enemy.takeDamage(damage);
+				}
+				
+				//Delete the object if it is an enemy bullet
+				if(collide.tag == "EnemyBullets")
+					Destroy (collide.gameObject);
+				
+				//If the object is an asteroid
+				if(collide.tag == "Asteroids")
+				{
+					//Cast to an asteroid type
+					BasicAsteroid asteroid = (BasicAsteroid)collide.GetComponent(typeof(BasicAsteroid));
+					
+					//And shatter the asteroid
+					asteroid.shatter();
+					
+				}
+
+				//If the object is another missile
+				if(collide.tag == "EnemyMissile")
+				{
+					//Cast to an asteroid type
+					SeekerMissile seekerMissile = (SeekerMissile)collide.GetComponent(typeof(SeekerMissile));
+					
+					//And explode the missile
+					seekerMissile.explode();
+					
+				}
 			}
 			
-			//Delete the object if it is an enemy bullet
-			if(collide.tag == "EnemyBullets")
-				Destroy (collide.gameObject);
-			
-			//If the object is an asteroid
-			if(collide.tag == "Asteroids")
-			{
-				//Cast to an asteroid type
-				BasicAsteroid asteroid = (BasicAsteroid)collide.GetComponent(typeof(BasicAsteroid));
-				
-				//And shatter the asteroid
-				asteroid.shatter();
-				
-			}
-
-			//If the object is another missile
-			if(collide.tag == "SeekerMissile")
-			{
-				//Cast to an asteroid type
-				SeekerMissile seekerMissile = (SeekerMissile)collide.GetComponent(typeof(SeekerMissile));
-				
-				//And explode the missile
-				seekerMissile.explode();
-				
-			}
+			//Delete the missile 
+			Destroy (this.gameObject);
 		}
-		
-		//Delete the missile 
-		Destroy (this.gameObject);
 	}
 
 	/* ----------------------------------------------------------------------- */
