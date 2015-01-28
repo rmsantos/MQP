@@ -79,6 +79,7 @@
      <Compile Include="Assets\Resources\Instances\DogfighterAttack.cs" />
      <Compile Include="Assets\Resources\Instances\ExampleInstance.cs" />
      <Compile Include="Assets\Resources\Instances\FlyingV.cs" />
+     <Compile Include="Assets\Resources\Instances\JuggernautWave.cs" />
      <Compile Include="Assets\Resources\Instances\LargeAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\MediumAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\MixedAsteroids.cs" />

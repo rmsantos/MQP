@@ -28,7 +28,7 @@ public class LevelHandler : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[1] {"DogfighterAttack"};
+	string[] instances = new string[8] {"DogfighterAttack", "ExampleInstance", "FlyingV", "LargeAsteroids", "MediumAsteroids", "SmallAsteroids", "MixedAsteroids", "JuggernautWave"};
 	string[] bosses = new string[1] {"Boss1"};
 
 	//Level tracker variables
@@ -119,7 +119,7 @@ public class LevelHandler : MonoBehaviour {
 				spawnTimer = timeBetweenSpawning;
 				wave++;
 
-				if (wave <= 1) {
+				if (wave <= 3) {
 					//TODO have a more advanced instance picker
 					string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0))];
 					Instantiate(Resources.Load<GameObject>(randomInstance));
