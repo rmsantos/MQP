@@ -25,7 +25,6 @@ public class PauseController : MonoBehaviour {
 	static bool paused;
 	bool menu;
 
-	public GameObject returnButton;
 	public GameObject pauseMenu;
 	
 	void Start () {
@@ -49,7 +48,7 @@ public class PauseController : MonoBehaviour {
 			}
 		}
 
-		if(menu && !returnButton.audio.isPlaying)
+		if(menu && !audio.isPlaying)
 		{
 			Application.LoadLevel(0);
 		}
