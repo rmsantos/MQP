@@ -75,10 +75,13 @@
      <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" />
      <Compile Include="Assets\Resources\Enemies\SimpleEnemyBullet.cs" />
+     <Compile Include="Assets\Resources\Instances\ExampleInstance.cs" />
+     <Compile Include="Assets\Resources\Instances\FlyingV.cs" />
      <Compile Include="Assets\Resources\Instances\Instance1.cs" />
-     <Compile Include="Assets\Resources\Instances\Instance2.cs" />
-     <Compile Include="Assets\Resources\Instances\Instance3.cs" />
-     <Compile Include="Assets\Resources\Instances\Instance4.cs" />
+     <Compile Include="Assets\Resources\Instances\LargeAsteroids.cs" />
+     <Compile Include="Assets\Resources\Instances\MediumAsteroids.cs" />
+     <Compile Include="Assets\Resources\Instances\MixedAsteroids.cs" />
+     <Compile Include="Assets\Resources\Instances\SmallAsteroids.cs" />
      <Compile Include="Assets\Resources\Money\Money.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
      <Compile Include="Assets\UI\UpdateLevel.cs" />
