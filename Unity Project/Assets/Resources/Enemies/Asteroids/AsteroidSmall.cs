@@ -125,11 +125,17 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 		//Load the money prefab
 		GameObject money = Resources.Load<GameObject>("Money/Money");
 
-		//Store the position of the asteroid
+		//Position of the asteroid
 		var position = gameObject.transform.position;
-
+		
+		//Load the explosion
+		GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
+		
 		//Destroy the asteroid
 		Destroy(this.gameObject);
+		
+		//Create the explosion at this location
+		Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 
 		//Create money at this location
 		Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
