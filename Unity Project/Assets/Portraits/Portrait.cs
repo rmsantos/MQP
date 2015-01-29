@@ -2,13 +2,11 @@
 using System.Collections;
 
 public class Portrait {
-	int job;
 	Sprite sprite;
 	AudioClip[] dialogue;
 
-	public Portrait(int newJob, Sprite newSprite, AudioClip[] newDialogue)
+	public Portrait(Sprite newSprite, AudioClip[] newDialogue)
 	{
-		job = newJob;
 		sprite = newSprite;
 		dialogue = newDialogue;
 	}
@@ -16,11 +14,6 @@ public class Portrait {
 	public Sprite getSprite()
 	{
 		return sprite;
-	}
-
-	public int getJob()
-	{
-		return job;
 	}
 
 	public AudioClip[] getDialogue()
