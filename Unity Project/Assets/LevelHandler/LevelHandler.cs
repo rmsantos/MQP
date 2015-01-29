@@ -137,6 +137,11 @@ public class LevelHandler : MonoBehaviour {
 	public void LevelComplete() {
 		//TODO Perhaps change scene or do something with buying
 		//More level completion stuff can be put here
+		var enemies = GameObject.FindGameObjectsWithTag("Enemies");
+		foreach (var obj in enemies) {
+			Destroy(obj);
+		}
+
 		NextLevel ();
 	}
 

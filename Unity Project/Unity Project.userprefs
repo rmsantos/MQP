@@ -1,11 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Portraits\PortraitController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs">
     <Files>
-      <File FileName="Assets\Portraits\Portrait.cs" Line="26" Column="20" />
-      <File FileName="Assets\Portraits\PortraitController.cs" Line="110" Column="5" />
-      <File FileName="Assets\Background\Background.cs" Line="39" Column="1" />
-      <File FileName="Assets\Randomizer\Randomizer.cs" Line="53" Column="1" />
+      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="198" Column="98" />
+      <File FileName="Assets\Resources\Enemies\Ambusher\Ambusher.cs" Line="180" Column="36" />
+      <File FileName="Assets\Resources\Enemies\Cruiser\Cruiser.cs" Line="224" Column="98" />
+      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="224" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Flagship\Flagship.cs" Line="556" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Grenadier\Grenadier.cs" Line="248" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Interceptor\Interceptor.cs" Line="279" Column="2" />
+      <File FileName="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" Line="314" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Saboteur\Saboteur.cs" Line="288" Column="2" />
+      <File FileName="Assets\Resources\Enemies\BasicEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\SimpleEnemyBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="32" Column="44" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" Line="136" Column="28" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" Line="134" Column="3" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" Line="129" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
