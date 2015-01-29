@@ -283,25 +283,25 @@ public class ShipMovement : MonoBehaviour {
 
 		//Check if the ship has moved outside of the boundaries
 		//If so then set the ships position to that boundary and reset acceleration
-		if(yPos >= boundaries.getTop())
+		if(yPos >= boundaries.getTop() * .8f)
 		{
-			yPos = boundaries.getTop();
+			yPos = boundaries.getTop() * .8f;
 			yAcceleration = 0;
 		}
-		else if(yPos <= boundaries.getBottom ())
+		else if(yPos <= boundaries.getBottom () * .8f)
 		{
-			yPos = boundaries.getBottom ();
+			yPos = boundaries.getBottom () * .8f;
 			yAcceleration = 0;
 		}
 
-		if(xPos >= boundaries.getRight ())
+		if(xPos >= boundaries.getRight () * .875f)
 		{
-			xPos = boundaries.getRight ();
+			xPos = boundaries.getRight () * .875f;
 			xAcceleration = 0;
 		}
-		else if(xPos <= boundaries.getLeft ())
+		else if(xPos <= boundaries.getLeft () * .875f)
 		{
-			xPos = boundaries.getLeft();
+			xPos = boundaries.getLeft() * .875f;
 			xAcceleration = 0;
 		}
 

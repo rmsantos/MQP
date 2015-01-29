@@ -255,8 +255,17 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			
+			//Store the position of the enemy
+			var position = gameObject.transform.position;
+			
 			//Destroy the enemy
-			Destroy (this.gameObject);	
+			Destroy(this.gameObject);
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
 			//Update the players score
 			score.UpdateScore(value);

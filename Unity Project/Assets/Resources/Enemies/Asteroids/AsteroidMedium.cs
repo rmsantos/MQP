@@ -129,8 +129,14 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 		//Position of the asteroid
 		var position = gameObject.transform.position;
 		
-		//Destroy this asteroid
+		//Load the explosion
+		GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
+		
+		//Destroy the asteroid
 		Destroy(this.gameObject);
+		
+		//Create the explosion at this location
+		Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 		
 		//Create two new small asteroids
 		Instantiate(smallAsteroid, new Vector3(position.x, position.y + .3f, position.z), Quaternion.identity);
