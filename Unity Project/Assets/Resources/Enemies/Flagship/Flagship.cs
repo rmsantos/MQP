@@ -243,7 +243,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			Vector3 newPos = new Vector3 (transform.position.x + moveSpeed, transform.position.y, transform.position.z);
 			
 			//If hitting either left or right boundaries, reverse the direction
-			if(newPos.x >= boundaries.getRight() || newPos.x <= boundaries.getLeft())
+			if(newPos.x >= boundaries.getRight() * .8f || newPos.x <= boundaries.getLeft() * .8f)
 				moveSpeed = - moveSpeed;
 
 			//Make the move
@@ -326,10 +326,10 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		{
 
 			//Store the location of the top/bottom left/right corners of the screen
-			Vector3 topLeft = new Vector3(boundaries.getRight()/4-boundaries.getRight (),boundaries.getTop()*3/4, 0);
-			Vector3 topRight = new Vector3(boundaries.getRight()*3/4,boundaries.getTop()*3/4,0);
-			Vector3 botLeft = new Vector3(boundaries.getRight()/4-boundaries.getRight(),boundaries.getTop()/4-boundaries.getTop(),0);
-			Vector3 botRight = new Vector3(boundaries.getRight()*3/4,boundaries.getTop()/4-boundaries.getTop(),0);
+			Vector3 topLeft = new Vector3(boundaries.getRight()/3-boundaries.getRight (),boundaries.getTop()*2/3, 0);
+			Vector3 topRight = new Vector3(boundaries.getRight()*2/3,boundaries.getTop()*2/3,0);
+			Vector3 botLeft = new Vector3(boundaries.getRight()/3-boundaries.getRight(),boundaries.getTop()/3-boundaries.getTop(),0);
+			Vector3 botRight = new Vector3(boundaries.getRight()*2/3,boundaries.getTop()/3-boundaries.getTop(),0);
 
 			//Determine what move phase the enemy is in
 			if(transform.position == topLeft)
@@ -425,10 +425,10 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		if(phase == 4)
 		{
 			//The new position of the enemy after moving
-			Vector3 newPos = new Vector3 (boundaries.getRight(), transform.position.y + moveSpeed, transform.position.z);
+			Vector3 newPos = new Vector3 (boundaries.getRight() * .8f, transform.position.y + moveSpeed, transform.position.z);
 
 			//Bounce between the top and bottom of the screen
-			if(newPos.y >= boundaries.getTop() || newPos.y <= boundaries.getBottom())
+			if(newPos.y >= boundaries.getTop() * .8f || newPos.y <= boundaries.getBottom() * .8f)
 				moveSpeed = -moveSpeed;
 
 			//Make the move

@@ -134,14 +134,14 @@ public class Interceptor :  MonoBehaviour, BasicEnemy {
 			}
 
 			//Stop the enemy when it hits right right bound of the screen
-			if (transform.position.x < boundaries.getRight())
+			if (transform.position.x < boundaries.getRight() * .9f)
 				xSpeed = 0;
 			
 			//The new position of the enemy after moving
 			newPos = new Vector3 (transform.position.x +xSpeed, transform.position.y + speed, transform.position.z);
 			
 			//If hitting either top or bottom boundaries, reverse the direction
-			if(newPos.y >= boundaries.getTop() || newPos.y <= boundaries.getBottom())
+			if(newPos.y >= boundaries.getTop() * .9f || newPos.y <= boundaries.getBottom() * .9f)
 				speed = -speed;
 
 		}
