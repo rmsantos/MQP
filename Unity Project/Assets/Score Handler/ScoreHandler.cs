@@ -41,12 +41,16 @@ public class ScoreHandler : MonoBehaviour {
 	 */
 	void Start () {
 
-		score = 0;
-		money = 0;
+		//Pull the values from player prefs
+		score = PlayerPrefs.GetInt ("Score", 99999);
+		money = PlayerPrefs.GetInt ("Money", 99999);
 
 		//Search for the ScoreHandler object for tracking score
 		updateMoney = GameObject.Find("/UI/MoneyText").GetComponent<UpdateMoney>(); 
 		updateScore = GameObject.Find("/UI/ScoreText").GetComponent<UpdateScore>(); 
+
+		updateScore.UpdateText (score);
+		updateMoney.UpdateText (money);
 	}
 
 	public long UpdateScore(long amount) {

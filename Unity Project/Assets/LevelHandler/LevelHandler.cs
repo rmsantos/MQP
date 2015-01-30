@@ -81,12 +81,16 @@ public class LevelHandler : MonoBehaviour {
 		spawnTimer = timeBetweenSpawning;
 		canSpawn = true;
 
-		level = 1;
+		//Pull the values from player prefs
+		level = PlayerPrefs.GetInt ("Level", 100);
+
 		wave = 0;
 		//TODO this is an unused variable. It could be used for pausing at the end of levels, shooting fireworks, displaying UI, or whatever
 		levelCompleted = false;
 		
 		updateLevel = (UpdateLevel)levelText.GetComponent("UpdateLevel");
+
+		updateLevel.UpdateText (level);
 
 		bossHealthSlider.active = false;
 		bossHealth = 100;
