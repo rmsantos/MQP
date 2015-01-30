@@ -72,6 +72,8 @@ public class PortraitController : MonoBehaviour {
 	//Flag for the gunner thanks dialogue
 	bool gunnerThanks;
 
+	//Flag for the mechanic response
+	bool mechanicResponse;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -88,6 +90,7 @@ public class PortraitController : MonoBehaviour {
 		moneyCheck = false;
 		pilotThanks = false;
 		gunnerThanks = false;
+		mechanicResponse = false;
 
 		//Get the audio source object
 		source = GetComponentInParent<AudioSource> ();
@@ -146,6 +149,12 @@ public class PortraitController : MonoBehaviour {
 		{
 			playGunnerThanks();
 		}
+
+		//Play the mechanicResponse audio clip after the pilot complains
+		if(mechanicResponse && !source.isPlaying)
+		{
+			playMechanicResponse();
+		}
 	}
 
 
@@ -168,6 +177,9 @@ public class PortraitController : MonoBehaviour {
 			//Load the audio clip and play it
 			source.clip = portrait1[1];
 			source.Play();
+
+			//Flag the mechanic for a response
+			mechanicResponse = true;
 		}
 	}
 
@@ -322,6 +334,28 @@ public class PortraitController : MonoBehaviour {
 		//Load the audio clip and play it
 		source.clip = portrait2[9];
 		source.Play();
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playMechanicResponse()
+	 *
+	 * Description : Plays when the pilot complains about asteroid damage
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playMechanicResponse()
+	{
+
+		print("MECHANIC RESPONSE");
+			
+		//Load the audio clip and play it
+		source.clip = portrait3[11];
+		source.Play();
+
+		//Flag that the clip is playing
+		mechanicResponse = false;
 	}
 
 	/* ----------------------------------------------------------------------- */
