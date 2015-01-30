@@ -57,7 +57,6 @@
      <Compile Include="Assets\Player Ship\Gunner.cs" />
      <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
-     <Compile Include="Assets\Portraits\Portrait.cs" />
      <Compile Include="Assets\Portraits\PortraitController.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
@@ -105,7 +104,7 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/Chell/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/rmsantos/Desktop/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
