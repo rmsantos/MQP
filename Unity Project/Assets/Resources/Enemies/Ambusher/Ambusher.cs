@@ -52,6 +52,8 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 	//Stores the damage colliding with the player does
 	public int collisionDamage;
 
+
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -75,7 +77,13 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 		player = GameObject.FindGameObjectWithTag ("Player");
 
 		//Search for the ScoreHandler object for tracking score
-		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");; 
+		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
+
+		//Get the portrait controller to play audio clips
+		PortraitController portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
+
+		//Play the ambusher spawn clip
+		portraitController.playAmbusherSpawn ();
 		
 	}
 	

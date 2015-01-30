@@ -32,6 +32,9 @@ public class PlayerCollisions : MonoBehaviour {
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
 
+	//Threshold for the money audioclip
+	public int moneyThreshold;
+
 	void Start () {
 		
 		//Pull the values from player prefs
@@ -152,7 +155,11 @@ public class PlayerCollisions : MonoBehaviour {
 			//Update the players score
 			score.UpdateScore(scoreFromMoney);
 			score.UpdateMoney(moneyValue);
-			
+
+			//Play the audioclip if the money goes above the threshold
+			if(score.GetMoney() > moneyThreshold)
+				portraitController.playMoneyHigh();
+
 		}
 
 		if(col.gameObject.tag == "Boss")
