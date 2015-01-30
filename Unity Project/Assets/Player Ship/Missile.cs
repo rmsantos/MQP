@@ -1,9 +1,9 @@
-﻿/* Module      : SeekerMissile.cs
+﻿/* Module      : Missile.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the Seeker's missile
+ * Description : This file controls the behavior of the players missile
  *
  * Date        : 2015/1/20
  * 
@@ -18,75 +18,60 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class SeekerMissile : MonoBehaviour {
+public class Missile : MonoBehaviour {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
 	//The speed at which the missile will move
 	public float speed;
-		
+	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 	
-	//Player script
-	GameObject player;
-
-	//Player position
-	Vector3 playerPosition;
-
 	//The speed at which the missile will rotate
 	public float rotationSpeed;
-
+	
 	//The radius of the explosion
 	public float explosionRadius;
-
+	
 	//The time before the missile blows up on its own
 	public int timeToExplosion;
-
+	
 	//Timer to count to explosion
 	int timer;
-
+	
 	//The damage this missile will deal
 	int damage;
-
+	
 	//Is true if the missile is currently exploding
 	//Prevents infinite looks of exploding missiles
 	bool isExploding;
 
-	//Quitting boolean
-	bool isQuitting;
+	//The radius at which the missile will detect enemies
+	public float detectRadius;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Searches for the player.
-	 * 				Also stores the boundaries of the game.
+	 * Description : Also stores the boundaries of the game.
 	 *
 	 * Parameters  : None
 	 *
 	 * Returns     : Void
 	 */
 	void Start () {
-
-		//gameObject.transform.Rotate(90, 180, 0);
 		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		
-		//Search for player
-		player = GameObject.FindGameObjectWithTag ("Player");
-
 		//The missile is not exploding
 		isExploding = false;
-
-		//Not quitting the application
-		isQuitting = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : FixedUpdate()
 	 *
-	 * Description : Moves the missile slowly towards the player.
+	 * Description : Moves the missile forward slowly and locks on to enemies closest to it
 	 *
 	 * Parameters  : None
 	 *
@@ -95,41 +80,60 @@ public class SeekerMissile : MonoBehaviour {
 	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
-
+		
 		//Increment the explosion timer
 		timer++;
-
+		
 		//If enough time has passed
 		if(timer == timeToExplosion)
 		{
 			//Explode
 			explode ();
 		}
-
+		
 		//Move the missile forwards
 		transform.Translate( transform.forward * speed, Space.World);
+	
+		//Draw a circle with detectRadius and store everything inside it
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectRadius);
 
-		//Store the players position
-		//If the player was destroyed
-		if(player == null)
+		//Min distance is set to some very large number
+		float minDistance = 99999;
+
+		//And closest enemy is set to null for now
+		GameObject closestEnemy = null;
+
+		//For each item that overlaps the cirlce
+		foreach( Collider2D collide in hitColliders)
 		{
-			//Tell the missile to move off screen to the left
-			playerPosition = transform.position+Vector3.left;
+			//Check if it is an enemy
+			if(collide.tag == "Enemies")
+			{
+				//Get the distance between the missile and that enemy
+				float distance = Vector2.Distance(transform.position,collide.gameObject.transform.position);
+
+				//If thats the current smallest distance
+				if(distance < minDistance)
+				{
+					//Store the distance and enemy gameObject
+					minDistance = distance;
+					closestEnemy = collide.gameObject;
+				}
+			}
 		}
-		else
+
+		//If there is an enemy in range
+		if(closestEnemy != null)
 		{
-			//Otherwise move towards the players position
-			playerPosition = player.transform.position;
+			//Find the direction of the enemy
+			Vector3 targetDir = closestEnemy.transform.position - transform.position;
+			
+			//The the position of the enemy
+			Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed, 0);
+			
+			//Rotate towards that position
+			transform.rotation = Quaternion.LookRotation(newDir);
 		}
-
-		//Find the direction of the player
-		Vector3 targetDir = playerPosition - transform.position;
-
-		//The the position of the player
-		Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed, 0);
-
-		//Rotate towards that position
-		transform.rotation = Quaternion.LookRotation(newDir);
 
 		//Delete the bullet if it goes off screen
 		if (!boundaries.inBoundaries(transform.position,1.2f))
@@ -143,7 +147,7 @@ public class SeekerMissile : MonoBehaviour {
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnCollisionEnter2D(Collision2D col)
 	 *
-	 * Description : Deals with collisions between the player bullets and this missile
+	 * Description : Deals with collisions between missiles and enemies/asteroids
 	 *
 	 * Parameters  : Collision2D col : The other object collided with
 	 *
@@ -151,15 +155,16 @@ public class SeekerMissile : MonoBehaviour {
 	 */
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		//If this is hit by a player bullet
-		if(col.gameObject.tag == "PlayerBullet" || col.gameObject.tag == "Player" 
-		   || col.gameObject.tag == "Missile" || col.gameObject.tag == "SeekerMissile")
+		//If the missile hits an enemy or asteroid
+		if(col.gameObject.tag == "Enemies" || col.gameObject.tag == "Asteroids" || 
+		   col.gameObject.tag == "EnemeyShield" || col.gameObject.tag == "Boss" 
+		   || col.gameObject.tag == "Missile")
 		{
 			//explode this missile
-			explode();			
+			explode();
 		}
 	}
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : explode()
 	 *
@@ -177,10 +182,10 @@ public class SeekerMissile : MonoBehaviour {
 		{
 			//Flag that the missile is exploding
 			isExploding = true;
-
+			
 			//Draw a sphere at this position and track everything that overlaps it
 			Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
-
+			
 			//For each item that overlaps the sphere
 			foreach( Collider2D collide in hitColliders)
 			{
@@ -189,7 +194,7 @@ public class SeekerMissile : MonoBehaviour {
 				{
 					//Find the component that extends BasicEnemy (the enemy script)
 					BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
-
+					
 					//Deal damage to that enemy
 					enemy.takeDamage(damage);
 				}
@@ -208,8 +213,8 @@ public class SeekerMissile : MonoBehaviour {
 					asteroid.shatter();
 					
 				}
-
-				//If the object is another missile
+				
+				//If the object is an enemy missile
 				if(collide.tag == "EnemyMissile")
 				{
 					//Cast to an asteroid type
@@ -221,22 +226,11 @@ public class SeekerMissile : MonoBehaviour {
 				}
 
 				//If the object is another missile
-				if(collide.tag == "Missile")
-				{
-					//Cast to an asteroid type
-					Missile missile = (Missile)collide.GetComponent(typeof(Missile));
-					
-					//And explode the missile
-					missile.explode();
-					
-				}
-
-				//If the object is another missile
 				if(collide.tag == "Player")
 				{
 					//Cast to the player collisions type
 					PlayerCollisions player = (PlayerCollisions)collide.GetComponent(typeof(PlayerCollisions));
-
+					
 					//The player takes damage
 					player.takeDamage(damage);
 					
@@ -247,7 +241,7 @@ public class SeekerMissile : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 	}
-
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setDamage(int newDamage)
 	 *
@@ -261,8 +255,8 @@ public class SeekerMissile : MonoBehaviour {
 	{
 		damage = newDamage;
 	}
-
-
+	
+	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : getBulletDamage()
 	 *
@@ -275,30 +269,5 @@ public class SeekerMissile : MonoBehaviour {
 	public int getBulletDamage ()
 	{
 		return damage;
-	}
-
-	//Only called when the application is being quit. Will disable spawning in OnDestroy
-	void OnApplicationQuit() {
-		
-		isQuitting = true;
-		
-	}
-	
-	//Used to spawn particle effects or money when destroyed
-	void OnDestroy() {
-		
-		if (!isQuitting) {
-			
-			//Load the explosion
-			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
-			
-			//Position of the enemy
-			var position = gameObject.transform.position;
-			
-			//Create the explosion at this location
-			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
-			
-		}
-		
 	}
 }
