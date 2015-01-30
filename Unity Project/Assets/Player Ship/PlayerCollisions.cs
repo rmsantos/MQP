@@ -19,8 +19,8 @@ using System.Collections;
 
 public class PlayerCollisions : MonoBehaviour {
 
-	public int health;
-	public int moneyValue;
+	int health;
+	int moneyValue;
 	public int scoreFromMoney;
 
 	//ScoreHandler object to track players score
@@ -30,8 +30,10 @@ public class PlayerCollisions : MonoBehaviour {
 	public Slider healthBar;
 
 	void Start () {
-
-		health = 100;
+		
+		//Pull the values from player prefs
+		health = PlayerPrefs.GetInt ("Health", 1);
+		moneyValue = PlayerPrefs.GetInt ("MoneyValue", 99999);
 
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");

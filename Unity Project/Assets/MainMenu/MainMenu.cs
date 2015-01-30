@@ -28,6 +28,16 @@ public class MainMenu : MonoBehaviour {
 	public GameObject startButton;
 	public GameObject quitButton;
 
+	public int initialHealth;
+	public int initialDamage;
+	public float initialAcceleration;
+	public float initialMaxAcceleration;
+	public int initialShields;
+	public int initialRockets;
+	public int initialLaser;
+	public int initialMoneyValue;
+	public int initialReload;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -89,6 +99,18 @@ public class MainMenu : MonoBehaviour {
 	 */
 	public void setStart(bool start)
 	{
+		//Here is where we set all the upgrade values. Player0 is our first unsaved player
+		PlayerPrefs.SetString("Player", "Player0");
+		PlayerPrefs.SetInt ("Damage", initialDamage);
+		PlayerPrefs.SetInt ("Shields", initialShields);
+		PlayerPrefs.SetInt ("Reload", initialReload);
+		PlayerPrefs.SetInt ("Rockets", initialRockets);
+		PlayerPrefs.SetInt ("Laser", initialLaser);
+		PlayerPrefs.SetInt ("Health", initialHealth);
+		PlayerPrefs.SetInt ("MoneyValue", initialMoneyValue);
+		PlayerPrefs.SetFloat ("AccelerationRate", initialAcceleration);
+		PlayerPrefs.SetFloat ("MaxAcceleration", initialMaxAcceleration);
+
 		startGame = start;
 	}
 

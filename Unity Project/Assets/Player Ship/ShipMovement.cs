@@ -50,10 +50,10 @@ public class ShipMovement : MonoBehaviour {
 	bool rightHeld;
 	
 	//Variable to store the acceleration rate
-	public float accelerationRate;
+	float accelerationRate;
 
 	//Variable to store the max acceleration
-	public float maxAcceleration;
+	float maxAcceleration;
 
 	//Stores the boundaries script to access later
 	Boundaries boundaries;
@@ -95,9 +95,12 @@ public class ShipMovement : MonoBehaviour {
 		leftHeld = false;
 		rightHeld = false;
 
-
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>(); 
+
+		//Pull the values from player prefs
+		accelerationRate = PlayerPrefs.GetFloat ("AccelerationRate", 1f);
+		maxAcceleration = PlayerPrefs.GetFloat ("MaxAcceleration", 100f);
 
 	}
 	
