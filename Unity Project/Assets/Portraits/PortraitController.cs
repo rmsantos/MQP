@@ -69,6 +69,9 @@ public class PortraitController : MonoBehaviour {
 	//Flag for the pilot thanks dialogue
 	bool pilotThanks;
 
+	//Flag for the gunner thanks dialogue
+	bool gunnerThanks;
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -84,6 +87,7 @@ public class PortraitController : MonoBehaviour {
 		//Set to false to start
 		moneyCheck = false;
 		pilotThanks = false;
+		gunnerThanks = false;
 
 		//Get the audio source object
 		source = GetComponentInParent<AudioSource> ();
@@ -135,6 +139,12 @@ public class PortraitController : MonoBehaviour {
 		if(pilotThanks && !source.isPlaying)
 		{
 			playPilotThanks();
+		}
+
+		//Play the gunnerThanks audio clip after the pilot gives praise
+		if(gunnerThanks && !source.isPlaying)
+		{
+			playGunnerThanks();
 		}
 	}
 
@@ -202,6 +212,9 @@ public class PortraitController : MonoBehaviour {
 			//Load the audio clip and play it
 			source.clip = portrait1[3];
 			source.Play();
+
+			//Flag the gunner for a response
+			gunnerThanks = true;
 		}
 	}
 
@@ -216,18 +229,15 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playPilotThanks()
 	{
-		//If the clip isnt already playing
-		if(pilotThanks)
-		{
-			print("PILOT THANKS");
+	
+		print("PILOT THANKS");
 
-			//Flag that the clip is playing
-			pilotThanks = false;
+		//Flag that the clip is playing
+		pilotThanks = false;
 
-			//Load the audio clip and play it
-			source.clip = portrait1[4];
-			source.Play();
-		}
+		//Load the audio clip and play it
+		source.clip = portrait1[4];
+		source.Play();
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -272,6 +282,27 @@ public class PortraitController : MonoBehaviour {
 			source.clip = portrait2[7];
 			source.Play();
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playGunnerThanks()
+	 *
+	 * Description : Plays when the pilot gives praise
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playGunnerThanks()
+	{
+		print("GUNNER THANKS");
+			
+		//Load the audio clip and play it
+		source.clip = portrait2[8];
+		source.Play();
+
+		//Flag that the clip is playing
+		gunnerThanks = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */

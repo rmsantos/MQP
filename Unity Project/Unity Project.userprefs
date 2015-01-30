@@ -1,15 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UpgradeMenu\UpgradeMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Portraits\PortraitController.cs">
     <Files>
-      <File FileName="Assets\MainMenu\UpgradeMenu.cs" Line="39" Column="15" />
-      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="32" Column="18" />
-      <File FileName="Assets\Player Ship\Gunner.cs" Line="65" Column="3" />
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="176" Column="1" />
-      <File FileName="Assets\Player Ship\Bullet.cs" Line="107" Column="1" />
-      <File FileName="Assets\Score Handler\ScoreHandler.cs" Line="93" Column="1" />
-      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="175" Column="1" />
-      <File FileName="Assets\UpgradeMenu\UpgradeMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Portraits\PortraitController.cs" Line="240" Column="3" />
+      <File FileName="Assets\Resources\Enemies\Grenadier\Grenadier.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
