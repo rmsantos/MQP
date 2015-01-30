@@ -52,6 +52,9 @@ public class Boss1 : MonoBehaviour {
 	//Randomizer script
 	public GameObject randomizer;
 	Randomizer random;
+	
+	//The Portrait Controller script
+	PortraitController portraitController;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -114,8 +117,16 @@ public class Boss1 : MonoBehaviour {
 				//TODO probably have the timer here that will kill the player or something
 			}
 			else {
-				levelHandler.LevelComplete();
-				gameObject.SetActive(false);
+				//Search for the controller again (can't store it for some reason or we get null)
+				//Is it because of fixed update?
+				portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
+
+				//If the audio clip is done playing, finish the level
+				if(!portraitController.GetComponentInParent<AudioSource> ().isPlaying)
+				{
+					levelHandler.LevelComplete();
+					gameObject.SetActive(false);
+				}
 			}
 		}
 	}
@@ -131,6 +142,13 @@ public class Boss1 : MonoBehaviour {
 	}
 
 	public void BossDied() {
+		//Find the portrait controller script
+		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
+
+		//Play the victory dialogue
+		portraitController.playVictory ();
+
+		//Flag that the boss is killed
 		killed = true;
 	}
 
