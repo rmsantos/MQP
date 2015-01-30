@@ -75,6 +75,15 @@ public class PortraitController : MonoBehaviour {
 	//Flag for the mechanic response
 	bool mechanicResponse;
 
+	//Timer to count
+	int timer;
+
+	//Time before a tip is said
+	public int tipTimer;
+
+	//The pause controller
+	PauseController pause;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -91,6 +100,9 @@ public class PortraitController : MonoBehaviour {
 		pilotThanks = false;
 		gunnerThanks = false;
 		mechanicResponse = false;
+
+		//Get the pause controller
+		pause = GameObject.FindGameObjectWithTag ("PauseController").GetComponent<PauseController> ();
 
 		//Get the audio source object
 		source = GetComponentInParent<AudioSource> ();
@@ -154,6 +166,20 @@ public class PortraitController : MonoBehaviour {
 		if(mechanicResponse && !source.isPlaying)
 		{
 			playMechanicResponse();
+		}
+
+		//Increment the timer if the game isnt paused
+		if(!pause.IsPaused())
+			timer++;
+
+		//If the timer elapses
+		if(timer == tipTimer)
+		{
+			//Reset the timer
+			timer = 0;
+
+			//Play a random info clip
+			playMiscInfo();
 		}
 	}
 
