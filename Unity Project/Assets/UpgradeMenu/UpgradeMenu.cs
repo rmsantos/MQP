@@ -25,13 +25,28 @@ public class UpgradeMenu : MonoBehaviour {
 	bool startGame;
 
 	//The start button
-	public GameObject startButton;
-	public GameObject damageButton;
+	public Button startButton;
+	public Button damageButton;
+
+	public int[] damageCost;
+	public int[] healthCost;
+	public int[] missileCost;
+	public int[] laserCost;
+	public int[] shieldCost;
 
 	public Text moneyText;
+	public Text statusText;
+	public Text damageCostText;
 	
 	int damage;
+	int health;
 	int money;
+
+	int damageUpgrade;
+	int healthUpgrade;
+	int missileUpgrade;
+	int laserUpgrade;
+	int shieldUpgrade;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -47,16 +62,24 @@ public class UpgradeMenu : MonoBehaviour {
 		damage = PlayerPrefs.GetInt ("Damage", 1);
 		money = PlayerPrefs.GetInt ("Money", 0);
 
+		damageUpgrade = PlayerPrefs.GetInt ("DamageUpgrade", 0);
+		healthUpgrade = PlayerPrefs.GetInt ("HealthUpgrade", 0);
+		missileUpgrade = PlayerPrefs.GetInt ("MissileUpgrade", 0);
+		laserUpgrade = PlayerPrefs.GetInt ("LaserUpgrade", 0);
+		shieldUpgrade = PlayerPrefs.GetInt ("ShieldUpgrade", 0);
+
 		moneyText.text = ("Money: " + money.ToString());
 
 		//Initialize states to not pressed
 		startGame = false;
+
+		UpdateUpgrades();
 	}
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Update()
 	 *
-	 * Description : Starts and quits the game when the button is pressed
+	 * Description : Starts the game when the button is pressed
 	 * 				and the sound clip stops playing.
 	 *
 	 * Parameters  : None
@@ -95,13 +118,33 @@ public class UpgradeMenu : MonoBehaviour {
 		startGame = start;
 	}
 
+	void UpdateUpgrades() {
+
+		//DAMAGE
+		if (damageUpgrade >= damageCost.Length) {
+			damageButton.interactable = false;
+			damageCostText.text = "MAX";
+		}
+		else {
+			damageCostText.text = damageCost[damageUpgrade].ToString();
+		}
+
+	}
+
 	public void UpgradeDamage() {
-		if (money >= 1) {
-			money--;
+		if (money >= damageCost[damageUpgrade]) {
+			money -= damageCost[damageUpgrade];
 			damage++;
+			damageUpgrade++;
 			PlayerPrefs.SetInt("Money", money);
 			PlayerPrefs.SetInt("Damage", damage);
-			moneyText.text = ("Money: " + money.ToString());
+			PlayerPrefs.SetInt("DamageUpgrade", damageUpgrade);
+			moneyText.text = "Money: " + money.ToString();
+			statusText.text = "Damage upgraded!";
+			UpdateUpgrades();
+		}
+		else {
+			statusText.text = "Not enough money!";
 		}
 	}
 
