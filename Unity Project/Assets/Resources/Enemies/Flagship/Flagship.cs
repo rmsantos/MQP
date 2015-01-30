@@ -101,6 +101,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	//Player position
 	Vector3 playerPosition;
 
+	//Get the portrait controller to play audio clips
+	PortraitController portraitController;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -147,6 +150,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
+
+		//Find the portrait controller script
+		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -173,6 +179,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			//When hitting the center, move to phase 1
 			if(transform.position == Vector3.zero)
 			{
+				//Play the sound effect upon boss starting its first phase
+				portraitController.playBossStart();
+
 				phase = 1;
 			}
 

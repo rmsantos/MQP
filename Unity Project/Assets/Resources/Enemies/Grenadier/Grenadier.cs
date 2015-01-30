@@ -59,6 +59,9 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	//Stores the damage the bullet does
 	public int bulletDamage;
 
+	//Get the portrait controller to play audio clips
+	PortraitController portraitController;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -82,6 +85,9 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 		
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
+
+		//Find the portrait controller script
+		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -214,6 +220,9 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
+			//Play the sound effect upon this enemy being destroyed
+			portraitController.playLargeEnemyDestroyed();
+
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
 			

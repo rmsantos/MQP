@@ -194,8 +194,8 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playLargeEnemyDestroyed()
 	{
-		//2% to play this clip
-		if(random.GetRandom(100) < 2)
+		//25% to play this clip
+		if(random.GetRandom(100) < 25)
 		{
 			print("LARGE ENEMY DESTROYED!");
 

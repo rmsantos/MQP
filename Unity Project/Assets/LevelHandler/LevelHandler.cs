@@ -60,7 +60,6 @@ public class LevelHandler : MonoBehaviour {
 	static int bossHealth;
 
 	//Get the portrait controller to play audio clips
-	public GameObject portrait;
 	PortraitController portraitController;
 
 	/* ----------------------------------------------------------------------- */
@@ -100,7 +99,7 @@ public class LevelHandler : MonoBehaviour {
 		bossHealth = 100;
 
 		//Find the portrait controller script
-		portraitController = portrait.GetComponent<PortraitController>();
+		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -154,6 +153,9 @@ public class LevelHandler : MonoBehaviour {
 					Instantiate(Resources.Load<GameObject>("BossInstances/" + bosses[0]));
 					background.StopBackground();
 					bossHealthSlider.active = true;
+
+					//Play the boss spawn audio clip
+					portraitController.playBossSpawn();
 				}
 				
 			}

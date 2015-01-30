@@ -70,6 +70,9 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 
 	//Shield rotation
 	Transform shieldRotation;
+
+	//Get the portrait controller to play audio clips
+	PortraitController portraitController;
 	
 
 	/* ----------------------------------------------------------------------- */
@@ -102,6 +105,9 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 		//Set the collision damage that the shields will do
 		shield1.GetComponentInParent<JuggernautShield> ().setCollisionDamage (collisionDamage/2);
 		shield2.GetComponentInParent<JuggernautShield> ().setCollisionDamage (collisionDamage/2);
+
+		//Find the portrait controller script
+		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -279,6 +285,9 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
+			//Play the sound effect upon this enemy being destroyed
+			portraitController.playLargeEnemyDestroyed();
+
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
 			
