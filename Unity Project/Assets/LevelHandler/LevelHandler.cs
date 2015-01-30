@@ -59,6 +59,10 @@ public class LevelHandler : MonoBehaviour {
 	public Slider bossHealthSlider;
 	static int bossHealth;
 
+	//Get the portrait controller to play audio clips
+	public GameObject portrait;
+	PortraitController portraitController;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -90,6 +94,9 @@ public class LevelHandler : MonoBehaviour {
 
 		bossHealthSlider.active = false;
 		bossHealth = 100;
+
+		//Find the portrait controller script
+		portraitController = portrait.GetComponent<PortraitController>();
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -123,6 +130,21 @@ public class LevelHandler : MonoBehaviour {
 					//TODO have a more advanced instance picker
 					string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0))];
 					Instantiate(Resources.Load<GameObject>(randomInstance));
+
+					//If the instance is an asteroid instance
+					if(randomInstance == "Instances/SmallAsteroids" || randomInstance == "Instances/MediumAsteroids" ||
+					   randomInstance == "Instances/LargeAsteroids" || randomInstance == "Instances/MixedAsteroids")
+					{
+						//Play the asteroid field audio clip
+						portraitController.playApproachingAsteroids();
+					}
+					//Else the wave is of mostly enemies
+					else
+					{
+						//Play the audio clip for enemies incoming
+						portraitController.playEnemiesIncoming();
+					}
+
 				}
 				else {
 					Instantiate(Resources.Load<GameObject>("BossInstances/" + bosses[0]));
