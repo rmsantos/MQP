@@ -75,8 +75,6 @@ public class DogfighterAttack : MonoBehaviour {
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 
-		print (boundaries);
-
 		//Get the top, bottom, and right boundaries
 		top = boundaries.getTop();
 		bottom = boundaries.getBottom();

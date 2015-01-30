@@ -30,7 +30,6 @@ public class PlayerCollisions : MonoBehaviour {
 	public Slider healthBar;
 
 	//Get the portrait controller to play audio clips
-	public GameObject portrait;
 	PortraitController portraitController;
 
 	void Start () {
@@ -43,7 +42,7 @@ public class PlayerCollisions : MonoBehaviour {
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 
 		//Find the portrait controller script
-		portraitController = portrait.GetComponent<PortraitController>();
+		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -87,6 +86,9 @@ public class PlayerCollisions : MonoBehaviour {
 	{
 		if(col.gameObject.tag == "EnemyMissile")
 		{
+			//Play the sound effect upon hitting an enemy missile
+			portraitController.playBulletHit();
+
 			//Find the class of this missile
 			SeekerMissile missile = (SeekerMissile)col.gameObject.GetComponent(typeof(SeekerMissile));
 
@@ -100,6 +102,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 		if(col.gameObject.tag == "EnemyBullets")
 		{
+			//Play the sound effect upon hitting an enemy bullet
+			portraitController.playBulletHit();
+
 			//Destroy the enemy bullet
 			Destroy(col.gameObject);
 

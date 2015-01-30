@@ -49,10 +49,10 @@
      <Compile Include="Assets\Background\Background.cs" />
      <Compile Include="Assets\Camera\Boundaries.cs" />
      <Compile Include="Assets\Camera\VolumeControl.cs" />
-     <Compile Include="Assets\Explosion.cs" />
      <Compile Include="Assets\LevelHandler\LevelHandler.cs" />
      <Compile Include="Assets\MainMenu\MainMenu.cs" />
      <Compile Include="Assets\Menus\PauseController.cs" />
+     <Compile Include="Assets\Particle Effects\Explosion.cs" />
      <Compile Include="Assets\Player Ship\Bullet.cs" />
      <Compile Include="Assets\Player Ship\Gunner.cs" />
      <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
@@ -105,7 +105,7 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularDisplacement.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/Chell/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/rmsantos/Desktop/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
