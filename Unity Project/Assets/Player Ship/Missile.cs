@@ -49,6 +49,9 @@ public class Missile : MonoBehaviour {
 
 	//The radius at which the missile will detect enemies
 	public float detectRadius;
+
+	//Quitting boolean
+	bool isQuitting;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -66,6 +69,8 @@ public class Missile : MonoBehaviour {
 		
 		//The missile is not exploding
 		isExploding = false;
+
+		isQuitting = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -269,5 +274,35 @@ public class Missile : MonoBehaviour {
 	public int getBulletDamage ()
 	{
 		return damage;
+	}
+
+	//Only called when the application is being quit. Will disable spawning in OnDestroy
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+	
+	//Used to spawn particle effects or money when destroyed
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			//Load the money prefab
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			
+			//Position of the enemy
+			var position = gameObject.transform.position;
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+			//Create money at this location
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			
+		}
+		
 	}
 }
