@@ -161,7 +161,7 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 		Vector3 newPos = new Vector3 (boundaries.getLeft() * .9f, transform.position.y + direction, transform.position.z);
 
 		//If the ship is at the left side of the screen
-		if(transform.position.x == boundaries.getLeft() * .9f)
+		if(transform.position.x <= boundaries.getLeft()* 0.89)
 		{
 			//If this peice of code hasn't been run yet
 			if(!verticalMove)
