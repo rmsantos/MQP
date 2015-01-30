@@ -111,6 +111,11 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetFloat ("AccelerationRate", initialAcceleration);
 		PlayerPrefs.SetFloat ("MaxAcceleration", initialMaxAcceleration);
 
+		//Game values
+		PlayerPrefs.SetInt ("Money", 0);
+		PlayerPrefs.SetInt ("Score", 0);
+		PlayerPrefs.SetInt ("Level", 1);
+
 		startGame = start;
 	}
 
