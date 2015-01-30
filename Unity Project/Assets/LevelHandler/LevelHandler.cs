@@ -174,11 +174,13 @@ public class LevelHandler : MonoBehaviour {
 	}
 
 	public void NextLevel() {
+
 		level++;
-		wave = 0;
-		canSpawn = true;
-		background.ChangeBackground();
-		updateLevel.UpdateText (level);
+		PlayerPrefs.SetInt ("Level", level);
+		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
+		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money);
+		//Load the UpgradeScene
+		Application.LoadLevel (2);
 	}
 
 	public void SpawningHasStopped () {

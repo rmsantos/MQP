@@ -33,7 +33,7 @@ public class MainMenu : MonoBehaviour {
 	public float initialAcceleration;
 	public float initialMaxAcceleration;
 	public int initialShields;
-	public int initialRockets;
+	public int initialMissiles;
 	public int initialLaser;
 	public int initialMoneyValue;
 	public int initialReload;
@@ -104,12 +104,19 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("Damage", initialDamage);
 		PlayerPrefs.SetInt ("Shields", initialShields);
 		PlayerPrefs.SetInt ("Reload", initialReload);
-		PlayerPrefs.SetInt ("Rockets", initialRockets);
+		PlayerPrefs.SetInt ("Missiles", initialMissiles);
 		PlayerPrefs.SetInt ("Laser", initialLaser);
 		PlayerPrefs.SetInt ("Health", initialHealth);
 		PlayerPrefs.SetInt ("MoneyValue", initialMoneyValue);
 		PlayerPrefs.SetFloat ("AccelerationRate", initialAcceleration);
 		PlayerPrefs.SetFloat ("MaxAcceleration", initialMaxAcceleration);
+
+		//Upgrades
+		PlayerPrefs.SetInt ("DamageUpgrade", 0);
+		PlayerPrefs.SetInt ("ShieldUpgrade", 0);
+		PlayerPrefs.SetInt ("MissileUpgrade", 0);
+		PlayerPrefs.SetInt ("LaserUpgrade", 0);
+		PlayerPrefs.SetInt ("HealthUpgrade", 0);
 
 		//Game values
 		PlayerPrefs.SetInt ("Money", 0);
