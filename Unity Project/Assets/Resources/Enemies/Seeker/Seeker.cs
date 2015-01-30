@@ -65,6 +65,9 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 	//Stores the damage the missile does
 	public int missileDamage;
 
+	//Quitting boolean
+	bool isQuitting;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -94,6 +97,9 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
+
+		//Not quitting the application
+		isQuitting = false;
 
 	}
 	
@@ -239,4 +245,35 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 	{
 		return collisionDamage;
 	}
+
+	//Only called when the application is being quit. Will disable spawning in OnDestroy
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+	
+	//Used to spawn particle effects or money when destroyed
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			//Load the money prefab
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			
+			//Position of the enemy
+			var position = gameObject.transform.position;
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+			//Create money at this location
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			
+		}
+		
+	}
+
 }

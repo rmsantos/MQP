@@ -104,6 +104,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
 
+	//Quitting boolean
+	bool isQuitting;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -153,6 +156,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 		//Find the portrait controller script
 		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
+
+		//Not quitting the application
+		isQuitting = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -528,18 +534,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		{
 			//The boss has died
 			bossInstance.BossDied();
-
-			//Load the explosion
-			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
-			
-			//Store the position of the enemy
-			var position = gameObject.transform.position;
 			
 			//Destroy the enemy
-			Destroy(this.gameObject);
-			
-			//Create the explosion at this location
-			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			Destroy(this.gameObject);	
 			
 			//Update the players score
 			score.UpdateScore(value);
@@ -559,6 +556,36 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	public int getCollisionDamage()
 	{
 		return collisionDamage;
+	}
+
+	//Only called when the application is being quit. Will disable spawning in OnDestroy
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+	
+	//Used to spawn particle effects or money when destroyed
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			//Load the money prefab
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			
+			//Position of the enemy
+			var position = gameObject.transform.position;
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+			//Create money at this location
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			
+		}
+		
 	}
 
 }

@@ -36,6 +36,8 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	public GameObject scoreObject;
 	static ScoreHandler score;
 
+	bool isQuitting;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -58,6 +60,8 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 		float x = -1f;
 		float y = Random.Range(directionRange * -1f, directionRange);
 		direction = new Vector3(x, y);
+
+		isQuitting = false;
 		
 	}
 	
@@ -157,4 +161,36 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	{
 		return collisionDamage;
 	}
+
+	void OnApplicationQuit() {
+
+		isQuitting = true;
+
+	}
+
+	void OnDestroy() {
+
+		if (!isQuitting) {
+			//Load the money prefab
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
+			
+			//Position of the asteroid
+			var position = gameObject.transform.position;
+			
+			//Destroy the asteroid
+			Destroy(this.gameObject);
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+			//Create money at this location
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+
+		}
+
+	}
+
 }

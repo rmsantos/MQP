@@ -27,6 +27,9 @@ public class Money : MonoBehaviour {
 	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
+
+	//Quitting boolean
+	bool isQuitting;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -41,6 +44,9 @@ public class Money : MonoBehaviour {
 		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
+
+		//Not quitting the application
+		isQuitting = false;
 
 	}
 	
@@ -69,6 +75,31 @@ public class Money : MonoBehaviour {
 		{
 			//Destroy the enemy
 			Destroy (this.gameObject);
+		}
+		
+	}
+
+	//Only called when the application is being quit. Will disable spawning in OnDestroy
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+	
+	//Used to spawn particle effects or money when destroyed
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
+			
+			//Position of the enemy
+			var position = gameObject.transform.position;
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
 		}
 		
 	}

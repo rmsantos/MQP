@@ -37,6 +37,8 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	//The damage from colliding with this asteroid
 	public int collisionDamage;
 
+	bool isQuitting;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -59,6 +61,8 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 		float x = -1f;
 		float y = Random.Range(directionRange * -1f, directionRange);
 		direction = new Vector3(x, y);
+
+		isQuitting = false;
 		
 	}
 	
@@ -128,15 +132,9 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 
 		//Position of the asteroid
 		var position = gameObject.transform.position;
-
-		//Load the explosion
-		GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
 		
 		//Destroy the asteroid
 		Destroy(this.gameObject);
-		
-		//Create the explosion at this location
-		Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 
 		//Create two new medium asteroids
 		Instantiate(mediumAsteroid, new Vector3(position.x, position.y - .5f, position.z), Quaternion.identity);
@@ -159,4 +157,36 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	{
 		return collisionDamage;
 	}
+
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+	
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			//Load the money prefab
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
+			
+			//Position of the asteroid
+			var position = gameObject.transform.position;
+			
+			//Destroy the asteroid
+			Destroy(this.gameObject);
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+			//Create money at this location
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			
+		}
+		
+	}
+
 }

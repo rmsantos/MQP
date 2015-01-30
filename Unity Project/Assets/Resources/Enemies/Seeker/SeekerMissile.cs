@@ -52,6 +52,9 @@ public class SeekerMissile : MonoBehaviour {
 	//Is true if the missile is currently exploding
 	//Prevents infinite looks of exploding missiles
 	bool isExploding;
+
+	//Quitting boolean
+	bool isQuitting;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -75,6 +78,9 @@ public class SeekerMissile : MonoBehaviour {
 
 		//The missile is not exploding
 		isExploding = false;
+
+		//Not quitting the application
+		isQuitting = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -250,5 +256,30 @@ public class SeekerMissile : MonoBehaviour {
 	public int getBulletDamage ()
 	{
 		return damage;
+	}
+
+	//Only called when the application is being quit. Will disable spawning in OnDestroy
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+	
+	//Used to spawn particle effects or money when destroyed
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			
+			//Position of the enemy
+			var position = gameObject.transform.position;
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+		}
+		
 	}
 }

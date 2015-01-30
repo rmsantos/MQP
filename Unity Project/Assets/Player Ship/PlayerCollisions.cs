@@ -35,6 +35,9 @@ public class PlayerCollisions : MonoBehaviour {
 	//Threshold for the money audioclip
 	public int moneyThreshold;
 
+	//Quitting boolean
+	bool isQuitting;
+
 	void Start () {
 		
 		//Pull the values from player prefs
@@ -46,6 +49,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 		//Find the portrait controller script
 		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
+
+		//Not quitting the application
+		isQuitting = false;
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -183,5 +189,30 @@ public class PlayerCollisions : MonoBehaviour {
 	public void takeDamage(int damage)
 	{
 		health -= damage;
+	}
+
+	//Only called when the application is being quit. Will disable spawning in OnDestroy
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+	
+	//Used to spawn particle effects or money when destroyed
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			
+			//Position of the enemy
+			var position = gameObject.transform.position;
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+		}
+		
 	}
 }

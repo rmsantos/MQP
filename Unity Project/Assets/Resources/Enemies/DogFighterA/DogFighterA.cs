@@ -56,6 +56,9 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 	//Stores the damage the bullet does
 	public int bulletDamage;
 
+	//Quitting boolean
+	bool isQuitting;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -79,6 +82,9 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 		
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
+
+		//Not quitting the application
+		isQuitting = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -184,18 +190,8 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
-
-			//Load the explosion
-			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
-			
-			//Store the position of the enemy
-			var position = gameObject.transform.position;
-			
 			//Destroy the enemy
 			Destroy(this.gameObject);
-			
-			//Create the explosion at this location
-			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
 			//Update the players score
 			score.UpdateScore(value);
@@ -214,6 +210,36 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 	public int getCollisionDamage()
 	{
 		return collisionDamage;
+	}
+
+	//Only called when the application is being quit. Will disable spawning in OnDestroy
+	void OnApplicationQuit() {
+		
+		isQuitting = true;
+		
+	}
+
+	//Used to spawn particle effects or money when destroyed
+	void OnDestroy() {
+		
+		if (!isQuitting) {
+			//Load the money prefab
+			GameObject money = Resources.Load<GameObject>("Money/Money");
+			
+			//Load the explosion
+			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			
+			//Position of the enemy
+			var position = gameObject.transform.position;
+			
+			//Create the explosion at this location
+			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+			
+			//Create money at this location
+			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			
+		}
+		
 	}
 
 }

@@ -1,12 +1,6 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UpgradeMenu\UpgradeMenu.cs">
-    <Files>
-      <File FileName="Assets\UpgradeMenu\UpgradeMenu.cs" Line="131" Column="3" />
-      <File FileName="Assets\MainMenu\MainMenu.cs" Line="79" Column="4" />
-      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="182" Column="26" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
