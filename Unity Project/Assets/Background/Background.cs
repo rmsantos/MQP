@@ -33,6 +33,7 @@ public class Background : MonoBehaviour {
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
 
 		started = false;
+		stopped = false;
 
 		initialPosition = transform.position;
 	}

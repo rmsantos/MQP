@@ -1,9 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Portraits\PortraitController.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UpgradeMenu\UpgradeMenu.cs">
     <Files>
-      <File FileName="Assets\Portraits\PortraitController.cs" Line="240" Column="3" />
-      <File FileName="Assets\Resources\Enemies\Grenadier\Grenadier.cs" Line="1" Column="1" />
+      <File FileName="Assets\UpgradeMenu\UpgradeMenu.cs" Line="131" Column="3" />
+      <File FileName="Assets\MainMenu\MainMenu.cs" Line="79" Column="4" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="182" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
