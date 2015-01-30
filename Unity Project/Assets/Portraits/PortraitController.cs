@@ -30,11 +30,13 @@ public class PortraitController : MonoBehaviour {
 	public GameObject portrait3Object;
 	public GameObject portrait4Object;
 
-	//Portrait objects
-	Portrait portrait1;
-	Portrait portrait2;
-	Portrait portrait3;
-	Portrait portrait4;
+	//Audioclips paired with each portrait
+	//Portraits are paired in order of jobs
+	//Pilot, gunner, mechanic, radio
+	AudioClip[] portrait1;
+	AudioClip[] portrait2;
+	AudioClip[] portrait3;
+	AudioClip[] portrait4;
 
 	//Array of all possible character portraits
 	public Sprite[] portraits = new Sprite[14];
@@ -71,7 +73,7 @@ public class PortraitController : MonoBehaviour {
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Initializes the portrait images
+	 * Description : Initializes the portrait images and auido clips
 	 *
 	 * Parameters  : None
 	 *
@@ -105,111 +107,205 @@ public class PortraitController : MonoBehaviour {
 		dialogue [12] = character13;
 		dialogue [13] = character14;
 
-		//Create each character portrait object
-		portrait1 = new Portrait (portraits [PlayerPrefs.GetInt ("Portrait1")], dialogue[PlayerPrefs.GetInt("Portrait1")]);
-		portrait2 = new Portrait (portraits [PlayerPrefs.GetInt ("Portrait2")], dialogue[PlayerPrefs.GetInt("Portrait2")]);
-		portrait3 = new Portrait (portraits [PlayerPrefs.GetInt ("Portrait3")], dialogue[PlayerPrefs.GetInt("Portrait3")]);
-		portrait4 = new Portrait (portraits [PlayerPrefs.GetInt ("Portrait4")], dialogue[PlayerPrefs.GetInt("Portrait4")]);
+		//Create each character portrait dialogue list
+		portrait1 = dialogue[PlayerPrefs.GetInt("Portrait1")];
+		portrait2 = dialogue[PlayerPrefs.GetInt("Portrait2")];
+		portrait3 = dialogue[PlayerPrefs.GetInt("Portrait3")];
+		portrait4 = dialogue[PlayerPrefs.GetInt("Portrait4")];
 
 		//Load the portrait images
-		portrait1Object.GetComponent<SpriteRenderer> ().sprite = portrait1.getSprite ();
-		portrait2Object.GetComponent<SpriteRenderer> ().sprite = portrait2.getSprite ();
-		portrait3Object.GetComponent<SpriteRenderer> ().sprite = portrait3.getSprite ();
-		portrait4Object.GetComponent<SpriteRenderer> ().sprite = portrait4.getSprite ();
-
+		portrait1Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait1")];
+		portrait2Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait2")];
+		portrait3Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait3")];
+		portrait4Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait4")];
 	}
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Update()
 	 *
-	 * Description : Stuff
+	 * Description : Used for dialogue responses.
 	 *
 	 * Parameters  : None
 	 *
 	 * Returns     : Void
 	 */
 	void Update() {
+
+		//Play the pilotThanks audio clip after the radar operator gives a warning
 		if(pilotThanks && !source.isPlaying)
 		{
 			playPilotThanks();
 		}
+
+		if(Input.GetKeyDown("l"))
+			playApproachingAsteroids ();
 	}
 
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playAsteroidHit()
+	 *
+	 * Description : Plays on a 5% chance when an asteroid hits
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playAsteroidHit()
 	{
 		//5% to play this clip
 		if(random.GetRandom(100) < 5)
 		{
 			print("ASTEROID HIT!");
-			source.clip = portrait1.getDialogue()[1];
+
+			//Load the audio clip and play it
+			source.clip = portrait1[1];
 			source.Play();
 		}
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playEnemiesIncoming()
+	 *
+	 * Description : Plays on a 25% chance when an instance spawns
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playEnemiesIncoming()
 	{
 		//25% to play this clip
 		if(random.GetRandom(100) < 25)
 		{
 			print("ENEMIES INCOMING!");
-			source.clip = portrait1.getDialogue()[2];
+
+			//Load the audio clip and play it
+			source.clip = portrait1[2];
 			source.Play();
 		}
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playLargeEnemyDestroyed()
+	 *
+	 * Description : Plays on a 2% chance when a large enemy is destroyed
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playLargeEnemyDestroyed()
 	{
 		//2% to play this clip
 		if(random.GetRandom(100) < 2)
 		{
 			print("LARGE ENEMY DESTROYED!");
-			source.clip = portrait1.getDialogue()[3];
-			source.Play();
-		}
-	}
-	public void playPilotThanks()
-	{
-		if(pilotThanks)
-		{
-			pilotThanks = false;
-			print("PILOT THANKS");
-			source.clip = portrait1.getDialogue()[4];
+
+			//Load the audio clip and play it
+			source.clip = portrait1[3];
 			source.Play();
 		}
 	}
 
-	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playPilotThanks()
+	 *
+	 * Description : Plays on a response to a radio operator dialogue
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playPilotThanks()
+	{
+		//If the clip isnt already playing
+		if(pilotThanks)
+		{
+			print("PILOT THANKS");
+
+			//Flag that the clip is playing
+			pilotThanks = false;
+
+			//Load the audio clip and play it
+			source.clip = portrait1[4];
+			source.Play();
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playBulletHit()
+	 *
+	 * Description : Plays on a 5% chance when a bullet hits the player
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playBulletHit()
 	{
 		//5% to play this clip
 		if(random.GetRandom(100) < 5)
 		{
 			print("BULLET/MISSILE HIT");
-			source.clip = portrait2.getDialogue()[6];
+
+			//Load the audio clip and play it
+			source.clip = portrait2[6];
 			source.Play();
 		}
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playBossStart()
+	 *
+	 * Description : Plays on a 25% chance when a boss starts the first phase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playBossStart()
 	{
 		//25% to play this clip
 		if(random.GetRandom(100) < 25)
 		{
 			print("BOSS START");
-			source.clip = portrait2.getDialogue()[7];
+
+			//Load the audio clip and play it
+			source.clip = portrait2[7];
 			source.Play();
 		}
 	}
-
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playMissilesLow()
+	 *
+	 * Description : Plays when  missiles go under 5
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playMissilesLow()
 	{
 		//Called when missiles go under 5
 		print("MISSILES LOW");
-		source.clip = portrait2.getDialogue()[9];
+
+		//Load the audio clip and play it
+		source.clip = portrait2[9];
 		source.Play();
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playMoneyHigh()
+	 *
+	 * Description : Plays when the players money goes above a threshhold
+	 * 				Only played once per level at most
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playMoneyHigh()
 	{
 		//Called when the player collects a certain amount of crysals
@@ -217,109 +313,165 @@ public class PortraitController : MonoBehaviour {
 		if(!moneyCheck)
 		{
 			print("MONEY HIGH!");
-			source.clip = portrait3.getDialogue()[12];
+
+			//Load the audio clip and play it
+			source.clip = portrait3[12];
 			source.Play();
+
+			//Flag that this clip has already been played this level
 			moneyCheck = true;
 		}
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playLaserBoss()
+	 *
+	 * Description : Plays when shooting the boss with a laser
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playLaserBoss()
 	{
 		//50% to play this clip
 		if(random.GetRandom(100) < 50)
 		{
 			print("LASER BOSS");
-			source.clip = portrait3.getDialogue()[13];
+
+			//Load the audio clip and play it
+			source.clip = portrait3[13];
 			source.Play();
 		}
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playMiscInfo()
+	 *
+	 * Description : Plays this clip randomly throughout a level
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playMiscInfo()
 	{
 		//Play this clip whenever?
 		print("MISC INFO");
-		source.clip = portrait3.getDialogue()[14];
+
+		//Load the audio clip and play it
+		source.clip = portrait3[14];
 		source.Play();
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playApproachingAsteroids()
+	 *
+	 * Description : Plays this clip when an asteroid instance spawns
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playApproachingAsteroids()
 	{
 		//Play this clip always
 		print("APPROACHING ASTEROIDS");
-		source.clip = portrait4.getDialogue()[16];
+
+		//Load the audio clip and play it
+		source.clip = portrait4[16];
 		source.Play();
+
+		//Flag the pilot for a response
 		pilotThanks = true;
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playBossSpawn()
+	 *
+	 * Description : Plays this clip when the boss spawns
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playBossSpawn()
 	{
 		//Play this clip always
 		print("BOSS SPAWN");
-		source.clip = portrait4.getDialogue()[17];
+
+		//Load the audio clip and play it
+		source.clip = portrait4[17];
 		source.Play();
 
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playAmbusherSpawn()
+	 *
+	 * Description : Plays this clip on a 75% chance when an ambusher spawns
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playAmbusherSpawn()
 	{
 		//75% to play this clip
 		if(random.GetRandom(100) < 75)
 		{
 			print("AMBUSHER SPAWN");
-			source.clip = portrait4.getDialogue()[18];
+
+			//Load the audio clip and play it
+			source.clip = portrait4[18];
 			source.Play();
 		}
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playVictory()
+	 *
+	 * Description : Picks a random crew member and plays their victory dialogue
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	public void playVictory()
 	{
+		//Get a random number between 0 and 3 to represent each crew member
 		switch(random.GetRandom(4))
 		{
+			//Pilot
 			case 0:
 				print ("Character 1");
-				source.clip = portrait1.getDialogue()[20];
-				source.Play();
-				break;
-			case 1:
-				print ("Character 2");
-				source.clip = portrait2.getDialogue()[20];
-				source.Play();
-				break;
-			case 2:
-				print ("Character 3");
-				source.clip = portrait3.getDialogue()[20];
-				source.Play();
-				break;
-			case 3:
-				print ("Character 4");
-				source.clip = portrait4.getDialogue()[20];
-				source.Play();
-				break;
-		}
-	}
 
-	public void playCatchPhrase(int job)
-	{
-		switch(job)
-		{
-			case 0:
-				print ("Character 1");
-				source.clip = portrait1.getDialogue()[21];
+				//Load the audio clip and play it
+				source.clip = portrait1[20];
 				source.Play();
 				break;
+			//Gunner
 			case 1:
 				print ("Character 2");
-				source.clip = portrait2.getDialogue()[21];
+
+				//Load the audio clip and play it
+				source.clip = portrait2[20];
 				source.Play();
 				break;
+			//Mechanic
 			case 2:
 				print ("Character 3");
-				source.clip = portrait3.getDialogue()[21];
+
+				//Load the audio clip and play it
+				source.clip = portrait3[20];
 				source.Play();
 				break;
+			//Radar Operator
 			case 3:
 				print ("Character 4");
-				source.clip = portrait4.getDialogue()[21];
+
+				//Load the audio clip and play it
+				source.clip = portrait4[20];
 				source.Play();
 				break;
 		}
