@@ -136,9 +136,6 @@ public class PortraitController : MonoBehaviour {
 		{
 			playPilotThanks();
 		}
-
-		if(Input.GetKeyDown("l"))
-			playApproachingAsteroids ();
 	}
 
 

@@ -29,6 +29,10 @@ public class PlayerCollisions : MonoBehaviour {
 
 	public Slider healthBar;
 
+	//Get the portrait controller to play audio clips
+	public GameObject portrait;
+	PortraitController portraitController;
+
 	void Start () {
 		
 		//Pull the values from player prefs
@@ -37,6 +41,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
+
+		//Find the portrait controller script
+		portraitController = portrait.GetComponent<PortraitController>();
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -64,7 +71,6 @@ public class PlayerCollisions : MonoBehaviour {
 			//It will be deleted along with the juggernaut later
 			other.enabled = false;
 			other.renderer.enabled = false;
-
 		}
 	}
 
@@ -120,6 +126,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 		if(col.gameObject.tag == "Asteroids")
 		{
+			//Play the sound effect upon hitting an asteroid
+			portraitController.playAsteroidHit();
+
 			//Find the abstract class of this collision
 			BasicAsteroid asteroid = (BasicAsteroid)col.gameObject.GetComponent(typeof(BasicAsteroid));
 
