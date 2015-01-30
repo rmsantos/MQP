@@ -35,10 +35,10 @@ public class Gunner : MonoBehaviour {
 	int shootTimer;
 
 	//Time before the player can shoot again 
-	public int reloadTime;
+	int reloadTime;
 
 	//The damage the gunner will deal
-	public int damage;
+	int damage;
 
 	//Randomizer script
 	public GameObject pauseObject;
@@ -61,6 +61,11 @@ public class Gunner : MonoBehaviour {
 		shootTimer = reloadTime;
 
 		pauseMenu = (PauseController)pauseObject.GetComponent("PauseController");
+
+		//Pull the values from player prefs
+		damage = PlayerPrefs.GetInt ("Damage", 100);
+		reloadTime = PlayerPrefs.GetInt ("Reload", 1);
+
 	}
 	
 	/* ----------------------------------------------------------------------- */
