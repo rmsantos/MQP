@@ -157,7 +157,8 @@ public class Missile : MonoBehaviour {
 	{
 		//If the missile hits an enemy or asteroid
 		if(col.gameObject.tag == "Enemies" || col.gameObject.tag == "Asteroids" || 
-		   col.gameObject.tag == "EnemeyShield" || col.gameObject.tag == "Boss")
+		   col.gameObject.tag == "EnemeyShield" || col.gameObject.tag == "Boss" 
+		   || col.gameObject.tag == "Missile")
 		{
 			//explode this missile
 			explode();
@@ -198,7 +199,7 @@ public class Missile : MonoBehaviour {
 					enemy.takeDamage(damage);
 				}
 				
-				//Delete the object if it is an enemy bullet
+				//Delete the object if it is an enemy or player bullet
 				if(collide.tag == "EnemyBullets" || collide.tag == "PlayerBullet")
 					Destroy (collide.gameObject);
 				
@@ -225,13 +226,13 @@ public class Missile : MonoBehaviour {
 				}
 
 				//If the object is another missile
-				if(collide.tag == "Missile")
+				if(collide.tag == "Player")
 				{
-					//Cast to an asteroid type
-					Missile missile = (Missile)collide.GetComponent(typeof(Missile));
+					//Cast to the player collisions type
+					PlayerCollisions player = (PlayerCollisions)collide.GetComponent(typeof(PlayerCollisions));
 					
-					//And explode the missile
-					missile.explode();
+					//The player takes damage
+					player.takeDamage(damage);
 					
 				}
 			}

@@ -95,9 +95,6 @@ public class PlayerCollisions : MonoBehaviour {
 			//Find the class of this missile
 			SeekerMissile missile = (SeekerMissile)col.gameObject.GetComponent(typeof(SeekerMissile));
 
-			//Subtract the health based on that bullet
-			health -= missile.getBulletDamage();
-
 			//Explode the missile
 			missile.explode();
 
@@ -182,6 +179,10 @@ public class PlayerCollisions : MonoBehaviour {
 
 	public void takeDamage(int damage)
 	{
+		//Deduct damage from health
 		health -= damage;
+
+		//And display on the health bar
+		healthBar.value = health;
 	}
 }

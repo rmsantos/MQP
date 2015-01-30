@@ -146,14 +146,11 @@ public class SeekerMissile : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		//If this is hit by a player bullet
-		if(col.gameObject.tag == "PlayerBullet")
+		if(col.gameObject.tag == "PlayerBullet" || col.gameObject.tag == "Player" 
+		   || col.gameObject.tag == "Missile" || col.gameObject.tag == "SeekerMissile")
 		{
 			//explode this missile
-			explode();
-
-			//Destroy the player bullet
-			Destroy (col.gameObject);
-			
+			explode();			
 		}
 	}
 
@@ -191,8 +188,8 @@ public class SeekerMissile : MonoBehaviour {
 					enemy.takeDamage(damage);
 				}
 				
-				//Delete the object if it is an enemy bullet
-				if(collide.tag == "EnemyBullets")
+				//Delete the object if it is an enemy or player bullet
+				if(collide.tag == "EnemyBullets" || collide.tag == "PlayerBullet")
 					Destroy (collide.gameObject);
 				
 				//If the object is an asteroid
@@ -214,6 +211,28 @@ public class SeekerMissile : MonoBehaviour {
 					
 					//And explode the missile
 					seekerMissile.explode();
+					
+				}
+
+				//If the object is another missile
+				if(collide.tag == "Missile")
+				{
+					//Cast to an asteroid type
+					Missile missile = (Missile)collide.GetComponent(typeof(Missile));
+					
+					//And explode the missile
+					missile.explode();
+					
+				}
+
+				//If the object is another missile
+				if(collide.tag == "Player")
+				{
+					//Cast to the player collisions type
+					PlayerCollisions player = (PlayerCollisions)collide.GetComponent(typeof(PlayerCollisions));
+
+					//The player takes damage
+					player.takeDamage(damage);
 					
 				}
 			}
