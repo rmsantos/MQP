@@ -92,6 +92,7 @@
      <Compile Include="Assets\UI\UpdateLevel.cs" />
      <Compile Include="Assets\UI\UpdateMoney.cs" />
      <Compile Include="Assets\UI\UpdateScore.cs" />
+     <Compile Include="Assets\UpgradeMenu\UpgradeMenu.cs" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
