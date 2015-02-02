@@ -500,7 +500,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	{
 		//If this is hit by a player bullet
 		//Ignore collisions while in phase 0
-		if(col.gameObject.tag == "PlayerBullet" && phase != 0)
+		if(col.gameObject.tag == "PlayerBullet" && !startingPhase())
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
@@ -512,6 +512,20 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			takeDamage(damage);
 			
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : startingPhase()
+	 *
+	 * Description : Returns true if the boss is in its starting phase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : bool : True if the boss is in starting phase. False otherwise.
+	 */
+	public bool startingPhase()
+	{
+		return phase == 0;
 	}
 	
 	/* ----------------------------------------------------------------------- */

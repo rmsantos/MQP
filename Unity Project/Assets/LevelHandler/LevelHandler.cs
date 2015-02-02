@@ -129,7 +129,7 @@ public class LevelHandler : MonoBehaviour {
 				spawnTimer = timeBetweenSpawning;
 				wave++;
 
-				if (wave <= 3) {
+				/*if (wave <= 3) {
 					//TODO have a more advanced instance picker
 					string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0))];
 					Instantiate(Resources.Load<GameObject>(randomInstance));
@@ -149,14 +149,14 @@ public class LevelHandler : MonoBehaviour {
 					}
 
 				}
-				else {
+				else {*/
 					Instantiate(Resources.Load<GameObject>("BossInstances/" + bosses[0]));
 					background.StopBackground();
 					bossHealthSlider.active = true;
 
 					//Play the boss spawn audio clip
 					portraitController.playBossSpawn();
-				}
+				//}
 				
 			}
 		}

@@ -103,7 +103,7 @@ public class Laser : MonoBehaviour {
 		foreach(RaycastHit2D hit in hits)
 		{
 			//If the collision was with an enemy or boss
-			if(hit.transform.tag == "Enemies" || hit.transform.tag == "Boss")
+			if(hit.transform.tag == "Enemies")
 			{
 				//Find the component that extends BasicEnemy (the enemy script)
 				BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
@@ -132,6 +132,18 @@ public class Laser : MonoBehaviour {
 				//And explode the missile
 				seekerMissile.explode();
 				
+			}
+
+			if(hit.transform.tag == "Boss")
+			{
+				if(!hit.transform.GetComponent<Flagship>().startingPhase())
+				{
+					//Find the component that extends BasicEnemy (the enemy script)
+					BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
+					
+					//Deal damage to that enemy
+					enemy.takeDamage(damage);
+				}
 			}
 		}
 		

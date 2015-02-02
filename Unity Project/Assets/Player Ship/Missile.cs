@@ -195,13 +195,25 @@ public class Missile : MonoBehaviour {
 			foreach( Collider2D collide in hitColliders)
 			{
 				//If the collision was with an enemy or boss
-				if(collide.tag == "Enemies" || collide.tag == "Boss")
+				if(collide.tag == "Enemies")
 				{
 					//Find the component that extends BasicEnemy (the enemy script)
 					BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
 					
 					//Deal damage to that enemy
 					enemy.takeDamage(damage);
+				}
+
+				if(collide.tag == "Boss")
+				{
+					if(!collide.GetComponent<Flagship>().startingPhase())
+					{
+						//Find the component that extends BasicEnemy (the enemy script)
+						BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
+						
+						//Deal damage to that enemy
+						enemy.takeDamage(damage);
+					}
 				}
 				
 				//Delete the object if it is an enemy or player bullet
