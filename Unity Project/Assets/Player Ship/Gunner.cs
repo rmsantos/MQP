@@ -28,11 +28,17 @@ public class Gunner : MonoBehaviour {
 	//The prefab object for the missile
 	public GameObject missilePrefab;
 
+	//The prefab object for the laser
+	public GameObject laserPrefab;
+
 	//Is the player ready to shoot a bullet?
 	bool readyBullet;
 
 	//Is the player ready to shoot a missile?
 	bool readyMissile;
+
+	//Is the player ready to shoot a laser?
+	bool readyLaser;
 
 	//Player is going to shoot a bullet
 	bool shootingBullet;
@@ -40,14 +46,23 @@ public class Gunner : MonoBehaviour {
 	//Player is going to shoot a missile
 	bool shootingMissile;
 
+	//Player is going to shoot a laser
+	bool shootingLaser;
+
 	//Counter for reloading bullets
 	int bulletShootTimer;
 
 	//Time before the player can shoot bullets again 
 	int bulletReloadTime;
 
-	//Counter for reloading issiles
+	//Time before the player can shoot lasers again 
+	int laserReloadTime;
+
+	//Counter for reloading missiles
 	int missileShootTimer;
+
+	//Counter for reloading lasers
+	int laserShootTimer;
 	
 	//Time before the player can shoot missiles again 
 	int missileReloadTime;
@@ -57,6 +72,9 @@ public class Gunner : MonoBehaviour {
 
 	//The damage missiles will deal
 	int missileDamage;
+
+	//The damage lasers will deal
+	int laserDamage;
 
 	//Randomizer script
 	public GameObject pauseObject;
@@ -75,10 +93,12 @@ public class Gunner : MonoBehaviour {
 		//Defaultly be ready to shoot
 		readyBullet = true;
 		readyMissile = true;
+		readyLaser = true;
 
 		//Set the shoot timer to its reload time
 		bulletShootTimer = bulletReloadTime;
 		missileShootTimer = missileReloadTime;
+		laserShootTimer = laserReloadTime;
 
 		pauseMenu = (PauseController)pauseObject.GetComponent("PauseController");
 
@@ -89,6 +109,8 @@ public class Gunner : MonoBehaviour {
 		missileDamage = 5;
 		missileReloadTime = 50;
 
+		laserDamage = 2;
+		laserReloadTime = 25;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -129,6 +151,20 @@ public class Gunner : MonoBehaviour {
 				
 				readyMissile = true;
 				missileShootTimer = missileReloadTime;
+			}
+		}
+
+		//If the player is "reloading" a laser, don't decrement the timer
+		if (!readyLaser) {
+			
+			//Decrements the shoot timer
+			laserShootTimer--;
+			
+			//If the shoot timer has reached 0, reset it and flag that the player can shoot
+			if (laserShootTimer <= 0) {
+				
+				readyLaser = true;
+				laserShootTimer = laserReloadTime;
 			}
 		}
 
@@ -194,6 +230,21 @@ public class Gunner : MonoBehaviour {
 			missile.GetComponent<Missile>().setDamage(missileDamage);
 			
 		}
+
+		//If the usesr has clicked the middle mouse button
+		if(shootingLaser)
+		{
+			//Create the laser object and store it
+			GameObject laser = (GameObject)Instantiate(laserPrefab,transform.position,Quaternion.identity);
+
+			//Transfer the damage to the laser object
+			laser.GetComponent<Laser>().setDamage(laserDamage);
+
+			//Flag that the laser was shot
+			readyLaser = false;
+			shootingLaser = false;
+
+		}
 	
 	}
 
@@ -204,6 +255,7 @@ public class Gunner : MonoBehaviour {
 		{
 			//If the player tries to shoot a bullet and can
 			if(readyBullet && Input.GetMouseButtonDown(0)) {
+
 				//Flag the shoot
 				shootingBullet = true;
 
@@ -211,9 +263,18 @@ public class Gunner : MonoBehaviour {
 
 			//If the player tries to shoot a missile and can
 			if(readyMissile && Input.GetMouseButtonDown(1)) {
+
 				//Flag the shoot
 				shootingMissile= true;
 
+			}
+
+			//If the player tries to shoot a laser and can
+			if(readyLaser && Input.GetMouseButtonDown(2)) {
+
+				//Flag the shoot
+				shootingLaser= true;
+				
 			}
 		}
 

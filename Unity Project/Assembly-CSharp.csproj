@@ -56,6 +56,7 @@
      <Compile Include="Assets\Particle Effects\Explosion.cs" />
      <Compile Include="Assets\Player Ship\Bullet.cs" />
      <Compile Include="Assets\Player Ship\Gunner.cs" />
+     <Compile Include="Assets\Player Ship\Laser.cs" />
      <Compile Include="Assets\Player Ship\Missile.cs" />
      <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
