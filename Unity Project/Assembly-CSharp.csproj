@@ -60,6 +60,7 @@
      <Compile Include="Assets\Player Ship\Missile.cs" />
      <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
+     <Compile Include="Assets\Player Ship\ShipUpgrades.cs" />
      <Compile Include="Assets\Portraits\PortraitController.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
