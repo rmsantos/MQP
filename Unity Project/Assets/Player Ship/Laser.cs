@@ -36,6 +36,11 @@ public class Laser : MonoBehaviour {
 
 	//The radius at which the raycast will cast
 	public float castRadius;
+
+	//List of enemies hit
+	//This prevents enemies from taking double damage
+	ArrayList hitList = new ArrayList();
+
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -102,47 +107,54 @@ public class Laser : MonoBehaviour {
 		//For every collision
 		foreach(RaycastHit2D hit in hits)
 		{
-			//If the collision was with an enemy or boss
-			if(hit.transform.tag == "Enemies")
+			//If this object hasnt been hit yet
+			if(!hitList.Contains(hit.transform.gameObject))
 			{
-				//Find the component that extends BasicEnemy (the enemy script)
-				BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
-				
-				//Deal damage to that enemy
-				enemy.takeDamage(damage);
-			}
-						
-			//If the object is an asteroid
-			if(hit.transform.tag == "Asteroids")
-			{
-				//Cast to an asteroid type
-				BasicAsteroid asteroid = (BasicAsteroid)hit.transform.GetComponent(typeof(BasicAsteroid));
-				
-				//And shatter the asteroid
-				asteroid.shatter();
-				
-			}
-			
-			//If the object is an enemy missile
-			if(hit.transform.tag == "EnemyMissile")
-			{
-				//Cast to an asteroid type
-				SeekerMissile seekerMissile = (SeekerMissile)hit.transform.GetComponent(typeof(SeekerMissile));
-				
-				//And explode the missile
-				seekerMissile.explode();
-				
-			}
+				//Adds this object to the hit list
+				hitList.Add(hit.transform.gameObject);
 
-			if(hit.transform.tag == "Boss")
-			{
-				if(!hit.transform.GetComponent<Flagship>().startingPhase())
+				//If the collision was with an enemy or boss
+				if(hit.transform.tag == "Enemies")
 				{
 					//Find the component that extends BasicEnemy (the enemy script)
 					BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
-					
+						
 					//Deal damage to that enemy
 					enemy.takeDamage(damage);
+				}
+							
+				//If the object is an asteroid
+				if(hit.transform.tag == "Asteroids")
+				{
+					//Cast to an asteroid type
+					BasicAsteroid asteroid = (BasicAsteroid)hit.transform.GetComponent(typeof(BasicAsteroid));
+					
+					//And shatter the asteroid
+					asteroid.shatter();
+					
+				}
+				
+				//If the object is an enemy missile
+				if(hit.transform.tag == "EnemyMissile")
+				{
+					//Cast to an asteroid type
+					SeekerMissile seekerMissile = (SeekerMissile)hit.transform.GetComponent(typeof(SeekerMissile));
+					
+					//And explode the missile
+					seekerMissile.explode();
+					
+				}
+
+				if(hit.transform.tag == "Boss")
+				{
+					if(!hit.transform.GetComponent<Flagship>().startingPhase())
+					{
+						//Find the component that extends BasicEnemy (the enemy script)
+						BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
+						
+						//Deal damage to that enemy
+						enemy.takeDamage(damage);
+					}
 				}
 			}
 		}
