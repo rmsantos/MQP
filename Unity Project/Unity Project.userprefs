@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Laser.cs">
     <Files>
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="112" Column="1" />
+      <File FileName="Assets\Player Ship\Laser.cs" Line="52" Column="53" />
+      <File FileName="Assets\Player Ship\Gunner.cs" Line="226" Column="42" />
+      <File FileName="Assets\Player Ship\Missile.cs" Line="197" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
