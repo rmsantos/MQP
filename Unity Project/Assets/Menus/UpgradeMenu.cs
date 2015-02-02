@@ -21,12 +21,18 @@ using System.Collections;
 
 public class UpgradeMenu : MonoBehaviour {
 
+	public enum upgradeSelected { DAMAGE = 0, HEALTH = 1, MISSILE = 2, LASER = 3, SHIELD = 4}
+
 	//Flags on whether to start the game
 	bool startGame;
 
 	//The start button
 	public Button startButton;
 	public Button damageButton;
+	public Button purchaseButton;
+	public Button shieldButton;
+	public Button laserButton;
+	public Button missileButton;
 
 	public int[] damageCost;
 	public int[] healthCost;
@@ -36,7 +42,7 @@ public class UpgradeMenu : MonoBehaviour {
 
 	public Text moneyText;
 	public Text statusText;
-	public Text damageCostText;
+	public Text CostText;
 	
 	int damage;
 	int health;
@@ -47,6 +53,8 @@ public class UpgradeMenu : MonoBehaviour {
 	int missileUpgrade;
 	int laserUpgrade;
 	int shieldUpgrade;
+	
+	int selected;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -123,11 +131,51 @@ public class UpgradeMenu : MonoBehaviour {
 		//DAMAGE
 		if (damageUpgrade >= damageCost.Length) {
 			damageButton.interactable = false;
-			damageCostText.text = "MAX";
+			CostText.text = "MAX";
 		}
 		else {
-			damageCostText.text = damageCost[damageUpgrade].ToString();
+			CostText.text = damageCost[damageUpgrade].ToString();
 		}
+
+	}
+
+	public void purchase() {
+
+		switch (selected) {
+
+			default:
+				break;
+		}
+
+	}
+
+	public void SelectDamage() {
+
+		selected = (int) upgradeSelected.DAMAGE;
+
+	}
+
+	public void SelectHealth() {
+
+		selected = (int) upgradeSelected.HEALTH;
+
+	}
+
+	public void SelectMissiles() {
+
+		selected = (int) upgradeSelected.MISSILE;
+
+	}
+
+	public void SelectShields() {
+
+		selected = (int) upgradeSelected.SHIELD;
+
+	}
+
+	public void SelectLaser() {
+
+		selected = (int) upgradeSelected.LASER;
 
 	}
 

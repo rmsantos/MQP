@@ -24,9 +24,9 @@ public class ShipUpgrades : MonoBehaviour {
 	
 	void Start () {
 	
-		MissileLevel = 0;
-		ShieldLevel = 0;
-		LaserLevel = 0;
+		MissileLevel = PlayerPrefs.GetInt ("Missiles", 0);
+		ShieldLevel = PlayerPrefs.GetInt ("Shields", 0);
+		LaserLevel = PlayerPrefs.GetInt ("Laser", 0);
 		TurretLevel = 1;
 
 		if (MissileLevel < 1) {
