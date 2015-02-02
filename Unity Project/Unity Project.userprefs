@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Missile.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
     <Files>
-      <File FileName="Unity Project.sln" Line="1" Column="1" />
-      <File FileName="Assets\Player Ship\Missile.cs" Line="161" Column="40" />
-      <File FileName="Assets\Resources\Enemies\Flagship\Flagship.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="104" Column="25" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
