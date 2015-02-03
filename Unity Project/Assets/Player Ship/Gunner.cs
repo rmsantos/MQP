@@ -232,7 +232,7 @@ public class Gunner : MonoBehaviour {
 			
 			//Rotate the bullet towards the player
 			missile.transform.rotation = Quaternion.LookRotation(direction);
-			
+
 			//Send the damage the bullet will deal to the bullet
 			missile.GetComponent<Missile>().setDamage(missileDamage);
 			
