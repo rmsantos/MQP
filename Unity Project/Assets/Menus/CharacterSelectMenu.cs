@@ -67,7 +67,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 		navigator = -1;
 		mechanic = -1;
 
-		selected = 0;
+		selected = -1;
 
 	}
 	
@@ -116,11 +116,13 @@ public class CharacterSelectMenu : MonoBehaviour {
 	 */
 	public void SetStart(bool start)
 	{
-		startGame = start;
+		if (pilot != -1 && gunner != -1 && navigator != -1 && mechanic != -1) {
+			startGame = start;
+		}
 	}
 
 	public bool HasNotBeenSelected() {
-		return (pilot != selected && gunner != selected && mechanic != selected && navigator != selected);
+		return (selected != -1 && pilot != selected && gunner != selected && mechanic != selected && navigator != selected);
 	}
 
 	public void LockInPilot() {
