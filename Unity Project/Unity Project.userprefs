@@ -6,7 +6,7 @@
       <File FileName="Assets\Player Ship\Gunner.cs" Line="1" Column="1" />
       <File FileName="Assets\Player Ship\ShipUpgrades.cs" Line="49" Column="1" />
       <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Menus\CharacterSelectMenu.cs" Line="65" Column="3" />
+      <File FileName="Assets\Menus\CharacterSelectMenu.cs" Line="116" Column="24" />
       <File FileName="Assets\Menus\MainMenu.cs" Line="143" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

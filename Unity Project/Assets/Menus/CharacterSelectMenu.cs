@@ -30,6 +30,16 @@ public class CharacterSelectMenu : MonoBehaviour {
 	public Button lockMechanicButton;
 
 	public Text descriptionText;
+	public Text nameText;
+
+	public Image pilotImage;
+	public Image gunnerImage;
+	public Image navigatorImage;
+	public Image mechanicImage;
+
+	public Image selectedImage;
+
+	public Sprite[] characterImages;
 	
 	int pilot;
 	int gunner;
@@ -51,6 +61,13 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 		//Initialize states to not pressed
 		startGame = false;
+
+		pilot = -1;
+		gunner = -1;
+		navigator = -1;
+		mechanic = -1;
+
+		selected = 0;
 
 	}
 	
@@ -76,9 +93,15 @@ public class CharacterSelectMenu : MonoBehaviour {
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
 		{
+			PlayerPrefs.SetInt("Portrait1", pilot);
+			PlayerPrefs.SetInt("Portrait2", gunner);
+			PlayerPrefs.SetInt("Portrait3", mechanic);
+			PlayerPrefs.SetInt("Portrait4", navigator);
 			//Load the main game
 			Application.LoadLevel (1);
 		}
+
+
 	
 	}
 
@@ -96,24 +119,41 @@ public class CharacterSelectMenu : MonoBehaviour {
 		startGame = start;
 	}
 
-	public void LockInPilot() {
+	public bool HasNotBeenSelected() {
+		return (pilot != selected && gunner != selected && mechanic != selected && navigator != selected);
+	}
 
+	public void LockInPilot() {
+		if (HasNotBeenSelected()) {
+			pilotImage.overrideSprite = characterImages[selected];
+			pilot = selected;
+		}
 	}
 
 	public void LockInGunner() {
-		
+		if (HasNotBeenSelected()) {
+			gunnerImage.overrideSprite = characterImages[selected];
+			gunner = selected;
+		}
 	}
 
 	public void LockInMechanic() {
-		
+		if (HasNotBeenSelected()) {
+			mechanicImage.overrideSprite = characterImages[selected];
+			mechanic = selected;
+		}
 	}
 
 	public void LockInNavigator() {
-		
+		if (HasNotBeenSelected()) {
+			navigatorImage.overrideSprite = characterImages[selected];
+			navigator = selected;
+		}
 	}
 
 	public void SelectCharacter(int character) {
 		selected = character;
+		selectedImage.overrideSprite = characterImages[character];
 	}
 
 	
