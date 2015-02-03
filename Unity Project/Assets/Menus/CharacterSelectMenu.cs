@@ -40,6 +40,8 @@ public class CharacterSelectMenu : MonoBehaviour {
 	public Image selectedImage;
 
 	public Sprite[] characterImages;
+
+	public string[] characterDescriptions;
 	
 	int pilot;
 	int gunner;
@@ -156,6 +158,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 	public void SelectCharacter(int character) {
 		selected = character;
 		selectedImage.overrideSprite = characterImages[character];
+		descriptionText.text = characterDescriptions[character];
 	}
 
 	
