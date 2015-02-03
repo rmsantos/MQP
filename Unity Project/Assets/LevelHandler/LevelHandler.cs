@@ -28,13 +28,14 @@ public class LevelHandler : MonoBehaviour {
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
 
-	string[] instances = new string[9] {"FlyingV", "ExampleInstance", "DogfighterAttack", "LargeAsteroids", "MediumAsteroids", "SmallAsteroids", "MixedAsteroids", "JuggernautWave", "HeavyWave"};
-	string[] bosses = new string[1] {"Boss1"};
+	public GameObject[] instances;
+	public GameObject[] bosses;
 
 	//Level tracker variables
 	static int level;
 	static int wave;
 	static bool levelCompleted;
+	static int levelCompletedTimer;
 	
 	//Randomizer script
 	public GameObject randomizer;
@@ -55,6 +56,9 @@ public class LevelHandler : MonoBehaviour {
 	
 	public GameObject levelText;
 	static UpdateLevel updateLevel;
+
+	public GameObject levelComplete1;
+	public GameObject levelComplete2;
 
 	public Slider bossHealthSlider;
 	static int bossHealth;
@@ -88,8 +92,9 @@ public class LevelHandler : MonoBehaviour {
 		level = PlayerPrefs.GetInt ("Level", 100);
 
 		wave = 0;
-		//TODO this is an unused variable. It could be used for pausing at the end of levels, shooting fireworks, displaying UI, or whatever
+
 		levelCompleted = false;
+		levelCompletedTimer = 0;
 		
 		updateLevel = (UpdateLevel)levelText.GetComponent("UpdateLevel");
 
@@ -117,7 +122,7 @@ public class LevelHandler : MonoBehaviour {
 		bossHealthSlider.value = bossHealth;
 
 		//If spawning is occurring, don't decrement the timer
-		if (canSpawn) {
+		if (canSpawn && !levelCompleted) {
 
 			//Decrements the spawn timer
 			spawnTimer--;
@@ -131,12 +136,12 @@ public class LevelHandler : MonoBehaviour {
 
 				if (wave <= 3) {
 					//TODO have a more advanced instance picker
-					string randomInstance = "Instances/" + instances[random.GetRandom(instances.GetLength(0))];
-					Instantiate(Resources.Load<GameObject>(randomInstance));
+					int randomInstance = random.GetRandom(instances.GetLength(0));
+					Instantiate(instances[randomInstance]);
 
 					//If the instance is an asteroid instance
-					if(randomInstance == "Instances/SmallAsteroids" || randomInstance == "Instances/MediumAsteroids" ||
-					   randomInstance == "Instances/LargeAsteroids" || randomInstance == "Instances/MixedAsteroids")
+					if (randomInstance == 2 || randomInstance == 3 ||
+					   randomInstance == 4 || randomInstance == 5)
 					{
 						//Play the asteroid field audio clip
 						portraitController.playApproachingAsteroids();
@@ -150,7 +155,7 @@ public class LevelHandler : MonoBehaviour {
 
 				}
 				else {
-					Instantiate(Resources.Load<GameObject>("BossInstances/" + bosses[0]));
+					Instantiate(bosses[0]);
 					background.StopBackground();
 					bossHealthSlider.active = true;
 
@@ -160,17 +165,28 @@ public class LevelHandler : MonoBehaviour {
 				
 			}
 		}
+
+		if (levelCompleted) {
+
+			levelCompletedTimer++;
+			if (levelCompletedTimer == 40) {
+				Instantiate(levelComplete1);
+			}
+			else if (levelCompletedTimer == 70) {
+				Instantiate(levelComplete2);
+			}
+			else if (levelCompletedTimer >= 140) {
+				NextLevel ();
+			}
+		}
 	}
 
 	public void LevelComplete() {
-		//TODO Perhaps change scene or do something with buying
-		//More level completion stuff can be put here
 		var enemies = GameObject.FindGameObjectsWithTag("Enemies");
 		foreach (var obj in enemies) {
 			Destroy(obj);
 		}
-
-		NextLevel ();
+		levelCompleted = true;
 	}
 
 	public void NextLevel() {
