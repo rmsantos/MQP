@@ -36,7 +36,7 @@ public class ShipUpgrades : MonoBehaviour {
 			transform.Find("ShieldUpgrade").renderer.enabled = false;
 		}
 		if (LaserLevel < 1) {
-			transform.Find("LaserUpgrade").renderer.enabled = false;
+			transform.Find("LaserUpgrade/LaserUpgrade").renderer.enabled = false;
 			transform.Find("LaserUpgradeAttachment").renderer.enabled = false;
 		}
 		if (TurretLevel < 1) {
