@@ -65,6 +65,12 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	//Quitting boolean
 	bool isQuitting;
 
+	//The place to spawn bullets
+	public Transform turret1;
+	public Transform turret2;
+	public Transform turret3;
+
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -136,13 +142,13 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 			ready = false;
 			
 			//Spawn the first bullet and store it
-			GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,turret3.position,Quaternion.identity);
 
 			//Spawn the second bullet and store it
-			GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,turret2.position,Quaternion.identity);
 
 			//Spawn the third bullet and store it
-			GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,turret1.position,Quaternion.identity);
 
 			//Cast the first bullet to a bullet type
 			SimpleEnemyBullet simpleEnemyBullet1 = (SimpleEnemyBullet)bullet1.GetComponent(typeof(SimpleEnemyBullet));
