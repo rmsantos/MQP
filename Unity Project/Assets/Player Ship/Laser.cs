@@ -68,9 +68,9 @@ public class Laser : MonoBehaviour {
 
 		//Store the mouse's position in world coordinates
 		mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
-
-		//Store the end point to be the mouse position
-		line.SetPosition (1, mouseWorldPos);
+	
+		//Store the end point to be a point in the direction of the mouse position
+		line.SetPosition (1, (mouseWorldPos-transform.position)*100 + transform.position);
 
 	}
 	
@@ -98,11 +98,8 @@ public class Laser : MonoBehaviour {
 			Destroy(this.gameObject);
 		}
 
-		//Maximum distance the raycast will go
-		float distance = Vector3.Distance (transform.position, mouseWorldPos);
-
 		//Draw a raycast from here to the mouse position
-		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position,castRadius, mouseWorldPos-transform.position, distance);
+		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position,castRadius, mouseWorldPos-transform.position);
 
 		//For every collision
 		foreach(RaycastHit2D hit in hits)
