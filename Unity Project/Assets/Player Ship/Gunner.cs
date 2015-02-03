@@ -22,6 +22,15 @@ public class Gunner : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
+	//The transform of the turret
+	public Transform turret;
+
+	//The transform of the missile shooter
+	public Transform missile;
+
+	//The transform of the laser shooter
+	public Transform laser;
+
 	//The prefab object for the bullet
 	public GameObject bulletPrefab;
 
@@ -168,6 +177,23 @@ public class Gunner : MonoBehaviour {
 			}
 		}
 
+
+
+		//Read the mouse location in pixels
+		Vector3 mousePos = Input.mousePosition;
+		
+		//Set the z offset since the camera is at -10z
+		mousePos.z = 10;
+		
+		//Store the mouse's position in world coordinates
+		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
+
+		//Store the direction of the player in respect to the bullet
+		Vector3 turretDirection = mouseWorldPos-turret.position;
+	
+		//Rotate the turret towards the mouse
+		turret.rotation = Quaternion.LookRotation(turretDirection, turret.up);
+	
 		//If the user clicked the left mouse button
 		if (shootingBullet) {
 
@@ -175,21 +201,12 @@ public class Gunner : MonoBehaviour {
 			readyBullet = false;
 			shootingBullet = false;
 
-			//Instantiate a bullet with bulletPrefab at the players current location
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
-			//Read the mouse location in pixels
-			Vector3 mousePos = Input.mousePosition;
-
-			//Set the z offset since the camera is at -10z
-			mousePos.z = 10;
-
-			//Store the mouse's position in world coordinates
-			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
-
+			//Instantiate a bullet with bulletPrefab at the players turret
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab,turret.position, Quaternion.identity);
+						
 			//Store the direction of the player in respect to the bullet
 			Vector3 direction = mouseWorldPos-bullet.transform.position;
-			
+
 			//Rotate the bullet towards the player
 			bullet.transform.rotation = Quaternion.LookRotation(direction);
 			
@@ -210,15 +227,6 @@ public class Gunner : MonoBehaviour {
 			
 			//Instantiate a bullet with bulletPrefab at the players current location
 			GameObject missile = (GameObject)Instantiate(missilePrefab,transform.position,Quaternion.identity);
-			
-			//Read the mouse location in pixels
-			Vector3 mousePos = Input.mousePosition;
-			
-			//Set the z offset since the camera is at -10z
-			mousePos.z = 10;
-			
-			//Store the mouse's position in world coordinates
-			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
 			
 			//Store the direction of the player in respect to the bullet
 			Vector3 direction = mouseWorldPos-missile.transform.position;
