@@ -25,18 +25,6 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	//The speed at which the enemy will move
 	public float speed;
 
-	//Is the enemy ready to shoot?
-	bool ready;
-
-	//Counter for reloading
-	int shootTimer;
-	
-	//Time before the enemy can shoot again 
-	public int reloadTime;
-
-	//Prefab of the enemy bullet
-	public GameObject bulletPrefab;
-
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
@@ -55,9 +43,6 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 
 	//Stores the damage colliding with the player does
 	public int collisionDamage;
-	
-	//Stores the damage the bullet does
-	public int bulletDamage;
 
 	//Quitting boolean
 	bool isQuitting;
@@ -65,21 +50,13 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Initializes the firing rate variables.
-	 * 				Also stores the boundaries of the game.
+	 * Description : Stores the boundaries of the game.
 	 *
 	 * Parameters  : None
 	 *
 	 * Returns     : Void
 	 */
 	void Start () {
-
-		//The enemy can shoot right when it spawns
-		ready = true;
-
-		//Set the shooting timer
-		shootTimer = reloadTime;
-
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 
@@ -113,34 +90,6 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 
 		//Move to the left
 		transform.position = new Vector3 (transform.position.x - (speed * 2f), transform.position.y, transform.position.z);
-
-		if (!ready) {
-
-			shootTimer--;
-
-			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
-			if (shootTimer <= 0) {
-				
-				ready = true;
-				shootTimer = reloadTime;
-			}
-		}
-
-		//If the enemy can shoot and is in bounds
-		if(ready & boundaries.inBoundaries(transform.position,1))
-		{
-			//Flag that a bullet was shot
-			ready = false;
-			
-			//Spawn the bullet and store it
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
-			//Cast to an bullet type
-			SimpleEnemyBullet simpleEnemyBullet = (SimpleEnemyBullet)bullet.GetComponent(typeof(SimpleEnemyBullet));
-			
-			//Set the damage of the bullet
-			simpleEnemyBullet.setDamage(bulletDamage);
-		}	
 
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
