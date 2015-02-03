@@ -33,6 +33,7 @@ public class UpgradeMenu : MonoBehaviour {
 	public Button shieldButton;
 	public Button laserButton;
 	public Button missileButton;
+	public Button healthButton;
 
 	public int[] damageCost;
 	public int[] healthCost;
@@ -131,20 +132,66 @@ public class UpgradeMenu : MonoBehaviour {
 		//DAMAGE
 		if (damageUpgrade >= damageCost.Length) {
 			damageButton.interactable = false;
-			CostText.text = "MAX";
+			if (selected == (int) upgradeSelected.DAMAGE) {
+				CostText.text = "MAX";
+			}
 		}
-		else {
-			CostText.text = damageCost[damageUpgrade].ToString();
+		//MISSILES
+		if (missileUpgrade >= missileCost.Length) {
+			missileButton.interactable = false;
+			if (selected == (int) upgradeSelected.MISSILE) {
+				CostText.text = "MAX";
+			}
 		}
-
+		//SHIELDS
+		if (shieldUpgrade >= shieldCost.Length) {
+			shieldButton.interactable = false;
+			if (selected == (int) upgradeSelected.SHIELD) {
+				CostText.text = "MAX";
+			}
+		}
+		//HEALTH
+		if (healthUpgrade >= healthCost.Length) {
+			healthButton.interactable = false;
+			if (selected == (int) upgradeSelected.HEALTH) {
+				CostText.text = "MAX";
+			}
+		}
+		//LASER
+		if (laserUpgrade >= laserCost.Length) {
+			laserButton.interactable = false;
+			if (selected == (int) upgradeSelected.LASER) {
+				CostText.text = "MAX";
+			}
+		}
 	}
 
 	public void purchase() {
 
 		switch (selected) {
 
-			default:
-				break;
+		case (int)upgradeSelected.DAMAGE:
+			UpgradeDamage();
+			break;
+
+		case (int)upgradeSelected.HEALTH:
+			UpgradeHealth();
+			break;
+
+		case (int)upgradeSelected.LASER:
+			UpgradeLaser();
+			break;
+
+		case (int)upgradeSelected.SHIELD:
+			UpgradeShield();
+			break;
+
+		case (int)upgradeSelected.MISSILE:
+			UpgradeMissile();
+			break;
+
+		default:
+			break;
 		}
 
 	}
@@ -152,30 +199,35 @@ public class UpgradeMenu : MonoBehaviour {
 	public void SelectDamage() {
 
 		selected = (int) upgradeSelected.DAMAGE;
+		CostText.text = damageCost[damageUpgrade].ToString();
 
 	}
 
 	public void SelectHealth() {
 
 		selected = (int) upgradeSelected.HEALTH;
+		CostText.text = healthCost[healthUpgrade].ToString();
 
 	}
 
 	public void SelectMissiles() {
 
 		selected = (int) upgradeSelected.MISSILE;
+		CostText.text = missileCost[missileUpgrade].ToString();
 
 	}
 
 	public void SelectShields() {
 
 		selected = (int) upgradeSelected.SHIELD;
+		CostText.text = shieldCost[shieldUpgrade].ToString();
 
 	}
 
 	public void SelectLaser() {
 
 		selected = (int) upgradeSelected.LASER;
+		CostText.text = laserCost[laserUpgrade].ToString();
 
 	}
 
@@ -190,6 +242,81 @@ public class UpgradeMenu : MonoBehaviour {
 			moneyText.text = "Money: " + money.ToString();
 			statusText.text = "Damage upgraded!";
 			UpdateUpgrades();
+			if (damageUpgrade < damageCost.Length) {
+				CostText.text = damageCost[damageUpgrade].ToString();
+			}
+		}
+		else {
+			statusText.text = "Not enough money!";
+		}
+	}
+
+	public void UpgradeShield() {
+		if (money >= shieldCost[shieldUpgrade]) {
+			money -= shieldCost[shieldUpgrade];
+			shieldUpgrade++;
+			PlayerPrefs.SetInt("Money", money);
+			PlayerPrefs.SetInt("ShieldUpgrade", shieldUpgrade);
+			moneyText.text = "Money: " + money.ToString();
+			statusText.text = "Shield upgraded!";
+			UpdateUpgrades();
+			if (shieldUpgrade < shieldCost.Length) {
+				CostText.text = shieldCost[shieldUpgrade].ToString();
+			}
+		}
+		else {
+			statusText.text = "Not enough money!";
+		}
+	}
+
+	public void UpgradeLaser() {
+		if (money >= laserCost[laserUpgrade]) {
+			money -= laserCost[laserUpgrade];
+			laserUpgrade++;
+			PlayerPrefs.SetInt("Money", money);
+			PlayerPrefs.SetInt("LaserUpgrade", laserUpgrade);
+			moneyText.text = "Money: " + money.ToString();
+			statusText.text = "Laser upgraded!";
+			UpdateUpgrades();
+			if (laserUpgrade < laserCost.Length) {
+				CostText.text = laserCost[laserUpgrade].ToString();
+			}
+		}
+		else {
+			statusText.text = "Not enough money!";
+		}
+	}
+
+	public void UpgradeMissile() {
+		if (money >= missileCost[missileUpgrade]) {
+			money -= missileCost[missileUpgrade];
+			missileUpgrade++;
+			PlayerPrefs.SetInt("Money", money);
+			PlayerPrefs.SetInt("MissileUpgrade", missileUpgrade);
+			moneyText.text = "Money: " + money.ToString();
+			statusText.text = "Missile upgraded!";
+			UpdateUpgrades();
+			if (missileUpgrade < missileCost.Length) {
+				CostText.text = missileCost[missileUpgrade].ToString();
+			}
+		}
+		else {
+			statusText.text = "Not enough money!";
+		}
+	}
+
+	public void UpgradeHealth() {
+		if (money >= healthCost[healthUpgrade]) {
+			money -= healthCost[healthUpgrade];
+			healthUpgrade++;
+			PlayerPrefs.SetInt("Money", money);
+			PlayerPrefs.SetInt("HealthUpgrade", healthUpgrade);
+			moneyText.text = "Money: " + money.ToString();
+			statusText.text = "Health upgraded!";
+			UpdateUpgrades();
+			if (healthUpgrade < healthCost.Length) {
+				CostText.text = healthCost[healthUpgrade].ToString();
+			}
 		}
 		else {
 			statusText.text = "Not enough money!";
