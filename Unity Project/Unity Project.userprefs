@@ -6,7 +6,7 @@
       <File FileName="Assets\Player Ship\Gunner.cs" Line="1" Column="1" />
       <File FileName="Assets\Player Ship\ShipUpgrades.cs" Line="1" Column="1" />
       <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="178" Column="40" />
-      <File FileName="Assets\Menus\CharacterSelectMenu.cs" Line="160" Column="61" />
+      <File FileName="Assets\Menus\CharacterSelectMenu.cs" Line="167" Column="1" />
       <File FileName="Assets\Menus\MainMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Portraits\PortraitController.cs" Line="1" Column="1" />
       <File FileName="Assets\Camera\VolumeControl.cs" Line="27" Column="15" />

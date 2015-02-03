@@ -13,6 +13,7 @@
 
 /* -- INCLUDE FILES ------------------------------------------------------ */
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
@@ -25,10 +26,10 @@ public class PortraitController : MonoBehaviour {
 	Randomizer random;
 
 	//Each character portrait
-	public GameObject portrait1Object;
-	public GameObject portrait2Object;
-	public GameObject portrait3Object;
-	public GameObject portrait4Object;
+	public Image portrait1Object;
+	public Image portrait2Object;
+	public Image portrait3Object;
+	public Image portrait4Object;
 
 	//Audioclips paired with each portrait
 	//Portraits are paired in order of jobs
@@ -133,10 +134,10 @@ public class PortraitController : MonoBehaviour {
 		portrait4 = dialogue[PlayerPrefs.GetInt("Portrait4")];
 
 		//Load the portrait images
-		portrait1Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait1")];
-		portrait2Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait2")];
-		portrait3Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait3")];
-		portrait4Object.GetComponent<SpriteRenderer> ().sprite = portraits [PlayerPrefs.GetInt ("Portrait4")];
+		portrait1Object.overrideSprite = portraits[PlayerPrefs.GetInt("Portrait1")];
+		portrait2Object.overrideSprite = portraits[PlayerPrefs.GetInt("Portrait2")];
+		portrait3Object.overrideSprite = portraits[PlayerPrefs.GetInt("Portrait3")];
+		portrait4Object.overrideSprite = portraits[PlayerPrefs.GetInt("Portrait4")];
 	}
 
 	/* ----------------------------------------------------------------------- */
