@@ -269,14 +269,15 @@ public class Gunner : MonoBehaviour {
 			}
 
 			//If the player tries to shoot a missile and can
+			//if(PlayerPrefs.GetInt ("Missiles", 0) > 0 && readyMissile && Input.GetMouseButtonDown(1)) {
 			if(readyMissile && Input.GetMouseButtonDown(1)) {
-
 				//Flag the shoot
 				shootingMissile= true;
 
 			}
 
 			//If the player tries to shoot a laser and can
+			//if(PlayerPrefs.GetInt ("Laser", 0) > 0 && readyLaser && Input.GetMouseButtonDown(2)) {
 			if(readyLaser && Input.GetMouseButtonDown(2)) {
 
 				//Flag the shoot
