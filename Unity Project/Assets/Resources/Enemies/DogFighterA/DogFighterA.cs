@@ -59,6 +59,9 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 	//Quitting boolean
 	bool isQuitting;
 
+	//The place to spawn bullets
+	public Transform turret;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -127,7 +130,7 @@ public class DogFighterA :  MonoBehaviour, BasicEnemy {
 			ready = false;
 			
 			//Spawn the bullet and store it
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab,turret.position,Quaternion.identity);
 
 			//Cast to an bullet type
 			SimpleEnemyBullet simpleEnemyBullet = (SimpleEnemyBullet)bullet.GetComponent(typeof(SimpleEnemyBullet));
