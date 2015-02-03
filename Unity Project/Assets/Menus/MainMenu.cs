@@ -77,7 +77,7 @@ public class MainMenu : MonoBehaviour {
 		if(startGame && !startButton.audio.isPlaying)
 		{
 			//Load the main game
-			Application.LoadLevel (1);
+			Application.LoadLevel (3);
 		}
 
 		//If the user clicked quit and the audio file is done
