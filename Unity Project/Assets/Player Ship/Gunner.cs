@@ -191,7 +191,8 @@ public class Gunner : MonoBehaviour {
 	
 		//Rotate the turret towards the mouse
 		bulletTurret.rotation = Quaternion.LookRotation(turretDirection, bulletTurret.up);
-	
+		laserTurret.rotation = Quaternion.LookRotation(turretDirection, laserTurret.up);
+
 		//If the user clicked the left mouse button
 		if (shootingBullet) {
 
@@ -241,7 +242,7 @@ public class Gunner : MonoBehaviour {
 		if(shootingLaser)
 		{
 			//Create the laser object and store it
-			GameObject laser = (GameObject)Instantiate(laserPrefab,transform.position,Quaternion.identity);
+			GameObject laser = (GameObject)Instantiate(laserPrefab,laserTurret.position,Quaternion.identity);
 
 			//Transfer the damage to the laser object
 			laser.GetComponent<Laser>().setDamage(laserDamage);
