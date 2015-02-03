@@ -23,13 +23,13 @@ public class Gunner : MonoBehaviour {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//The transform of the turret
-	public Transform turret;
+	public Transform bulletTurret;
 
 	//The transform of the missile shooter
-	public Transform missile;
+	public Transform missileTurret;
 
 	//The transform of the laser shooter
-	public Transform laser;
+	public Transform laserTurret;
 
 	//The prefab object for the bullet
 	public GameObject bulletPrefab;
@@ -177,8 +177,6 @@ public class Gunner : MonoBehaviour {
 			}
 		}
 
-
-
 		//Read the mouse location in pixels
 		Vector3 mousePos = Input.mousePosition;
 		
@@ -189,10 +187,10 @@ public class Gunner : MonoBehaviour {
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
 
 		//Store the direction of the player in respect to the bullet
-		Vector3 turretDirection = mouseWorldPos-turret.position;
+		Vector3 turretDirection = mouseWorldPos-bulletTurret.position;
 	
 		//Rotate the turret towards the mouse
-		turret.rotation = Quaternion.LookRotation(turretDirection, turret.up);
+		bulletTurret.rotation = Quaternion.LookRotation(turretDirection, bulletTurret.up);
 	
 		//If the user clicked the left mouse button
 		if (shootingBullet) {
@@ -202,7 +200,7 @@ public class Gunner : MonoBehaviour {
 			shootingBullet = false;
 
 			//Instantiate a bullet with bulletPrefab at the players turret
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,turret.position, Quaternion.identity);
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab,bulletTurret.position, Quaternion.identity);
 						
 			//Store the direction of the player in respect to the bullet
 			Vector3 direction = mouseWorldPos-bullet.transform.position;
@@ -226,7 +224,7 @@ public class Gunner : MonoBehaviour {
 			shootingMissile = false;
 			
 			//Instantiate a bullet with bulletPrefab at the players current location
-			GameObject missile = (GameObject)Instantiate(missilePrefab,transform.position,Quaternion.identity);
+			GameObject missile = (GameObject)Instantiate(missilePrefab,missileTurret.position,Quaternion.identity);
 			
 			//Store the direction of the player in respect to the bullet
 			Vector3 direction = mouseWorldPos-missile.transform.position;
