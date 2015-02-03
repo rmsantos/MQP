@@ -36,6 +36,10 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	public GameObject scoreObject;
 	static ScoreHandler score;
 
+	//Randomizer script
+	GameObject randomizer;
+	Randomizer random;
+
 	bool isQuitting;
 
 	/* ----------------------------------------------------------------------- */
@@ -48,7 +52,23 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		//Get the randomizer script
+		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
 		
+		//Pick an asteroid sprite (9 to 11 are small asteroids)
+		int asteroid = random.GetRandomInRange (9, 12);
+
+		print (asteroid);
+
+		//Load the asteroid sprite
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroid);
+		
+		//Reset the collider so that it autofits
+		Destroy (GetComponent<PolygonCollider2D> ());
+		gameObject.AddComponent ("PolygonCollider2D");
+
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		

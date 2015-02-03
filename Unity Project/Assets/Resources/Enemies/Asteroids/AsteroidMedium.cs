@@ -37,6 +37,10 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 	//The damage from colliding with this asteroid
 	public int collisionDamage;
 
+	//Randomizer script
+	GameObject randomizer;
+	Randomizer random;
+
 	bool isQuitting;
 
 	/* ----------------------------------------------------------------------- */
@@ -49,7 +53,21 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		//Get the randomizer script
+		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
 		
+		//Pick an asteroid sprite (2 to 8 are medium asteroids)
+		int asteroid = random.GetRandomInRange (2, 9);
+		
+		//Load the asteroid sprite
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroid);
+		
+		//Reset the collider so that it autofits
+		Destroy (GetComponent<PolygonCollider2D> ());
+		gameObject.AddComponent ("PolygonCollider2D");
+
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		
