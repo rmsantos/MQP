@@ -68,6 +68,9 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	//Quitting boolean
 	bool isQuitting;
 
+	//The place to spawn bullets
+	public Transform turret;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -209,7 +212,7 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 				ready = false;
 				
 				//Spawn the bullet and store it
-				GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+				GameObject bullet = (GameObject)Instantiate(bulletPrefab,turret.position,Quaternion.identity);
 				
 				//Rotate the bullet around to move towards the right side of the screen
 				bullet.transform.Rotate (0,0,180);
