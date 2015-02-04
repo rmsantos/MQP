@@ -37,6 +37,9 @@ public class Shields : MonoBehaviour {
 	//Shields
 	public Slider shieldBar;
 
+	//The render of the shield image
+	public GameObject shieldRender;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -49,21 +52,30 @@ public class Shields : MonoBehaviour {
 	void Start () {
 		
 		//Shield level starts at 1
-		shieldLevel = PlayerPrefs.GetInt ("ShieldLevel", 1);
+		shieldLevel = PlayerPrefs.GetInt ("ShieldLevel", 5);
 		
 		//Set the shield slider
 		shieldBar.value = shieldLevel;
 		
 		//Intitialize timer
 		timer = 0;
-		
-		//Shields are defaultly set to 1
-		shields = 1;
+
+		//Start with the appropriate amount of shields for the current level
+		if(shieldLevel == 1 || shieldLevel == 2)
+			shields = 1;
+		else if(shieldLevel == 3)
+			shields = 2;
+		else
+			shields = 3;
+
+		//Set the tranparency of the shield
+		setTransparency ();
 		
 		//Initialize the shield timers and levels
 		setShields (shieldLevel);
 		
 	}
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : FixedUpdate(0
@@ -107,7 +119,11 @@ public class Shields : MonoBehaviour {
 			//If the shields arent maxed out, recharge them
 			if(shields < maxShields)
 			{
+				//Increment the shield
 				shields++;
+
+				//And change the transparency level
+				setTransparency();
 			}		
 			
 		}
@@ -149,11 +165,47 @@ public class Shields : MonoBehaviour {
 			shieldTimer = 150;
 			break;
 		}
-		
-		//Do visual stuff here as well
-		
+
+		//Make sure that the player doesn't have more shields than allowed
+		if(maxShields > shields)
+			shields = maxShields;
+
 		//Also reset the timer
 		timer = 0;
+	}
+
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setTranparency()
+	 *
+	 * Description : Sets the tranparency of the shield
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void setTransparency()
+	{
+		//Defaultly 0 (if no shields)
+		float transparency = 0f;
+
+		//Interpolate between the three levels
+		if(shields == 1)
+		{
+			transparency = 0.4f;
+		}
+		else if(shields == 2)
+		{
+			transparency = 0.7f;
+		}
+		else if(shields == 3)
+		{
+			transparency = 1f;
+		}
+
+		//Change the alpha of the shield to make it more or less visible
+		Color originalColour = shieldRender.renderer.material.color;
+		shieldRender.renderer.material.color = new Color(originalColour.r, originalColour.g, originalColour.b, transparency);
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -181,6 +233,10 @@ public class Shields : MonoBehaviour {
 	 */
 	public void weakenShields()
 	{ 
+		//Decrement the shields
 		shields--;
+
+		//And set the new transparency levels
+		setTransparency ();
 	}
 }

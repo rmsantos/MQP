@@ -181,7 +181,6 @@ public class PlayerCollisions : MonoBehaviour {
 		}
 
 		print (health);
-		healthBar.value = health;
 	}
 
 
