@@ -91,6 +91,7 @@
      <Compile Include="Assets\Resources\Instances\HeavyWave.cs" />
      <Compile Include="Assets\Resources\Instances\JuggernautWave.cs" />
      <Compile Include="Assets\Resources\Instances\LargeAsteroids.cs" />
+     <Compile Include="Assets\Resources\Instances\LockOnFormation.cs" />
      <Compile Include="Assets\Resources\Instances\MediumAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\MixedAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\SmallAsteroids.cs" />
