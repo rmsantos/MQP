@@ -59,11 +59,11 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	//Stores the damage the bullet does
 	public int bulletDamage;
 
-	//Can the ship move vertically now?
-	bool verticalMove;
-
-	//Speed changes depending on the ships state
-	float newSpeed;
+	//The state of the saboteur
+	//State 0 is moving to the left side of the screen (and off screen)
+	//State 1 is turning around and moving to the left bound of the screen
+	//State 2 is Moving vertically and shooting at the player
+	int state;
 
 	//Quitting boolean
 	bool isQuitting;
@@ -79,7 +79,13 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
-		
+
+		//Rotate the Saboteur at the start to align it properly
+		transform.Rotate (0, 180, 0);
+
+		//Start at state 0
+		state = 0;
+
 		//The enemy can shoot right when it spawns
 		ready = true;
 		
@@ -92,36 +98,11 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 
-		//The ship cannot initially move vertically
-		verticalMove = false;
-
-		//Speed changes depending on the ships state
-		newSpeed = speed;
-
 		//Search for player
 		player = GameObject.FindGameObjectWithTag ("Player");
 
 		//Not quitting the application
 		isQuitting = false;
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : delay()
-	 *
-	 * Description : Delays for a very small time then
-	 * 				flags the ship to move vertically.
-	 *
-	 * Parameters  : None
-	 *
-	 * Returns     : Void
-	 */
-	IEnumerator delay()
-	{
-		//Wait a small amount of time so that the ship doesn't look choppy
-		yield return new WaitForSeconds(0.001f);
-
-		//Allow the ship to move vertically.
-		verticalMove = true;
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -138,12 +119,52 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
-		//Direction the enemy should move
-		float direction = 0;
-	
-		//If the ship can move move vertically
-		if(verticalMove)
+		print (state);
+
+		//Move to the left side of the screen (off it)
+		if(state == 0)
 		{
+			//The new position of the enemy after moving
+			Vector3 newPos = new Vector3 (boundaries.getLeft() * 1.2f, transform.position.y, transform.position.z);
+
+			//Make the move
+			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
+
+			//If the saboteur hits its mark
+			if(transform.position.x <= boundaries.getLeft() * 1.1f)
+			{
+				//Rotate the sprite 180
+				transform.Rotate(0,180,0);
+
+				//Switch states
+				state = 1;
+
+				//Lower the speed
+				speed = speed/5;
+			}
+		}
+		//Move to the left bound of the screen (back on screen)
+		else if(state == 1)
+		{
+			//The new position of the enemy after moving
+			Vector3 newPos = new Vector3 (boundaries.getLeft()*0.9f, transform.position.y, transform.position.z);
+			
+			//Make the move
+			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
+
+			//If the ship is locked into its horizontal position
+			if(transform.position.x >= boundaries.getLeft()*0.9f)
+			{
+				//Switch to the next state
+				state = 2;
+			}
+		}
+		//State 2 slowly tracks the player
+		else
+		{
+			//Direction the enemy should move
+			float direction = 0;
+
 			//If the within a certain threshold of the player
 			if(player == null || (Mathf.Abs(transform.position.y-player.transform.position.y) < 0.1))
 			{
@@ -161,59 +182,45 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 				//Move down
 				direction = -Mathf.Abs (speed);
 			}
-		}
 
-		//The new position of the enemy after moving
-		Vector3 newPos = new Vector3 (boundaries.getLeft() * .9f, transform.position.y + direction, transform.position.z);
+			//The new position of the enemy after moving
+			Vector3 newPos = new Vector3 (transform.position.x, transform.position.y+direction, transform.position.z);
 
-		//If the ship is at the left side of the screen
-		if(transform.position.x <= boundaries.getLeft()* 0.89)
-		{
-			//If this peice of code hasn't been run yet
-			if(!verticalMove)
-			{
-				//Delay a short time then change verticalMove
-				StartCoroutine(delay());
+			//Make the move
+			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
 
-				//Also decrease the speed greatly
-				newSpeed = speed/5;
+			//If the enemy is "reloading", don't decrement the timer
+			if (!ready) {
+				
+				//Decrements the shoot timer
+				shootTimer--;
+				
+				//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
+				if (shootTimer <= 0) 
+				{
+					ready = true;
+					shootTimer = reloadTime;
+				}
 			}
-		}
 
-		//Make the move
-		transform.position = Vector3.MoveTowards(transform.position, newPos, newSpeed);
-		
-		//If the enemy is "reloading", don't decrement the timer
-		if (!ready) {
-			
-			//Decrements the shoot timer
-			shootTimer--;
-			
-			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
-			if (shootTimer <= 0) 
+			if(ready)
 			{
-				ready = true;
-				shootTimer = reloadTime;
+				//Flag that a bullet was shot
+				ready = false;
+				
+				//Spawn the bullet and store it
+				GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+				
+				//Rotate the bullet around to move towards the right side of the screen
+				bullet.transform.Rotate (0,0,180);
+				
+				//Cast to a bullet type
+				SimpleEnemyBullet simpleEnemyBullet = (SimpleEnemyBullet)bullet.GetComponent(typeof(SimpleEnemyBullet));
+				
+				//Set the damage of the bullet
+				simpleEnemyBullet.setDamage(bulletDamage);
 			}
-		}
 
-		//If the enemy can shoot and is in bounds and can move vertically
-		if(ready && boundaries.inBoundaries(transform.position,1.2f) && verticalMove)
-		{
-			//Flag that a bullet was shot
-			ready = false;
-			
-			//Spawn the bullet and store it
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
-			//Rotate the bullet around to move towards the right side of the screen
-			bullet.transform.Rotate (0,0,180);
-
-			//Cast to a bullet type
-			SimpleEnemyBullet simpleEnemyBullet = (SimpleEnemyBullet)bullet.GetComponent(typeof(SimpleEnemyBullet));
-			
-			//Set the damage of the bullet
-			simpleEnemyBullet.setDamage(bulletDamage);
 		}
 	}
 	
