@@ -117,7 +117,7 @@ public class LockOnFormation : MonoBehaviour {
 	void SpawnEnemy (int enemyNumber) {
 		
 		//Get a random vertical location
-		if(enemyNumber == 0 || enemyNumber == 4)
+		if(enemyNumber == 0 || enemyNumber == 7)
 		{
 			GameObject saboteur = Resources.Load<GameObject> ("Enemies/" + enemies[2]);
 
@@ -134,7 +134,7 @@ public class LockOnFormation : MonoBehaviour {
 			Instantiate(dogfighter, new Vector3(right * 1.2f, 0, 0), Quaternion.identity);
 
 		}
-		else if(enemyNumber == 1 || enemyNumber == 2 || enemyNumber == 3 || enemyNumber == 5)
+		else if(enemyNumber == 1 || enemyNumber == 2 || enemyNumber == 3 || enemyNumber == 5 || enemyNumber == 8 || enemyNumber == 9 || enemyNumber == 10)
 		{
 			GameObject dogfighter = Resources.Load<GameObject> ("Enemies/" + enemies[1]);
 			
