@@ -60,8 +60,6 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 		//Pick an asteroid sprite (9 to 11 are small asteroids)
 		int asteroid = random.GetRandomInRange (9, 12);
 
-		print (asteroid);
-
 		//Load the asteroid sprite
 		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroid);
 		
@@ -154,15 +152,15 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 		
 		//Load the explosion
 		GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
-		
+
 		//Destroy the asteroid
 		Destroy(this.gameObject);
 		
 		//Create the explosion at this location
-		Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
+		Instantiate(explosion, transform.position, Quaternion.identity);	
 
 		//Create money at this location
-		Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+		Instantiate(money, transform.position, Quaternion.identity);
 		
 		//Update the players score
 		score.UpdateScore(value);
