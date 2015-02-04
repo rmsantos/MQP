@@ -122,8 +122,6 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
-		print (state);
-
 		//Move to the left side of the screen (off it)
 		if(state == 0)
 		{
