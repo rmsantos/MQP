@@ -53,24 +53,23 @@ public class Laser : MonoBehaviour {
 	 */
 	void Start () {
 
-		//The LineRenderer component for visuals
-		LineRenderer line = GetComponent<LineRenderer> ();
-
-		//Store the start point of the line to be the origin of the laser
-		line.SetPosition (0, this.transform.position);
-
 		//Read the mouse location in pixels
 		Vector3 mousePos = Input.mousePosition;
 		
 		//Set the z offset since the camera is at -10z
-		//We use 9.99999 because the line renderor can't be exactly horizontal
-		mousePos.z = 9.9999f;
-
+		mousePos.z = 10;
+		
 		//Store the mouse's position in world coordinates
 		mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
-	
-		//Store the end point to be a point in the direction of the mouse position
-		line.SetPosition (1, (mouseWorldPos-transform.position)*100 + transform.position);
+
+		//Store the direction of the mouse in respect to the laser
+		Vector3 direction = mouseWorldPos-transform.position;
+		
+		//Rotate the laser towards the mouse
+		transform.rotation = Quaternion.LookRotation(direction);
+
+		//Rotate -90 on the Y so it appears correct
+		transform.Rotate (0, -90, 0);
 
 	}
 	
