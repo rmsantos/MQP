@@ -52,7 +52,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 		//Not quitting the application
 		isQuitting = false;
+
 	}
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnTriggerEnter2D (Collider2D other)
@@ -118,7 +120,7 @@ public class PlayerCollisions : MonoBehaviour {
 			SimpleEnemyBullet bullet = (SimpleEnemyBullet)col.gameObject.GetComponent(typeof(SimpleEnemyBullet));
 
 			//Subtract the health based on that bullet
-			health -= bullet.getBulletDamage();
+			takeDamage(bullet.getBulletDamage());
 			
 		}
 
@@ -131,7 +133,7 @@ public class PlayerCollisions : MonoBehaviour {
 			BasicEnemy enemy = (BasicEnemy)col.gameObject.GetComponent(typeof(BasicEnemy));
 
 			//Subtract the health based on that enemy
-			health -= enemy.getCollisionDamage();
+			takeDamage(enemy.getCollisionDamage());
 			
 		}
 
@@ -144,7 +146,7 @@ public class PlayerCollisions : MonoBehaviour {
 			BasicAsteroid asteroid = (BasicAsteroid)col.gameObject.GetComponent(typeof(BasicAsteroid));
 
 			//Subtract the health based on that asteroid
-			health -= asteroid.getCollisionDamage();
+			takeDamage(asteroid.getCollisionDamage());
 
 			//Shatter the asteroid into smaller asteroids or money
 			asteroid.shatter();
@@ -171,7 +173,7 @@ public class PlayerCollisions : MonoBehaviour {
 			Flagship boss = (Flagship)col.gameObject.GetComponent(typeof(Flagship));
 
 			//Subtract the health based on that boss
-			health -= boss.getCollisionDamage();
+			takeDamage(boss.getCollisionDamage());
 		}
 
 		if (health <= 0) {
@@ -185,8 +187,15 @@ public class PlayerCollisions : MonoBehaviour {
 
 	public void takeDamage(int damage)
 	{
+		Shields shield = GetComponent<Shields> ();
+
 		//Deduct damage from health
-		health -= damage;
+		if(shield.getShields() != 0)
+		{
+			shield.weakenShields();
+		}
+		else
+			health -= damage;
 
 		//And display on the health bar
 		healthBar.value = health;
