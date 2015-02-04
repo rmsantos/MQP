@@ -1,8 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Shields.cs">
     <Files>
-      <File FileName="Assets\Player Ship\Shields.cs" Line="172" Column="3" />
+      <File FileName="Assets\Player Ship\Shields.cs" Line="99" Column="24" />
       <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="186" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

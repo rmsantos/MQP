@@ -101,6 +101,9 @@ public class Shields : MonoBehaviour {
 		{
 			//Reset shield stats
 			setShields(shieldLevel);
+
+			//Set the new transparency
+			setTransparency();
 		}
 		
 		//Store the player pref
@@ -167,7 +170,7 @@ public class Shields : MonoBehaviour {
 		}
 
 		//Make sure that the player doesn't have more shields than allowed
-		if(maxShields > shields)
+		if(maxShields < shields)
 			shields = maxShields;
 
 		//Also reset the timer
