@@ -23,10 +23,12 @@ public class MainMenu : MonoBehaviour {
 	//Flags on whether to start or quit the game
 	bool startGame;
 	bool quitGame;
+	bool highScores;
 
 	//The start and quit buttons
 	public GameObject startButton;
 	public GameObject quitButton;
+	public GameObject highScoreButton;
 
 	public int initialHealth;
 	public int initialDamage;
@@ -52,6 +54,15 @@ public class MainMenu : MonoBehaviour {
 		//Initialize states to not pressed
 		startGame = false;
 		quitGame = false;
+		highScores = false;
+
+		if (!PlayerPrefs.HasKey ("HighScores")) {
+			PlayerPrefs.SetString("HighScores", "true");
+			for (int i = 0; i < 10; i++) {
+				PlayerPrefs.SetInt("Score" + (i + 1).ToString(), 1000 - (i * 100));
+				PlayerPrefs.SetString("Name" + (i + 1).ToString(), "AAA");
+			}
+		}
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -85,6 +96,13 @@ public class MainMenu : MonoBehaviour {
 		{
 			//Quit the game
 			Application.Quit();
+		}
+
+		//If the user clicked high scores and the audio file is done
+		if(highScores && !highScoreButton.audio.isPlaying)
+		{
+			//Load the high scores
+			Application.LoadLevel (4);
 		}
 	}
 
@@ -138,5 +156,19 @@ public class MainMenu : MonoBehaviour {
 	public void setQuit(bool quit)
 	{
 		quitGame = quit;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setHighScores()
+	 *
+	 * Description : Sets the highScores bool to true
+	 *
+	 * Parameters  : bool highScores : display the high scores?
+	 *
+	 * Returns     : Void
+	 */
+	public void setHighScores(bool clicked)
+	{
+		highScores = clicked;
 	}
 }
