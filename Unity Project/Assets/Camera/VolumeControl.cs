@@ -24,7 +24,7 @@ public class VolumeControl : MonoBehaviour {
 	float volume;
 	
 	void Start () {
-		volume = 0;
+		volume = 1f;
 		AudioListener.volume = volume;
 	}
 

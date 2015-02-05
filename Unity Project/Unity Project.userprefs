@@ -1,9 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Randomizer\Randomizer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Portraits\PortraitController.cs">
     <Files>
-      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="218" Column="17" />
-      <File FileName="Assets\Randomizer\Randomizer.cs" Line="72" Column="3" />
+      <File FileName="Assets\Portraits\PortraitController.cs" Line="569" Column="3" />
+      <File FileName="Assets\Player Ship\Shields.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Camera\VolumeControl.cs" Line="37" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
