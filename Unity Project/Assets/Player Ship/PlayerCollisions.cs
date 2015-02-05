@@ -75,7 +75,7 @@ public class PlayerCollisions : MonoBehaviour {
 			JuggernautShield shield = (JuggernautShield)other.gameObject.GetComponent(typeof(JuggernautShield));
 
 			//Subtract the appropriate damage
-			health -= shield.getCollisionDamage();
+			takeDamage(shield.getCollisionDamage());
 
 			//Disable and make the shield invisible
 			//It will be deleted along with the juggernaut later
