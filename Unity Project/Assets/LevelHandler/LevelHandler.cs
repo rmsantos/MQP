@@ -144,22 +144,20 @@ public class LevelHandler : MonoBehaviour {
 				spawnTimer = timeBetweenSpawning;
 
 				if (wave <= 4) {
-					int randomInstance = GetRandomBasedOnLevel();
-					Instantiate(instances[randomInstance]);
-
-
-					//If the instance is an asteroid instance
-					if (randomInstance == 2 || randomInstance == 3 ||
-					   randomInstance == 4 || randomInstance == 5)
-					{
-						//Play the asteroid field audio clip
+					//normal instance
+					if (waveOrder[wave] == 0) {
+						int randomInstance = GetRandomBasedOnLevel();
+						Instantiate(instances[randomInstance]);
+						portraitController.playEnemiesIncoming();
+					}
+					//asteroid instance
+					else if (waveOrder[wave] == 1) {
+						Instantiate(instancesAsteroid[0]);
 						portraitController.playApproachingAsteroids();
 					}
-					//Else the wave is of mostly enemies
-					else
-					{
-						//Play the audio clip for enemies incoming
-						portraitController.playEnemiesIncoming();
+					//hard instance
+					else {
+						Instantiate(instancesHard[0]);
 					}
 
 				}
@@ -212,8 +210,8 @@ public class LevelHandler : MonoBehaviour {
 
 	public int GetRandomBasedOnLevel() {
 
-		int highest = Mathf.Min (level + 1, instances.GetLength(0));
-		int lowest = Mathf.Max ((level / 2) - 3, 0);
+		int highest = Mathf.Min (level + 2, instances.GetLength(0));
+		int lowest = Mathf.Max ((level / 2) - 1, 0);
 		bool gotInt = false;
 		int value = -1;
 		while (!gotInt) {
