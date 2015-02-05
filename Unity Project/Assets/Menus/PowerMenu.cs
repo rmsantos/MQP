@@ -85,7 +85,16 @@ public class PowerMenu : MonoBehaviour {
 
 		//Load the players current power and max power from player prefs
 		power = PlayerPrefs.GetInt ("Power", 10);
-		maxPower = PlayerPrefs.GetInt ("PowerUpgrade", 10);
+		maxPower = 10 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
+
+		//PlayerPrefs.SetInt ("Power", 10);
+		//PlayerPrefs.SetInt ("PowerUpgrade", 0);
+		//PlayerPrefs.SetInt ("Power", 10);
+		//PlayerPrefs.SetInt ("Shield", 0);
+		//PlayerPrefs.SetInt ("Engine", 0);
+		//PlayerPrefs.SetInt ("Laser", 0);
+		//PlayerPrefs.SetInt ("Missile", 0);
+		//PlayerPrefs.SetInt ("Blaster", 0);
 
 		//Load the player prefs of each power level
 		shield = PlayerPrefs.GetInt ("Shield", 0);
@@ -93,6 +102,7 @@ public class PowerMenu : MonoBehaviour {
 		laser = PlayerPrefs.GetInt ("Laser", 0);
 		blaster = PlayerPrefs.GetInt ("Blaster", 0);
 		missile = PlayerPrefs.GetInt ("Missile", 0);
+
 
 		//Display the current power levels
 		powerBar.value = power;
@@ -114,7 +124,6 @@ public class PowerMenu : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
-		
 		//If the menu theme isnt playing
 		if(!audio.isPlaying)
 		{
@@ -285,7 +294,7 @@ public class PowerMenu : MonoBehaviour {
 	public void decreasePower(int station)
 	{
 		//If power is max, don't overload it
-		if(power == 15)
+		if(power == maxPower)
 			return;
 
 		//Determine what station is being decreased

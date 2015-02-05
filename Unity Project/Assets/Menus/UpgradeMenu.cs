@@ -323,4 +323,11 @@ public class UpgradeMenu : MonoBehaviour {
 		}
 	}
 
+	public void UpgradePower()
+	{
+		//Stuff goes here
+		PlayerPrefs.SetInt("PowerUpgrade",1+PlayerPrefs.GetInt("PowerUpgrade",0));
+		PlayerPrefs.SetInt("Power",1+PlayerPrefs.GetInt("Power",10));
+	}
+
 }

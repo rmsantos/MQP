@@ -22,8 +22,8 @@ public class Shields : MonoBehaviour {
 	//Shields the player has
 	int shields;
 	
-	//The level of the players shield
-	int shieldLevel;
+	//The power level of the players shield
+	int shieldPower;
 	
 	//The timer for shield regeneration
 	int timer;
@@ -51,28 +51,20 @@ public class Shields : MonoBehaviour {
 	 */
 	void Start () {
 		
-		//Shield level starts at 1
-		shieldLevel = PlayerPrefs.GetInt ("ShieldLevel", 5);
+		//Shield power starts at 0
+		shieldPower = PlayerPrefs.GetInt ("Shield", 0);
 		
 		//Set the shield slider
-		shieldBar.value = shieldLevel;
+		shieldBar.value = shieldPower;
 		
 		//Intitialize timer
 		timer = 0;
-
-		//Start with the appropriate amount of shields for the current level
-		if(shieldLevel == 1 || shieldLevel == 2)
-			shields = 1;
-		else if(shieldLevel == 3)
-			shields = 2;
-		else
-			shields = 3;
+		
+		//Initialize the shield timers and levels
+		setShields (shieldPower);
 
 		//Set the tranparency of the shield
 		setTransparency ();
-		
-		//Initialize the shield timers and levels
-		setShields (shieldLevel);
 		
 	}
 
@@ -88,50 +80,6 @@ public class Shields : MonoBehaviour {
 	 */
 	void FixedUpdate()
 	{		
-		//Store the level before reading the slide bar
-		int previousLevel = shieldLevel;
-		
-		//Read the shields from the slide bar
-		shieldLevel = (int)shieldBar.value;
-		
-		//If the level changed
-		if(previousLevel != shieldLevel)
-		{
-
-			//If the previous level is higher than the current
-			if(previousLevel > shieldLevel)
-			{
-				int power = GetComponent<Power>().checkLevels(previousLevel-shieldLevel);
-			
-				print (power);
-
-				//Add more pwoer to the power reserve
-				GetComponent<Power>().redirectPower(power);
-
-			}
-			else
-			{
-				int power = GetComponent<Power>().checkLevels(-(shieldLevel-previousLevel));
-
-				//shieldLevel = -power;
-				//shieldBar.value = -power;
-
-				print (power);
-
-				//Else subtract it
-				GetComponent<Power>().redirectPower(power);
-			}
-
-			//Reset shield stats
-			setShields(shieldLevel);
-
-			//Set the new transparency
-			setTransparency();
-		}
-		
-		//Store the player pref
-		PlayerPrefs.SetInt ("ShieldLevel", shieldLevel);
-		
 		//Incremement the shield recharge timer only if shields are not full
 		if(shields != maxShields)
 			timer++;
@@ -142,16 +90,11 @@ public class Shields : MonoBehaviour {
 			//Reset it
 			timer = 0;
 
-			//If the shields arent maxed out, recharge them
-			if(shields < maxShields)
-			{
-				//Increment the shield
-				shields++;
+			//Increment the shield
+			shields++;
 
-				//And change the transparency level
-				setTransparency();
-			}		
-			
+			//And change the transparency level
+			setTransparency();
 		}
 	}
 
@@ -167,37 +110,37 @@ public class Shields : MonoBehaviour {
 	 */
 	void setShields(int level)
 	{
-		//Initialize the shield timers and levels
+		//Initialize the shield timer, shield, and shield power
 		switch (level)
 		{
-		case 1:
-			maxShields = 1;
-			shieldTimer = 300;
-			break;
-		case 2:
-			maxShields = 1;
-			shieldTimer = 240;
-			break;
-		case 3:
-			maxShields = 2;
-			shieldTimer = 240;
-			break;
-		case 4:
-			maxShields = 3;
-			shieldTimer = 240;
-			break;
-		case 5:
-			maxShields = 3;
-			shieldTimer = 150;
-			break;
+			case 0:
+				maxShields = 0;
+				shieldTimer = 300;
+				break;
+			case 1:
+				maxShields = 1;
+				shieldTimer = 300;
+				break;
+			case 2:
+				maxShields = 1;
+				shieldTimer = 240;
+				break;
+			case 3:
+				maxShields = 2;
+				shieldTimer = 240;
+				break;
+			case 4:
+				maxShields = 3;
+				shieldTimer = 240;
+				break;
+			case 5:
+				maxShields = 3;
+				shieldTimer = 150;
+				break;
 		}
 
-		//Make sure that the player doesn't have more shields than allowed
-		if(maxShields < shields)
-			shields = maxShields;
-
-		//Also reset the timer
-		timer = 0;
+		//Set the shields to start
+		shields = maxShields;
 	}
 
 	
