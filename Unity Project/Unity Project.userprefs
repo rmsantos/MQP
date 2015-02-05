@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Shields.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Randomizer\Randomizer.cs">
     <Files>
-      <File FileName="Assets\Player Ship\Power.cs" Line="106" Column="36" />
-      <File FileName="Assets\Player Ship\Shields.cs" Line="101" Column="43" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="218" Column="17" />
+      <File FileName="Assets\Randomizer\Randomizer.cs" Line="72" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
