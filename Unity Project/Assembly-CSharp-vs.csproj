@@ -54,6 +54,7 @@
      <Compile Include="Assets\Menus\HighScoreMenu.cs" />
      <Compile Include="Assets\Menus\MainMenu.cs" />
      <Compile Include="Assets\Menus\PauseController.cs" />
+     <Compile Include="Assets\Menus\PowerMenu.cs" />
      <Compile Include="Assets\Menus\UpgradeMenu.cs" />
      <Compile Include="Assets\Particle Effects\Explosion.cs" />
      <Compile Include="Assets\Player Ship\Bullet.cs" />

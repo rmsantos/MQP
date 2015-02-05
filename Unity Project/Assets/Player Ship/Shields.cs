@@ -113,8 +113,8 @@ public class Shields : MonoBehaviour {
 			{
 				int power = GetComponent<Power>().checkLevels(-(shieldLevel-previousLevel));
 
-				shieldLevel = -power;
-				shieldBar.value = -power;
+				//shieldLevel = -power;
+				//shieldBar.value = -power;
 
 				print (power);
 
