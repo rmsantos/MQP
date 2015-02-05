@@ -51,6 +51,7 @@
      <Compile Include="Assets\Camera\VolumeControl.cs" />
      <Compile Include="Assets\LevelHandler\LevelHandler.cs" />
      <Compile Include="Assets\Menus\CharacterSelectMenu.cs" />
+     <Compile Include="Assets\Menus\HighScoreMenu.cs" />
      <Compile Include="Assets\Menus\MainMenu.cs" />
      <Compile Include="Assets\Menus\PauseController.cs" />
      <Compile Include="Assets\Menus\UpgradeMenu.cs" />

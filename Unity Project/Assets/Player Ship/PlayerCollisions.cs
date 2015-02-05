@@ -23,6 +23,10 @@ public class PlayerCollisions : MonoBehaviour {
 	int moneyValue;
 	public int scoreFromMoney;
 
+	//The spawner object
+	public GameObject spawner;
+	LevelHandler levelHandler;
+
 	//ScoreHandler object to track players score
 	public GameObject scoreObject;
 	static ScoreHandler score;
@@ -52,6 +56,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 		//Not quitting the application
 		isQuitting = false;
+
+		//Get the levelHandler
+		levelHandler = (LevelHandler) spawner.GetComponent("LevelHandler");
 
 	}
 
@@ -178,6 +185,7 @@ public class PlayerCollisions : MonoBehaviour {
 
 		if (health <= 0) {
 			Destroy(this.gameObject);
+			levelHandler.PlayerDied();
 		}
 
 		print (health);
@@ -223,5 +231,14 @@ public class PlayerCollisions : MonoBehaviour {
 			
 		}
 		
+	}
+
+	void Update() {
+
+		if(Input.GetKeyDown ("6")) {
+			//#dead
+			health = 0;
+			
+		}
 	}
 }

@@ -38,6 +38,8 @@ public class LevelHandler : MonoBehaviour {
 	static int wave;
 	static bool levelCompleted;
 	static int levelCompletedTimer;
+	static bool gameOver;
+	static int gameOverTimer;
 	
 	//Randomizer script
 	public GameObject randomizer;
@@ -100,6 +102,8 @@ public class LevelHandler : MonoBehaviour {
 
 		levelCompleted = false;
 		levelCompletedTimer = 0;
+		gameOver = false;
+		gameOverTimer = 0;
 		
 		updateLevel = (UpdateLevel)levelText.GetComponent("UpdateLevel");
 
@@ -188,6 +192,12 @@ public class LevelHandler : MonoBehaviour {
 				NextLevel ();
 			}
 		}
+		if (gameOver) {
+			gameOverTimer++;
+			if (gameOverTimer > 100) {
+				GameOver();
+			}
+		}
 	}
 
 	public void LevelComplete() {
@@ -196,6 +206,15 @@ public class LevelHandler : MonoBehaviour {
 			Destroy(obj);
 		}
 		levelCompleted = true;
+	}
+
+	public void PlayerDied() {
+		gameOver = true;
+	}
+
+	public void GameOver() {
+		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
+		Application.LoadLevel (4);
 	}
 
 	public void NextLevel() {
