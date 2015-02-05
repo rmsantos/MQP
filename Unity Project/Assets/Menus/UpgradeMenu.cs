@@ -108,7 +108,7 @@ public class UpgradeMenu : MonoBehaviour {
 		if(startGame && !startButton.audio.isPlaying)
 		{
 			//Load the main game
-			Application.LoadLevel (1);
+			Application.LoadLevel (4);
 		}
 	
 	}
