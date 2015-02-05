@@ -60,6 +60,19 @@ public class Randomizer : MonoBehaviour {
 	
 	}
 
+	public int[] Shuffle(int[] ints)
+	{
+		for (int t = 0; t < ints.Length; t++ )
+		{
+			int tmp = ints[t];
+			int r = random.Next(t, ints.Length);
+			ints[t] = ints[r];
+			ints[r] = tmp;
+		}
+
+		return ints;
+	}
+
 }
 
 

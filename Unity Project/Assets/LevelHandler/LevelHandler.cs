@@ -16,6 +16,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Linq;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //NONE
@@ -27,8 +28,9 @@ public class LevelHandler : MonoBehaviour {
 
 	//Instance list. These will be stored here as references to other prefabs. This should be updated to reflect new instances. 
 	//The instances should follow a particular naming pattern.
-
 	public GameObject[] instances;
+	public GameObject[] instancesHard;
+	public GameObject[] instancesAsteroid;
 	public GameObject[] bosses;
 
 	//Level tracker variables
@@ -62,6 +64,9 @@ public class LevelHandler : MonoBehaviour {
 
 	public Slider bossHealthSlider;
 	static int bossHealth;
+
+	static int[] pickedInstances;
+	static int[] waveOrder;
 
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
@@ -105,6 +110,11 @@ public class LevelHandler : MonoBehaviour {
 
 		//Find the portrait controller script
 		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
+
+		pickedInstances = new int[] {-1, -1, -1, -1, -1};
+
+		waveOrder = new int[] {0, 0, 0, 1, 2};
+		waveOrder = random.Shuffle(waveOrder);
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -132,12 +142,11 @@ public class LevelHandler : MonoBehaviour {
 				
 				canSpawn = false;
 				spawnTimer = timeBetweenSpawning;
-				wave++;
 
-				if (wave <= 3) {
-					//TODO have a more advanced instance picker
-					int randomInstance = random.GetRandom(instances.GetLength(0));
+				if (wave <= 4) {
+					int randomInstance = GetRandomBasedOnLevel();
 					Instantiate(instances[randomInstance]);
+
 
 					//If the instance is an asteroid instance
 					if (randomInstance == 2 || randomInstance == 3 ||
@@ -162,6 +171,8 @@ public class LevelHandler : MonoBehaviour {
 					//Play the boss spawn audio clip
 					portraitController.playBossSpawn();
 				}
+
+				wave++;
 				
 			}
 		}
@@ -197,6 +208,22 @@ public class LevelHandler : MonoBehaviour {
 		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money);
 		//Load the UpgradeScene
 		Application.LoadLevel (2);
+	}
+
+	public int GetRandomBasedOnLevel() {
+
+		int highest = Mathf.Min (level + 1, instances.GetLength(0));
+		int lowest = Mathf.Max ((level / 2) - 3, 0);
+		bool gotInt = false;
+		int value = -1;
+		while (!gotInt) {
+			value = random.GetRandomInRange (lowest, highest);
+			if (!pickedInstances.Contains(value) || random.GetRandom(100) < 50) {
+				gotInt = true;
+			}
+		}
+		pickedInstances[wave] = value;
+		return value;
 	}
 
 	public void SpawningHasStopped () {
