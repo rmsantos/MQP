@@ -87,9 +87,7 @@ public class Shields : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void FixedUpdate()
-	{
-		print ("SHIELDS: " + shields);
-		
+	{		
 		//Store the level before reading the slide bar
 		int previousLevel = shieldLevel;
 		
@@ -99,6 +97,31 @@ public class Shields : MonoBehaviour {
 		//If the level changed
 		if(previousLevel != shieldLevel)
 		{
+
+			//If the previous level is higher than the current
+			if(previousLevel > shieldLevel)
+			{
+				int power = GetComponent<Power>().checkLevels(previousLevel-shieldLevel);
+			
+				print (power);
+
+				//Add more pwoer to the power reserve
+				GetComponent<Power>().redirectPower(power);
+
+			}
+			else
+			{
+				int power = GetComponent<Power>().checkLevels(-(shieldLevel-previousLevel));
+
+				shieldLevel = -power;
+				shieldBar.value = -power;
+
+				print (power);
+
+				//Else subtract it
+				GetComponent<Power>().redirectPower(power);
+			}
+
 			//Reset shield stats
 			setShields(shieldLevel);
 
