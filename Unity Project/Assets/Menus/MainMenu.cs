@@ -137,6 +137,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("LaserUpgrade", 0);
 		PlayerPrefs.SetInt ("HealthUpgrade", 0);
 		PlayerPrefs.SetInt ("PowerUpgrade", 0);
+		PlayerPrefs.SetInt ("EngineUpgrade", 0);
 
 		//Game values
 		PlayerPrefs.SetInt ("Money", 0);
