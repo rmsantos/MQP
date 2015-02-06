@@ -69,6 +69,9 @@ public class PowerMenu : MonoBehaviour {
 	//The slider display missile level
 	public Slider missileBar;
 
+	//The status text
+	public Text statusText;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -190,6 +193,15 @@ public class PowerMenu : MonoBehaviour {
 				if(engine == 5)
 					return;
 				
+				//If the player does not have the upgrade for a better engine
+				//Don't let them go past power level 3
+				if(engine == 3 && PlayerPrefs.GetInt("EngineUpgrade",0) != 1)
+				{
+					//Alert the player
+					statusText.text = "You need an engine upgrade first.";
+					return;
+				}
+
 				//Else increase engine level
 				engine++;
 				
