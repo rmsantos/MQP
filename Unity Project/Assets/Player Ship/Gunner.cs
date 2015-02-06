@@ -32,6 +32,9 @@ public class Gunner : MonoBehaviour {
 	//The transform of the laser shooter
 	public Transform laserTurret;
 
+	//The tip of the turret
+	public Transform turretEnd;
+
 	//The prefab object for the bullet
 	public GameObject bulletPrefab;
 
@@ -115,7 +118,7 @@ public class Gunner : MonoBehaviour {
 		missileShootTimer = missileReloadTime;
 		laserShootTimer = laserReloadTime;
 
-		//Load the pause controller object
+		//Load the pause controller object 
 		pauseMenu = (PauseController)pauseObject.GetComponent("PauseController");
 
 		//Pull the values from player prefs
@@ -214,7 +217,7 @@ public class Gunner : MonoBehaviour {
 			shootingBullet = false;
 
 			//Instantiate a bullet with bulletPrefab at the players turret
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,bulletTurret.position, Quaternion.identity);
+			GameObject bullet = (GameObject)Instantiate(bulletPrefab,turretEnd.position, Quaternion.identity);
 						
 			//Store the direction of the player in respect to the bullet
 			Vector3 direction = mouseWorldPos-bullet.transform.position;
@@ -227,6 +230,43 @@ public class Gunner : MonoBehaviour {
 
 			//Send the damage the bullet will deal to the bullet
 			bullet.GetComponent<Bullet>().setDamage(bulletDamage);
+
+			//If power level 3, then enable tri-shot
+			if(PlayerPrefs.GetInt("BlasterPower",0) == 3)
+			{
+				//SECOND BULLET
+				//Instantiate a bullet with bulletPrefab at the players turret
+				GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,turretEnd.position, Quaternion.identity);
+				
+				//Store the direction of the player in respect to the bullet
+				Vector3 direction2 = mouseWorldPos-bullet2.transform.position;
+				
+				//Rotate the bullet towards the player
+				bullet2.transform.rotation = Quaternion.LookRotation(direction2);
+				
+				//Rotate the bullet along the y so that it faces the mouse point
+				bullet2.transform.Rotate(0,90,15);
+				
+				//Send the damage the bullet will deal to the bullet
+				bullet2.GetComponent<Bullet>().setDamage(bulletDamage);
+
+
+				//THIRD BULLET
+				//Instantiate a bullet with bulletPrefab at the players turret
+				GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,turretEnd.position, Quaternion.identity);
+				
+				//Store the direction of the player in respect to the bullet
+				Vector3 direction3 = mouseWorldPos-bullet3.transform.position;
+				
+				//Rotate the bullet towards the player
+				bullet3.transform.rotation = Quaternion.LookRotation(direction3);
+				
+				//Rotate the bullet along the y so that it faces the mouse point
+				bullet3.transform.Rotate(0,90,-15);
+				
+				//Send the damage the bullet will deal to the bullet
+				bullet3.GetComponent<Bullet>().setDamage(bulletDamage);
+			}
 		
 		}
 
