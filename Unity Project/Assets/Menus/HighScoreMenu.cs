@@ -83,12 +83,14 @@ public class HighScoreMenu : MonoBehaviour {
 		if (highScore) {
 			for (int i = 8; i >= scorePlacement; i--) {
 				score[i+1] = score[i];
+				name[i+1] = name[i];
 			}
 			score[scorePlacement] = currentScore;
+			name[scorePlacement] = PlayerPrefs.GetString("Name", "AAA");
 		}
 
 		for (int i = 0; i < 10; i++) {
-			scoreListings[i].text = score[i].ToString();
+			scoreListings[i].text = score[i].ToString() + " - " + name[i];
 		}
 		
 	}

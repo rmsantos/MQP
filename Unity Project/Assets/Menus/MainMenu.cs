@@ -39,6 +39,8 @@ public class MainMenu : MonoBehaviour {
 	public int initialPowerValue;
 	public int initialBlasterPower;
 
+	public string[] initialHighScorers;
+	public int[] initialHighScores;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -59,8 +61,8 @@ public class MainMenu : MonoBehaviour {
 		if (!PlayerPrefs.HasKey ("HighScores")) {
 			PlayerPrefs.SetString("HighScores", "true");
 			for (int i = 0; i < 10; i++) {
-				PlayerPrefs.SetInt("Score" + (i + 1).ToString(), 1000 - (i * 100));
-				PlayerPrefs.SetString("Name" + (i + 1).ToString(), "AAA");
+				PlayerPrefs.SetInt("Score" + (i + 1).ToString(), initialHighScores[i]);
+				PlayerPrefs.SetString("Name" + (i + 1).ToString(), initialHighScorers[i]);
 			}
 		}
 	}
@@ -102,7 +104,7 @@ public class MainMenu : MonoBehaviour {
 		if(highScores && !highScoreButton.audio.isPlaying)
 		{
 			//Load the high scores
-			Application.LoadLevel (4);
+			Application.LoadLevel (5);
 		}
 	}
 
