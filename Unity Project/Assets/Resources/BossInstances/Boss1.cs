@@ -39,9 +39,7 @@ public class Boss1 : MonoBehaviour {
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
-	//The right, top, and bottom boundaries of the map
-	float top;
-	float bottom;
+	//The right boundaries of the map
 	float right;
 
 	//Boss checker variables
@@ -49,10 +47,6 @@ public class Boss1 : MonoBehaviour {
 	static bool killed;
 	int bossTimer;
 
-	//Randomizer script
-	public GameObject randomizer;
-	Randomizer random;
-	
 	//The Portrait Controller script
 	PortraitController portraitController;
 
@@ -80,13 +74,8 @@ public class Boss1 : MonoBehaviour {
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 
-		//Get the top, bottom, and right boundaries
-		top = boundaries.getTop();
-		bottom = boundaries.getBottom();
+		//Get the right boundaries
 		right = boundaries.getRight();
-
-		//Get the randomizer script
-		random = (Randomizer)randomizer.GetComponent("Randomizer");
 	}
 
 	/* ----------------------------------------------------------------------- */

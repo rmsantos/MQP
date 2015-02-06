@@ -50,6 +50,8 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 	int selected;
 
+	static string name;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -71,6 +73,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 		selected = -1;
 
+		name = "";
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -99,7 +102,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Portrait2", gunner);
 			PlayerPrefs.SetInt("Portrait3", mechanic);
 			PlayerPrefs.SetInt("Portrait4", navigator);
-			PlayerPrefs.SetString("Name", "The Player");
+			PlayerPrefs.SetString("Name", name);
 			//Load the main game
 			Application.LoadLevel (4);
 		}
@@ -162,6 +165,11 @@ public class CharacterSelectMenu : MonoBehaviour {
 		descriptionText.text = characterDescriptions[character];
 	}
 
+	public void SetName(string enteredName) {
+
+		name = enteredName;
+
+	}
 	
 
 }

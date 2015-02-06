@@ -36,9 +36,7 @@ public class JuggernautWave : MonoBehaviour {
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 	
-	//The right, top, and bottom boundaries of the map
-	float top;
-	float bottom;
+	//The right boundaries of the map
 	float right;
 	
 	//Keeps track of which enemy has spawned
@@ -72,9 +70,7 @@ public class JuggernautWave : MonoBehaviour {
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 		
-		//Get the top, bottom, and right boundaries
-		top = boundaries.getTop();
-		bottom = boundaries.getBottom();
+		//Get the right boundaries
 		right = boundaries.getRight();
 		
 		//Get the randomizer script

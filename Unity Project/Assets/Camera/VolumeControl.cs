@@ -21,7 +21,8 @@ public class VolumeControl : MonoBehaviour {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//Variables to store the boundary distances from the origin
-	float volume;
+	static float volume;
+	static float musicVolume;
 	
 	void Start () {
 		volume = 1f;
@@ -31,6 +32,11 @@ public class VolumeControl : MonoBehaviour {
 	public void SetVolume (float newVolume) {
 		volume = newVolume;
 		AudioListener.volume = volume;
+	}
+
+	public void SetMusic (float newVolume) {
+		musicVolume = newVolume;
+		audio.volume = musicVolume;
 	}
 
 }

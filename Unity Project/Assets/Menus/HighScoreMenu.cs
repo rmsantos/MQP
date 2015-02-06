@@ -57,7 +57,6 @@ public class HighScoreMenu : MonoBehaviour {
 		name = new string[] {"","","","","","","","","",""};
 
 		for (int i = 0; i < 10; i++) {
-			print ("Score" + (i + 1).ToString());
 			score[i] = PlayerPrefs.GetInt("Score" + (i + 1).ToString(), 1000 - (i * 100));
 			name[i] = PlayerPrefs.GetString("Name" + (i + 1).ToString(), "AAA");
 		}

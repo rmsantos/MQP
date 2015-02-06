@@ -134,7 +134,7 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : shatter()
+	/* Function    : shatter() 
 	 *
 	 * Description : Destroys the small asteroid and creates money
 	 *
@@ -147,9 +147,6 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 		//Load the money prefab
 		GameObject money = Resources.Load<GameObject>("Money/Money");
 
-		//Position of the asteroid
-		var position = gameObject.transform.position;
-		
 		//Load the explosion
 		GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
 
