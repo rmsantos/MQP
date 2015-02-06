@@ -23,20 +23,47 @@ public class VolumeControl : MonoBehaviour {
 	//Variables to store the boundary distances from the origin
 	static float volume;
 	static float musicVolume;
+	static float voiceVolume;
+
+	public Slider volumeSlider;
+	public Slider musicSlider;
+	public Slider voiceSlider;
+
+	public GameObject portraitAudio;
 	
 	void Start () {
 		volume = 1f;
+		musicVolume = .3f;
+		voiceVolume = 1f;
+
+		audio.volume = musicVolume;
 		AudioListener.volume = volume;
+		portraitAudio.audio.volume = voiceVolume;
+
+		musicSlider.value = musicVolume;
+		volumeSlider.value = volume;
+		voiceSlider.value = voiceVolume;
 	}
 
 	public void SetVolume (float newVolume) {
+
 		volume = newVolume;
 		AudioListener.volume = volume;
+
 	}
 
 	public void SetMusic (float newVolume) {
+
 		musicVolume = newVolume;
 		audio.volume = musicVolume;
+
+	}
+
+	public void SetVoice(float newVolume) {
+
+		voiceVolume = newVolume;
+		portraitAudio.audio.volume = voiceVolume;
+
 	}
 
 }

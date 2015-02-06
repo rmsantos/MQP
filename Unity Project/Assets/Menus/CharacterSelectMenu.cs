@@ -49,16 +49,14 @@ public class CharacterSelectMenu : MonoBehaviour {
 	int mechanic;
 
 	int selected;
-
-<<<<<<< HEAD
+	
 	static string name;
-=======
+
 	//Catch phrases of each character
 	public AudioClip[] catchPhrases = new AudioClip[22];
 
 	//Audiosource to play character catch phrase
 	public AudioSource source;
->>>>>>> origin/master
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
