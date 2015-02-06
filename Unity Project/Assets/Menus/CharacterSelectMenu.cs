@@ -50,6 +50,12 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 	int selected;
 
+	//Catch phrases of each character
+	public AudioClip[] catchPhrases = new AudioClip[22];
+
+	//Audiosource to play character catch phrase
+	public AudioSource source;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -157,11 +163,15 @@ public class CharacterSelectMenu : MonoBehaviour {
 	}
 
 	public void SelectCharacter(int character) {
+
+		//Play the character catch phrase
+		source.PlayOneShot (catchPhrases[character]);
+
+		//Select the character
 		selected = character;
 		selectedImage.overrideSprite = characterImages[character];
 		descriptionText.text = characterDescriptions[character];
 	}
 
-	
 
 }
