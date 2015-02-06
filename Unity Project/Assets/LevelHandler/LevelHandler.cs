@@ -214,7 +214,7 @@ public class LevelHandler : MonoBehaviour {
 
 	public void GameOver() {
 		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
-		Application.LoadLevel (4);
+		Application.LoadLevel (5);
 	}
 
 	public void NextLevel() {

@@ -99,6 +99,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Portrait2", gunner);
 			PlayerPrefs.SetInt("Portrait3", mechanic);
 			PlayerPrefs.SetInt("Portrait4", navigator);
+			PlayerPrefs.SetString("Name", "The Player");
 			//Load the main game
 			Application.LoadLevel (4);
 		}
