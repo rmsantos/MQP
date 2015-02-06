@@ -40,6 +40,12 @@ public class Shields : MonoBehaviour {
 	//The render of the shield image
 	public GameObject shieldRender;
 
+	//Audio source to play recharge sound
+	public AudioSource source;
+
+	//Recharge sound
+	public AudioClip recharge;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -92,6 +98,10 @@ public class Shields : MonoBehaviour {
 
 			//Increment the shield
 			shields++;
+
+			//Play the recharge sound if the shield is turning on
+			if(shields == 1)
+				source.PlayOneShot(recharge);
 
 			//And change the transparency level
 			setTransparency();
