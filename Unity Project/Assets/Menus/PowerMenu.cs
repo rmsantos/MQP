@@ -87,21 +87,12 @@ public class PowerMenu : MonoBehaviour {
 		power = PlayerPrefs.GetInt ("Power", 10);
 		maxPower = 10 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
 
-		//PlayerPrefs.SetInt ("Power", 10);
-		//PlayerPrefs.SetInt ("PowerUpgrade", 0);
-		//PlayerPrefs.SetInt ("Power", 10);
-		//PlayerPrefs.SetInt ("Shield", 0);
-		//PlayerPrefs.SetInt ("Engine", 0);
-		//PlayerPrefs.SetInt ("Laser", 0);
-		//PlayerPrefs.SetInt ("Missile", 0);
-		//PlayerPrefs.SetInt ("Blaster", 0);
-
 		//Load the player prefs of each power level
-		shield = PlayerPrefs.GetInt ("Shield", 0);
-		engine = PlayerPrefs.GetInt ("Engine", 0);
-		laser = PlayerPrefs.GetInt ("Laser", 0);
-		blaster = PlayerPrefs.GetInt ("Blaster", 0);
-		missile = PlayerPrefs.GetInt ("Missile", 0);
+		shield = PlayerPrefs.GetInt ("ShieldPower", 0);
+		engine = PlayerPrefs.GetInt ("EnginePower", 0);
+		laser = PlayerPrefs.GetInt ("LaserPower", 0);
+		blaster = PlayerPrefs.GetInt ("BlasterPower", 0);
+		missile = PlayerPrefs.GetInt ("MissilePower", 0);
 
 
 		//Display the current power levels
@@ -186,7 +177,7 @@ public class PowerMenu : MonoBehaviour {
 				power--;
 
 				//Store the shield level as a pref
-				PlayerPrefs.SetInt ("Shield", shield);
+				PlayerPrefs.SetInt ("ShieldPower", shield);
 
 				//Update the shield bar to reflect
 				shieldBar.value = shield;
@@ -206,7 +197,7 @@ public class PowerMenu : MonoBehaviour {
 				power--;
 				
 				//Store the engine level as a pref
-				PlayerPrefs.SetInt ("Engine", engine);
+				PlayerPrefs.SetInt ("EnginePower", engine);
 				
 				//Update the engine bar to reflect
 				engineBar.value = engine;
@@ -226,7 +217,7 @@ public class PowerMenu : MonoBehaviour {
 				power--;
 				
 				//Store the laser level as a pref
-				PlayerPrefs.SetInt ("Laser", laser);
+				PlayerPrefs.SetInt ("LaserPower", laser);
 				
 				//Update the laser bar to reflect
 				laserBar.value = laser;
@@ -246,7 +237,7 @@ public class PowerMenu : MonoBehaviour {
 				power--;
 				
 				//Store the blaster level as a pref
-				PlayerPrefs.SetInt ("Blaster", blaster);
+				PlayerPrefs.SetInt ("BlasterPower", blaster);
 				
 				//Update the blaster bar to reflect
 				blasterBar.value = blaster;
@@ -266,7 +257,7 @@ public class PowerMenu : MonoBehaviour {
 				power--;
 				
 				//Store the missilelevel as a pref
-				PlayerPrefs.SetInt ("Missile", missile);
+				PlayerPrefs.SetInt ("MissilePower", missile);
 				
 				//Update the missile bar to reflect
 				missileBar.value = missile;
@@ -313,7 +304,7 @@ public class PowerMenu : MonoBehaviour {
 				power++;
 
 				//Store the shield level as a pref
-				PlayerPrefs.SetInt ("Shield", shield);
+				PlayerPrefs.SetInt ("ShieldPower", shield);
 
 				//And update the slide
 				shieldBar.value = shield;
@@ -333,7 +324,7 @@ public class PowerMenu : MonoBehaviour {
 				power++;
 				
 				//Store the engine level as a pref
-				PlayerPrefs.SetInt ("Engine", engine);
+				PlayerPrefs.SetInt ("EnginePower", engine);
 				
 				//Update the engine bar to reflect
 				engineBar.value = engine;
@@ -353,7 +344,7 @@ public class PowerMenu : MonoBehaviour {
 				power++;
 				
 				//Store the laser level as a pref
-				PlayerPrefs.SetInt ("Laser", laser);
+				PlayerPrefs.SetInt ("LaserPower", laser);
 				
 				//Update the laser bar to reflect
 				laserBar.value = laser;
@@ -373,7 +364,7 @@ public class PowerMenu : MonoBehaviour {
 				power++;
 				
 				//Store the blaster level as a pref
-				PlayerPrefs.SetInt ("Blaster", blaster);
+				PlayerPrefs.SetInt ("BlasterPower", blaster);
 				
 				//Update the blaster bar to reflect
 				blasterBar.value = blaster;
@@ -393,7 +384,7 @@ public class PowerMenu : MonoBehaviour {
 				power++;
 				
 				//Store the missile level as a pref
-				PlayerPrefs.SetInt ("Missile", missile);
+				PlayerPrefs.SetInt ("MissilePower", missile);
 				
 				//Update the missile bar to reflect
 				missileBar.value = missile;

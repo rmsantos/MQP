@@ -14,6 +14,7 @@
 /* -- INCLUDE FILES ------------------------------------------------------ */
 
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
@@ -58,6 +59,12 @@ public class ShipMovement : MonoBehaviour {
 	//Stores the boundaries script to access later
 	Boundaries boundaries;
 
+	//The engine power
+	int enginePower;
+
+	//Engine slider
+	public Slider engineBar;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -99,11 +106,57 @@ public class ShipMovement : MonoBehaviour {
 		boundaries = Camera.main.GetComponent<Boundaries>(); 
 
 		//Pull the values from player prefs
-		accelerationRate = PlayerPrefs.GetFloat ("AccelerationRate", 1f);
-		maxAcceleration = PlayerPrefs.GetFloat ("MaxAcceleration", 100f);
+		enginePower = PlayerPrefs.GetInt ("EnginePower", 0);
+
+		//Set the engine values based on the power
+		setEngine (enginePower);
+
+		//Display the engine power
+		engineBar.value = enginePower;
 
 	}
-	
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setEngine(int level)
+	 *
+	 * Description : Used to set the appropriate values based on engine power level
+	 *
+	 * Parameters  : int level : The engine power level
+	 *
+	 * Returns     : Void
+	 */
+	void setEngine(int level)
+	{
+		//Set the acceleration stats based on power level
+		switch (level)
+		{
+			case 0:
+				accelerationRate = 0.002f;
+				maxAcceleration = 0.06f;
+				break;
+			case 1:
+				accelerationRate = 0.003f;
+				maxAcceleration = 0.06f;
+				break;
+			case 2:
+				accelerationRate = 0.003f;
+				maxAcceleration = 0.08f;
+				break;
+			case 3:
+				accelerationRate = 0.004f;
+				maxAcceleration = 0.08f;
+				break;
+			case 4:
+				accelerationRate = 0.004f;
+				maxAcceleration = 0.1f;
+				break;
+			case 5:
+				accelerationRate = 0.005f;
+				maxAcceleration = 0.1f;
+				break;
+		}
+	}
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Update()
 	 *

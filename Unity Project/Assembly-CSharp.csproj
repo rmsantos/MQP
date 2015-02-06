@@ -62,7 +62,6 @@
      <Compile Include="Assets\Player Ship\Laser.cs" />
      <Compile Include="Assets\Player Ship\Missile.cs" />
      <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
-     <Compile Include="Assets\Player Ship\Power.cs" />
      <Compile Include="Assets\Player Ship\Shields.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
      <Compile Include="Assets\Player Ship\ShipUpgrades.cs" />
