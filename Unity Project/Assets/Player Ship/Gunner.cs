@@ -129,85 +129,15 @@ public class Gunner : MonoBehaviour {
 
 		//Set all weapons based on power levels
 		setBlaster (blasterPower);
-		//setLaser (laserPower);
-		//setMissile (missilePower);
-
-		//Display the slider levels
-		//blasterBar.value = blasterPower;
-		//laserBar.value = laserPower;
-		//missileBar.value = missilePower;
-
-		missileDamage = 5;
-		missileReloadTime = 50;
-
-		laserDamage = 2;
-		laserReloadTime = 25;
+		setLaser (laserPower);
+		setMissile (missilePower);
 
 		//Display the weapon levels
 		blasterBar.value = blasterPower;
-		//laserBar.value = laserPower;
-		//missileBar.value = missilePower;
+		laserBar.value = laserPower;
+		missileBar.value = missilePower;
 	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : setBlaser(int level)
-	 *
-	 * Description : Used to set the appropriate values based on blaster power level
-	 *
-	 * Parameters  : int level : The blaster power level
-	 *
-	 * Returns     : Void
-	 */
-	void setBlaster(int level)
-	{
-		//Set the reload and damage stats based on power level
-		switch (level)
-		{
-		case 0:
-			bulletDamage = 1;
-			bulletReloadTime = 20;
-			break;
-		case 1:
-			bulletDamage = 1;
-			bulletReloadTime = 5;
-			break;
-		case 2:
-		case 3:
-			bulletDamage = 2;
-			bulletReloadTime = 5;
-			break;
-		}
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : setLaser(int level)
-	 *
-	 * Description : Used to set the appropriate values based on laser power level
-	 *
-	 * Parameters  : int level : The laser power level
-	 *
-	 * Returns     : Void
-	 */
-	void setLaser(int level)
-	{
-		//Set the reload and damage stats based on power level
-		switch (level)
-		{
-		case 0:
-			bulletDamage = 1;
-			bulletReloadTime = 60;
-			break;
-		case 1:
-			bulletDamage = 1;
-			bulletReloadTime = 20;
-			break;
-		case 2:
-		case 3:
-			bulletDamage = 2;
-			bulletReloadTime = 20;
-			break;
-		}
-	}
+	
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : FixedUpdate()
@@ -373,6 +303,110 @@ public class Gunner : MonoBehaviour {
 			}
 		}
 
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setBlaser(int level)
+	 *
+	 * Description : Used to set the appropriate values based on blaster power level
+	 *
+	 * Parameters  : int level : The blaster power level
+	 *
+	 * Returns     : Void
+	 */
+	void setBlaster(int level)
+	{
+		//Set the reload and damage stats based on power level
+		switch (level)
+		{
+		case 0:
+			bulletDamage = 1;
+			bulletReloadTime = 60;
+			break;
+		case 1:
+			bulletDamage = 1;
+			bulletReloadTime = 20;
+			break;
+		case 2:
+		case 3:
+			bulletDamage = 2;
+			bulletReloadTime = 20;
+			break;
+		}
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setLaser(int level)
+	 *
+	 * Description : Used to set the appropriate values based on laser power level
+	 *
+	 * Parameters  : int level : The laser power level
+	 *
+	 * Returns     : Void
+	 */
+	void setLaser(int level)
+	{
+		//Set the reload and damage stats based on power level
+		switch (level)
+		{
+		case 0:
+			laserDamage = 0;
+			laserReloadTime = 99999;
+			break;
+		case 1:
+			laserDamage = 4;
+			laserReloadTime = 600;
+			break;
+		case 2:
+			laserDamage = 8;
+			laserReloadTime = 600;
+			break;
+		case 3:
+			laserDamage = 12;
+			laserReloadTime = 600;
+			break;
+		case 4:
+			laserDamage = 16;
+			laserReloadTime = 600;
+			break;
+		}
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setMissile(int level)
+	 *
+	 * Description : Used to set the appropriate values based on missile power level
+	 *
+	 * Parameters  : int level : The missile power level
+	 *
+	 * Returns     : Void
+	 */
+	void setMissile(int level)
+	{
+		//Set the reload and damage stats based on power level
+		switch (level)
+		{
+		case 0:
+			missileDamage = 0;
+			missileReloadTime = 99999;
+			break;
+		case 1:
+			missileDamage = 3;
+			missileReloadTime = 720;
+			break;
+		case 2:
+			missileDamage = 3;
+			missileReloadTime = 600;
+			break;
+		case 3:
+			missileDamage = 3;
+			missileReloadTime = 480;
+			break;
+		case 4:
+			missileDamage = 3;
+			missileReloadTime = 360;
+			break;
+		}
 	}
 
 }
