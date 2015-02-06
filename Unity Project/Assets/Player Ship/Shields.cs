@@ -52,7 +52,7 @@ public class Shields : MonoBehaviour {
 	void Start () {
 		
 		//Shield power starts at 0
-		shieldPower = PlayerPrefs.GetInt ("Shield", 0);
+		shieldPower = PlayerPrefs.GetInt ("ShieldPower", 0);
 		
 		//Set the shield slider
 		shieldBar.value = shieldPower;

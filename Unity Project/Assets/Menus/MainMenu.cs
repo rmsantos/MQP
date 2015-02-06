@@ -32,13 +32,15 @@ public class MainMenu : MonoBehaviour {
 
 	public int initialHealth;
 	public int initialDamage;
-	public float initialAcceleration;
-	public float initialMaxAcceleration;
-	public int initialShields;
-	public int initialMissiles;
-	public int initialLaser;
+	public int initialShieldPower;
+	public int initialEnginePower;
+	public int initialMissilePower;
+	public int initialLaserPower;
 	public int initialMoneyValue;
+	public int initialPowerValue;
+
 	public int initialReload;
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -120,14 +122,16 @@ public class MainMenu : MonoBehaviour {
 		//Here is where we set all the upgrade values. Player0 is our first unsaved player
 		PlayerPrefs.SetString("Player", "Player0");
 		PlayerPrefs.SetInt ("Damage", initialDamage);
-		PlayerPrefs.SetInt ("Shields", initialShields);
-		PlayerPrefs.SetInt ("Reload", initialReload);
-		PlayerPrefs.SetInt ("Missiles", initialMissiles);
-		PlayerPrefs.SetInt ("Laser", initialLaser);
-		PlayerPrefs.SetInt ("Health", initialHealth);
+		PlayerPrefs.SetInt ("ShieldPower", initialShieldPower);
+		PlayerPrefs.SetInt ("Power", initialPowerValue);
+		PlayerPrefs.SetInt ("EnginePower", initialEnginePower);
+		PlayerPrefs.SetInt ("MissilePower", initialMissilePower);
+		PlayerPrefs.SetInt ("LaserPower", initialLaserPower);
 		PlayerPrefs.SetInt ("MoneyValue", initialMoneyValue);
-		PlayerPrefs.SetFloat ("AccelerationRate", initialAcceleration);
-		PlayerPrefs.SetFloat ("MaxAcceleration", initialMaxAcceleration);
+		PlayerPrefs.SetInt ("Health", initialHealth);
+
+		PlayerPrefs.SetInt ("Reload", initialReload);
+
 
 		//Upgrades
 		PlayerPrefs.SetInt ("DamageUpgrade", 0);
@@ -135,6 +139,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("MissileUpgrade", 0);
 		PlayerPrefs.SetInt ("LaserUpgrade", 0);
 		PlayerPrefs.SetInt ("HealthUpgrade", 0);
+		PlayerPrefs.SetInt ("PowerUpgrade", 0);
 
 		//Game values
 		PlayerPrefs.SetInt ("Money", 0);
