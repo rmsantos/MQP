@@ -110,16 +110,12 @@ public class Gunner : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
-		//Defaultly be ready to shoot
-		readyBullet = true;
-		readyMissile = true;
-		readyLaser = true;
-
 		//Set the shoot timer to its reload time
 		bulletShootTimer = bulletReloadTime;
 		missileShootTimer = missileReloadTime;
 		laserShootTimer = laserReloadTime;
 
+		//Load the pause controller object
 		pauseMenu = (PauseController)pauseObject.GetComponent("PauseController");
 
 		//Pull the values from player prefs
@@ -287,7 +283,7 @@ public class Gunner : MonoBehaviour {
 
 			//If the player tries to shoot a missile and can
 			//if(PlayerPrefs.GetInt ("Missiles", 0) > 0 && readyMissile && Input.GetMouseButtonDown(1)) {
-			if(readyMissile && Input.GetMouseButtonDown(1)) {
+			if(readyMissile && Input.GetMouseButtonDown(1) && missilePower > 0) {
 				//Flag the shoot
 				shootingMissile= true;
 
@@ -295,7 +291,7 @@ public class Gunner : MonoBehaviour {
 
 			//If the player tries to shoot a laser and can
 			//if(PlayerPrefs.GetInt ("Laser", 0) > 0 && readyLaser && Input.GetMouseButtonDown(2)) {
-			if(readyLaser && Input.GetMouseButtonDown(2)) {
+			if(readyLaser && Input.GetMouseButtonDown(2) && laserPower > 0) {
 
 				//Flag the shoot
 				shootingLaser= true;
@@ -321,16 +317,16 @@ public class Gunner : MonoBehaviour {
 		{
 		case 0:
 			bulletDamage = 1;
-			bulletReloadTime = 60;
+			bulletReloadTime = 20;
 			break;
 		case 1:
 			bulletDamage = 1;
-			bulletReloadTime = 20;
+			bulletReloadTime = 5;
 			break;
 		case 2:
 		case 3:
 			bulletDamage = 2;
-			bulletReloadTime = 20;
+			bulletReloadTime = 5;
 			break;
 		}
 	}
@@ -351,7 +347,7 @@ public class Gunner : MonoBehaviour {
 		{
 		case 0:
 			laserDamage = 0;
-			laserReloadTime = 99999;
+			laserReloadTime = 9999;
 			break;
 		case 1:
 			laserDamage = 4;
