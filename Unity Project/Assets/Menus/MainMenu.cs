@@ -38,6 +38,8 @@ public class MainMenu : MonoBehaviour {
 	public int initialMoneyValue;
 	public int initialPowerValue;
 	public int initialBlasterPower;
+	public int initialMissiles;
+	public int initialCrystals;
 
 	public string[] initialHighScorers;
 	public int[] initialHighScores;
@@ -129,6 +131,8 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("BlasterPower", initialBlasterPower);
 		PlayerPrefs.SetInt ("MoneyValue", initialMoneyValue);
 		PlayerPrefs.SetInt ("Health", initialHealth);
+		PlayerPrefs.SetInt ("Missiles", initialMissiles);
+		PlayerPrefs.SetInt ("Crystals", initialCrystals);
 
 		//Upgrades
 		PlayerPrefs.SetInt ("DamageUpgrade", 0);

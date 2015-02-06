@@ -42,12 +42,16 @@ public class UpgradeMenu : MonoBehaviour {
 	public int[] shieldCost;
 
 	public Text moneyText;
+	public Text crystalText;
+	public Text missileText;
 	public Text statusText;
 	public Text CostText;
 	
 	int damage;
 	int health;
 	int money;
+	int missiles;
+	int crystals;
 
 	int damageUpgrade;
 	int healthUpgrade;
@@ -70,6 +74,8 @@ public class UpgradeMenu : MonoBehaviour {
 
 		damage = PlayerPrefs.GetInt ("Damage", 1);
 		money = PlayerPrefs.GetInt ("Money", 0);
+		missiles = PlayerPrefs.GetInt ("Missiles", 0);
+		crystals = PlayerPrefs.GetInt ("Crystals", 0);
 
 		damageUpgrade = PlayerPrefs.GetInt ("DamageUpgrade", 0);
 		healthUpgrade = PlayerPrefs.GetInt ("HealthUpgrade", 0);
@@ -228,6 +234,50 @@ public class UpgradeMenu : MonoBehaviour {
 
 		selected = (int) upgradeSelected.LASER;
 		CostText.text = laserCost[laserUpgrade].ToString();
+
+	}
+
+	public void PurchaseCrystal() {
+
+		crystals++;
+		money -= 4;
+		PlayerPrefs.SetInt("Money", money);
+		PlayerPrefs.SetInt("Crystals", crystals);
+		moneyText.text = money.ToString();
+		crystalText.text = crystals.ToString();
+
+	}
+
+	public void PurchaseMissile() {
+
+		missiles++;
+		money -= 5;
+		PlayerPrefs.SetInt("Money", money);
+		PlayerPrefs.SetInt("Missiles", missiles);
+		moneyText.text = money.ToString();
+		missileText.text = missiles.ToString();
+
+	}
+
+	public void SellMissile() {
+
+		missiles--;
+		money += 2;
+		PlayerPrefs.SetInt("Money", money);
+		PlayerPrefs.SetInt("Missiles", missiles);
+		moneyText.text = money.ToString();
+		missileText.text = missiles.ToString();
+
+	}
+
+	public void SellCrystal() {
+
+		crystals--;
+		money += 2;
+		PlayerPrefs.SetInt("Money", money);
+		PlayerPrefs.SetInt("Crystals", crystals);
+		moneyText.text = money.ToString();
+		crystalText.text = crystals.ToString();
 
 	}
 
