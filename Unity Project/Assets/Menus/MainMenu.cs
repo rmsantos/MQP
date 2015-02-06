@@ -31,15 +31,13 @@ public class MainMenu : MonoBehaviour {
 	public GameObject highScoreButton;
 
 	public int initialHealth;
-	public int initialDamage;
 	public int initialShieldPower;
 	public int initialEnginePower;
 	public int initialMissilePower;
 	public int initialLaserPower;
 	public int initialMoneyValue;
 	public int initialPowerValue;
-
-	public int initialReload;
+	public int initialBlasterPower;
 
 
 	/* ----------------------------------------------------------------------- */
@@ -121,17 +119,14 @@ public class MainMenu : MonoBehaviour {
 	{
 		//Here is where we set all the upgrade values. Player0 is our first unsaved player
 		PlayerPrefs.SetString("Player", "Player0");
-		PlayerPrefs.SetInt ("Damage", initialDamage);
 		PlayerPrefs.SetInt ("ShieldPower", initialShieldPower);
 		PlayerPrefs.SetInt ("Power", initialPowerValue);
 		PlayerPrefs.SetInt ("EnginePower", initialEnginePower);
 		PlayerPrefs.SetInt ("MissilePower", initialMissilePower);
 		PlayerPrefs.SetInt ("LaserPower", initialLaserPower);
+		PlayerPrefs.SetInt ("BlasterPower", initialBlasterPower);
 		PlayerPrefs.SetInt ("MoneyValue", initialMoneyValue);
 		PlayerPrefs.SetInt ("Health", initialHealth);
-
-		PlayerPrefs.SetInt ("Reload", initialReload);
-
 
 		//Upgrades
 		PlayerPrefs.SetInt ("DamageUpgrade", 0);

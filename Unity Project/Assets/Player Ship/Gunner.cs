@@ -13,6 +13,7 @@
 
 /* -- INCLUDE FILES ------------------------------------------------------ */
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
@@ -85,9 +86,19 @@ public class Gunner : MonoBehaviour {
 	//The damage lasers will deal
 	int laserDamage;
 
+	//The power levels for each weapon
+	int blasterPower;
+	int missilePower;
+	int laserPower;
+
 	//Randomizer script
 	public GameObject pauseObject;
 	PauseController pauseMenu;
+
+	//Sliders to display weapon levels
+	public Slider blasterBar;
+	public Slider laserBar;
+	public Slider missileBar;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -112,16 +123,92 @@ public class Gunner : MonoBehaviour {
 		pauseMenu = (PauseController)pauseObject.GetComponent("PauseController");
 
 		//Pull the values from player prefs
-		bulletDamage = PlayerPrefs.GetInt ("Damage", 100);
-		bulletReloadTime = PlayerPrefs.GetInt ("Reload", 1);
+		blasterPower = PlayerPrefs.GetInt ("BlasterPower", 0);
+		missilePower = PlayerPrefs.GetInt ("MissilePower", 0);
+		laserPower = PlayerPrefs.GetInt ("LaserPower", 0);
+
+		//Set all weapons based on power levels
+		setBlaster (blasterPower);
+		//setLaser (laserPower);
+		//setMissile (missilePower);
+
+		//Display the slider levels
+		//blasterBar.value = blasterPower;
+		//laserBar.value = laserPower;
+		//missileBar.value = missilePower;
 
 		missileDamage = 5;
 		missileReloadTime = 50;
 
 		laserDamage = 2;
 		laserReloadTime = 25;
+
+		//Display the weapon levels
+		blasterBar.value = blasterPower;
+		//laserBar.value = laserPower;
+		//missileBar.value = missilePower;
 	}
-	
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setBlaser(int level)
+	 *
+	 * Description : Used to set the appropriate values based on blaster power level
+	 *
+	 * Parameters  : int level : The blaster power level
+	 *
+	 * Returns     : Void
+	 */
+	void setBlaster(int level)
+	{
+		//Set the reload and damage stats based on power level
+		switch (level)
+		{
+		case 0:
+			bulletDamage = 1;
+			bulletReloadTime = 20;
+			break;
+		case 1:
+			bulletDamage = 1;
+			bulletReloadTime = 5;
+			break;
+		case 2:
+		case 3:
+			bulletDamage = 2;
+			bulletReloadTime = 5;
+			break;
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setLaser(int level)
+	 *
+	 * Description : Used to set the appropriate values based on laser power level
+	 *
+	 * Parameters  : int level : The laser power level
+	 *
+	 * Returns     : Void
+	 */
+	void setLaser(int level)
+	{
+		//Set the reload and damage stats based on power level
+		switch (level)
+		{
+		case 0:
+			bulletDamage = 1;
+			bulletReloadTime = 60;
+			break;
+		case 1:
+			bulletDamage = 1;
+			bulletReloadTime = 20;
+			break;
+		case 2:
+		case 3:
+			bulletDamage = 2;
+			bulletReloadTime = 20;
+			break;
+		}
+	}
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : FixedUpdate()
 	 *
