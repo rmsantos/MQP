@@ -30,6 +30,7 @@ public class HighScoreMenu : MonoBehaviour {
 	int[] score;
 	string[] name;
 	public Text[] scoreListings;
+	public Text[] scoreNames;
 
 	int scorePlacement;
 
@@ -90,7 +91,8 @@ public class HighScoreMenu : MonoBehaviour {
 		}
 
 		for (int i = 0; i < 10; i++) {
-			scoreListings[i].text = score[i].ToString() + " - " + name[i];
+			scoreListings[i].text = name[i];
+			scoreNames[i].text = score[i].ToString();
 		}
 		
 	}

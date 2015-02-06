@@ -77,7 +77,7 @@ public class UpgradeMenu : MonoBehaviour {
 		laserUpgrade = PlayerPrefs.GetInt ("LaserUpgrade", 0);
 		shieldUpgrade = PlayerPrefs.GetInt ("ShieldUpgrade", 0);
 
-		moneyText.text = ("Money: " + money.ToString());
+		moneyText.text = (money.ToString());
 
 		//Initialize states to not pressed
 		startGame = false;
@@ -239,7 +239,7 @@ public class UpgradeMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Money", money);
 			PlayerPrefs.SetInt("Damage", damage);
 			PlayerPrefs.SetInt("DamageUpgrade", damageUpgrade);
-			moneyText.text = "Money: " + money.ToString();
+			moneyText.text = money.ToString();
 			statusText.text = "Damage upgraded!";
 			UpdateUpgrades();
 			if (damageUpgrade < damageCost.Length) {
@@ -257,7 +257,7 @@ public class UpgradeMenu : MonoBehaviour {
 			shieldUpgrade++;
 			PlayerPrefs.SetInt("Money", money);
 			PlayerPrefs.SetInt("ShieldUpgrade", shieldUpgrade);
-			moneyText.text = "Money: " + money.ToString();
+			moneyText.text = money.ToString();
 			statusText.text = "Shield upgraded!";
 			UpdateUpgrades();
 			if (shieldUpgrade < shieldCost.Length) {
@@ -275,7 +275,7 @@ public class UpgradeMenu : MonoBehaviour {
 			laserUpgrade++;
 			PlayerPrefs.SetInt("Money", money);
 			PlayerPrefs.SetInt("LaserUpgrade", laserUpgrade);
-			moneyText.text = "Money: " + money.ToString();
+			moneyText.text = money.ToString();
 			statusText.text = "Laser upgraded!";
 			UpdateUpgrades();
 			if (laserUpgrade < laserCost.Length) {
@@ -293,7 +293,7 @@ public class UpgradeMenu : MonoBehaviour {
 			missileUpgrade++;
 			PlayerPrefs.SetInt("Money", money);
 			PlayerPrefs.SetInt("MissileUpgrade", missileUpgrade);
-			moneyText.text = "Money: " + money.ToString();
+			moneyText.text = money.ToString();
 			statusText.text = "Missile upgraded!";
 			UpdateUpgrades();
 			if (missileUpgrade < missileCost.Length) {
@@ -311,7 +311,7 @@ public class UpgradeMenu : MonoBehaviour {
 			healthUpgrade++;
 			PlayerPrefs.SetInt("Money", money);
 			PlayerPrefs.SetInt("HealthUpgrade", healthUpgrade);
-			moneyText.text = "Money: " + money.ToString();
+			moneyText.text = money.ToString();
 			statusText.text = "Health upgraded!";
 			UpdateUpgrades();
 			if (healthUpgrade < healthCost.Length) {
