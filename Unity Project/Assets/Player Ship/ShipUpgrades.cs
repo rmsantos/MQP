@@ -21,26 +21,42 @@ public class ShipUpgrades : MonoBehaviour {
 	int ShieldLevel;
 	int LaserLevel;
 	int TurretLevel;
-	
+	int EngineLevel;
+
+	public Sprite upgradedMissile;
+	public Sprite maxMissile;
+
 	void Start () {
 	
-		MissileLevel = PlayerPrefs.GetInt ("MissileUpgrade", 0);
-		ShieldLevel = PlayerPrefs.GetInt ("ShieldUpgrade", 0);
-		LaserLevel = PlayerPrefs.GetInt ("LaserUpgrade", 0);
 		TurretLevel = 1;
+		MissileLevel = PlayerPrefs.GetInt ("MissileUpgradePayload", 0);
+		LaserLevel = PlayerPrefs.GetInt ("LaserUpgradeFireRate", 0);
+		EngineLevel = PlayerPrefs.GetInt ("EngineUpgrade", 0);
+		ShieldLevel = PlayerPrefs.GetInt ("ShieldUpgradeNumber", 0);
 
-		if (MissileLevel < 1) {
-			transform.Find("MissileUpgrade").renderer.enabled = false;
+
+		if (MissileLevel == 5) {
+			print (transform.Find("MissileUpgrade").GetComponent<SpriteRenderer>().sprite);
+			transform.Find("MissileUpgrade").GetComponent<SpriteRenderer>().sprite = maxMissile;
+		} else if(MissileLevel < 5) {
+			transform.Find("MissileUpgrade").GetComponent<SpriteRenderer>().sprite = upgradedMissile;
 		}
-		if (ShieldLevel < 1) {
-			transform.Find("ShieldUpgrade").renderer.enabled = false;
-		}
+
 		if (LaserLevel < 1) {
 			transform.Find("LaserUpgrade/LaserUpgrade").renderer.enabled = false;
 			transform.Find("LaserUpgradeAttachment").renderer.enabled = false;
 		}
+
 		if (TurretLevel < 1) {
 			transform.Find("TurretUpgrade").renderer.enabled = false;
+		}
+
+		if (EngineLevel != 3) {
+			transform.Find("EngineUpgrade").renderer.enabled = false;
+		}
+		
+		if (ShieldLevel < 1) {
+			transform.Find("ShieldUpgrade").renderer.enabled = false;
 		}
 
 	}
