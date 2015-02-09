@@ -88,7 +88,7 @@ public class PowerMenu : MonoBehaviour {
 
 		//Load the players current power and max power from player prefs
 		power = PlayerPrefs.GetInt ("Power", 10);
-		maxPower = 10 + (PlayerPrefs.GetInt ("PowerUpgrade", 0)*5);
+		maxPower = 10 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
 
 		//Load the player prefs of each power level
 		shield = PlayerPrefs.GetInt ("ShieldPower", 0);
