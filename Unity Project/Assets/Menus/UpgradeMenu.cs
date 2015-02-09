@@ -77,6 +77,22 @@ public class UpgradeMenu : MonoBehaviour {
 		missiles = PlayerPrefs.GetInt ("Missiles", 0);
 		crystals = PlayerPrefs.GetInt ("Crystals", 0);
 
+		//Upgrades
+		//PlayerPrefs.GetInt ("EngineUpgrade", 0);
+		//PlayerPrefs.GetInt ("BlasterUpgradeSpeed", 0);
+		//PlayerPrefs.GetInt ("BlasterUpgradeBurst", 0);
+		//PlayerPrefs.GetInt ("LaserUpgradeEmplacement", 0);
+		//PlayerPrefs.GetInt ("LaserUpgradeDamage", 0);
+		//PlayerPrefs.GetInt ("ShieldUpgradeRecharge", 0);
+		//PlayerPrefs.GetInt ("ShieldUpgradeNumber", 0);
+		//PlayerPrefs.GetInt ("ShieldUpgradeHardened", 0);
+		//PlayerPrefs.GetInt ("HullUpgrade", 0);
+		//PlayerPrefs.GetInt ("CargoUpgradeMissiles", 0);
+		//PlayerPrefs.GetInt ("CargoUpgradeCrystals", 0);
+		//PlayerPrefs.GetInt ("MissileUpgradePayload", 0);
+		//PlayerPrefs.GetInt ("MissileUpgradeLoader", 0);
+		//PlayerPrefs.GetInt ("PowerUpgrade", 0);
+
 		damageUpgrade = PlayerPrefs.GetInt ("DamageUpgrade", 0);
 		healthUpgrade = PlayerPrefs.GetInt ("HealthUpgrade", 0);
 		missileUpgrade = PlayerPrefs.GetInt ("MissileUpgrade", 0);
