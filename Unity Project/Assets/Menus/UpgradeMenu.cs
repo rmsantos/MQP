@@ -37,7 +37,9 @@ public class UpgradeMenu : MonoBehaviour {
 	public int[] missiles2Cost;
 	public int[] cargo1Cost;
 	public int[] cargo2Cost;
+	public int[] cargo3Cost;
 	public int[] hull1Cost;
+	public int[] hull2Cost;
 	public int[] lasers1Cost;
 	public int[] lasers2Cost;
 
@@ -49,12 +51,12 @@ public class UpgradeMenu : MonoBehaviour {
 
 	string[] upgradePrefs = {"EngineUpgrade", 
 		"BlasterUpgradeSpeed", "BlasterUpgradeBurst", 
-		"ShieldUpgradeRecharge", "ShieldUpgradeNumber", "ShieldUpgradeHardened",
+		"ShieldUpgradeNumber", "ShieldUpgradeRecharge", "ShieldUpgradeHardened",
 		"PowerUpgrade", 
-		"MissileUpgradeLoader", "MissileUpgradePayload", 
-		"CargoUpgradeMissiles", "CargoUpgradeCrystals",
-		"HullUpgrade", 
-		"LaserUpgradeEmplacement", "LaserUpgradeDamage"};
+		"MissileUpgradePayload", "MissileUpgradeLoader", 
+		"CargoUpgradeMissiles", "CargoUpgradeCrystals", "CargoUpgradeCredits",
+		"HullUpgradeReinforced", "HullUpgradeAsteroidResistance", 
+		"LaserUpgradeFireRate", "LaserUpgradeDamage"};
 	
 	public string[] descriptions;
 
@@ -63,12 +65,7 @@ public class UpgradeMenu : MonoBehaviour {
 	
 	//The buttons available to press
 	public Button startButton;
-	public Button damageButton;
 	public Button purchaseButton;
-	public Button shieldButton;
-	public Button laserButton;
-	public Button missileButton;
-	public Button healthButton;
 
 	//The dynamic text found on the screen
 	public Text moneyText;
@@ -78,11 +75,16 @@ public class UpgradeMenu : MonoBehaviour {
 	public Text descriptionText;
 	public Text CostText;
 	public Text debugText;
+	public Text scoreText;
+	public Text levelText;
 
+	//Player variables that are displayed
 	int money;
 	int missiles;
 	int crystals;
+	int score;
 
+	//The actively selected upgrade (very important)
 	int selected;
 
 	/* ----------------------------------------------------------------------- */
@@ -96,37 +98,50 @@ public class UpgradeMenu : MonoBehaviour {
 	 */
 	void Start () {
 
+		//Populate the upgrade functions
 		upgradeFunction = new Upgrade[] {UpgradeEngine1,
 										   UpgradeBlaster1, UpgradeBlaster2,
 										   UpgradeShields1, UpgradeShields2, UpgradeShields3,
 										   UpgradePower1, 
 										   UpgradeMissiles1, UpgradeMissiles2,
-										   UpgradeCargo1, UpgradeCargo2,
-										   UpgradeHull1,
+										   UpgradeCargo1, UpgradeCargo2, UpgradeCargo3,
+										   UpgradeHull1, UpgradeHull2,
 										   UpgradeLasers1, UpgradeLasers2};
 
+		//Populate the cost arrays
 		costs = new int[][] {engine1Cost, 
 							blaster1Cost, blaster2Cost, 
 							shields1Cost, shields2Cost, shields3Cost, 
 							power1Cost,
 							missiles1Cost, missiles2Cost, 
-							cargo1Cost, cargo2Cost, 
-							hull1Cost, 
+							cargo1Cost, cargo2Cost, cargo3Cost, 
+							hull1Cost, hull2Cost, 
 							lasers1Cost, lasers2Cost};
 
+		//Initialize the player values from playerprefs
 		money = PlayerPrefs.GetInt ("Money", 0);
 		missiles = PlayerPrefs.GetInt ("Missiles", 0);
 		crystals = PlayerPrefs.GetInt ("Crystals", 0);
+		score = PlayerPrefs.GetInt ("Score", 0);
+
+		//Display the player values
+		moneyText.text = money.ToString();
+		scoreText.text = score.ToString();
+		missileText.text = missiles.ToString();
+		crystalText.text = crystals.ToString();
 		
-		//Upgrades
+		//Setup and retreive the previously bought upgrade levels
+		upgradeLevel = new int[upgradePrefs.Length];
 		for (int i = 0; i < upgradePrefs.Length; i++) {
 			upgradeLevel[i] = PlayerPrefs.GetInt (upgradePrefs[i], 0);
 		}
 
-		moneyText.text = (money.ToString());
-
-		//Initialize states to not pressed
+		//Initialize start state to false
 		startGame = false;
+
+		//Selected should be set to a value that isn't an upgrade value, so -1
+		selected = -1;
+		purchaseButton.interactable = false;
 
 	}
 	
@@ -152,10 +167,10 @@ public class UpgradeMenu : MonoBehaviour {
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
 		{
-
 			PlayerPrefs.SetInt("Money", money);
 			PlayerPrefs.SetInt("Missiles", missiles);
 			PlayerPrefs.SetInt("Crystals", crystals);
+			PlayerPrefs.SetInt("Score", score);
 			//Load the main game
 			Application.LoadLevel (4);
 		}
@@ -200,15 +215,24 @@ public class UpgradeMenu : MonoBehaviour {
 
 	public void Select(int select) {
 
+		//Set selected variable to appropriate value
 		selected = select;
-		if (costs.GetLength(selected) < upgradeLevel[selected]) {
+
+		//Display the appropriate cost 
+		if (costs[selected].GetLength(0) > upgradeLevel[selected]) {
 			CostText.text = costs[selected][upgradeLevel[selected]].ToString();
+			purchaseButton.interactable = true;
 		}
 		else {
 			CostText.text = "MAX";
+			purchaseButton.interactable = false;
 		}
+
+		//Set descriptive texts
 		descriptionText.text = descriptions[selected];
 		statusText.text = "";
+		debugText.text = upgradePrefs[selected];
+		levelText.text = "lvl: " + upgradeLevel[selected].ToString();
 
 	}
 
@@ -256,7 +280,15 @@ public class UpgradeMenu : MonoBehaviour {
 
 	}
 
+	public void UpgradeCargo3() {
+
+	}
+
 	public void UpgradeHull1() {
+
+	}
+
+	public void UpgradeHull2() {
 
 	}
 
@@ -268,40 +300,64 @@ public class UpgradeMenu : MonoBehaviour {
 
 	}
 
+	//Used to purchase crystal
 	public void PurchaseCrystal() {
 
-		crystals++;
-		money -= 4;
-		moneyText.text = money.ToString();
-		crystalText.text = crystals.ToString();
+		if (money >= 4) {
+			crystals++;
+			money -= 4;
+			moneyText.text = money.ToString();
+			crystalText.text = crystals.ToString();
+		}
 
 	}
 
+	//Used to purchase missile
 	public void PurchaseMissile() {
 
-		missiles++;
-		money -= 5;
-		moneyText.text = money.ToString();
-		missileText.text = missiles.ToString();
+		if (money >= 5) {
+			missiles++;
+			money -= 5;
+			moneyText.text = money.ToString ();
+			missileText.text = missiles.ToString ();
+		}
 
 	}
 
+	//Used to sell missile
 	public void SellMissile() {
 
-		missiles--;
-		money += 2;
-		moneyText.text = money.ToString();
-		missileText.text = missiles.ToString();
+		if (missiles >= 1) {
+			missiles--;
+			money += 2;
+			moneyText.text = money.ToString();
+			missileText.text = missiles.ToString();
+		}
 
 	}
 
+	//Used to sell crystal
 	public void SellCrystal() {
 
-		crystals--;
-		money += 2;
-		moneyText.text = money.ToString();
-		crystalText.text = crystals.ToString();
+		if (crystals >= 1) {
+			crystals--;
+			money += 2;
+			moneyText.text = money.ToString();
+			crystalText.text = crystals.ToString();
+		}
 
+	}
+
+	//Used to increase score
+	public void PurchaseScore() {
+
+		if (money >= 25) {
+			score += 100;
+			money -= 25;
+			moneyText.text = money.ToString();
+			scoreText.text = score.ToString();
+		}
+		
 	}
 
 }
