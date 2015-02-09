@@ -143,6 +143,15 @@ public class UpgradeMenu : MonoBehaviour {
 		selected = -1;
 		purchaseButton.interactable = false;
 
+		//Check for special case button disables
+		if (upgradeLevel[3] < 1) {
+			selectButtons[4].interactable = false;
+			selectButtons[5].interactable = false;
+		}
+		if (upgradeLevel[14] < 1) {
+			selectButtons[15].interactable = false;
+		}
+
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -249,7 +258,8 @@ public class UpgradeMenu : MonoBehaviour {
 	}
 
 	public void UpgradeShields1() {
-
+		selectButtons[4].interactable = true;
+		selectButtons[5].interactable = true;
 	}
 
 	public void UpgradeShields2() {
@@ -293,7 +303,7 @@ public class UpgradeMenu : MonoBehaviour {
 	}
 
 	public void UpgradeLasers1() {
-
+		selectButtons[15].interactable = true;
 	}
 
 	public void UpgradeLasers2() {
