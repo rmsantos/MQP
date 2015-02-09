@@ -411,6 +411,11 @@ public class Gunner : MonoBehaviour {
 			laserReloadTime = 600;
 			break;
 		}
+
+		//If the player has bought the laser damage upgrade
+		//Then increase damage
+		if(PlayerPrefs.GetInt("LaserUpgradeDamage",0) == 1)
+			laserDamage += 4;
 	}
 	
 	/* ----------------------------------------------------------------------- */
