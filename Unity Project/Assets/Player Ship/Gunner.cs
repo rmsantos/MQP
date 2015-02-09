@@ -103,6 +103,9 @@ public class Gunner : MonoBehaviour {
 	public Slider laserBar;
 	public Slider missileBar;
 
+	//Number of missiles the player has
+	int missiles;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -135,6 +138,9 @@ public class Gunner : MonoBehaviour {
 		blasterBar.value = blasterPower;
 		laserBar.value = laserPower;
 		missileBar.value = missilePower;
+
+		//Load the players missiles
+		missiles = PlayerPrefs.GetInt ("Missiles", 0);
 	}
 	
 
@@ -272,7 +278,13 @@ public class Gunner : MonoBehaviour {
 
 		//If the user clicked the right mouse button
 		if (shootingMissile) {
-			
+
+			//Subtract the number of missiles
+			missiles --;
+
+			//Store that pref
+			PlayerPrefs.SetInt("Missiels",missiles);
+
 			//Flag that player has just shot
 			readyMissile = false;
 			shootingMissile = false;
@@ -323,7 +335,7 @@ public class Gunner : MonoBehaviour {
 
 			//If the player tries to shoot a missile and can
 			//if(PlayerPrefs.GetInt ("Missiles", 0) > 0 && readyMissile && Input.GetMouseButtonDown(1)) {
-			if(readyMissile && Input.GetMouseButtonDown(1) && missilePower > 0) {
+			if(readyMissile && Input.GetMouseButtonDown(1) && missilePower > 0 && missiles > 0) {
 				//Flag the shoot
 				shootingMissile= true;
 
