@@ -21,30 +21,10 @@ using System.Collections;
 
 public class UpgradeMenu : MonoBehaviour {
 
-	public enum upgradeSelected {ENGINE1 = 0, 
-								 BLASTER1 = 1, BLASTER2 = 2, 
-								 SHIELDS1 = 3, SHIELDS2 = 4, SHIELDS3 = 5, 
-								 POWER1 = 6, POWER2 = 7, 
-								 MISSILES1 = 8, MISSILES2 = 9, 
-								 CARGO1 = 10, GARGO2 = 11, 
-								 HULL1 = 12, 
-								 LASERS1 = 13, LASERS2 = 14};
-
+	//Upgrade management variables
 	delegate void Upgrade();
 
 	Upgrade[] upgradeFunction;
-
-	//Flags on whether to start the game
-	bool startGame;
-
-	//The start button
-	public Button startButton;
-	public Button damageButton;
-	public Button purchaseButton;
-	public Button shieldButton;
-	public Button laserButton;
-	public Button missileButton;
-	public Button healthButton;
 
 	public int[] engine1Cost;
 	public int[] blaster1Cost;
@@ -53,7 +33,6 @@ public class UpgradeMenu : MonoBehaviour {
 	public int[] shields2Cost;
 	public int[] shields3Cost;
 	public int[] power1Cost;
-	public int[] power2Cost;
 	public int[] missiles1Cost;
 	public int[] missiles2Cost;
 	public int[] cargo1Cost;
@@ -64,10 +43,37 @@ public class UpgradeMenu : MonoBehaviour {
 
 	int[][] costs;
 
+	int[] upgradeLevel;
+
+	string[] upgradePrefs = {"EngineUpgrade", 
+		"BlasterUpgradeSpeed", "BlasterUpgradeBurst", 
+		"ShieldUpgradeRecharge", "ShieldUpgradeNumber", "ShieldUpgradeHardened",
+		"PowerUpgrade", 
+		"MissileUpgradeLoader", "MissileUpgradePayload", 
+		"CargoUpgradeMissiles", "CargoUpgradeCrystals",
+		"HullUpgrade", 
+		"LaserUpgradeEmplacement", "LaserUpgradeDamage"};
+	
+	public string[] descriptions;
+
+	//Flags on whether to start the game
+	bool startGame;
+	
+	//The buttons available to press
+	public Button startButton;
+	public Button damageButton;
+	public Button purchaseButton;
+	public Button shieldButton;
+	public Button laserButton;
+	public Button missileButton;
+	public Button healthButton;
+
+	//The dynamic text found on the screen
 	public Text moneyText;
 	public Text crystalText;
 	public Text missileText;
 	public Text statusText;
+	public Text descriptionText;
 	public Text CostText;
 
 	int money;
@@ -90,7 +96,7 @@ public class UpgradeMenu : MonoBehaviour {
 		upgradeFunction = new Upgrade[] {UpgradeEngine1,
 										   UpgradeBlaster1, UpgradeBlaster2,
 										   UpgradeShields1, UpgradeShields2, UpgradeShields3,
-										   UpgradePower1, UpgradePower2,
+										   UpgradePower1, 
 										   UpgradeMissiles1, UpgradeMissiles2,
 										   UpgradeCargo1, UpgradeCargo2,
 										   UpgradeHull1,
@@ -99,7 +105,7 @@ public class UpgradeMenu : MonoBehaviour {
 		costs = new int[][] {engine1Cost, 
 							blaster1Cost, blaster2Cost, 
 							shields1Cost, shields2Cost, shields3Cost, 
-							power1Cost, power2Cost, 
+							power1Cost,
 							missiles1Cost, missiles2Cost, 
 							cargo1Cost, cargo2Cost, 
 							hull1Cost, 
@@ -109,36 +115,16 @@ public class UpgradeMenu : MonoBehaviour {
 		missiles = PlayerPrefs.GetInt ("Missiles", 0);
 		crystals = PlayerPrefs.GetInt ("Crystals", 0);
 		
-		/*
 		//Upgrades
-		//PlayerPrefs.GetInt ("EngineUpgrade", 0);
-		//PlayerPrefs.GetInt ("BlasterUpgradeSpeed", 0);
-		//PlayerPrefs.GetInt ("BlasterUpgradeBurst", 0);
-		//PlayerPrefs.GetInt ("LaserUpgradeEmplacement", 0);
-		//PlayerPrefs.GetInt ("LaserUpgradeDamage", 0);
-		//PlayerPrefs.GetInt ("ShieldUpgradeRecharge", 0);
-		//PlayerPrefs.GetInt ("ShieldUpgradeNumber", 0);
-		//PlayerPrefs.GetInt ("ShieldUpgradeHardened", 0);
-		//PlayerPrefs.GetInt ("HullUpgrade", 0);
-		//PlayerPrefs.GetInt ("CargoUpgradeMissiles", 0);
-		//PlayerPrefs.GetInt ("CargoUpgradeCrystals", 0);
-		//PlayerPrefs.GetInt ("MissileUpgradePayload", 0);
-		//PlayerPrefs.GetInt ("MissileUpgradeLoader", 0);
-		//PlayerPrefs.GetInt ("PowerUpgrade", 0);
-
-		damageUpgrade = PlayerPrefs.GetInt ("DamageUpgrade", 0);
-		healthUpgrade = PlayerPrefs.GetInt ("HealthUpgrade", 0);
-		missileUpgrade = PlayerPrefs.GetInt ("MissileUpgrade", 0);
-		laserUpgrade = PlayerPrefs.GetInt ("LaserUpgrade", 0);
-		shieldUpgrade = PlayerPrefs.GetInt ("ShieldUpgrade", 0);
-		*/
+		for (int i = 0; i < upgradePrefs.Length; i++) {
+			upgradeLevel[i] = PlayerPrefs.GetInt (upgradePrefs[i], 0);
+		}
 
 		moneyText.text = (money.ToString());
 
 		//Initialize states to not pressed
 		startGame = false;
 
-		UpdateUpgrades();
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -163,6 +149,10 @@ public class UpgradeMenu : MonoBehaviour {
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
 		{
+
+			PlayerPrefs.SetInt("Money", money);
+			PlayerPrefs.SetInt("Missiles", missiles);
+			PlayerPrefs.SetInt("Crystals", crystals);
 			//Load the main game
 			Application.LoadLevel (4);
 		}
@@ -183,84 +173,39 @@ public class UpgradeMenu : MonoBehaviour {
 		startGame = start;
 	}
 
-	void UpdateUpgrades() {
+	public void Purchase() {
 
-		/*
-		//DAMAGE
-		if (PlayerPrefs.GetInt("DamageUpgrade", 0) >= damageCost.Length) {
-			damageButton.interactable = false;
-			if (selected == (int) upgradeSelected.DAMAGE) {
-				CostText.text = "MAX";
-			}
+		if (costs[selected][upgradeLevel[selected]] <= money) {
+
+			//Do general "every upgrade" purchasing logic
+			money -= costs[selected][upgradeLevel[selected]];
+			moneyText.text = money.ToString();
+			upgradeLevel[selected] = upgradeLevel[selected] + 1;
+			PlayerPrefs.SetInt(upgradePrefs[selected], upgradeLevel[selected]);
+			Select(selected);
+			statusText.text = "Upgrade purchased!";
+				
+			//Do the specific upgrade logic
+			upgradeFunction[selected]();
+
 		}
-		//MISSILES
-		if (missileUpgrade >= missileCost.Length) {
-			missileButton.interactable = false;
-			if (selected == (int) upgradeSelected.MISSILE) {
-				CostText.text = "MAX";
-			}
+		else {
+			statusText.text = "Not enough money!";
 		}
-		//SHIELDS
-		if (PlayerPrefs.GetInt("ShieldUpgrade", 0) >= shieldCost.Length) {
-			shieldButton.interactable = false;
-			if (selected == (int) upgradeSelected.SHIELD) {
-				CostText.text = "MAX";
-			}
-		}
-		//HEALTH
-		if (healthUpgrade >= healthCost.Length) {
-			healthButton.interactable = false;
-			if (selected == (int) upgradeSelected.HEALTH) {
-				CostText.text = "MAX";
-			}
-		}
-		//LASER
-		if (laserUpgrade >= laserCost.Length) {
-			laserButton.interactable = false;
-			if (selected == (int) upgradeSelected.LASER) {
-				CostText.text = "MAX";
-			}
-		}
-		*/
-	}
-
-	public void purchase() {
-
-		/*
-		switch (selected) {
-
-		case (int)upgradeSelected.DAMAGE:
-			UpgradeDamage();
-			break;
-
-		case (int)upgradeSelected.HEALTH:
-			UpgradeHealth();
-			break;
-
-		case (int)upgradeSelected.LASER:
-			UpgradeLaser();
-			break;
-
-		case (int)upgradeSelected.SHIELD:
-			UpgradeShield();
-			break;
-
-		case (int)upgradeSelected.MISSILE:
-			UpgradeMissile();
-			break;
-
-		default:
-			break;
-		}
-
-		*/
 
 	}
 
 	public void Select(int select) {
 
-		selected = (int) select;
-		CostText.text = costs[selected][0].ToString();
+		selected = select;
+		if (costs.GetLength(selected) < upgradeLevel[selected]) {
+			CostText.text = costs[selected][upgradeLevel[selected]].ToString();
+		}
+		else {
+			CostText.text = "MAX";
+		}
+		descriptionText.text = descriptions[selected];
+		statusText.text = "";
 
 	}
 
@@ -289,10 +234,6 @@ public class UpgradeMenu : MonoBehaviour {
 	}
 
 	public void UpgradePower1() {
-
-	}
-
-	public void UpgradePower2() {
 
 	}
 
@@ -328,8 +269,6 @@ public class UpgradeMenu : MonoBehaviour {
 
 		crystals++;
 		money -= 4;
-		PlayerPrefs.SetInt("Money", money);
-		PlayerPrefs.SetInt("Crystals", crystals);
 		moneyText.text = money.ToString();
 		crystalText.text = crystals.ToString();
 
@@ -339,8 +278,6 @@ public class UpgradeMenu : MonoBehaviour {
 
 		missiles++;
 		money -= 5;
-		PlayerPrefs.SetInt("Money", money);
-		PlayerPrefs.SetInt("Missiles", missiles);
 		moneyText.text = money.ToString();
 		missileText.text = missiles.ToString();
 
@@ -350,8 +287,6 @@ public class UpgradeMenu : MonoBehaviour {
 
 		missiles--;
 		money += 2;
-		PlayerPrefs.SetInt("Money", money);
-		PlayerPrefs.SetInt("Missiles", missiles);
 		moneyText.text = money.ToString();
 		missileText.text = missiles.ToString();
 
@@ -361,113 +296,9 @@ public class UpgradeMenu : MonoBehaviour {
 
 		crystals--;
 		money += 2;
-		PlayerPrefs.SetInt("Money", money);
-		PlayerPrefs.SetInt("Crystals", crystals);
 		moneyText.text = money.ToString();
 		crystalText.text = crystals.ToString();
 
 	}
-
-	/*
-	public void UpgradeDamage() {
-		if (money >= damageCost[damageUpgrade]) {
-			money -= damageCost[damageUpgrade];
-			damage++;
-			damageUpgrade++;
-			PlayerPrefs.SetInt("Money", money);
-			PlayerPrefs.SetInt("Damage", damage);
-			PlayerPrefs.SetInt("DamageUpgrade", damageUpgrade);
-			moneyText.text = money.ToString();
-			statusText.text = "Damage upgraded!";
-			UpdateUpgrades();
-			if (damageUpgrade < damageCost.Length) {
-				CostText.text = damageCost[damageUpgrade].ToString();
-			}
-		}
-		else {
-			statusText.text = "Not enough money!";
-		}
-	}
-
-	public void UpgradeShield() {
-		if (money >= shieldCost[shieldUpgrade]) {
-			money -= shieldCost[shieldUpgrade];
-			shieldUpgrade++;
-			PlayerPrefs.SetInt("Money", money);
-			PlayerPrefs.SetInt("ShieldUpgrade", shieldUpgrade);
-			moneyText.text = money.ToString();
-			statusText.text = "Shield upgraded!";
-			UpdateUpgrades();
-			if (shieldUpgrade < shieldCost.Length) {
-				CostText.text = shieldCost[shieldUpgrade].ToString();
-			}
-		}
-		else {
-			statusText.text = "Not enough money!";
-		}
-	}
-
-	public void UpgradeLaser() {
-		if (money >= laserCost[laserUpgrade]) {
-			money -= laserCost[laserUpgrade];
-			laserUpgrade++;
-			PlayerPrefs.SetInt("Money", money);
-			PlayerPrefs.SetInt("LaserUpgrade", laserUpgrade);
-			moneyText.text = money.ToString();
-			statusText.text = "Laser upgraded!";
-			UpdateUpgrades();
-			if (laserUpgrade < laserCost.Length) {
-				CostText.text = laserCost[laserUpgrade].ToString();
-			}
-		}
-		else {
-			statusText.text = "Not enough money!";
-		}
-	}
-
-	public void UpgradeMissile() {
-		if (money >= missileCost[missileUpgrade]) {
-			money -= missileCost[missileUpgrade];
-			missileUpgrade++;
-			PlayerPrefs.SetInt("Money", money);
-			PlayerPrefs.SetInt("MissileUpgrade", missileUpgrade);
-			moneyText.text = money.ToString();
-			statusText.text = "Missile upgraded!";
-			UpdateUpgrades();
-			if (missileUpgrade < missileCost.Length) {
-				CostText.text = missileCost[missileUpgrade].ToString();
-			}
-		}
-		else {
-			statusText.text = "Not enough money!";
-		}
-	}
-
-	public void UpgradeHealth() {
-		if (money >= healthCost[healthUpgrade]) {
-			money -= healthCost[healthUpgrade];
-			healthUpgrade++;
-			PlayerPrefs.SetInt("Money", money);
-			PlayerPrefs.SetInt("HealthUpgrade", healthUpgrade);
-			moneyText.text = money.ToString();
-			statusText.text = "Health upgraded!";
-			UpdateUpgrades();
-			if (healthUpgrade < healthCost.Length) {
-				CostText.text = healthCost[healthUpgrade].ToString();
-			}
-		}
-		else {
-			statusText.text = "Not enough money!";
-		}
-	}
-
-	public void UpgradePower()
-	{
-		//Stuff goes here
-		PlayerPrefs.SetInt("PowerUpgrade",1+PlayerPrefs.GetInt("PowerUpgrade",0));
-		PlayerPrefs.SetInt("Power",1+PlayerPrefs.GetInt("Power",10));
-	}
-
-*/
 
 }
