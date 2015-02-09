@@ -361,14 +361,19 @@ public class Gunner : MonoBehaviour {
 			break;
 		case 1:
 			bulletDamage = 1;
-			bulletReloadTime = 5;
+			bulletReloadTime = 10;
 			break;
 		case 2:
 		case 3:
 			bulletDamage = 2;
-			bulletReloadTime = 5;
+			bulletReloadTime = 10;
 			break;
 		}
+
+		//If the player has bought the bullet speed upgrade
+		//Then reduce reload time
+		if(PlayerPrefs.GetInt("BlasterUpgradeSpeed",0) == 1)
+			bulletReloadTime -= 5;
 	}
 	
 	/* ----------------------------------------------------------------------- */
