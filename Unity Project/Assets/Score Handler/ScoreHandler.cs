@@ -24,8 +24,10 @@ public class ScoreHandler : MonoBehaviour {
 	
 	public static long score;
 	public static long money;
+	public static long crystals;
 
 	static UpdateMoney updateMoney;
+	static UpdateCrystal updateCrystal;
 	static UpdateScore updateScore;
 
 	/* ----------------------------------------------------------------------- */
@@ -44,13 +46,16 @@ public class ScoreHandler : MonoBehaviour {
 		//Pull the values from player prefs
 		score = PlayerPrefs.GetInt ("Score", 99999);
 		money = PlayerPrefs.GetInt ("Money", 99999);
+		crystals = PlayerPrefs.GetInt ("Crystals", 99999);
 
 		//Search for the ScoreHandler object for tracking score
 		updateMoney = GameObject.Find("/UI/MoneyText").GetComponent<UpdateMoney>(); 
+		updateCrystal = GameObject.Find("/UI/CrystalText").GetComponent<UpdateCrystal>(); 
 		updateScore = GameObject.Find("/UI/ScoreText").GetComponent<UpdateScore>(); 
 
 		updateScore.UpdateText (score);
 		updateMoney.UpdateText (money);
+		updateCrystal.UpdateText (crystals);
 	}
 
 	public long UpdateScore(long amount) {
@@ -69,12 +74,24 @@ public class ScoreHandler : MonoBehaviour {
 		return money;
 	}
 
+	public long UpdateCrystals(long amount) {
+		crystals += amount;
+		
+		updateCrystal.UpdateText (crystals);
+		
+		return crystals;
+	}
+
 	public long GetScore() {
 		return score;
 	}
 
 	public long GetMoney() {
 		return money;
+	}
+
+	public long GetCrystals() {
+		return crystals;
 	}
 
 	public void ResetScore() {
@@ -88,5 +105,12 @@ public class ScoreHandler : MonoBehaviour {
 
 		updateMoney.UpdateText (money);
 	}
+
+	public void ResetCrystals() {
+		crystals = 0;
+		
+		updateCrystal.UpdateText (crystals);
+	}
+
 
 }

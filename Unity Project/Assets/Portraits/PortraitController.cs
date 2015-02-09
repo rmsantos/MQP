@@ -64,8 +64,8 @@ public class PortraitController : MonoBehaviour {
 	//The audio source on this object
 	AudioSource source;
 
-	//Flag to check whether the money dialogue was already said on this level
-	bool moneyCheck;
+	//Flag to check whether the crystal dialogue was already said on this level
+	bool crystalCheck;
 
 	//Flag for the pilot thanks dialogue
 	bool pilotThanks;
@@ -97,7 +97,7 @@ public class PortraitController : MonoBehaviour {
 	void Start () {
 
 		//Set to false to start
-		moneyCheck = false;
+		crystalCheck = false;
 		pilotThanks = false;
 		gunnerThanks = false;
 		mechanicResponse = false;
@@ -386,7 +386,7 @@ public class PortraitController : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : playMoneyHigh()
+	/* Function    : playCrystalsHigh()
 	 *
 	 * Description : Plays when the players money goes above a threshhold
 	 * 				Only played once per level at most
@@ -395,11 +395,11 @@ public class PortraitController : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	public void playMoneyHigh()
+	public void playCrystalsHigh()
 	{
 		//Called when the player collects a certain amount of crysals
 		//Only called once per level
-		if(!moneyCheck)
+		if(!crystalCheck)
 		{
 			print("MONEY HIGH!");
 
@@ -408,7 +408,7 @@ public class PortraitController : MonoBehaviour {
 			source.Play();
 
 			//Flag that this clip has already been played this level
-			moneyCheck = true;
+			crystalCheck = true;
 		}
 	}
 

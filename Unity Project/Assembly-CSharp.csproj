@@ -68,6 +68,7 @@
      <Compile Include="Assets\Portraits\PortraitController.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
+     <Compile Include="Assets\Resources\Crystals\Crystals.cs" />
      <Compile Include="Assets\Resources\Enemies\Ambusher\Ambusher.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" />
@@ -100,6 +101,7 @@
      <Compile Include="Assets\Resources\Instances\SmallAsteroids.cs" />
      <Compile Include="Assets\Resources\Money\Money.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
+     <Compile Include="Assets\UI\UpdateCrystal.cs" />
      <Compile Include="Assets\UI\UpdateLevel.cs" />
      <Compile Include="Assets\UI\UpdateMoney.cs" />
      <Compile Include="Assets\UI\UpdateScore.cs" />

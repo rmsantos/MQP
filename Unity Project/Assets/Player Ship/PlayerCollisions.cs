@@ -21,7 +21,10 @@ public class PlayerCollisions : MonoBehaviour {
 
 	int health;
 	int moneyValue;
+	int crystalValue;
+
 	public int scoreFromMoney;
+	public int scoreFromCrystals;
 
 	//The spawner object
 	public GameObject spawner;
@@ -36,8 +39,8 @@ public class PlayerCollisions : MonoBehaviour {
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
 
-	//Threshold for the money audioclip
-	public int moneyThreshold;
+	//Threshold for the crystals audioclip
+	public int crystalThreshold;
 
 	//Quitting boolean
 	bool isQuitting;
@@ -47,7 +50,9 @@ public class PlayerCollisions : MonoBehaviour {
 		//Pull the values from player prefs
 		health = PlayerPrefs.GetInt ("Health", 1);
 		moneyValue = PlayerPrefs.GetInt ("MoneyValue", 99999);
+		crystalValue = PlayerPrefs.GetInt ("CrystalValue", 99999);
 
+		                                                   
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 
@@ -168,10 +173,21 @@ public class PlayerCollisions : MonoBehaviour {
 			score.UpdateScore(scoreFromMoney);
 			score.UpdateMoney(moneyValue);
 
-			//Play the audioclip if the money goes above the threshold
-			if(score.GetMoney() > moneyThreshold)
-				portraitController.playMoneyHigh();
+		}
 
+		if(col.gameObject.tag == "Crystal")
+		{
+			//Destroy the money
+			Destroy(col.gameObject);
+			
+			//Update the players score
+			score.UpdateScore(scoreFromCrystals);
+			score.UpdateCrystals(crystalValue);
+			
+			//Play the audioclip if the money goes above the threshold
+			if(score.GetCrystals() > crystalThreshold)
+				portraitController.playCrystalsHigh();
+			
 		}
 
 		if(col.gameObject.tag == "Boss")

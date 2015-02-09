@@ -124,7 +124,6 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 		//If this is hit by a player bullet
 		if(col.gameObject.tag == "PlayerBullet")
 		{
-
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
 			
@@ -144,20 +143,8 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	 */
 	public void shatter ()
 	{
-		//Load the money prefab
-		GameObject money = Resources.Load<GameObject>("Money/Money");
-
-		//Load the explosion
-		GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
-
 		//Destroy the asteroid
 		Destroy(this.gameObject);
-		
-		//Create the explosion at this location
-		Instantiate(explosion, transform.position, Quaternion.identity);	
-
-		//Create money at this location
-		Instantiate(money, transform.position, Quaternion.identity);
 		
 		//Update the players score
 		score.UpdateScore(value);
@@ -186,8 +173,8 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	void OnDestroy() {
 
 		if (!isQuitting) {
-			//Load the money prefab
-			GameObject money = Resources.Load<GameObject>("Money/Money");
+			//Load the crystal prefab
+			GameObject crystal = Resources.Load<GameObject>("Crystals/Crystal");
 
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
@@ -195,14 +182,11 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 			//Position of the asteroid
 			var position = gameObject.transform.position;
 			
-			//Destroy the asteroid
-			Destroy(this.gameObject);
-			
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
 			//Create money at this location
-			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			Instantiate(crystal, new Vector3(position.x, position.y, position.z), Quaternion.identity);
 
 		}
 
