@@ -202,7 +202,16 @@ public class PlayerCollisions : MonoBehaviour {
 			shield.weakenShields();
 		}
 		else
+		{
+			//If the player has the hull upgrade, then decrease damage taken
+			if (damage != 1 && PlayerPrefs.GetInt("HullUpgrade",0) == 1)
+			{
+				damage -= 1;
+			}
+
+			//Take the damage
 			health -= damage;
+		}
 
 		//And display on the health bar
 		healthBar.value = health;
