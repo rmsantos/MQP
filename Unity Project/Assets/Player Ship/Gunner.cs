@@ -439,11 +439,11 @@ public class Gunner : MonoBehaviour {
 			missileReloadTime = 99999;
 			break;
 		case 1:
-			missileDamage = 3;
+			missileDamage = 2;
 			missileReloadTime = 720;
 			break;
 		case 2:
-			missileDamage = 3;
+			missileDamage = 2;
 			missileReloadTime = 600;
 			break;
 		case 3:
@@ -455,6 +455,13 @@ public class Gunner : MonoBehaviour {
 			missileReloadTime = 360;
 			break;
 		}
+
+		//Subtract reload time based on missile upgrade
+		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 20;
+		
+		//If the player has bought the missile payload upgrade
+		//Then increase damage
+		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 2;
 	}
 
 }
