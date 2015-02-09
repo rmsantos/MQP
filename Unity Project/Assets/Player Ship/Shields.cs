@@ -136,38 +136,22 @@ public class Shields : MonoBehaviour {
 				shieldTimer = 240;
 				break;
 			case 3:
-				//If the player has the upgrade for more shields
-				if(PlayerPrefs.GetInt("ShieldUpgradeNumber",0) == 1)
-					maxShields = 2;
-				else
-					maxShields = 1;
-
+				maxShields = 2;
 				shieldTimer = 210;
 				break;
 			case 4:
-			//If the player has the upgrade for more shields
-			if(PlayerPrefs.GetInt("ShieldUpgradeNumber",0) == 1)
 				maxShields = 3;
-			else
-				maxShields = 1;
-
 				shieldTimer = 180;
 				break;
 			case 5:
-			//If the player has the upgrade for more shields
-			if(PlayerPrefs.GetInt("ShieldUpgradeNumber",0) == 1)
 				maxShields = 3;
-			else
-				maxShields = 1;
-
 				shieldTimer = 150;
 				break;
 		}
 
 		//If the player has the upgrade for shield recharge
-		//Decrease recharge time by 1 second
-		if(PlayerPrefs.GetInt("ShieldUpgradeRecharge",0) == 1)
-			shieldTimer -= 60;
+		//Decrease recharge time by 1/3 second
+		shieldTimer -= PlayerPrefs.GetInt ("ShieldUpgradeRecharge", 0) * 20;
 
 		//Set the shields to start
 		shields = maxShields;

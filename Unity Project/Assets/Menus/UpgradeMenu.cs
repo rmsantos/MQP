@@ -41,6 +41,8 @@ public class UpgradeMenu : MonoBehaviour {
 	public int[] lasers1Cost;
 	public int[] lasers2Cost;
 
+	public Button[] selectButtons;
+
 	int[][] costs;
 
 	int[] upgradeLevel;
@@ -75,6 +77,7 @@ public class UpgradeMenu : MonoBehaviour {
 	public Text statusText;
 	public Text descriptionText;
 	public Text CostText;
+	public Text debugText;
 
 	int money;
 	int missiles;

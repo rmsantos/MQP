@@ -173,6 +173,26 @@ public class PowerMenu : MonoBehaviour {
 				if(shield == 5)
 					return;
 
+				//If the player does not have the upgrade for shields
+				//Don't let them provide power
+				if(shield == 0 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 1)
+				{
+					//Alert the player
+					statusText.text = "You need a shield upgrade first.";
+					return;
+				}
+				else if(shield == 2 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 2)
+				{
+					//Alert the player
+					statusText.text = "You need a lv 2 shield upgrade first.";
+					return;
+				}
+				else if(shield == 3 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 3)
+				{
+					//Alert the player
+					statusText.text = "You need a lv 3 shield upgrade first.";
+					return;
+				}
 				//Else increase shield level
 				shield++;
 
