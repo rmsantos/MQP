@@ -400,22 +400,24 @@ public class Gunner : MonoBehaviour {
 			break;
 		case 2:
 			laserDamage = 8;
-			laserReloadTime = 600;
+			laserReloadTime = 570;
 			break;
 		case 3:
 			laserDamage = 12;
-			laserReloadTime = 600;
+			laserReloadTime = 540;
 			break;
 		case 4:
 			laserDamage = 16;
-			laserReloadTime = 600;
+			laserReloadTime = 510;
 			break;
 		}
 
+		//Subtract reload time based on laser upgrade
+		laserReloadTime -= PlayerPrefs.GetInt ("LaserUpgradeFireRate", 0) * 60;
+
 		//If the player has bought the laser damage upgrade
 		//Then increase damage
-		if(PlayerPrefs.GetInt("LaserUpgradeDamage",0) == 1)
-			laserDamage += 4;
+		laserDamage += PlayerPrefs.GetInt("LaserUpgradeDamage",0) * 4;
 	}
 	
 	/* ----------------------------------------------------------------------- */

@@ -235,13 +235,14 @@ public class PowerMenu : MonoBehaviour {
 					return;
 				
 				//If the player does not have the upgrade for a laser
-				//Don't let them go past power level 3
-				if(laser == 0 && PlayerPrefs.GetInt("LaserUpgradeEmplacement",0) != 1)
+				//Don't let them go provide power
+				if(laser == 0 && PlayerPrefs.GetInt("LaserUpgradeFireRate",0) < 1)
 				{
 					//Alert the player
 					statusText.text = "You need a laser emplacement first.";
 					return;
 				}
+
 				//Else increase laser level
 				laser++;
 				

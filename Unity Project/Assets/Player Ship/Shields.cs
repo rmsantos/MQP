@@ -169,8 +169,6 @@ public class Shields : MonoBehaviour {
 		if(PlayerPrefs.GetInt("ShieldUpgradeRecharge",0) == 1)
 			shieldTimer -= 60;
 
-		print ("Recharge: " + shieldTimer);
-
 		//Set the shields to start
 		shields = maxShields;
 	}
