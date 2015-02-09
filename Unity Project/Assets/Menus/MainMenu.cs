@@ -146,6 +146,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("MissileUpgradeLoader", 0);
 		PlayerPrefs.SetInt ("CargoUpgradeMissiles", 0);
 		PlayerPrefs.SetInt ("CargoUpgradeCrystals", 0);
+		PlayerPrefs.SetInt ("CargoUpgradeCredits", 0);
 		PlayerPrefs.SetInt ("HullUpgradeReinforced", 0);
 		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", 0);
 
