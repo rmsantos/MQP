@@ -194,11 +194,23 @@ public class PowerMenu : MonoBehaviour {
 					return;
 				
 				//If the player does not have the upgrade for a better engine
-				//Don't let them go past power level 3
-				if(engine == 3 && PlayerPrefs.GetInt("EngineUpgrade",0) != 1)
+				//Don't let them provide power
+				if(engine == 2 && PlayerPrefs.GetInt("EngineUpgrade",0) < 1)
 				{
 					//Alert the player
 					statusText.text = "You need an engine upgrade first.";
+					return;
+				}
+				else if(engine == 3 && PlayerPrefs.GetInt("EngineUpgrade",0) < 2)
+				{
+					//Alert the player
+					statusText.text = "You need the engine lv 2 upgrade first.";
+					return;
+				}
+				else if(engine == 4 && PlayerPrefs.GetInt("EngineUpgrade",0) < 3)
+				{
+					//Alert the player
+					statusText.text = "You need the engine lv 3 upgrade first.";
 					return;
 				}
 
