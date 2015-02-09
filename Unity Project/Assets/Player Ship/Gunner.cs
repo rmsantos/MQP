@@ -245,7 +245,7 @@ public class Gunner : MonoBehaviour {
 				bullet2.transform.rotation = Quaternion.LookRotation(direction2);
 				
 				//Rotate the bullet along the y so that it faces the mouse point
-				bullet2.transform.Rotate(0,90,15);
+				bullet2.transform.Rotate(0,90,5);
 				
 				//Send the damage the bullet will deal to the bullet
 				bullet2.GetComponent<Bullet>().setDamage(bulletDamage);
@@ -262,7 +262,7 @@ public class Gunner : MonoBehaviour {
 				bullet3.transform.rotation = Quaternion.LookRotation(direction3);
 				
 				//Rotate the bullet along the y so that it faces the mouse point
-				bullet3.transform.Rotate(0,90,-15);
+				bullet3.transform.Rotate(0,90,-5);
 				
 				//Send the damage the bullet will deal to the bullet
 				bullet3.GetComponent<Bullet>().setDamage(bulletDamage);

@@ -242,6 +242,15 @@ public class PowerMenu : MonoBehaviour {
 				if(blaster == 3)
 					return;
 				
+				//If the player does not have the upgrade for a better blaster
+				//Don't let them go past power level 2
+				if(blaster == 2 && PlayerPrefs.GetInt("BlasterUpgradeBurst",0) != 1)
+				{
+					//Alert the player
+					statusText.text = "You need the blaster upgrade first.";
+					return;
+				}
+
 				//Else increase blaster level
 				blaster++;
 				
