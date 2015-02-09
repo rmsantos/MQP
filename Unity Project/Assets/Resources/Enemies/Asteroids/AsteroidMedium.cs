@@ -173,7 +173,7 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 	 */
 	public int getCollisionDamage()
 	{
-		return collisionDamage;
+		return collisionDamage - PlayerPrefs.GetInt("HullUpgradeAsteroidResistance",0);
 	}
 
 	void OnApplicationQuit() {

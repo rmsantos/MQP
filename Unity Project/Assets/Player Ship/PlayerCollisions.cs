@@ -203,6 +203,10 @@ public class PlayerCollisions : MonoBehaviour {
 		}
 		else
 		{
+			//If hitting a small asteroid, return
+			if(damage == 0)
+				return;
+
 			//If the player has the hull upgrade, then decrease damage taken
 			damage -= PlayerPrefs.GetInt("HullUpgradeReinforced",0);
 
