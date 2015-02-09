@@ -361,19 +361,18 @@ public class Gunner : MonoBehaviour {
 			break;
 		case 1:
 			bulletDamage = 1;
-			bulletReloadTime = 10;
+			bulletReloadTime = 16;
 			break;
 		case 2:
 		case 3:
 			bulletDamage = 2;
-			bulletReloadTime = 10;
+			bulletReloadTime = 12;
 			break;
 		}
 
 		//If the player has bought the bullet speed upgrade
 		//Then reduce reload time
-		if(PlayerPrefs.GetInt("BlasterUpgradeSpeed",0) == 1)
-			bulletReloadTime -= 5;
+		bulletReloadTime -= PlayerPrefs.GetInt("BlasterUpgradeSpeed");
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -400,22 +399,24 @@ public class Gunner : MonoBehaviour {
 			break;
 		case 2:
 			laserDamage = 8;
-			laserReloadTime = 600;
+			laserReloadTime = 570;
 			break;
 		case 3:
 			laserDamage = 12;
-			laserReloadTime = 600;
+			laserReloadTime = 540;
 			break;
 		case 4:
 			laserDamage = 16;
-			laserReloadTime = 600;
+			laserReloadTime = 510;
 			break;
 		}
 
+		//Subtract reload time based on laser upgrade
+		laserReloadTime -= PlayerPrefs.GetInt ("LaserUpgradeFireRate", 0) * 60;
+
 		//If the player has bought the laser damage upgrade
 		//Then increase damage
-		if(PlayerPrefs.GetInt("LaserUpgradeDamage",0) == 1)
-			laserDamage += 4;
+		laserDamage += PlayerPrefs.GetInt("LaserUpgradeDamage",0) * 4;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -437,11 +438,11 @@ public class Gunner : MonoBehaviour {
 			missileReloadTime = 99999;
 			break;
 		case 1:
-			missileDamage = 3;
+			missileDamage = 2;
 			missileReloadTime = 720;
 			break;
 		case 2:
-			missileDamage = 3;
+			missileDamage = 2;
 			missileReloadTime = 600;
 			break;
 		case 3:
@@ -453,6 +454,13 @@ public class Gunner : MonoBehaviour {
 			missileReloadTime = 360;
 			break;
 		}
+
+		//Subtract reload time based on missile upgrade
+		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 20;
+		
+		//If the player has bought the missile payload upgrade
+		//Then increase damage
+		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 2;
 	}
 
 }
