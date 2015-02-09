@@ -135,7 +135,10 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("Crystals", initialCrystals);
 
 		//Upgrades
+		PlayerPrefs.SetInt ("PowerUpgrade", 0);
 		PlayerPrefs.SetInt ("EngineUpgrade", 0);
+
+
 		PlayerPrefs.SetInt ("BlasterUpgradeSpeed", 0);
 		PlayerPrefs.SetInt ("BlasterUpgradeBurst", 0);
 		PlayerPrefs.SetInt ("LaserUpgradeEmplacement", 0);
@@ -148,7 +151,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("CargoUpgradeCrystals", 0);
 		PlayerPrefs.SetInt ("MissileUpgradePayload", 0);
 		PlayerPrefs.SetInt ("MissileUpgradeLoader", 0);
-		PlayerPrefs.SetInt ("PowerUpgrade", 0);
+
 
 		//Game values
 		PlayerPrefs.SetInt ("Money", 0);
