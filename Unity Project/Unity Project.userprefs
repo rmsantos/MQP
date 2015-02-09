@@ -2,11 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menus\UpgradeMenu.cs">
     <Files>
-      <File FileName="Assets\Menus\UpgradeMenu.cs" Line="121" Column="3" />
+      <File FileName="Assets\Menus\UpgradeMenu.cs" Line="56" Column="26" />
       <File FileName="Assets\UpgradeDescription.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player Ship\Gunner.cs" Line="1" Column="1" />
-      <File FileName="Assets\Menus\PowerMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Menus\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\Gunner.cs" Line="459" Column="1" />
+      <File FileName="Assets\Menus\PowerMenu.cs" Line="433" Column="1" />
+      <File FileName="Assets\Menus\MainMenu.cs" Line="189" Column="1" />
       <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="1" Column="1" />
       <File FileName="Assets\Menus\CharacterSelectMenu.cs" Line="1" Column="1" />
       <File FileName="Assets\Menus\HighScoreMenu.cs" Line="1" Column="1" />
