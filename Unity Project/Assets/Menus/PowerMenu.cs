@@ -222,6 +222,14 @@ public class PowerMenu : MonoBehaviour {
 				if(laser == 4)
 					return;
 				
+				//If the player does not have the upgrade for a laser
+				//Don't let them go past power level 3
+				if(laser == 0 && PlayerPrefs.GetInt("LaserUpgradeEmplacement",0) != 1)
+				{
+					//Alert the player
+					statusText.text = "You need a laser emplacement first.";
+					return;
+				}
 				//Else increase laser level
 				laser++;
 				
@@ -242,6 +250,15 @@ public class PowerMenu : MonoBehaviour {
 				if(blaster == 3)
 					return;
 				
+				//If the player does not have the upgrade for a better blaster
+				//Don't let them go past power level 2
+				if(blaster == 2 && PlayerPrefs.GetInt("BlasterUpgradeBurst",0) != 1)
+				{
+					//Alert the player
+					statusText.text = "You need the burst blaster upgrade first.";
+					return;
+				}
+
 				//Else increase blaster level
 				blaster++;
 				
