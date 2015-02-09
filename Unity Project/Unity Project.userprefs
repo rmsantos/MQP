@@ -2,9 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Score Handler\ScoreHandler.cs">
     <Files>
+<<<<<<< HEAD
       <File FileName="Assets\Menus\MainMenu.cs" Line="39" Column="33" />
       <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="1" Column="1" />
       <File FileName="Assets\Score Handler\ScoreHandler.cs" Line="29" Column="1" />
+=======
+      <File FileName="Assets\Menus\UpgradeMenu.cs" Line="305" Column="32" />
+>>>>>>> 93ffdd7e42f63badd093cf1d78e58a087b20b41a
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
