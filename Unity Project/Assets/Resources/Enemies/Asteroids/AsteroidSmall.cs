@@ -173,9 +173,6 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 	void OnDestroy() {
 
 		if (!isQuitting) {
-			//Load the crystal prefab
-			GameObject crystal = Resources.Load<GameObject>("Crystals/Crystal");
-
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
 			
@@ -184,9 +181,16 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 			
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
-			
-			//Create money at this location
-			Instantiate(crystal, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+
+			//Spawn a crystal with a 75% chance
+			if(random.GetRandom(100) < 75)
+			{
+				//Load the crystal prefab 
+				GameObject crystal = Resources.Load<GameObject>("Crystals/Crystal");
+
+				//Create money at this location
+				Instantiate(crystal, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			}
 
 		}
 
