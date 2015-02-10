@@ -74,7 +74,9 @@ public class FadingScript : MonoBehaviour {
 
 	public void FadeOut() {
 
-		fading = true;
+		if (!texts[2].text.Equals("")) {
+			fading = true;
+		}
 
 	}
 }
