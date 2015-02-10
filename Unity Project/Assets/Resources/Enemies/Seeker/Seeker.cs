@@ -75,6 +75,12 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 	//Money drop rate 
 	public int moneyDropRate;
 
+	//Used as a reference for rotating back to normal
+	public Quaternion originalRotationValue;
+	
+	//Rotates back to normal at this speed
+	public float rotationResetSpeed;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -90,6 +96,9 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 		//Get the randomizer script
 		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
+
+		//save initial rotation value
+		originalRotationValue = transform.rotation;
 
 		//The enemy can shoot right when it spawns
 		ready = true;
@@ -191,6 +200,10 @@ public class Seeker : MonoBehaviour, BasicEnemy {
 			ready = false;
 			
 		}		
+
+		//Always try to rotate to the correct facing direction
+		transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, rotationResetSpeed); 
+
 	}
 
 	/* ----------------------------------------------------------------------- */
