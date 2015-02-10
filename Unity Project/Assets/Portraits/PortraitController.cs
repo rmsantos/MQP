@@ -168,6 +168,53 @@ public class PortraitController : MonoBehaviour {
 	 */
 	void Update() {
 
+		//If no source is playing then remove all speech bubbles
+		if(!source.isPlaying)
+		{
+			player1Speech = false;
+			player2Speech = false;
+			player3Speech = false;
+			player4Speech = false;
+		}
+
+		//Display the speech bubble if the player is talking
+		//Else make it not visible
+		if(player1Speech)
+		{
+			speech1.color = new Color(speech1.color.r, speech1.color.g, speech1.color.b, 1);
+		}
+		else
+		{
+			speech1.color = new Color(speech1.color.r, speech1.color.g, speech1.color.b, 0);
+		}
+		
+		if(player2Speech)
+		{
+			speech2.color = new Color(speech2.color.r, speech2.color.g, speech2.color.b, 1);
+		}
+		else
+		{
+			speech2.color = new Color(speech2.color.r, speech2.color.g, speech2.color.b, 0);
+		}
+		
+		if(player3Speech)
+		{
+			speech3.color = new Color(speech3.color.r, speech3.color.g, speech3.color.b, 1);
+		}
+		else
+		{
+			speech3.color = new Color(speech3.color.r, speech3.color.g, speech3.color.b, 0);
+		}
+		
+		if(player4Speech)
+		{
+			speech4.color = new Color(speech4.color.r, speech4.color.g, speech4.color.b, 1);
+		}
+		else
+		{
+			speech4.color = new Color(speech4.color.r, speech4.color.g, speech4.color.b, 0);
+		}
+
 		//Play the pilotThanks audio clip after the radar operator gives a warning
 		if(pilotThanks && !source.isPlaying)
 		{
@@ -200,52 +247,8 @@ public class PortraitController : MonoBehaviour {
 			playMiscInfo();
 		}
 
-		//Display the speech bubble if the player is talking
-		//Else make it not visible
-		if(player1Speech)
-		{
-			speech1.color = new Color(speech1.color.r, speech1.color.g, speech1.color.b, 1);
-		}
-		else
-		{
-			speech1.color = new Color(speech1.color.r, speech1.color.g, speech1.color.b, 0);
-		}
 
-		if(player2Speech)
-		{
-			speech2.color = new Color(speech2.color.r, speech2.color.g, speech2.color.b, 1);
-		}
-		else
-		{
-			speech2.color = new Color(speech2.color.r, speech2.color.g, speech2.color.b, 0);
-		}
-
-		if(player3Speech)
-		{
-			speech3.color = new Color(speech3.color.r, speech3.color.g, speech3.color.b, 1);
-		}
-		else
-		{
-			speech3.color = new Color(speech3.color.r, speech3.color.g, speech3.color.b, 0);
-		}
-
-		if(player4Speech)
-		{
-			speech4.color = new Color(speech4.color.r, speech4.color.g, speech4.color.b, 1);
-		}
-		else
-		{
-			speech4.color = new Color(speech4.color.r, speech4.color.g, speech4.color.b, 0);
-		}
-
-		//If no source is playing then remove all speech bubbles
-		if(!source.isPlaying)
-		{
-			player1Speech = false;
-			player2Speech = false;
-			player3Speech = false;
-			player4Speech = false;
-		}
+		
 	}
 
 
@@ -573,6 +576,9 @@ public class PortraitController : MonoBehaviour {
 
 		//Flag the pilot for a response
 		pilotThanks = true;
+
+		//Flag that player 4 is speaking
+		player4Speech = true;
 	}
 
 	/* ----------------------------------------------------------------------- */
