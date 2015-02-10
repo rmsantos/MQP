@@ -42,6 +42,9 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 
 	bool isQuitting;
 
+	//Chance to drop crystals
+	public int crystalDropRate;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -182,8 +185,8 @@ public class AsteroidSmall : MonoBehaviour, BasicAsteroid {
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 
-			//Spawn a crystal with a 75% chance
-			if(random.GetRandom(100) < 75)
+			//Spawn a crystal with a certain chance
+			if(random.GetRandom(100) < crystalDropRate)
 			{
 				//Load the crystal prefab 
 				GameObject crystal = Resources.Load<GameObject>("Crystals/Crystal");
