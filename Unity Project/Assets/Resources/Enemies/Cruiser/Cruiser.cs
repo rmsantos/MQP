@@ -71,6 +71,13 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 	//The place to spawn bullets
 	public Transform turret;
 
+	//Randomizer script
+	GameObject randomizer;
+	Randomizer random;
+	
+	//Money drop rate 
+	public int moneyDropRate;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -82,7 +89,11 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
-		
+
+		//Get the randomizer script
+		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
+
 		//The enemy can shoot right when it spawns
 		ready = true;
 		
@@ -253,8 +264,6 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 	void OnDestroy() {
 		
 		if (!isQuitting) {
-			//Load the money prefab
-			GameObject money = Resources.Load<GameObject>("Money/Money");
 			
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
@@ -265,8 +274,15 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
-			//Create money at this location
-			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			if(random.GetRandom(100) < moneyDropRate)
+			{
+				//Load the money prefab
+				GameObject money = Resources.Load<GameObject>("Money/Money");
+				
+				//Create money at this location
+				Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+				
+			}
 			
 		}
 		

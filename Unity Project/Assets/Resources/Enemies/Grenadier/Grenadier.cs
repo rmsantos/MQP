@@ -70,6 +70,12 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	public Transform turret2;
 	public Transform turret3;
 
+	//Randomizer script
+	GameObject randomizer;
+	Randomizer random;
+	
+	//Money drop rate 
+	public int moneyDropRate;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -82,7 +88,11 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
-		
+
+		//Get the randomizer script
+		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
+
 		//The enemy can shoot right when it spawns
 		ready = true;
 		
@@ -268,8 +278,6 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 	void OnDestroy() {
 		
 		if (!isQuitting) {
-			//Load the money prefab
-			GameObject money = Resources.Load<GameObject>("Money/Money");
 			
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
@@ -280,8 +288,16 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
-			//Create money at this location
-			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			//Spawn money with a certain chance
+			if(random.GetRandom(100) < moneyDropRate)
+			{
+				//Load the money prefab
+				GameObject money = Resources.Load<GameObject>("Money/Money");
+				
+				//Create money at this location
+				Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+				
+			}
 			
 		}
 		

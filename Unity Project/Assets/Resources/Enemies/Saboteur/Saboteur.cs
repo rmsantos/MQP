@@ -71,6 +71,13 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	//The place to spawn bullets
 	public Transform turret;
 
+	//Randomizer script
+	GameObject randomizer;
+	Randomizer random;
+	
+	//Money drop rate 
+	public int moneyDropRate;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -82,6 +89,10 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		//Get the randomizer script
+		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
 
 		//Rotate the Saboteur at the start to align it properly
 		transform.Rotate (0, 180, 0);
@@ -302,9 +313,7 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	void OnDestroy() {
 		
 		if (!isQuitting) {
-			//Load the money prefab
-			GameObject money = Resources.Load<GameObject>("Money/Money");
-			
+
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
 			
@@ -314,8 +323,16 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
-			//Create money at this location
-			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+			//Spawn money with a certain chance
+			if(random.GetRandom(100) < moneyDropRate)
+			{
+				//Load the money prefab
+				GameObject money = Resources.Load<GameObject>("Money/Money");
+				
+				//Create money at this location
+				Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
+				
+			}
 			
 		}
 		
