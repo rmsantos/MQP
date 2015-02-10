@@ -54,6 +54,12 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	//Money drop rate 
 	public int moneyDropRate;
 
+	//Used as a reference for rotating back to normal
+	public Quaternion originalRotationValue;
+	
+	//Rotates back to normal at this speed
+	public float rotationResetSpeed;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -68,6 +74,9 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 		//Get the randomizer script
 		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
+
+		//save initial rotation value
+		originalRotationValue = transform.rotation;
 
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
@@ -110,6 +119,9 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 			//Destroy the enemy
 			Destroy (this.gameObject);
 		}
+
+		//Always try to rotate to the correct facing direction
+		transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, rotationResetSpeed); 
 
 	}
 

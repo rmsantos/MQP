@@ -112,7 +112,7 @@ public class Missile : MonoBehaviour {
 		foreach( Collider2D collide in hitColliders)
 		{
 			//Check if it is an enemy
-			if(collide.tag == "Enemies" || collide.tag == "Boss")
+			if(collide.tag == "Enemies" || collide.tag == "EnemyPassable" || collide.tag == "Boss")
 			{
 				//Get the distance between the missile and that enemy
 				float distance = Vector2.Distance(transform.position,collide.gameObject.transform.position);
@@ -163,7 +163,7 @@ public class Missile : MonoBehaviour {
 		//If the missile hits an enemy or asteroid
 		if(col.gameObject.tag == "Enemies" || col.gameObject.tag == "Asteroids" || 
 		   col.gameObject.tag == "EnemeyShield" || col.gameObject.tag == "Boss" 
-		   || col.gameObject.tag == "Missile")
+		   || col.gameObject.tag == "Missile" || col.gameObject.tag == "EnemyPassable")
 		{
 			//explode this missile
 			explode();

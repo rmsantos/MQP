@@ -78,6 +78,12 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 	//Money drop rate 
 	public int moneyDropRate;
 
+	//Used as a reference for rotating back to normal
+	public Quaternion originalRotationValue;
+	
+	//Rotates back to normal at this speed
+	public float rotationResetSpeed;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -96,6 +102,9 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 
 		//The enemy can shoot right when it spawns
 		ready = true;
+
+		//save initial rotation value
+		originalRotationValue = transform.rotation;
 		
 		//Set the shooting timer
 		shootTimer = reloadTime;
@@ -184,6 +193,9 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 			//Destroy the enemy
 			Destroy (this.gameObject);
 		}
+
+		//Always try to rotate to the correct facing direction
+		transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, rotationResetSpeed); 
 		
 	}
 	
