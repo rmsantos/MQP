@@ -62,6 +62,12 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 	//Money drop rate 
 	public int moneyDropRate;
 
+	//Used as a reference for rotating back to normal
+	public Quaternion originalRotationValue;
+	
+	//Rotates back to normal at this speed
+	public float rotationResetSpeed;
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -79,6 +85,10 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
 
+		//save initial rotation value
+		originalRotationValue = transform.rotation;
+
+		//Invisibility values
 		invisible = false;
 		counter = 200;
 		alpha = 1f;
@@ -163,6 +173,9 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 				counter = 150;
 			}
 		}
+
+		//Always try to rotate to the correct facing direction
+		transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, rotationResetSpeed); 
 		
 	}
 	

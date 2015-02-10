@@ -78,6 +78,12 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 	//Money drop rate 
 	public int moneyDropRate;
 
+	//Used as a reference for rotating back to normal
+	public Quaternion originalRotationValue;
+
+	//Rotates back to normal at this speed
+	public float rotationResetSpeed;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -94,8 +100,9 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
 
-		//Rotate the Saboteur at the start to align it properly
+		//Rotate the Saboteur at the start to align it properly and save it
 		transform.Rotate (0, 180, 0);
+		originalRotationValue = transform.rotation;
 
 		//Start at state 0
 		state = 0;
@@ -147,6 +154,7 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 			{
 				//Rotate the sprite 180
 				transform.Rotate(0,180,0);
+				originalRotationValue = transform.rotation;
 
 				//Switch states
 				state = 1;
@@ -196,7 +204,7 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 			}
 
 			//The new position of the enemy after moving
-			Vector3 newPos = new Vector3 (transform.position.x, transform.position.y+direction, transform.position.z);
+			Vector3 newPos = new Vector3 (boundaries.getLeft()*0.9f, transform.position.y+direction, transform.position.z);
 
 			//Make the move
 			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
@@ -234,6 +242,8 @@ public class Saboteur : MonoBehaviour, BasicEnemy {
 			}
 
 		}
+		//Always try to rotate to the correct facing direction
+		transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, rotationResetSpeed); 
 	}
 	
 	/* ----------------------------------------------------------------------- */
