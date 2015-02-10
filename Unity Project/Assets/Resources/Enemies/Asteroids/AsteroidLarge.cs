@@ -185,8 +185,6 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	void OnDestroy() {
 		
 		if (!isQuitting) {
-			//Load the money prefab
-			GameObject money = Resources.Load<GameObject>("Money/Money");
 			
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
@@ -199,9 +197,6 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 			
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
-			
-			//Create money at this location
-			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
 			
 		}
 		

@@ -18,7 +18,7 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
-	//The translation variables
+	//The translation variables 
 	public float speed;
 	public float rotation;
 	public float directionRange;
@@ -185,8 +185,6 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 	void OnDestroy() {
 		
 		if (!isQuitting) {
-			//Load the money prefab
-			GameObject money = Resources.Load<GameObject>("Money/Money");
 			
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");
@@ -199,9 +197,6 @@ public class AsteroidMedium : MonoBehaviour, BasicAsteroid {
 			
 			//Create the explosion at this location
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
-			
-			//Create money at this location
-			Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
 			
 		}
 		
