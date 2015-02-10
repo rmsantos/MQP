@@ -39,6 +39,8 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 	public Image selectedImage;
 
+	public GameObject namePanel;
+
 	public Sprite[] characterImages;
 
 	public string[] characterDescriptions;
@@ -179,6 +181,12 @@ public class CharacterSelectMenu : MonoBehaviour {
 	public void SetName(string enteredName) {
 
 		name = enteredName;
+
+	}
+
+	public void StartSelecting() {
+
+		namePanel.active = false;
 
 	}
 
