@@ -85,6 +85,18 @@ public class PortraitController : MonoBehaviour {
 	//The pause controller
 	PauseController pause;
 
+	//The audio speech images
+	public Image speech1;
+	public Image speech2;
+	public Image speech3;
+	public Image speech4;
+
+	//Flags for the speech images
+	bool player1Speech;
+	bool player2Speech;
+	bool player3Speech;
+	bool player4Speech;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -101,6 +113,10 @@ public class PortraitController : MonoBehaviour {
 		pilotThanks = false;
 		gunnerThanks = false;
 		mechanicResponse = false;
+		player1Speech = false;
+		player2Speech = false;
+		player3Speech = false;
+		player4Speech = false;
 
 		//Get the pause controller
 		pause = GameObject.FindGameObjectWithTag ("PauseController").GetComponent<PauseController> ();
@@ -138,6 +154,7 @@ public class PortraitController : MonoBehaviour {
 		portrait2Object.overrideSprite = portraits[PlayerPrefs.GetInt("Portrait2")];
 		portrait3Object.overrideSprite = portraits[PlayerPrefs.GetInt("Portrait3")];
 		portrait4Object.overrideSprite = portraits[PlayerPrefs.GetInt("Portrait4")];
+
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -182,6 +199,53 @@ public class PortraitController : MonoBehaviour {
 			//Play a random info clip
 			playMiscInfo();
 		}
+
+		//Display the speech bubble if the player is talking
+		//Else make it not visible
+		if(player1Speech)
+		{
+			speech1.color = new Color(speech1.color.r, speech1.color.g, speech1.color.b, 1);
+		}
+		else
+		{
+			speech1.color = new Color(speech1.color.r, speech1.color.g, speech1.color.b, 0);
+		}
+
+		if(player2Speech)
+		{
+			speech2.color = new Color(speech2.color.r, speech2.color.g, speech2.color.b, 1);
+		}
+		else
+		{
+			speech2.color = new Color(speech2.color.r, speech2.color.g, speech2.color.b, 0);
+		}
+
+		if(player3Speech)
+		{
+			speech3.color = new Color(speech3.color.r, speech3.color.g, speech3.color.b, 1);
+		}
+		else
+		{
+			speech3.color = new Color(speech3.color.r, speech3.color.g, speech3.color.b, 0);
+		}
+
+		if(player4Speech)
+		{
+			speech4.color = new Color(speech4.color.r, speech4.color.g, speech4.color.b, 1);
+		}
+		else
+		{
+			speech4.color = new Color(speech4.color.r, speech4.color.g, speech4.color.b, 0);
+		}
+
+		//If no source is playing then remove all speech bubbles
+		if(!source.isPlaying)
+		{
+			player1Speech = false;
+			player2Speech = false;
+			player3Speech = false;
+			player4Speech = false;
+		}
 	}
 
 
@@ -207,6 +271,9 @@ public class PortraitController : MonoBehaviour {
 
 			//Flag the mechanic for a response
 			mechanicResponse = true;
+
+			//Flag that player 1 is speaking
+			player1Speech = true;
 		}
 	}
 
@@ -229,6 +296,9 @@ public class PortraitController : MonoBehaviour {
 			//Load the audio clip and play it
 			source.clip = portrait1[2];
 			source.Play();
+
+			//Flag that player 1 is speaking
+			player1Speech = true;
 		}
 	}
 
@@ -254,6 +324,9 @@ public class PortraitController : MonoBehaviour {
 
 			//Flag the gunner for a response
 			gunnerThanks = true;
+
+			//Flag that player 1 is speaking
+			player1Speech = true;
 		}
 	}
 
@@ -277,6 +350,9 @@ public class PortraitController : MonoBehaviour {
 		//Load the audio clip and play it
 		source.clip = portrait1[4];
 		source.Play();
+
+		//Flag that player 1 is speaking
+		player1Speech = true;
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -298,6 +374,9 @@ public class PortraitController : MonoBehaviour {
 			//Load the audio clip and play it
 			source.clip = portrait2[6];
 			source.Play();
+
+			//Flag that player 2 is speaking
+			player2Speech = true;
 		}
 	}
 
@@ -320,6 +399,9 @@ public class PortraitController : MonoBehaviour {
 			//Load the audio clip and play it
 			source.clip = portrait2[7];
 			source.Play();
+
+			//Flag that player 2 is speaking
+			player2Speech = true;
 		}
 	}
 
@@ -342,6 +424,9 @@ public class PortraitController : MonoBehaviour {
 
 		//Flag that the clip is playing
 		gunnerThanks = false;
+
+		//Flag that player 2 is speaking
+		player3Speech = true;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -361,6 +446,9 @@ public class PortraitController : MonoBehaviour {
 		//Load the audio clip and play it
 		source.clip = portrait2[9];
 		source.Play();
+
+		//Flag that player 2 is speaking
+		player2Speech = true;
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -383,6 +471,9 @@ public class PortraitController : MonoBehaviour {
 
 		//Flag that the clip is playing
 		mechanicResponse = false;
+
+		//Flag that player 3 is speaking
+		player3Speech = true;
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -409,6 +500,9 @@ public class PortraitController : MonoBehaviour {
 
 			//Flag that this clip has already been played this level
 			crystalCheck = true;
+
+			//Flag that player 3 is speaking
+			player3Speech = true;
 		}
 	}
 
@@ -431,6 +525,9 @@ public class PortraitController : MonoBehaviour {
 			//Load the audio clip and play it
 			source.clip = portrait3[13];
 			source.Play();
+
+			//Flag that player 3 is speaking
+			player3Speech = true;
 		}
 	}
 
@@ -451,6 +548,9 @@ public class PortraitController : MonoBehaviour {
 		//Load the audio clip and play it
 		source.clip = portrait3[14];
 		source.Play();
+
+		//Flag that player 3 is speaking
+		player3Speech = true;
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -493,6 +593,9 @@ public class PortraitController : MonoBehaviour {
 		source.clip = portrait4[17];
 		source.Play();
 
+		//Flag that player 4 is speaking
+		player4Speech = true;
+
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -514,6 +617,9 @@ public class PortraitController : MonoBehaviour {
 			//Load the audio clip and play it
 			source.clip = portrait4[18];
 			source.Play();
+
+			//Flag that player 4 is speaking
+			player4Speech = true;
 		}
 	}
 
