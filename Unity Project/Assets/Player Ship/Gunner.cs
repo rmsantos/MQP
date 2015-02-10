@@ -241,11 +241,10 @@ public class Gunner : MonoBehaviour {
 		laserTurret.rotation = Quaternion.LookRotation(turretDirection, laserTurret.up);
 
 		//If the user clicked the left mouse button
-		if (shootingBullet) {
+		if (shootingBullet && readyBullet) {
 
 			//Flag that player has just shot
 			readyBullet = false;
-			shootingBullet = false;
 
 			//Instantiate a bullet with bulletPrefab at the players turret
 			GameObject bullet = (GameObject)Instantiate(bulletPrefab,turretEnd.position, Quaternion.identity);
@@ -308,7 +307,7 @@ public class Gunner : MonoBehaviour {
 			missiles--;
 
 			//Store that pref
-			PlayerPrefs.SetInt("Missiels",missiles);
+			PlayerPrefs.SetInt("Missiles",missiles);
 
 			//Flag that player has just shot
 			readyMissile = false;
@@ -351,15 +350,20 @@ public class Gunner : MonoBehaviour {
 		if (!pauseMenu.IsPaused()) 
 		{
 			//If the player tries to shoot a bullet and can
-			if(readyBullet && Input.GetMouseButtonDown(0)) {
+			if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
 
 				//Flag the shoot
 				shootingBullet = true;
 
 			}
+			else if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
+				
+				//Flag the shoot
+				shootingBullet = false;
+
+			}
 
 			//If the player tries to shoot a missile and can
-			//if(PlayerPrefs.GetInt ("Missiles", 0) > 0 && readyMissile && Input.GetMouseButtonDown(1)) {
 			if(readyMissile && (Input.GetMouseButtonDown(1) || Input.GetKeyDown("m")) && missilePower > 0 && missiles > 0) {
 				//Flag the shoot
 				shootingMissile= true;
@@ -367,8 +371,7 @@ public class Gunner : MonoBehaviour {
 			}
 
 			//If the player tries to shoot a laser and can
-			//if(PlayerPrefs.GetInt ("Laser", 0) > 0 && readyLaser && Input.GetMouseButtonDown(2)) {
-			if(readyLaser && (Input.GetMouseButtonDown(2) || Input.GetKeyDown(KeyCode.Space)) && laserPower > 0) {
+			if(readyLaser && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && laserPower > 0) {
 
 				//Flag the shoot
 				shootingLaser= true;
