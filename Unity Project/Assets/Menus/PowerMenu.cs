@@ -87,7 +87,6 @@ public class PowerMenu : MonoBehaviour {
 		startGame = false;
 
 		//Load the players current power and max power from player prefs
-		power = PlayerPrefs.GetInt ("Power", 10);
 		maxPower = 5 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
 
 		//Load the player prefs of each power level
@@ -97,6 +96,8 @@ public class PowerMenu : MonoBehaviour {
 		blaster = PlayerPrefs.GetInt ("BlasterPower", 0);
 		missile = PlayerPrefs.GetInt ("MissilePower", 0);
 
+		//Calculate the current power level
+		power = maxPower - shield - engine - laser - blaster - missile;
 
 		//Display the current power levels
 		powerBar.value = power;

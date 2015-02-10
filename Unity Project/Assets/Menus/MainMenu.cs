@@ -37,7 +37,6 @@ public class MainMenu : MonoBehaviour {
 	public int initialLaserPower;
 	public int initialMoneyValue;
 	public int initialCrystalValue;
-	public int initialPowerValue;
 	public int initialBlasterPower;
 	public int initialMissiles;
 	public int initialCrystals;
@@ -126,7 +125,6 @@ public class MainMenu : MonoBehaviour {
 		//Here is where we set all the upgrade values. Player0 is our first unsaved player
 		PlayerPrefs.SetString("Player", "Player0");
 		PlayerPrefs.SetInt ("ShieldPower", initialShieldPower);
-		PlayerPrefs.SetInt ("Power", initialPowerValue);
 		PlayerPrefs.SetInt ("EnginePower", initialEnginePower);
 		PlayerPrefs.SetInt ("MissilePower", initialMissilePower);
 		PlayerPrefs.SetInt ("LaserPower", initialLaserPower);
