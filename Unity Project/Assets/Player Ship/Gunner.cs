@@ -106,6 +106,12 @@ public class Gunner : MonoBehaviour {
 	//Number of missiles the player has
 	int missiles;
 
+	//Get the portrait controller to play audio clips
+	PortraitController portraitController;
+
+	//Flag for playing the missile audio clip
+	bool missileCheck;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -141,6 +147,12 @@ public class Gunner : MonoBehaviour {
 
 		//Load the players missiles
 		missiles = PlayerPrefs.GetInt ("Missiles", 0);
+
+		//Find the portrait controller script
+		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
+
+		//The audio file should not defaultly play
+		missileCheck = false;
 	}
 	
 
@@ -157,6 +169,19 @@ public class Gunner : MonoBehaviour {
 	 */
 	void FixedUpdate () {
 
+		//Play the missile clip only when the missiles go under 5 for the first time.
+		//Dont play it again until it goes over 5 then back under
+		if(!missileCheck && missiles < 2)
+		{
+			missileCheck = true;
+			portraitController.playMissilesLow();
+		}
+		else if(missiles >= 2)
+		{
+			missileCheck = false;
+		}
+			
+			
 		//If the player is "reloading" a bullet, don't decrement the timer
 		if (!readyBullet) {
 			
@@ -280,7 +305,7 @@ public class Gunner : MonoBehaviour {
 		if (shootingMissile) {
 
 			//Subtract the number of missiles
-			missiles --;
+			missiles--;
 
 			//Store that pref
 			PlayerPrefs.SetInt("Missiels",missiles);
