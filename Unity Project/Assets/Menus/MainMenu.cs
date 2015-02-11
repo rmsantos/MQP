@@ -42,6 +42,9 @@ public class MainMenu : MonoBehaviour {
 	public int initialMissiles;
 	public int initialCrystals;
 	public int initialMoney;
+	public float initialMasterVolume;
+	public float initialMusicVolume;
+	public float initialVoiceVolume;
 
 	public string[] initialHighScorers;
 	public int[] initialHighScores;
@@ -137,7 +140,9 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("Missiles", initialMissiles);
 		PlayerPrefs.SetInt ("Crystals", initialCrystals);
 		PlayerPrefs.SetInt ("Money", initialMoney);
-
+		PlayerPrefs.SetFloat ("MasterVolume", initialMasterVolume);
+		PlayerPrefs.SetFloat ("MusicVolume", initialMusicVolume);
+		PlayerPrefs.SetFloat ("VoiceVolume", initialVoiceVolume);
 		//Upgrades
 		PlayerPrefs.SetInt ("PowerUpgrade", 0);
 		PlayerPrefs.SetInt ("EngineUpgrade", 0);

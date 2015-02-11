@@ -32,9 +32,9 @@ public class VolumeControl : MonoBehaviour {
 	public GameObject portraitAudio;
 	
 	void Start () {
-		volume = 1f;
-		musicVolume = .1f;
-		voiceVolume = 1f;
+		volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
+		musicVolume = PlayerPrefs.GetFloat ("MusicVolume", 0);
+		voiceVolume = PlayerPrefs.GetFloat ("VoiceVolume", 0);
 
 		audio.volume = musicVolume;
 		AudioListener.volume = volume;
