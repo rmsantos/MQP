@@ -205,8 +205,8 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			//When hitting the center, move to phase 1
 			if(transform.position == Vector3.zero)
 			{
-				//Play the sound effect upon boss starting its first phase
-				portraitController.playBossStart();
+				//Play the sound effect upon boss switching phases
+				portraitController.playBossPhase();
 
 				phase = 1;
 			}
@@ -220,6 +220,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			//If the boss takes enough damage, then move to the next phase
 			if(health <= startingHealth*3/4)
 			{
+				//Play the sound effect upon boss switching phases
+				portraitController.playBossPhase();
+
 				phase = 2;
 			}
 
@@ -345,6 +348,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			//If the health of the boss reaches a certain point
 			if(health <= startingHealth/2)
 			{
+				//Play the sound effect upon boss switching phases
+				portraitController.playBossPhase();
+
 				//Change to the next phase
 				phase = 3;
 
@@ -448,6 +454,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			//If the health of the boss reaches a certain point
 			if(health <= startingHealth/4)
 			{
+				//Play the sound effect upon boss switching phases
+				portraitController.playBossPhase();
+
 				//Change to the next phase
 				phase = 4;
 

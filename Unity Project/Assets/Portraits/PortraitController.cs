@@ -403,15 +403,15 @@ public class PortraitController : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : playBossStart()
+	/* Function    : playBossPhase()
 	 *
-	 * Description : Plays on a 25% chance when a boss starts the first phase
+	 * Description : Plays on a 25% chance when a boss switches phases
 	 *
 	 * Parameters  : None
 	 *
 	 * Returns     : Void
 	 */
-	public void playBossStart()
+	public void playBossPhase()
 	{
 		//25% to play this clip
 		if(random.GetRandom(100) < 25)
@@ -419,7 +419,7 @@ public class PortraitController : MonoBehaviour {
 			//If audio isnt current playing
 			if(!source.isPlaying)
 			{
-				print("BOSS START");
+				print("BOSS PHASE");
 
 				//Load the audio clip and play it
 				source.clip = portrait2[7];
