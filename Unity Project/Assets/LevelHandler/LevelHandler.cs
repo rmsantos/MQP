@@ -73,6 +73,9 @@ public class LevelHandler : MonoBehaviour {
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
 
+	//Time to spawn each wave
+	public float spawningTime;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -91,7 +94,7 @@ public class LevelHandler : MonoBehaviour {
 		background = (Background)backgroundObject.GetComponent("Background");
 
 		//Initialize spawning variables
-		timeBetweenSpawning = 100;
+		timeBetweenSpawning = spawningTime;
 		spawnTimer = timeBetweenSpawning;
 		canSpawn = true;
 

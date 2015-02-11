@@ -149,7 +149,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("LaserUpgradeFireRate", 0);
 		PlayerPrefs.SetInt ("LaserUpgradeDamage", 0);
 		PlayerPrefs.SetInt ("ShieldUpgradeRecharge", 0);
-		PlayerPrefs.SetInt ("ShieldUpgradeNumber", 0);
+		PlayerPrefs.SetInt ("ShieldUpgradeNumber", 3);
 		PlayerPrefs.SetInt ("ShieldUpgradeHardened", 0);
 		PlayerPrefs.SetInt ("MissileUpgradePayload", 0);
 		PlayerPrefs.SetInt ("MissileUpgradeLoader", 0);

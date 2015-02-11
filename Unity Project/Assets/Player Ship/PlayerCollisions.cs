@@ -226,17 +226,18 @@ public class PlayerCollisions : MonoBehaviour {
 	{
 		Shields shield = GetComponent<Shields> ();
 
+		print (shield.getShields ());
+
 		//Deduct damage from health
 		if(shield.getShields() != 0)
 		{
-			shield.weakenShields();
+			shield.weakenShields(damage);
 		}
 		else
 		{
 			//If hitting a small asteroid, return
 			if(damage == 0)
 				return;
-
 
 			//If the player has the hull upgrade, then decrease damage taken
 			damage -= PlayerPrefs.GetInt("HullUpgradeReinforced",0);

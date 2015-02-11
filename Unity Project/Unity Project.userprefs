@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Shields.cs">
     <Files>
+      <File FileName="Assets\Player Ship\Shields.cs" Line="232" Column="4" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="234" Column="1" />
       <File FileName="Assets\Menus\MainMenu.cs" Line="200" Column="1" />
-      <File FileName="Assets\Player Ship\Gunner.cs" Line="510" Column="1" />
-      <File FileName="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" Line="232" Column="1" />
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="290" Column="1" />
-      <File FileName="Assets\Player Ship\Shields.cs" Line="88" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\rmsantos\Desktop\MQP\Unity Project\Assets\Player Ship\PlayerCollisions.cs" line="227" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

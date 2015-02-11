@@ -46,6 +46,12 @@ public class Shields : MonoBehaviour {
 	//Recharge sound
 	public AudioClip recharge;
 
+	//Damage the shield can take before brekaing
+	public int shieldAllowance;
+
+	//Player collisions script
+	PlayerCollisions collisions;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -71,6 +77,9 @@ public class Shields : MonoBehaviour {
 
 		//Set the tranparency of the shield
 		setTransparency ();
+
+		//Get the script
+		collisions = GetComponentInParent<PlayerCollisions> ();
 		
 	}
 
@@ -210,16 +219,28 @@ public class Shields : MonoBehaviour {
 	 *
 	 * Description : Decreases the players shields
 	 *
-	 * Parameters  : None
+	 * Parameters  : int damage : The damage dealt
 	 *
 	 * Returns     : Void
 	 */
-	public void weakenShields()
+	public void weakenShields(int damage)
 	{ 
+		
 		//Decrement the shields
 		shields--;
-
+		
 		//And set the new transparency levels
 		setTransparency ();
+
+		//Damage taken after shield breaks
+		int newDamage = damage - shieldAllowance;
+
+		//Do we pass on the rest of the damage?
+		if(newDamage > 0)
+		{
+			//Pass on the damage
+			collisions.takeDamage(newDamage);
+		}
+
 	}
 }
