@@ -594,12 +594,59 @@ public class PortraitController : MonoBehaviour {
 			//Play this clip whenever?
 			print("MISC INFO");
 
-			//Load the audio clip and play it
-			source.clip = portrait3[14];
-			source.Play();
+			//Get a random number between 0 and 3 to represent each crew member
+			switch(random.GetRandom(4))
+			{
+				//Pilot
+				case 0:
+					print ("Character 1");
+					
+					//Load the audio clip and play it
+					source.clip = portrait1[14];
+					source.Play();
 
-			//Flag that player 3 is speaking
-			player3Speech = true;
+					//Flag that player 1 is speaking
+					player1Speech = true;
+
+					break;
+					//Gunner
+				case 1:
+					print ("Character 2");
+					
+					//Load the audio clip and play it
+					source.clip = portrait2[14];
+					source.Play();
+
+					//Flag that player 2 is speaking
+					player2Speech = true;
+
+					break;
+					//Mechanic
+				case 2:
+					print ("Character 3");
+					
+					//Load the audio clip and play it
+					source.clip = portrait3[14];
+					source.Play();
+
+					//Flag that player 3 is speaking
+					player3Speech = true;
+
+					break;
+					//Radar Operator
+				case 3:
+					print ("Character 4");
+					
+					//Load the audio clip and play it
+					source.clip = portrait4[14];
+					source.Play();
+
+					//Flag that player 4 is speaking
+					player4Speech = true;
+
+					break;
+			}
+
 		}
 	}
 
