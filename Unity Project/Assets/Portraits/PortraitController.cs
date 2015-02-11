@@ -97,6 +97,9 @@ public class PortraitController : MonoBehaviour {
 	bool player3Speech;
 	bool player4Speech;
 
+	//Flag for boss phase
+	bool bossPhase;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -113,6 +116,7 @@ public class PortraitController : MonoBehaviour {
 		pilotThanks = false;
 		gunnerThanks = false;
 		mechanicResponse = false;
+		bossPhase = false;
 		player1Speech = false;
 		player2Speech = false;
 		player3Speech = false;
@@ -413,20 +417,27 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playBossPhase()
 	{
-		//25% to play this clip
-		if(random.GetRandom(100) < 25)
+		//If this clip hasn't been played this level
+		if(!bossPhase)
 		{
-			//If audio isnt current playing
-			if(!source.isPlaying)
+			//25% to play this clip
+			if(random.GetRandom(100) < 25)
 			{
-				print("BOSS PHASE");
+				//If audio isnt current playing
+				if(!source.isPlaying)
+				{
+					print("BOSS PHASE");
 
-				//Load the audio clip and play it
-				source.clip = portrait2[7];
-				source.Play();
+					//Load the audio clip and play it
+					source.clip = portrait2[7];
+					source.Play();
 
-				//Flag that player 2 is speaking
-				player2Speech = true;
+					//Flag that player 2 is speaking
+					player2Speech = true;
+
+					//Flag that this clip was played
+					bossPhase = true;
+				}
 			}
 		}
 	}
