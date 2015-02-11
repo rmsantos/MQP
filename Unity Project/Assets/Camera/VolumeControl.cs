@@ -33,7 +33,7 @@ public class VolumeControl : MonoBehaviour {
 	
 	void Start () {
 		volume = 1f;
-		musicVolume = .3f;
+		musicVolume = .1f;
 		voiceVolume = 1f;
 
 		audio.volume = musicVolume;
