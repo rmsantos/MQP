@@ -746,6 +746,12 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playVictory()
 	{
+		//Reset player speech
+		player1Speech = false;
+		player2Speech = false;
+		player3Speech = false;
+		player4Speech = false;
+
 		//Get a random number between 0 and 3 to represent each crew member
 		switch(random.GetRandom(4))
 		{
@@ -756,6 +762,10 @@ public class PortraitController : MonoBehaviour {
 				//Load the audio clip and play it
 				source.clip = portrait1[20];
 				source.Play();
+
+				//Flag that player 1 is speaking
+				player1Speech = true;
+
 				break;
 			//Gunner
 			case 1:
@@ -764,6 +774,10 @@ public class PortraitController : MonoBehaviour {
 				//Load the audio clip and play it
 				source.clip = portrait2[20];
 				source.Play();
+
+				//Flag that player 2 is speaking
+				player2Speech = true;
+
 				break;
 			//Mechanic
 			case 2:
@@ -772,6 +786,10 @@ public class PortraitController : MonoBehaviour {
 				//Load the audio clip and play it
 				source.clip = portrait3[20];
 				source.Play();
+
+				//Flag that player 3 is speaking
+				player3Speech = true;
+
 				break;
 			//Radar Operator
 			case 3:
@@ -780,6 +798,10 @@ public class PortraitController : MonoBehaviour {
 				//Load the audio clip and play it
 				source.clip = portrait4[20];
 				source.Play();
+
+				//Flag that player 4 is speaking
+				player4Speech = true;
+
 				break;
 		}
 	}
