@@ -266,17 +266,21 @@ public class PortraitController : MonoBehaviour {
 		//5% to play this clip
 		if(random.GetRandom(100) < 5)
 		{
-			print("ASTEROID HIT!");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("ASTEROID HIT!");
 
-			//Load the audio clip and play it
-			source.clip = portrait1[1];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait1[1];
+				source.Play();
 
-			//Flag the mechanic for a response
-			mechanicResponse = true;
+				//Flag the mechanic for a response
+				mechanicResponse = true;
 
-			//Flag that player 1 is speaking
-			player1Speech = true;
+				//Flag that player 1 is speaking
+				player1Speech = true;
+			}
 		}
 	}
 
@@ -294,14 +298,18 @@ public class PortraitController : MonoBehaviour {
 		//25% to play this clip
 		if(random.GetRandom(100) < 25)
 		{
-			print("ENEMIES INCOMING!");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("ENEMIES INCOMING!");
 
-			//Load the audio clip and play it
-			source.clip = portrait1[2];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait1[2];
+				source.Play();
 
-			//Flag that player 1 is speaking
-			player1Speech = true;
+				//Flag that player 1 is speaking
+				player1Speech = true;
+			}
 		}
 	}
 
@@ -319,17 +327,21 @@ public class PortraitController : MonoBehaviour {
 		//25% to play this clip
 		if(random.GetRandom(100) < 25)
 		{
-			print("LARGE ENEMY DESTROYED!");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("LARGE ENEMY DESTROYED!");
 
-			//Load the audio clip and play it
-			source.clip = portrait1[3];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait1[3];
+				source.Play();
 
-			//Flag the gunner for a response
-			gunnerThanks = true;
+				//Flag the gunner for a response
+				gunnerThanks = true;
 
-			//Flag that player 1 is speaking
-			player1Speech = true;
+				//Flag that player 1 is speaking
+				player1Speech = true;
+			}
 		}
 	}
 
@@ -344,18 +356,21 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playPilotThanks()
 	{
-	
-		print("PILOT THANKS");
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			print("PILOT THANKS");
 
-		//Flag that the clip is playing
-		pilotThanks = false;
+			//Flag that the clip is playing
+			pilotThanks = false;
 
-		//Load the audio clip and play it
-		source.clip = portrait1[4];
-		source.Play();
+			//Load the audio clip and play it
+			source.clip = portrait1[4];
+			source.Play();
 
-		//Flag that player 1 is speaking
-		player1Speech = true;
+			//Flag that player 1 is speaking
+			player1Speech = true;
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -372,14 +387,18 @@ public class PortraitController : MonoBehaviour {
 		//5% to play this clip
 		if(random.GetRandom(100) < 5)
 		{
-			print("BULLET/MISSILE HIT");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("BULLET/MISSILE HIT");
 
-			//Load the audio clip and play it
-			source.clip = portrait2[6];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait2[6];
+				source.Play();
 
-			//Flag that player 2 is speaking
-			player2Speech = true;
+				//Flag that player 2 is speaking
+				player2Speech = true;
+			}
 		}
 	}
 
@@ -397,14 +416,18 @@ public class PortraitController : MonoBehaviour {
 		//25% to play this clip
 		if(random.GetRandom(100) < 25)
 		{
-			print("BOSS START");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("BOSS START");
 
-			//Load the audio clip and play it
-			source.clip = portrait2[7];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait2[7];
+				source.Play();
 
-			//Flag that player 2 is speaking
-			player2Speech = true;
+				//Flag that player 2 is speaking
+				player2Speech = true;
+			}
 		}
 	}
 
@@ -419,17 +442,21 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playGunnerThanks()
 	{
-		print("GUNNER THANKS");
-			
-		//Load the audio clip and play it
-		source.clip = portrait2[8];
-		source.Play();
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			print("GUNNER THANKS");
+				
+			//Load the audio clip and play it
+			source.clip = portrait2[8];
+			source.Play();
 
-		//Flag that the clip is playing
-		gunnerThanks = false;
+			//Flag that the clip is playing
+			gunnerThanks = false;
 
-		//Flag that player 2 is speaking
-		player3Speech = true;
+			//Flag that player 2 is speaking
+			player3Speech = true;
+		}
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -443,15 +470,19 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playMissilesLow()
 	{
-		//Called when missiles go under 5
-		print("MISSILES LOW");
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			//Called when missiles go under 5
+			print("MISSILES LOW");
 
-		//Load the audio clip and play it
-		source.clip = portrait2[9];
-		source.Play();
+			//Load the audio clip and play it
+			source.clip = portrait2[9];
+			source.Play();
 
-		//Flag that player 2 is speaking
-		player2Speech = true;
+			//Flag that player 2 is speaking
+			player2Speech = true;
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -465,18 +496,22 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playMechanicResponse()
 	{
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
 
-		print("MECHANIC RESPONSE");
-			
-		//Load the audio clip and play it
-		source.clip = portrait3[11];
-		source.Play();
+			print("MECHANIC RESPONSE");
+				
+			//Load the audio clip and play it
+			source.clip = portrait3[11];
+			source.Play();
 
-		//Flag that the clip is playing
-		mechanicResponse = false;
+			//Flag that the clip is playing
+			mechanicResponse = false;
 
-		//Flag that player 3 is speaking
-		player3Speech = true;
+			//Flag that player 3 is speaking
+			player3Speech = true;
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -495,17 +530,21 @@ public class PortraitController : MonoBehaviour {
 		//Only called once per level
 		if(!crystalCheck)
 		{
-			print("MONEY HIGH!");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("MONEY HIGH!");
 
-			//Load the audio clip and play it
-			source.clip = portrait3[12];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait3[12];
+				source.Play();
 
-			//Flag that this clip has already been played this level
-			crystalCheck = true;
+				//Flag that this clip has already been played this level
+				crystalCheck = true;
 
-			//Flag that player 3 is speaking
-			player3Speech = true;
+				//Flag that player 3 is speaking
+				player3Speech = true;
+			}
 		}
 	}
 
@@ -523,14 +562,18 @@ public class PortraitController : MonoBehaviour {
 		//50% to play this clip
 		if(random.GetRandom(100) < 50)
 		{
-			print("LASER BOSS");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("LASER BOSS");
 
-			//Load the audio clip and play it
-			source.clip = portrait3[13];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait3[13];
+				source.Play();
 
-			//Flag that player 3 is speaking
-			player3Speech = true;
+				//Flag that player 3 is speaking
+				player3Speech = true;
+			}
 		}
 	}
 
@@ -545,15 +588,19 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playMiscInfo()
 	{
-		//Play this clip whenever?
-		print("MISC INFO");
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			//Play this clip whenever?
+			print("MISC INFO");
 
-		//Load the audio clip and play it
-		source.clip = portrait3[14];
-		source.Play();
+			//Load the audio clip and play it
+			source.clip = portrait3[14];
+			source.Play();
 
-		//Flag that player 3 is speaking
-		player3Speech = true;
+			//Flag that player 3 is speaking
+			player3Speech = true;
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -567,18 +614,22 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playApproachingAsteroids()
 	{
-		//Play this clip always
-		print("APPROACHING ASTEROIDS");
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			//Play this clip always
+			print("APPROACHING ASTEROIDS");
 
-		//Load the audio clip and play it
-		source.clip = portrait4[16];
-		source.Play();
+			//Load the audio clip and play it
+			source.clip = portrait4[16];
+			source.Play();
 
-		//Flag the pilot for a response
-		pilotThanks = true;
+			//Flag the pilot for a response
+			pilotThanks = true;
 
-		//Flag that player 4 is speaking
-		player4Speech = true;
+			//Flag that player 4 is speaking
+			player4Speech = true;
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -592,15 +643,19 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playBossSpawn()
 	{
-		//Play this clip always
-		print("BOSS SPAWN");
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			//Play this clip always
+			print("BOSS SPAWN");
 
-		//Load the audio clip and play it
-		source.clip = portrait4[17];
-		source.Play();
+			//Load the audio clip and play it
+			source.clip = portrait4[17];
+			source.Play();
 
-		//Flag that player 4 is speaking
-		player4Speech = true;
+			//Flag that player 4 is speaking
+			player4Speech = true;
+		}
 
 	}
 
@@ -618,14 +673,18 @@ public class PortraitController : MonoBehaviour {
 		//75% to play this clip
 		if(random.GetRandom(100) < 75)
 		{
-			print("AMBUSHER SPAWN");
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("AMBUSHER SPAWN");
 
-			//Load the audio clip and play it
-			source.clip = portrait4[18];
-			source.Play();
+				//Load the audio clip and play it
+				source.clip = portrait4[18];
+				source.Play();
 
-			//Flag that player 4 is speaking
-			player4Speech = true;
+				//Flag that player 4 is speaking
+				player4Speech = true;
+			}
 		}
 	}
 
