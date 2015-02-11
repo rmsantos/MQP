@@ -131,6 +131,20 @@ public class PlayerCollisions : MonoBehaviour {
 			//Find the class of this collision
 			SimpleEnemyBullet bullet = (SimpleEnemyBullet)col.gameObject.GetComponent(typeof(SimpleEnemyBullet));
 
+			//If the player has hardened shields, ignore dogfighter and cruiser bullets
+			if(PlayerPrefs.GetInt("ShieldUpgradeHardened",0) == 1)
+			{
+				//Find the shield
+				Shields shield = GetComponent<Shields> ();
+
+				//Only ignore damage if the player has shields
+				if(shield.getShields() > 0)
+				{
+					if(bullet.name == "DogFighterBullet(Clone)" || bullet.name == "CruiserBullet(Clone)")
+						return;
+				}
+			}
+
 			//Subtract the health based on that bullet
 			takeDamage(bullet.getBulletDamage());
 			
