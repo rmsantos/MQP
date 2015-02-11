@@ -237,6 +237,7 @@ public class PlayerCollisions : MonoBehaviour {
 			if(damage == 0)
 				return;
 
+
 			//If the player has the hull upgrade, then decrease damage taken
 			damage -= PlayerPrefs.GetInt("HullUpgradeReinforced",0);
 

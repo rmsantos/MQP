@@ -404,6 +404,9 @@ public class Gunner : MonoBehaviour {
 			bulletReloadTime = 18;
 			break;
 		case 2:
+			bulletDamage = 1;
+			bulletReloadTime = 14;
+			break;
 		case 3:
 			bulletDamage = 2;
 			bulletReloadTime = 14;

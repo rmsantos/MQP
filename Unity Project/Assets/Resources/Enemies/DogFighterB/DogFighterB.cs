@@ -25,6 +25,9 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	//The speed at which the enemy will move
 	public float speed;
 
+	//Vertical speed
+	public float verticalSpeed;
+
 	//Stores the boundaries of the game
 	Boundaries boundaries;
 
@@ -107,10 +110,10 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 
 		//follow the player
 		if(player != null)
-			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed);
+			transform.position = Vector3.MoveTowards(transform.position, player.transform.position, verticalSpeed);
 
 		//Move to the left
-		transform.position = new Vector3 (transform.position.x - (speed * 2f), transform.position.y, transform.position.z);
+		transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
 
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)

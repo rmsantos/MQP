@@ -63,7 +63,7 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 	int waveCounter;
 
 	//The direction the ship is moving (on the y axis)
-	float direction;
+	public float direction;
 
 	//Quitting boolean
 	bool isQuitting;
@@ -117,9 +117,6 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 
 		//Initialize the counter to be 0
 		waveCounter = 0;
-
-		//Direction is the speed
-		direction = speed/2;
 
 		//Not quitting the application
 		isQuitting = false;

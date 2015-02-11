@@ -158,8 +158,8 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("CargoUpgradeCredits", 0);
 		PlayerPrefs.SetInt ("HullUpgradeReinforced", 0);
 		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", 0);
-		PlayerPrefs.SetInt ("BlasterUpgradeSpeed", 5);
-		PlayerPrefs.SetInt ("BlasterUpgradeBurst", 1);
+		PlayerPrefs.SetInt ("BlasterUpgradeSpeed", 0);
+		PlayerPrefs.SetInt ("BlasterUpgradeBurst", 0);
 
 		//Game values
 	
