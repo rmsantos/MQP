@@ -28,7 +28,7 @@ public class PowerMenu : MonoBehaviour {
 	bool startGame;
 	
 	//The start button
-	public Button startButton;
+	public Image startButton;
 
 	//The current power level of the player
 	int power;
