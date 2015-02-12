@@ -240,6 +240,21 @@ public class Gunner : MonoBehaviour {
 		bulletTurret.rotation = Quaternion.LookRotation(turretDirection, bulletTurret.up);
 		laserTurret.rotation = Quaternion.LookRotation(turretDirection, laserTurret.up);
 
+		//For some reason the turrets tend to rotate into oblivion if we don't reset their angle to 0 or 180
+		//Determine which angle the turret rotations are closets to
+		if(Mathf.Abs (bulletTurret.eulerAngles.z) < (Mathf.Abs(bulletTurret.eulerAngles.z- 180)))
+		{
+			//If closest to 0, then reset the z rotation to 0
+			bulletTurret.rotation = Quaternion.Euler(bulletTurret.eulerAngles.x,bulletTurret.eulerAngles.y,0);
+			laserTurret.rotation = Quaternion.Euler(laserTurret.eulerAngles.x,laserTurret.eulerAngles.y,0);
+		}
+		else
+		{
+			//Else reset the z rotation to 180
+			bulletTurret.rotation = Quaternion.Euler(bulletTurret.eulerAngles.x,bulletTurret.eulerAngles.y,180);
+			laserTurret.rotation = Quaternion.Euler(laserTurret.eulerAngles.x,laserTurret.eulerAngles.y,180);
+		}
+
 		//If the user clicked the left mouse button
 		if (shootingBullet && readyBullet) {
 
