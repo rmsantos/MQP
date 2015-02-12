@@ -430,6 +430,9 @@ public class Gunner : MonoBehaviour {
 		//If the player has bought the laserspeed upgrade
 		//Then reduce reload time
 		laserReloadTime -= PlayerPrefs.GetInt("LaserUpgradeSpeed")*2;
+
+		//Add upgrade damage
+		laserDamage += PlayerPrefs.GetInt ("LaserUpgradeDamage");
 	}
 	
 	/* ----------------------------------------------------------------------- */

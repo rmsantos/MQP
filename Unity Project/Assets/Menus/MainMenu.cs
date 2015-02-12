@@ -147,6 +147,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("PowerUpgrade", 0);
 		PlayerPrefs.SetInt ("EngineUpgrade", 0);
 		PlayerPrefs.SetInt ("LaserUpgradeSpeed", 0);
+		PlayerPrefs.SetInt ("LaserUpgradeDamage", 0);
 		PlayerPrefs.SetInt ("LaserUpgradeBurst", 0);
 		PlayerPrefs.SetInt ("ShieldUpgradeRecharge", 0);
 		PlayerPrefs.SetInt ("ShieldUpgradeNumber", 0);
