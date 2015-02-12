@@ -73,10 +73,9 @@ public class UpgradeMenu : MonoBehaviour {
 	public Text missileText;
 	public Text statusText;
 	public Text descriptionText;
-	public Text CostText;
-	public Text debugText;
 	public Text scoreText;
 	public Text levelText;
+	public Text[] upgradeCosts;
 
 	//Player variables that are displayed
 	int money;
@@ -134,6 +133,12 @@ public class UpgradeMenu : MonoBehaviour {
 		upgradeLevel = new int[upgradePrefs.Length];
 		for (int i = 0; i < upgradePrefs.Length; i++) {
 			upgradeLevel[i] = PlayerPrefs.GetInt (upgradePrefs[i], 0);
+			if (costs[i].GetLength(0) > upgradeLevel[i]) {
+				upgradeCosts[i].text = costs[i][upgradeLevel[i]].ToString();
+			}
+			else {
+				upgradeCosts[i].text = "MAX";
+			}
 		}
 
 		//Initialize start state to false
@@ -210,14 +215,14 @@ public class UpgradeMenu : MonoBehaviour {
 			upgradeLevel[selected] = upgradeLevel[selected] + 1;
 			PlayerPrefs.SetInt(upgradePrefs[selected], upgradeLevel[selected]);
 			Select(selected);
-			statusText.text = "Upgrade purchased!";
+			descriptionText.text = "Upgrade purchased!";
 				
 			//Do the specific upgrade logic
 			upgradeFunction[selected]();
 
 		}
 		else {
-			statusText.text = "Not enough money!";
+			descriptionText.text = "Not enough money!";
 		}
 
 	}
@@ -229,18 +234,16 @@ public class UpgradeMenu : MonoBehaviour {
 
 		//Display the appropriate cost 
 		if (costs[selected].GetLength(0) > upgradeLevel[selected]) {
-			CostText.text = costs[selected][upgradeLevel[selected]].ToString();
+			upgradeCosts[selected].text = costs[selected][upgradeLevel[selected]].ToString();
 			purchaseButton.interactable = true;
 		}
 		else {
-			CostText.text = "MAX";
+			upgradeCosts[selected].text = "MAX";
 			purchaseButton.interactable = false;
 		}
 
 		//Set descriptive texts
 		descriptionText.text = descriptions[selected];
-		statusText.text = "";
-		debugText.text = upgradePrefs[selected];
 		levelText.text = "lvl: " + upgradeLevel[selected].ToString();
 
 	}
