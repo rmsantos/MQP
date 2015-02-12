@@ -3,7 +3,7 @@
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the laser.
+ * Description : This file controls the behavior of the laser after spawning.
  *
  * Date        : 2015/1/16
  * 
@@ -19,33 +19,23 @@ using System.Collections;
 //None
 
 public class Laser : MonoBehaviour {
-	
+
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
-	//The damage this bullet deals
+	//Stores the boundaries of the game
+	Boundaries boundaries;
+
+	//The speed of the lasers
+	public float speed;
+
+	//The damage this laser deals
 	int damage;
 
-	//Time to Live
-	public int TTL;
-
-	//COunter to keep track of the lifespan
-	int counter; 
-
-	//The position of the mouse
-	Vector3 mouseWorldPos;
-
-	//The radius at which the raycast will cast
-	public float castRadius;
-
-	//List of enemies hit
-	//This prevents enemies from taking double damage
-	ArrayList hitList = new ArrayList();
-
-	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Draws a line from the players current position to the mouse location
+	 * Description : Stores the start position of this laser instance.
+	 * 				Also stores the boundaries of the game.
 	 *
 	 * Parameters  : None
 	 *
@@ -53,111 +43,37 @@ public class Laser : MonoBehaviour {
 	 */
 	void Start () {
 
-		//Read the mouse location in pixels
-		Vector3 mousePos = Input.mousePosition;
-		
-		//Set the z offset since the camera is at -10z
-		mousePos.z = 10;
-		
-		//Store the mouse's position in world coordinates
-		mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
-
-		//Store the direction of the mouse in respect to the laser
-		Vector3 direction = mouseWorldPos-transform.position;
-		
-		//Rotate the laser towards the mouse
-		transform.rotation = Quaternion.LookRotation(direction);
-
-		//Rotate -90 on the Y so it appears correct
-		transform.Rotate (0, -90, 0);
-
+		//Pull the boundaries script from the main camera object and store it
+		boundaries = Camera.main.GetComponent<Boundaries>(); 
 	}
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : FixedUpdate()
 	 *
-	 * Description : Counts until the laser destroys itself. Draws a line every update and damages anything 
-	 * 				that hits it.
+	 * Description : Moves the laser towards the mouse clicked position at a constant rate.
+	 * 				Destroys the laser when it moves out of the game space
 	 *
 	 * Parameters  : None
 	 *
 	 * Returns     : Void
 	 */
 	void FixedUpdate () {
-		
+
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
 
-		//Increment the TTL counter
-		counter++;
+		//Move the laser to the right 
+		transform.Translate( -transform.right * speed, Space.World);
 
-		//If the counter expires
-		if(counter == TTL)
+		//If the laser leaves the game space
+		//Leave some room for the laser to fully exit the visible screen (by multiplying 1.2)
+		if (!boundaries.inBoundaries(transform.position, 1.2f))
 		{
-			//Destroy this laser
-			Destroy(this.gameObject);
+			//Destroy the laser
+			Destroy (this.gameObject);
 		}
 
-		//Draw a raycast from here to the mouse position
-		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position,castRadius, mouseWorldPos-transform.position);
-
-		//For every collision
-		foreach(RaycastHit2D hit in hits)
-		{
-			//If this object hasnt been hit yet
-			if(!hitList.Contains(hit.transform.gameObject))
-			{
-				//Adds this object to the hit list
-				hitList.Add(hit.transform.gameObject);
-
-				//If the collision was with an enemy or boss
-				if(hit.transform.tag == "Enemies")
-				{
-					//Find the component that extends BasicEnemy (the enemy script)
-					BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
-						
-					//Deal damage to that enemy
-					enemy.takeDamage(damage);
-				}
-							
-				//If the object is an asteroid
-				if(hit.transform.tag == "Asteroids")
-				{
-					//Cast to an asteroid type
-					BasicAsteroid asteroid = (BasicAsteroid)hit.transform.GetComponent(typeof(BasicAsteroid));
-					
-					//And shatter the asteroid
-					asteroid.shatter();
-					
-				}
-				
-				//If the object is an enemy missile
-				if(hit.transform.tag == "EnemyMissile")
-				{
-					//Cast to an asteroid type
-					SeekerMissile seekerMissile = (SeekerMissile)hit.transform.GetComponent(typeof(SeekerMissile));
-					
-					//And explode the missile
-					seekerMissile.explode();
-					
-				}
-
-				if(hit.transform.tag == "Boss")
-				{
-					if(!hit.transform.GetComponent<Flagship>().startingPhase())
-					{
-						//Find the component that extends BasicEnemy (the enemy script)
-						BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
-						
-						//Deal damage to that enemy
-						enemy.takeDamage(damage);
-					}
-				}
-			}
-		}
-		
 	}
 
-	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setDamage()
 	 *
@@ -172,7 +88,7 @@ public class Laser : MonoBehaviour {
 	{
 		damage = newDamage;
 	}
-	
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : getDamage()
 	 *
@@ -181,7 +97,7 @@ public class Laser : MonoBehaviour {
 	 *
 	 * Parameters  : None
 	 *
-	 * Returns     : int : The damage the bullet will deal
+	 * Returns     : int : The damage the laser will deal
 	 */
 	public int getDamage()
 	{

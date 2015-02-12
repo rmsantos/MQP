@@ -274,7 +274,7 @@ public class Gunner : MonoBehaviour {
 			laser.transform.Rotate(0,90,0);
 
 			//Send the damage the laser will deal to the enemy
-			laser.GetComponent<Bullet>().setDamage(laserDamage);
+			laser.GetComponent<Laser>().setDamage(laserDamage);
 
 			//If power level 3, then enable tri-shot
 			if(PlayerPrefs.GetInt("LaserPower",0) == 3)
@@ -293,7 +293,7 @@ public class Gunner : MonoBehaviour {
 				laser2.transform.Rotate(0,90,5);
 				
 				//Send the damage the laser will deal to the enemy
-				laser2.GetComponent<Bullet>().setDamage(laserDamage);
+				laser2.GetComponent<Laser>().setDamage(laserDamage);
 
 
 				//THIRD LASER
@@ -310,7 +310,7 @@ public class Gunner : MonoBehaviour {
 				laser3.transform.Rotate(0,90,-5);
 				
 				//Send the damage the laser will deal to the enemy
-				laser3.GetComponent<Bullet>().setDamage(laserDamage);
+				laser3.GetComponent<Laser>().setDamage(laserDamage);
 			}
 		
 		}
@@ -349,7 +349,7 @@ public class Gunner : MonoBehaviour {
 			GameObject blaster = (GameObject)Instantiate(blasterPrefab,laserTurret.position,Quaternion.identity);
 
 			//Transfer the damage to the blaster object
-			blaster.GetComponent<Laser>().setDamage(blasterDamage);
+			blaster.GetComponent<Blaster>().setDamage(blasterDamage);
 
 			//Flag that the blaster was shot
 			readyBlaster = false;

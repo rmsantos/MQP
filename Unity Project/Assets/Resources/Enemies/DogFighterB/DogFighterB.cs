@@ -146,7 +146,7 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 			Destroy(col.gameObject);
 			
 			//Get the damage the player bullet will deal
-			int damage = col.gameObject.GetComponent<Bullet>().getDamage();
+			int damage = col.gameObject.GetComponent<Laser>().getDamage();
 			
 			//Deal the damage to this enemy
 			takeDamage(damage);
