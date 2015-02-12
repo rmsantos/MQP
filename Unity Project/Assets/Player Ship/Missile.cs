@@ -216,8 +216,8 @@ public class Missile : MonoBehaviour {
 					}
 				}
 				
-				//Delete the object if it is an enemy or player bullet
-				if(collide.tag == "EnemyBullets" || collide.tag == "PlayerBullet")
+				//Delete the object if it is an enemy or player laser
+				if(collide.tag == "EnemyLaser" || collide.tag == "PlayerLaser")
 					Destroy (collide.gameObject);
 				
 				//If the object is an asteroid
