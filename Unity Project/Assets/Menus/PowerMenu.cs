@@ -335,6 +335,9 @@ public class PowerMenu : MonoBehaviour {
 
 		//Check all the interactable buttons
 		CheckButtons ();
+
+		//Display the new status text
+		setStatusText (station);
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -376,10 +379,226 @@ public class PowerMenu : MonoBehaviour {
 		//Set the interactability of the buttons
 		CheckButtons ();
 
+		//Display the new status text
+		setStatusText (station);
 	}	
 
-	public void setPowerText()
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setStatusText(int station)
+	 *
+	 * Description : Displays what each power level does for each station
+	 *
+	 * Parameters  : int station : The station being viewed
+	 *
+	 * Returns     : Void
+	 */
+	public void setStatusText(int station)
+	{
+		//Determine which station is being viewed
+		switch(station)
+		{
+			//Power
+			case (int)powerSelected.POWER:
+				displayPower();
+				break;
+			//Engine
+			case (int)powerSelected.ENGINE:
+				displayEngine();
+				break;
+			//Laser
+			case (int)powerSelected.LASER:
+				displayLaser();
+				break;
+			//Missile
+			case (int)powerSelected.MISSILE:
+				displayMissile();
+				break;
+			//Blaster
+			case (int)powerSelected.BLASTER:
+				displayBlaster();
+				break;
+			//Or shield
+			case (int)powerSelected.SHIELD:
+				displayShield();
+				break;
+		}
+
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayPower()
+	 *
+	 * Description : Displays the current power level
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayPower()
 	{
 		statusText.text = "Power Level: " + power;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayEngine()
+	 *
+	 * Description : Displays what each engine level does
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayEngine()
+	{
+		switch(playerPowers[(int)powerSelected.ENGINE])
+		{
+			case 0:
+				statusText.text = "Engine Level 0. Basic max speed. Basic acceleration. The ship moves very slowly.";
+				break;
+			case 1:
+				statusText.text = "Engine Level 1. Basic max speed. Decent acceleration. The ship moves slowly.";
+				break;
+			case 2:
+				statusText.text = "Engine Level 2. Decent max speed. Decent acceleration. The ship moves modestly.";
+				break;
+			case 3:
+				statusText.text = "Engine Level 3. Decent max speed. Good acceleration. The ship moves well.";
+				break;
+			case 4:
+				statusText.text = "Enigne Level 4. Good max speed. Good acceleration. The ship moves swiftly.";
+				break;
+			case 5:
+			statusText.text = "Engine Level 5. Excellent max speed. Excellent acceleration. The ship is a comet!";
+				break;
+		}
+
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayLaser()
+	 *
+	 * Description : Displays what each laser level does
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayLaser()
+	{
+		switch(playerPowers[(int)powerSelected.LASER])
+		{
+		case 0:
+			statusText.text = "Laser Level 0. Low base damage. Slow base reload rate. The laser is clunky.";
+			break;
+		case 1:
+			statusText.text = "Laser Level 1. Low base damage. Decent base reload rate. The laser is acceptable.";
+			break;
+		case 2:
+			statusText.text = "Laser Level 2. Low base damage. Good base reload rate. The laser is swift.";
+			break;
+		case 3:
+			statusText.text = "Laser Level 3. Better base damage. Better reload rate. Burst Shot enabled! The laser is unstoppable!";
+			break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayMissile()
+	 *
+	 * Description : Displays what each missile level does
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayMissile()
+	{
+		switch(playerPowers[(int)powerSelected.MISSILE])
+		{
+		case 0:
+			statusText.text = "Missile Level 0. Missiles disabled.";
+			break;
+		case 1:
+			statusText.text = "Missile Level 1. Low base damage. Low base reload rate. The missile is slow.";
+			break;
+		case 2:
+			statusText.text = "Missile Level 2. Low base damage. Good base reload rate. The missile is dangerous.";
+			break;
+		case 3:
+			statusText.text = "Missile Level 3. Better base damage. Great base reload rate. The missile is deadly.";
+			break;
+		case 4:
+			statusText.text = "Missile Level 4. Enhanced base damage. Enhanced reload rate. The missile is almost nuclear!";
+			break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayBlaster()
+	 *
+	 * Description : Displays what each blaster level does
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayBlaster()
+	{
+		switch(playerPowers[(int)powerSelected.BLASTER])
+		{
+		case 0:
+			statusText.text = "Blaster Level 0. Blaster disabled.";
+			break;
+		case 1:
+			statusText.text = "Blaster Level 1. Low base damage. Low base reload rate. The blaster is a snail's pace.";
+			break;
+		case 2:
+			statusText.text = "Blaster Level 2. Good base damage. Good base reload rate. The blaster is a intimidating.";
+			break;
+		case 3:
+			statusText.text = "Blaster Level 3. Great base damage. Great base reload rate. The blaster is a large threat.";
+			break;
+		case 4:
+			break;
+			statusText.text = "Blaster Level 4. Crazy base damage. Crazy base reload rate. The blaster can cut through anything!";
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayShield()
+	 *
+	 * Description : Displays what each shield level does
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayShield()
+	{
+		switch(playerPowers[(int)powerSelected.SHIELD])
+		{
+		case 0:
+			statusText.text = "Shield Level 0. The ship has no shields.";
+			break;
+		case 1:
+			statusText.text = "Shield Level 1. Up to one shield. Low base recharge rate. The shield is...there.";
+			break;
+		case 2:
+			statusText.text = "Shield Level 2. Up to one shield. Decent base recharge rate. The shield is useful.";
+			break;
+		case 3:
+			statusText.text = "Shield Level 3. Up to two shields. Good base recharge rate. The shield is effective.";
+			break;
+		case 4:
+			break;
+			statusText.text = "Shield Level 4. Up to three shields. Great base recharge rate. The shield is almost unstoppable.";
+		case 5:
+			break;
+			statusText.text = "Shield Level 6. Up to three shields. Amazing base recharge rate. The shield is almost impenetrable! The ship is a tank!.";
+		}
+		
 	}
 }

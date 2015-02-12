@@ -148,7 +148,7 @@ public class ShipMovement : MonoBehaviour {
 				break;
 			case 4:
 				accelerationRate = 0.004f;
-				maxAcceleration = 0.1f;
+				maxAcceleration = 0.09f;
 				break;
 			case 5:
 				accelerationRate = 0.005f;
