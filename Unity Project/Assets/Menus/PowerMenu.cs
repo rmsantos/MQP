@@ -55,6 +55,18 @@ public class PowerMenu : MonoBehaviour {
 	//Texts displaying the power levels.
 	public Text[] powerLevels;
 
+	//The sprites for the different power levels of the different abilities
+	public Sprite[] shieldSprites;
+	public Sprite[] engineSprites;
+	public Sprite[] laserSprites;
+	public Sprite[] blasterSprites;
+	public Sprite[] missileSprites;
+	public Sprite[] availablePowerSprites;
+	Sprite[][] powerSprites;
+
+	//The actual displayed images
+	public Image[] powerImages;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -89,14 +101,23 @@ public class PowerMenu : MonoBehaviour {
 		powerBar.maxValue = maxPower;
 		powerBar.value = power;
 
+		//Setup all the image files to be easily accessible
+		powerSprites = new Sprite[][] {shieldSprites, engineSprites, laserSprites, blasterSprites, missileSprites, availablePowerSprites};
+		
+
 		//Set the sliders and the power level text to the appropriate value
 		for (int i = 0; i < 5; i++) {
 			playerPowerSliders[i].value = playerPowers[i];
 			powerLevels[i].text = playerPowers[i].ToString();
+			powerImages[i].overrideSprite = powerSprites[i][playerPowers[i]];
 		}
+
+		//Overwrite the image to show the value of the power
+		powerImages[(int)powerSelected.POWER].overrideSprite = powerSprites[(int)powerSelected.POWER][power];
 
 		//Enable or disable buttons to reflect what can be done
 		CheckButtons ();
+	
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -154,11 +175,9 @@ public class PowerMenu : MonoBehaviour {
 		increaseButtons[(int)powerSelected.MISSILE].interactable = (CanMissileIncrease() && power > 0);
 
 		//Checks if the decrease buttons should be enabled
-		decreaseButtons[(int)powerSelected.SHIELD].interactable = (playerPowers[(int)powerSelected.SHIELD] > 0);
-		decreaseButtons[(int)powerSelected.ENGINE].interactable = (playerPowers[(int)powerSelected.ENGINE] > 0);
-		decreaseButtons[(int)powerSelected.LASER].interactable = (playerPowers[(int)powerSelected.LASER] > 0);
-		decreaseButtons[(int)powerSelected.BLASTER].interactable = (playerPowers[(int)powerSelected.BLASTER] > 0);
-		decreaseButtons[(int)powerSelected.MISSILE].interactable = (playerPowers[(int)powerSelected.MISSILE] > 0);
+		for (int i = 0; i < 5; i++) {
+			decreaseButtons[i].interactable = (playerPowers[i] > 0);
+		}
 
 	}
 
@@ -281,7 +300,6 @@ public class PowerMenu : MonoBehaviour {
 	 */
 	public void increasePower(int station)
 	{
-
 		//Increase the appropriate power level
 		playerPowers[station]++;
 
@@ -291,6 +309,9 @@ public class PowerMenu : MonoBehaviour {
 		//And show the value of the slider here
 		powerLevels[station].text = playerPowers[station].ToString();
 
+		//Overwrite the image to show the value of the power
+		powerImages[station].overrideSprite = powerSprites[station][playerPowers[station]];
+
 		//Decrease power level
 		power--;
 		
@@ -299,6 +320,9 @@ public class PowerMenu : MonoBehaviour {
 
 		//And show the value of the slider here
 		powerLevels[(int)powerSelected.POWER].text = power.ToString();
+
+		//Overwrite the image to show the value of the power
+		powerImages[(int)powerSelected.POWER].overrideSprite = powerSprites[(int)powerSelected.POWER][power];
 
 		//Check all the interactable buttons
 		CheckButtons ();
@@ -324,6 +348,9 @@ public class PowerMenu : MonoBehaviour {
 
 		//And show the value of the slider here
 		powerLevels[station].text = playerPowers[station].ToString();
+
+		//Overwrite the image to show the value of the power
+		powerImages[station].overrideSprite = powerSprites[station][playerPowers[station]];
 		
 		//Increase the power
 		power++;
@@ -333,6 +360,9 @@ public class PowerMenu : MonoBehaviour {
 
 		//And show the value of the slider here
 		powerLevels[(int)powerSelected.POWER].text = power.ToString();
+
+		//Overwrite the image to show the value of the power
+		powerImages[(int)powerSelected.POWER].overrideSprite = powerSprites[(int)powerSelected.POWER][power];
 		
 		//Set the interactability of the buttons
 		CheckButtons ();
