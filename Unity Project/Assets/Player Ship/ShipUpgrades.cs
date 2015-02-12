@@ -20,17 +20,17 @@ public class ShipUpgrades : MonoBehaviour {
 	int MissileLevel;
 	int ShieldLevel;
 	int LaserLevel;
-	int TurretLevel;
 	int EngineLevel;
+	int BlasterLevel;
 
 	public Sprite upgradedMissile;
 	public Sprite maxMissile;
 
 	void Start () {
 	
-		TurretLevel = 1;
+		LaserLevel = 1;
 		MissileLevel = PlayerPrefs.GetInt ("MissileUpgradePayload", 0);
-		LaserLevel = PlayerPrefs.GetInt ("LaserUpgradeFireRate", 0);
+		BlasterLevel = PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0);
 		EngineLevel = PlayerPrefs.GetInt ("EngineUpgrade", 0);
 		ShieldLevel = PlayerPrefs.GetInt ("ShieldUpgradeNumber", 0);
 
@@ -42,12 +42,12 @@ public class ShipUpgrades : MonoBehaviour {
 			transform.Find("MissileUpgrade").GetComponent<SpriteRenderer>().sprite = upgradedMissile;
 		}
 
-		if (LaserLevel < 1) {
-			transform.Find("LaserUpgrade/LaserUpgrade").renderer.enabled = false;
-			transform.Find("LaserUpgradeAttachment").renderer.enabled = false;
+		if (BlasterLevel < 1) {
+			transform.Find("BlasterUpgrade/BlasterUpgrade").renderer.enabled = false;
+			transform.Find("BlasterUpgradeAttachment").renderer.enabled = false;
 		}
 
-		if (TurretLevel < 1) {
+		if (LaserLevel < 1) {
 			transform.Find("TurretUpgrade").renderer.enabled = false;
 		}
 
