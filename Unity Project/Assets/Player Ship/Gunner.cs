@@ -24,7 +24,7 @@ public class Gunner : MonoBehaviour {
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
 	//The transform of the turret
-	public Transform bulletTurret;
+	public Transform blasterTurret;
 
 	//The transform of the missile shooter
 	public Transform missileTurret;
@@ -35,8 +35,8 @@ public class Gunner : MonoBehaviour {
 	//The tip of the turret
 	public Transform turretEnd;
 
-	//The prefab object for the bullet
-	public GameObject bulletPrefab;
+	//The prefab object for the blaster
+	public GameObject blasterPrefab;
 
 	//The prefab object for the missile
 	public GameObject missilePrefab;
@@ -44,8 +44,8 @@ public class Gunner : MonoBehaviour {
 	//The prefab object for the laser
 	public GameObject laserPrefab;
 
-	//Is the player ready to shoot a bullet?
-	bool readyBullet;
+	//Is the player ready to shoot the blaser?
+	bool readyBlaster;
 
 	//Is the player ready to shoot a missile?
 	bool readyMissile;
@@ -53,8 +53,8 @@ public class Gunner : MonoBehaviour {
 	//Is the player ready to shoot a laser?
 	bool readyLaser;
 
-	//Player is going to shoot a bullet
-	bool shootingBullet;
+	//Player is going to shoot the blaster
+	bool shootingBlaster;
 
 	//Player is going to shoot a missile
 	bool shootingMissile;
@@ -62,11 +62,11 @@ public class Gunner : MonoBehaviour {
 	//Player is going to shoot a laser
 	bool shootingLaser;
 
-	//Counter for reloading bullets
-	int bulletShootTimer;
+	//Counter for reloading the blaster
+	int blasterShootTimer;
 
-	//Time before the player can shoot bullets again 
-	int bulletReloadTime;
+	//Time before the player can shoot the blaster again 
+	int blasterReloadTime;
 
 	//Time before the player can shoot lasers again 
 	int laserReloadTime;
@@ -80,8 +80,8 @@ public class Gunner : MonoBehaviour {
 	//Time before the player can shoot missiles again 
 	int missileReloadTime;
 
-	//The damage bullets will deal
-	int bulletDamage;
+	//The damage the blaster will deal
+	int blasterDamage;
 
 	//The damage missiles will deal
 	int missileDamage;
@@ -123,7 +123,7 @@ public class Gunner : MonoBehaviour {
 	 */
 	void Start () {
 		//Set the shoot timer to its reload time
-		bulletShootTimer = bulletReloadTime;
+		blasterShootTimer = blasterReloadTime;
 		missileShootTimer = missileReloadTime;
 		laserShootTimer = laserReloadTime;
 
@@ -182,17 +182,17 @@ public class Gunner : MonoBehaviour {
 		}
 			
 			
-		//If the player is "reloading" a bullet, don't decrement the timer
-		if (!readyBullet) {
+		//If the player is "reloading" the blaster, don't decrement the timer
+		if (!readyBlaster) {
 			
 			//Decrements the shoot timer
-			bulletShootTimer--;
+			blasterShootTimer--;
 			
 			//If the shoot timer has reached 0, reset it and flag that the player can shoot
-			if (bulletShootTimer <= 0) {
+			if (blasterShootTimer <= 0) {
 				
-				readyBullet = true;
-				bulletShootTimer = bulletReloadTime;
+				readyBlaster = true;
+				blasterShootTimer = blasterReloadTime;
 			}
 		}
 
@@ -234,83 +234,83 @@ public class Gunner : MonoBehaviour {
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint (mousePos);
 
 		//Store the direction of the player in respect to the bullet
-		Vector3 turretDirection = mouseWorldPos-bulletTurret.position;
+		Vector3 turretDirection = mouseWorldPos-blasterTurret.position;
 	
 		//Rotate the turret towards the mouse
-		bulletTurret.rotation = Quaternion.LookRotation(turretDirection, bulletTurret.up);
+		blasterTurret.rotation = Quaternion.LookRotation(turretDirection, blasterTurret.up);
 		laserTurret.rotation = Quaternion.LookRotation(turretDirection, laserTurret.up);
 
 		//For some reason the turrets tend to rotate into oblivion if we don't reset their angle to 0 or 180
 		//Determine which angle the turret rotations are closets to
-		if(Mathf.Abs (bulletTurret.eulerAngles.z) < (Mathf.Abs(bulletTurret.eulerAngles.z- 180)))
+		if(Mathf.Abs (blasterTurret.eulerAngles.z) < (Mathf.Abs(blasterTurret.eulerAngles.z- 180)))
 		{
 			//If closest to 0, then reset the z rotation to 0
-			bulletTurret.rotation = Quaternion.Euler(bulletTurret.eulerAngles.x,bulletTurret.eulerAngles.y,0);
+			blasterTurret.rotation = Quaternion.Euler(blasterTurret.eulerAngles.x,blasterTurret.eulerAngles.y,0);
 			laserTurret.rotation = Quaternion.Euler(laserTurret.eulerAngles.x,laserTurret.eulerAngles.y,0);
 		}
 		else
 		{
 			//Else reset the z rotation to 180
-			bulletTurret.rotation = Quaternion.Euler(bulletTurret.eulerAngles.x,bulletTurret.eulerAngles.y,180);
+			blasterTurret.rotation = Quaternion.Euler(blasterTurret.eulerAngles.x,blasterTurret.eulerAngles.y,180);
 			laserTurret.rotation = Quaternion.Euler(laserTurret.eulerAngles.x,laserTurret.eulerAngles.y,180);
 		}
 
 		//If the user clicked the left mouse button
-		if (shootingBullet && readyBullet) {
+		if (shootingLaser && readyLaser) {
 
 			//Flag that player has just shot
-			readyBullet = false;
+			readyLaser = false;
 
-			//Instantiate a bullet with bulletPrefab at the players turret
-			GameObject bullet = (GameObject)Instantiate(bulletPrefab,turretEnd.position, Quaternion.identity);
+			//Instantiate a laser with laserPrefab at the players turret
+			GameObject laser = (GameObject)Instantiate(laserPrefab,turretEnd.position, Quaternion.identity);
 						
-			//Store the direction of the player in respect to the bullet
-			Vector3 direction = mouseWorldPos-bullet.transform.position;
+			//Store the direction of the player in respect to the laser
+			Vector3 direction = mouseWorldPos-laser.transform.position;
 
-			//Rotate the bullet towards the player
-			bullet.transform.rotation = Quaternion.LookRotation(direction);
+			//Rotate the laster towards the player
+			laser.transform.rotation = Quaternion.LookRotation(direction);
 			
-			//Rotate the bullet along the y so that it faces the mouse point
-			bullet.transform.Rotate(0,90,0);
+			//Rotate the laser along the y so that it faces the mouse point
+			laser.transform.Rotate(0,90,0);
 
-			//Send the damage the bullet will deal to the bullet
-			bullet.GetComponent<Bullet>().setDamage(bulletDamage);
+			//Send the damage the laser will deal to the enemy
+			laser.GetComponent<Bullet>().setDamage(laserDamage);
 
 			//If power level 3, then enable tri-shot
-			if(PlayerPrefs.GetInt("BlasterPower",0) == 3)
+			if(PlayerPrefs.GetInt("LaserPower",0) == 3)
 			{
-				//SECOND BULLET
-				//Instantiate a bullet with bulletPrefab at the players turret
-				GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,turretEnd.position, Quaternion.identity);
+				//SECOND LASER
+				//Instantiate a laser with laserPrefab at the players turret
+				GameObject laser2 = (GameObject)Instantiate(laserPrefab,turretEnd.position, Quaternion.identity);
 				
-				//Store the direction of the player in respect to the bullet
-				Vector3 direction2 = mouseWorldPos-bullet2.transform.position;
+				//Store the direction of the player in respect to the laser
+				Vector3 direction2 = mouseWorldPos-laser2.transform.position;
 				
-				//Rotate the bullet towards the player
-				bullet2.transform.rotation = Quaternion.LookRotation(direction2);
+				//Rotate the laser towards the player
+				laser2.transform.rotation = Quaternion.LookRotation(direction2);
 				
-				//Rotate the bullet along the y so that it faces the mouse point
-				bullet2.transform.Rotate(0,90,5);
+				//Rotate the laser along the y so that it faces the mouse point
+				laser2.transform.Rotate(0,90,5);
 				
-				//Send the damage the bullet will deal to the bullet
-				bullet2.GetComponent<Bullet>().setDamage(bulletDamage);
+				//Send the damage the laser will deal to the enemy
+				laser2.GetComponent<Bullet>().setDamage(laserDamage);
 
 
-				//THIRD BULLET
-				//Instantiate a bullet with bulletPrefab at the players turret
-				GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,turretEnd.position, Quaternion.identity);
+				//THIRD LASER
+				//Instantiate a laser with bulletPrefab at the players turret
+				GameObject laser3 = (GameObject)Instantiate(laserPrefab,turretEnd.position, Quaternion.identity);
 				
-				//Store the direction of the player in respect to the bullet
-				Vector3 direction3 = mouseWorldPos-bullet3.transform.position;
+				//Store the direction of the player in respect to the laser
+				Vector3 direction3 = mouseWorldPos-laser3.transform.position;
 				
-				//Rotate the bullet towards the player
-				bullet3.transform.rotation = Quaternion.LookRotation(direction3);
+				//Rotate the laser towards the player
+				laser3.transform.rotation = Quaternion.LookRotation(direction3);
 				
-				//Rotate the bullet along the y so that it faces the mouse point
-				bullet3.transform.Rotate(0,90,-5);
+				//Rotate the laser along the y so that it faces the mouse point
+				laser3.transform.Rotate(0,90,-5);
 				
-				//Send the damage the bullet will deal to the bullet
-				bullet3.GetComponent<Bullet>().setDamage(bulletDamage);
+				//Send the damage the laser will deal to the enemy
+				laser3.GetComponent<Bullet>().setDamage(laserDamage);
 			}
 		
 		}
@@ -343,18 +343,17 @@ public class Gunner : MonoBehaviour {
 		}
 
 		//If the usesr has clicked the middle mouse button
-		if(shootingLaser)
+		if(shootingBlaster)
 		{
-			//Create the laser object and store it
-			GameObject laser = (GameObject)Instantiate(laserPrefab,laserTurret.position,Quaternion.identity);
+			//Create the blaster object and store it
+			GameObject blaster = (GameObject)Instantiate(blasterPrefab,laserTurret.position,Quaternion.identity);
 
-			//Transfer the damage to the laser object
-			laser.GetComponent<Laser>().setDamage(laserDamage);
+			//Transfer the damage to the blaster object
+			blaster.GetComponent<Laser>().setDamage(blasterDamage);
 
-			//Flag that the laser was shot
-			readyLaser = false;
-			shootingLaser = false;
-
+			//Flag that the blaster was shot
+			readyBlaster = false;
+			shootingBlaster = false;
 		}
 	
 	}
@@ -364,17 +363,17 @@ public class Gunner : MonoBehaviour {
 		//If the game is paused, don't do anything
 		if (!pauseMenu.IsPaused()) 
 		{
-			//If the player tries to shoot a bullet and can
+			//If the player tries to shoot the laser and can
 			if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
 
 				//Flag the shoot
-				shootingBullet = true;
+				shootingLaser = true;
 
 			}
 			else if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
 				
 				//Flag the shoot
-				shootingBullet = false;
+				shootingLaser = false;
 
 			}
 
@@ -385,54 +384,17 @@ public class Gunner : MonoBehaviour {
 
 			}
 
-			//If the player tries to shoot a laser and can
-			if(readyLaser && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && laserPower > 0) {
+			//If the player tries to shoot the blaster and can
+			if(readyBlaster && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && blasterPower > 0) {
 
 				//Flag the shoot
-				shootingLaser= true;
+				shootingBlaster= true;
 				
 			}
 		}
 
 	}
 
-	/* ----------------------------------------------------------------------- */
-	/* Function    : setBlaser(int level)
-	 *
-	 * Description : Used to set the appropriate values based on blaster power level
-	 *
-	 * Parameters  : int level : The blaster power level
-	 *
-	 * Returns     : Void
-	 */
-	void setBlaster(int level)
-	{
-		//Set the reload and damage stats based on power level
-		switch (level)
-		{
-		case 0:
-			bulletDamage = 1;
-			bulletReloadTime = 22;
-			break;
-		case 1:
-			bulletDamage = 1;
-			bulletReloadTime = 18;
-			break;
-		case 2:
-			bulletDamage = 1;
-			bulletReloadTime = 14;
-			break;
-		case 3:
-			bulletDamage = 2;
-			bulletReloadTime = 14;
-			break;
-		}
-
-		//If the player has bought the bullet speed upgrade
-		//Then reduce reload time
-		bulletReloadTime -= PlayerPrefs.GetInt("BlasterUpgradeSpeed")*2;
-	}
-	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setLaser(int level)
 	 *
@@ -447,34 +409,71 @@ public class Gunner : MonoBehaviour {
 		//Set the reload and damage stats based on power level
 		switch (level)
 		{
-		case 0:
-			laserDamage = 0;
-			laserReloadTime = 9999;
-			break;
-		case 1:
-			laserDamage = 4;
-			laserReloadTime = 600;
-			break;
-		case 2:
-			laserDamage = 8;
-			laserReloadTime = 570;
-			break;
-		case 3:
-			laserDamage = 12;
-			laserReloadTime = 540;
-			break;
-		case 4:
-			laserDamage = 16;
-			laserReloadTime = 510;
-			break;
+			case 0:
+				laserDamage = 1;
+				laserReloadTime = 22;
+				break;
+			case 1:
+				laserDamage = 1;
+				laserReloadTime = 18;
+				break;
+			case 2:
+				laserDamage = 1;
+				laserReloadTime = 14;
+				break;
+			case 3:
+				laserDamage = 2;
+				laserReloadTime = 14;
+				break;
 		}
 
-		//Subtract reload time based on laser upgrade
-		laserReloadTime -= PlayerPrefs.GetInt ("LaserUpgradeFireRate", 0) * 60;
+		//If the player has bought the laserspeed upgrade
+		//Then reduce reload time
+		laserReloadTime -= PlayerPrefs.GetInt("LaserUpgradeSpeed")*2;
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setBlaster(int level)
+	 *
+	 * Description : Used to set the appropriate values based on blaster power level
+	 *
+	 * Parameters  : int level : The blaster power level
+	 *
+	 * Returns     : Void
+	 */
+	void setBlaster(int level)
+	{
+		//Set the reload and damage stats based on power level
+		switch (level)
+		{
+			case 0:
+				blasterDamage = 0;
+				blasterReloadTime = 9999;
+				break;
+			case 1:
+				blasterDamage = 4;
+				blasterReloadTime = 600;
+				break;
+			case 2:
+				blasterDamage = 8;
+				blasterReloadTime = 570;
+				break;
+			case 3:
+				blasterDamage = 12;
+				blasterReloadTime = 540;
+				break;
+			case 4:
+				blasterDamage = 16;
+				blasterReloadTime = 510;
+				break;
+		}
+
+		//Subtract reload time based on blaster upgrade
+		blasterReloadTime -= PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0) * 60;
 
 		//If the player has bought the laser damage upgrade
 		//Then increase damage
-		laserDamage += PlayerPrefs.GetInt("LaserUpgradeDamage",0) * 4;
+		blasterDamage += PlayerPrefs.GetInt("BlasterUpgradeDamage",0) * 4;
 	}
 	
 	/* ----------------------------------------------------------------------- */
