@@ -384,6 +384,78 @@ public class PowerMenu : MonoBehaviour {
 	}	
 
 	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreaseText(int station)
+	 *
+	 * Description : Displays what an increased power level will do for each station.
+	 *
+	 * Parameters  : int station : The station being viewed
+	 *
+	 * Returns     : Void
+	 */
+	public void displayIncreaseText(int station)
+	{
+		//Determine which station is being viewed
+		switch(station)
+		{
+			//Engine
+			case (int)powerSelected.ENGINE:
+				//displayIncreasedEngine();
+				break;
+			//Laser
+			case (int)powerSelected.LASER:
+				//displayIncreasedLaser();
+				break;
+			//Missile
+			case (int)powerSelected.MISSILE:
+				//displayIncreasedMissile();
+				break;
+			//Blaster
+			case (int)powerSelected.BLASTER:
+				//displayIncreasedBlaster();
+				break;
+			//Or shield
+			case (int)powerSelected.SHIELD:
+				//displayIncreasedShield();
+				break;
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreasedEngine()
+	 *
+	 * Description : Displays what each engine level increase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	/*void displayIncreasedEngine()
+	{
+		switch(playerPowers[(int)powerSelected.ENGINE]+1)
+		{
+			case 0:
+				statusText.text = "Engine Level 0. Basic max speed. Basic acceleration. The ship moves very slowly.";
+				break;
+			case 1:
+				statusText.text = "Engine Level 1. Basic max speed. Decent acceleration. The ship moves slowly.";
+				break;
+			case 2:
+				statusText.text = "Engine Level 2. Decent max speed. Decent acceleration. The ship moves modestly.";
+				break;
+			case 3:
+				statusText.text = "Engine Level 3. Decent max speed. Good acceleration. The ship moves well.";
+				break;
+			case 4:
+				statusText.text = "Enigne Level 4. Good max speed. Good acceleration. The ship moves swiftly.";
+				break;
+			case 5:
+				statusText.text = "Engine Level 5. Excellent max speed. Excellent acceleration. The ship is a comet!";
+				break;
+		}
+		
+	}*/
+
+	/* ----------------------------------------------------------------------- */
 	/* Function    : setStatusText(int station)
 	 *
 	 * Description : Displays what each power level does for each station
