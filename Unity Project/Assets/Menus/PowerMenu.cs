@@ -22,7 +22,7 @@ using System.Collections;
 public class PowerMenu : MonoBehaviour {
 		
 	//Enums for all the player stations
-	enum powerSelected { SHIELD = 0, ENGINE = 1, LASER = 2, BLASTER = 3, MISSILE = 4};
+	enum powerSelected { SHIELD = 0, ENGINE = 1, LASER = 2, BLASTER = 3, MISSILE = 4, POWER = 5};
 
 	//Flags on whether to start the game
 	bool startGame;
@@ -33,20 +33,8 @@ public class PowerMenu : MonoBehaviour {
 	//The current power level of the player
 	int power;
 
-	//The current shield level of the player
-	int shield;
-
-	//The current engine level of the player
-	int engine;
-
-	//The current laser level of the player
-	int laser;
-
-	//The current blaster level of the player
-	int blaster;
-
-	//The current missile level of the player
-	int missile;
+	//The current powers of the player
+	int[] playerPowers;
 
 	//The maximum amount of power (with upgrades)
 	int maxPower;
@@ -54,20 +42,8 @@ public class PowerMenu : MonoBehaviour {
 	//The slider displaying power
 	public Slider powerBar;
 
-	//The slider display shield level
-	public Slider shieldBar;
-
-	//The slider display engine level
-	public Slider engineBar;
-
-	//The slider display laser level
-	public Slider laserBar;
-
-	//The slider display blaser level
-	public Slider blasterBar;
-
-	//The slider display missile level
-	public Slider missileBar;
+	//The slider display of the different player powers
+	public Slider[] playerPowerSliders;
 
 	//The status text
 	public Text statusText;
@@ -75,6 +51,9 @@ public class PowerMenu : MonoBehaviour {
 	//Buttons for increasing and decreasing the power for certain stats
 	public Button[] increaseButtons;
 	public Button[] decreaseButtons;
+
+	//Texts displaying the power levels.
+	public Text[] powerLevels;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -93,25 +72,30 @@ public class PowerMenu : MonoBehaviour {
 		//Load the players current power and max power from player prefs
 		maxPower = 5 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
 
+		//Initialize array
+		playerPowers = new int[5];
+
 		//Load the player prefs of each power level
-		shield = PlayerPrefs.GetInt ("ShieldPower", 0);
-		engine = PlayerPrefs.GetInt ("EnginePower", 0);
-		laser = PlayerPrefs.GetInt ("LaserPower", 0);
-		blaster = PlayerPrefs.GetInt ("BlasterPower", 0);
-		missile = PlayerPrefs.GetInt ("MissilePower", 0);
+		playerPowers[(int)powerSelected.SHIELD] = PlayerPrefs.GetInt ("ShieldPower", 0);
+		playerPowers[(int)powerSelected.ENGINE] = PlayerPrefs.GetInt ("EnginePower", 0);
+		playerPowers[(int)powerSelected.LASER] = PlayerPrefs.GetInt ("LaserPower", 0);
+		playerPowers[(int)powerSelected.BLASTER] = PlayerPrefs.GetInt ("BlasterPower", 0);
+		playerPowers[(int)powerSelected.MISSILE] = PlayerPrefs.GetInt ("MissilePower", 0);
 
 		//Calculate the players power level
-		power = maxPower - shield - engine - laser - blaster - missile;
+		power = maxPower - playerPowers[0] - playerPowers[1] - playerPowers[2] - playerPowers[3] - playerPowers[4];
 
 		//Display the current power levels
 		powerBar.maxValue = maxPower;
 		powerBar.value = power;
-		shieldBar.value = shield;
-		engineBar.value = engine;
-		laserBar.value = laser;
-		blasterBar.value = blaster;
-		missileBar.value = missile;
 
+		//Set the sliders and the power level text to the appropriate value
+		for (int i = 0; i < 5; i++) {
+			playerPowerSliders[i].value = playerPowers[i];
+			powerLevels[i].text = playerPowers[i].ToString();
+		}
+
+		//Enable or disable buttons to reflect what can be done
 		CheckButtons ();
 	}
 	
@@ -136,6 +120,24 @@ public class PowerMenu : MonoBehaviour {
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
 		{
+			//Store the shield level as a pref
+			PlayerPrefs.SetInt ("ShieldPower", playerPowers[(int)powerSelected.SHIELD]);
+
+			//Store the engine level as a pref
+			PlayerPrefs.SetInt ("EnginePower", playerPowers[(int)powerSelected.ENGINE]);
+
+			//Store the blaster level as a pref
+			PlayerPrefs.SetInt ("BlasterPower", playerPowers[(int)powerSelected.BLASTER]);
+			
+			//Store the laser level as a pref
+			PlayerPrefs.SetInt ("LaserPower", playerPowers[(int)powerSelected.LASER]);
+
+			//Store the missile level as a pref
+			PlayerPrefs.SetInt ("MissilePower", playerPowers[(int)powerSelected.MISSILE]);
+			
+			//Store the new power level in player prefs
+			PlayerPrefs.SetInt ("Power", power);
+			
 			//Load the main game
 			Application.LoadLevel (1);
 		}
@@ -152,29 +154,29 @@ public class PowerMenu : MonoBehaviour {
 		increaseButtons[(int)powerSelected.MISSILE].interactable = (CanMissileIncrease() && power > 0);
 
 		//Checks if the decrease buttons should be enabled
-		decreaseButtons[(int)powerSelected.SHIELD].interactable = (shield > 0);
-		decreaseButtons[(int)powerSelected.ENGINE].interactable = (engine > 0);
-		decreaseButtons[(int)powerSelected.LASER].interactable = (laser > 0);
-		decreaseButtons[(int)powerSelected.BLASTER].interactable = (blaster > 0);
-		decreaseButtons[(int)powerSelected.MISSILE].interactable = (missile > 0);
+		decreaseButtons[(int)powerSelected.SHIELD].interactable = (playerPowers[(int)powerSelected.SHIELD] > 0);
+		decreaseButtons[(int)powerSelected.ENGINE].interactable = (playerPowers[(int)powerSelected.ENGINE] > 0);
+		decreaseButtons[(int)powerSelected.LASER].interactable = (playerPowers[(int)powerSelected.LASER] > 0);
+		decreaseButtons[(int)powerSelected.BLASTER].interactable = (playerPowers[(int)powerSelected.BLASTER] > 0);
+		decreaseButtons[(int)powerSelected.MISSILE].interactable = (playerPowers[(int)powerSelected.MISSILE] > 0);
 
 	}
 
 	public bool CanShieldIncrease() {
 
-		if(shield == 0 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 1)
+		if(playerPowers[(int)powerSelected.SHIELD] == 0 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 1)
 		{
 			return false;
 		}
-		else if(shield == 2 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 2)
+		else if(playerPowers[(int)powerSelected.SHIELD] == 2 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 2)
 		{
 			return false;
 		}
-		else if(shield == 3 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 3)
+		else if(playerPowers[(int)powerSelected.SHIELD] == 3 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 3)
 		{
 			return false;
 		}
-		else if (shield == 5) 
+		else if (playerPowers[(int)powerSelected.SHIELD] == 5) 
 		{
 			return false;
 		}
@@ -187,19 +189,19 @@ public class PowerMenu : MonoBehaviour {
 
 	public bool CanEngineIncrease() {
 
-		if(engine == 2 && PlayerPrefs.GetInt("EngineUpgrade",0) < 1)
+		if(playerPowers[(int)powerSelected.ENGINE] == 2 && PlayerPrefs.GetInt("EngineUpgrade",0) < 1)
 		{
 			return false;
 		}
-		else if(engine == 3 && PlayerPrefs.GetInt("EngineUpgrade",0) < 2)
+		else if(playerPowers[(int)powerSelected.ENGINE] == 3 && PlayerPrefs.GetInt("EngineUpgrade",0) < 2)
 		{
 			return false;
 		}
-		else if(engine == 4 && PlayerPrefs.GetInt("EngineUpgrade",0) < 3)
+		else if(playerPowers[(int)powerSelected.ENGINE] == 4 && PlayerPrefs.GetInt("EngineUpgrade",0) < 3)
 		{
 			return false;
 		}
-		else if (engine == 5) 
+		else if (playerPowers[(int)powerSelected.ENGINE] == 5) 
 		{
 			return false;
 		}
@@ -212,11 +214,11 @@ public class PowerMenu : MonoBehaviour {
 	
 	public bool CanBlasterIncrease() {
 
-		if(blaster == 0 && PlayerPrefs.GetInt("BlasterUpgradeFireRate",0) < 1)
+		if(playerPowers[(int)powerSelected.BLASTER] == 0 && PlayerPrefs.GetInt("BlasterUpgradeFireRate",0) < 1)
 		{
 			return false;
 		}
-		else if (blaster == 4) {
+		else if (playerPowers[(int)powerSelected.BLASTER] == 4) {
 			return false;
 		}
 		else 
@@ -228,11 +230,11 @@ public class PowerMenu : MonoBehaviour {
 	
 	public bool CanLaserIncrease() {
 
-		if(laser == 2 && PlayerPrefs.GetInt("LaserUpgradeBurst",0) != 1)
+		if(playerPowers[(int)powerSelected.LASER] == 2 && PlayerPrefs.GetInt("LaserUpgradeBurst",0) != 1)
 		{
 			return false;
 		}
-		else if (laser == 3) {
+		else if (playerPowers[(int)powerSelected.LASER] == 3) {
 			return false;
 		}
 		else {
@@ -243,7 +245,7 @@ public class PowerMenu : MonoBehaviour {
 	
 	public bool CanMissileIncrease() {
 
-		if (missile == 4) 
+		if (playerPowers[(int)powerSelected.MISSILE] == 4) 
 		{
 			return false;
 		}
@@ -280,102 +282,23 @@ public class PowerMenu : MonoBehaviour {
 	public void increasePower(int station)
 	{
 
-		//Determine what station is being increased
-		switch(station)
-		{
-			//Shield power
-			case (int)powerSelected.SHIELD:
-				
-				//increase shield level
-				shield++;
-				
-				//Decrease power level
-				power--;
-				
-				//Store the shield level as a pref
-				PlayerPrefs.SetInt ("ShieldPower", shield);
-				
-				//Update the shield bar to reflect
-				shieldBar.value = shield;
+		//Increase the appropriate power level
+		playerPowers[station]++;
 
-				//And break the case statement
-				break;
+		//Set the appropriate slider to that value
+		playerPowerSliders[station].value = playerPowers[station];
 
-			//Engine power
-			case (int)powerSelected.ENGINE:
+		//And show the value of the slider here
+		powerLevels[station].text = playerPowers[station].ToString();
 
-				//increase engine level
-				engine++;
-				
-				//Decrease power level
-				power--;
-				
-				//Store the engine level as a pref
-				PlayerPrefs.SetInt ("EnginePower", engine);
-				
-				//Update the engine bar to reflect
-				engineBar.value = engine;
-				
-				//And break the case statement
-				break;
-			//Blaster power
-			case (int)powerSelected.BLASTER:
-
-				//Else increase blaster level
-				blaster++;
-				
-				//Decrease power level
-				power--;
-				
-				//Store the blaster level as a pref
-				PlayerPrefs.SetInt ("BlasterPower", blaster);
-				
-				//Update the blaster bar to reflect
-				blasterBar.value = blaster;
-				
-				//And break the case statement
-				break;
-			//Laser power
-			case (int)powerSelected.LASER:
-
-				//Else increase laser level
-				laser++;
-				
-				//Decrease power level
-				power--;
-				
-				//Store the laser level as a pref
-				PlayerPrefs.SetInt ("LaserPower", laser);
-				
-				//Update the laser bar to reflect
-				laserBar.value = laser;
-				
-				//And break the case statement
-				break;
-			//Missile Power
-			case (int)powerSelected.MISSILE:
-				
-				//Else increase missile level
-				missile++;
-				
-				//Decrease power level
-				power--;
-				
-				//Store the missilelevel as a pref
-				PlayerPrefs.SetInt ("MissilePower", missile);
-				
-				//Update the missile bar to reflect
-				missileBar.value = missile;
-				
-				//And break the case statement
-				break;
-		}
-
-		//Store the new power level in player prefs
-		PlayerPrefs.SetInt ("Power", power);
-
+		//Decrease power level
+		power--;
+		
 		//And update the power bar to reflect
 		powerBar.value = power;
+
+		//And show the value of the slider here
+		powerLevels[(int)powerSelected.POWER].text = power.ToString();
 
 		//Check all the interactable buttons
 		CheckButtons ();
@@ -392,102 +315,26 @@ public class PowerMenu : MonoBehaviour {
 	 */
 	public void decreasePower(int station)
 	{
-		//Determine what station is being decreased
-		switch(station)
-		{
-			//Shield power
-			case (int)powerSelected.SHIELD:
 
-				//decrease the shield
-				shield--;
+		//Decrease the appropriate power level
+		playerPowers[station]--;
+		
+		//Set the appropriate slider to that value
+		playerPowerSliders[station].value = playerPowers[station];
 
-				//Increase the power
-				power++;
-
-				//Store the shield level as a pref
-				PlayerPrefs.SetInt ("ShieldPower", shield);
-
-				//And update the slide
-				shieldBar.value = shield;
-
-				//Break the case statement
-				break;
-			//Engine power
-			case (int)powerSelected.ENGINE:
-				
-				//decrease engine level
-				engine--;
-				
-				//Increase power level
-				power++;
-				
-				//Store the engine level as a pref
-				PlayerPrefs.SetInt ("EnginePower", engine);
-				
-				//Update the engine bar to reflect
-				engineBar.value = engine;
-				
-				//And break the case statement
-				break;
-			//Laser power
-			case (int)powerSelected.LASER:
-				
-				//decrease laser level
-				laser--;
-				
-				//Increase power level
-				power++;
-				
-				//Store the laser level as a pref
-				PlayerPrefs.SetInt ("LaserPower", laser);
-				
-				//Update the laser bar to reflect
-				laserBar.value = laser;
-				
-				//And break the case statement
-				break;
-			//Blaster power
-			case (int)powerSelected.BLASTER:
-				
-				//decrease blaster level
-				blaster--;
-				
-				//Increase power level
-				power++;
-				
-				//Store the blaster level as a pref
-				PlayerPrefs.SetInt ("BlasterPower", blaster);
-				
-				//Update the blaster bar to reflect
-				blasterBar.value = blaster;
-				
-				//And break the case statement
-				break;
-			//Missile power
-			case (int)powerSelected.MISSILE:
-				
-				//decrease missile level
-				missile--;
-				
-				//Increase power level
-				power++;
-				
-				//Store the missile level as a pref
-				PlayerPrefs.SetInt ("MissilePower", missile);
-				
-				//Update the missile bar to reflect
-				missileBar.value = missile;
-				
-				//And break the case statement
-				break;
-		}
-
-		//Store the new power level in player prefs
-		PlayerPrefs.SetInt ("Power", power);
+		//And show the value of the slider here
+		powerLevels[station].text = playerPowers[station].ToString();
+		
+		//Increase the power
+		power++;
 		
 		//And update the power bar to reflect
 		powerBar.value = power;
 
+		//And show the value of the slider here
+		powerLevels[(int)powerSelected.POWER].text = power.ToString();
+		
+		//Set the interactability of the buttons
 		CheckButtons ();
 
 	}	
