@@ -249,47 +249,18 @@ public class PowerMenu : MonoBehaviour {
 				
 				//And break the case statement
 				break;
-			//Laser power
-			case (int)powerSelected.LASER:
-				//If its max, then exit
-				if(laser == 4)
-					return;
-				
-				//If the player does not have the upgrade for a laser
-				//Don't let them go provide power
-				if(laser == 0 && PlayerPrefs.GetInt("LaserUpgradeFireRate",0) < 1)
-				{
-					//Alert the player
-					statusText.text = "You need a laser emplacement first.";
-					return;
-				}
-
-				//Else increase laser level
-				laser++;
-				
-				//Decrease power level
-				power--;
-				
-				//Store the laser level as a pref
-				PlayerPrefs.SetInt ("LaserPower", laser);
-				
-				//Update the laser bar to reflect
-				laserBar.value = laser;
-				
-				//And break the case statement
-				break;
 			//Blaster power
 			case (int)powerSelected.BLASTER:
 				//If its max, then exit
-				if(blaster == 3)
+				if(blaster == 4)
 					return;
 				
-				//If the player does not have the upgrade for a better blaster
-				//Don't let them go past power level 2
-				if(blaster == 2 && PlayerPrefs.GetInt("BlasterUpgradeBurst",0) != 1)
+				//If the player does not have the upgrade for a blaster
+				//Don't let them go provide power
+				if(blaster == 0 && PlayerPrefs.GetInt("BlasterUpgradeFireRate",0) < 1)
 				{
 					//Alert the player
-					statusText.text = "You need the burst blaster upgrade first.";
+					statusText.text = "You need a blaster emplacement first.";
 					return;
 				}
 
@@ -304,6 +275,35 @@ public class PowerMenu : MonoBehaviour {
 				
 				//Update the blaster bar to reflect
 				blasterBar.value = blaster;
+				
+				//And break the case statement
+				break;
+			//Laser power
+			case (int)powerSelected.LASER:
+				//If its max, then exit
+				if(laser == 3)
+					return;
+				
+				//If the player does not have the upgrade for a better laser
+				//Don't let them go past power level 2
+				if(laser == 2 && PlayerPrefs.GetInt("LaserUpgradeBurst",0) != 1)
+				{
+					//Alert the player
+					statusText.text = "You need the burst laser upgrade first.";
+					return;
+				}
+
+				//Else increase laser level
+				laser++;
+				
+				//Decrease power level
+				power--;
+				
+				//Store the laser level as a pref
+				PlayerPrefs.SetInt ("LaserPower", laser);
+				
+				//Update the laser bar to reflect
+				laserBar.value = laser;
 				
 				//And break the case statement
 				break;

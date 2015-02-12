@@ -570,8 +570,8 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playLaserBoss()
 	{
-		//50% to play this clip
-		if(random.GetRandom(100) < 50)
+		//1% to play this clip
+		if(random.GetRandom(100) < 1)
 		{
 			//If audio isnt current playing
 			if(!source.isPlaying)

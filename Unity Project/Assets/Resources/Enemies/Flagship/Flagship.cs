@@ -542,6 +542,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			
 			//Deal the damage to this enemy
 			takeDamage(damage);
+
+			//Play the audioclip of hitting the boss with a laser
+			portraitController.playLaserBoss();
 			
 		}
 	}

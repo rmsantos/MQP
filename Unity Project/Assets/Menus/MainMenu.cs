@@ -146,8 +146,8 @@ public class MainMenu : MonoBehaviour {
 		//Upgrades
 		PlayerPrefs.SetInt ("PowerUpgrade", 0);
 		PlayerPrefs.SetInt ("EngineUpgrade", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeFireRate", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeDamage", 0);
+		PlayerPrefs.SetInt ("LaserUpgradeSpeed", 0);
+		PlayerPrefs.SetInt ("LaserUpgradeBurst", 0);
 		PlayerPrefs.SetInt ("ShieldUpgradeRecharge", 0);
 		PlayerPrefs.SetInt ("ShieldUpgradeNumber", 0);
 		PlayerPrefs.SetInt ("ShieldUpgradeHardened", 0);
@@ -158,8 +158,8 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("CargoUpgradeCredits", 0);
 		PlayerPrefs.SetInt ("HullUpgradeReinforced", 0);
 		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", 0);
-		PlayerPrefs.SetInt ("BlasterUpgradeSpeed", 0);
-		PlayerPrefs.SetInt ("BlasterUpgradeBurst", 0);
+		PlayerPrefs.SetInt ("BlasterUpgradeFireRate", 0);
+		PlayerPrefs.SetInt ("BlasterUpgradeDamage", 0);
 
 		//Game values
 	
