@@ -104,12 +104,15 @@ public class PowerMenu : MonoBehaviour {
 		power = maxPower - shield - engine - laser - blaster - missile;
 
 		//Display the current power levels
+		powerBar.maxValue = maxPower;
 		powerBar.value = power;
 		shieldBar.value = shield;
 		engineBar.value = engine;
 		laserBar.value = laser;
 		blasterBar.value = blaster;
 		missileBar.value = missile;
+
+		CheckButtons ();
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -139,9 +142,115 @@ public class PowerMenu : MonoBehaviour {
 		
 	}
 
-	public void CheckPowerLevel (){
+	public void CheckButtons() {
 
+		//Checks if the increase buttons should be enabled
+		increaseButtons[(int)powerSelected.SHIELD].interactable = (CanShieldIncrease() && power > 0);
+		increaseButtons[(int)powerSelected.ENGINE].interactable = (CanEngineIncrease() && power > 0);
+		increaseButtons[(int)powerSelected.LASER].interactable = (CanLaserIncrease() && power > 0);
+		increaseButtons[(int)powerSelected.BLASTER].interactable = (CanBlasterIncrease() && power > 0);
+		increaseButtons[(int)powerSelected.MISSILE].interactable = (CanMissileIncrease() && power > 0);
 
+		//Checks if the decrease buttons should be enabled
+		decreaseButtons[(int)powerSelected.SHIELD].interactable = (shield > 0);
+		decreaseButtons[(int)powerSelected.ENGINE].interactable = (engine > 0);
+		decreaseButtons[(int)powerSelected.LASER].interactable = (laser > 0);
+		decreaseButtons[(int)powerSelected.BLASTER].interactable = (blaster > 0);
+		decreaseButtons[(int)powerSelected.MISSILE].interactable = (missile > 0);
+
+	}
+
+	public bool CanShieldIncrease() {
+
+		if(shield == 0 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 1)
+		{
+			return false;
+		}
+		else if(shield == 2 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 2)
+		{
+			return false;
+		}
+		else if(shield == 3 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 3)
+		{
+			return false;
+		}
+		else if (shield == 5) 
+		{
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
+
+	}
+
+	public bool CanEngineIncrease() {
+
+		if(engine == 2 && PlayerPrefs.GetInt("EngineUpgrade",0) < 1)
+		{
+			return false;
+		}
+		else if(engine == 3 && PlayerPrefs.GetInt("EngineUpgrade",0) < 2)
+		{
+			return false;
+		}
+		else if(engine == 4 && PlayerPrefs.GetInt("EngineUpgrade",0) < 3)
+		{
+			return false;
+		}
+		else if (engine == 5) 
+		{
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
+		
+	}
+	
+	public bool CanBlasterIncrease() {
+
+		if(blaster == 0 && PlayerPrefs.GetInt("BlasterUpgradeFireRate",0) < 1)
+		{
+			return false;
+		}
+		else if (blaster == 4) {
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
+		
+	}
+	
+	public bool CanLaserIncrease() {
+
+		if(laser == 2 && PlayerPrefs.GetInt("LaserUpgradeBurst",0) != 1)
+		{
+			return false;
+		}
+		else if (laser == 3) {
+			return false;
+		}
+		else {
+			return true;
+		}
+		
+	}
+	
+	public bool CanMissileIncrease() {
+
+		if (missile == 4) 
+		{
+			return false;
+		}
+		else 
+		{
+			return true;
+		}
 
 	}
 	
@@ -159,48 +268,6 @@ public class PowerMenu : MonoBehaviour {
 		startGame = start;
 	}
 
-	public bool IncreaseShield () {
-
-		//If its max, then exit
-		if (shield == 5)
-			return false;
-		
-		//If the player does not have the upgrade for shields
-		//Don't let them provide power
-		if(shield == 0 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 1)
-		{
-			//Alert the player
-			statusText.text = "You need a shield upgrade first.";
-			return false;
-		}
-		else if(shield == 2 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 2)
-		{
-			//Alert the player
-			statusText.text = "You need a lv 2 shield upgrade first.";
-			return false;
-		}
-		else if(shield == 3 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 3)
-		{
-			//Alert the player
-			statusText.text = "You need a lv 3 shield upgrade first.";
-			return false;
-		}
-		//Else increase shield level
-		shield++;
-		
-		//Decrease power level
-		power--;
-		
-		//Store the shield level as a pref
-		PlayerPrefs.SetInt ("ShieldPower", shield);
-		
-		//Update the shield bar to reflect
-		shieldBar.value = shield;
-
-		return true;
-
-	}
-
 	/* ----------------------------------------------------------------------- */
 	/* Function    : increasePower(int station)
 	 *
@@ -212,11 +279,6 @@ public class PowerMenu : MonoBehaviour {
 	 */
 	public void increasePower(int station)
 	{
-		//If there is no power left, then exit
-		if(power == 0)
-			return;
-
-		bool success;
 
 		//Determine what station is being increased
 		switch(station)
@@ -224,41 +286,25 @@ public class PowerMenu : MonoBehaviour {
 			//Shield power
 			case (int)powerSelected.SHIELD:
 				
-				success = IncreaseShield ();
-				if (!success) {
-					return;
-				}
+				//increase shield level
+				shield++;
+				
+				//Decrease power level
+				power--;
+				
+				//Store the shield level as a pref
+				PlayerPrefs.SetInt ("ShieldPower", shield);
+				
+				//Update the shield bar to reflect
+				shieldBar.value = shield;
+
 				//And break the case statement
 				break;
 
 			//Engine power
 			case (int)powerSelected.ENGINE:
-				//If its max, then exit
-				if(engine == 5)
-					return;
-				
-				//If the player does not have the upgrade for a better engine
-				//Don't let them provide power
-				if(engine == 2 && PlayerPrefs.GetInt("EngineUpgrade",0) < 1)
-				{
-					//Alert the player
-					statusText.text = "You need an engine upgrade first.";
-					return;
-				}
-				else if(engine == 3 && PlayerPrefs.GetInt("EngineUpgrade",0) < 2)
-				{
-					//Alert the player
-					statusText.text = "You need the engine lv 2 upgrade first.";
-					return;
-				}
-				else if(engine == 4 && PlayerPrefs.GetInt("EngineUpgrade",0) < 3)
-				{
-					//Alert the player
-					statusText.text = "You need the engine lv 3 upgrade first.";
-					return;
-				}
 
-				//Else increase engine level
+				//increase engine level
 				engine++;
 				
 				//Decrease power level
@@ -274,18 +320,6 @@ public class PowerMenu : MonoBehaviour {
 				break;
 			//Blaster power
 			case (int)powerSelected.BLASTER:
-				//If its max, then exit
-				if(blaster == 4)
-					return;
-				
-				//If the player does not have the upgrade for a blaster
-				//Don't let them go provide power
-				if(blaster == 0 && PlayerPrefs.GetInt("BlasterUpgradeFireRate",0) < 1)
-				{
-					//Alert the player
-					statusText.text = "You need a blaster emplacement first.";
-					return;
-				}
 
 				//Else increase blaster level
 				blaster++;
@@ -303,18 +337,6 @@ public class PowerMenu : MonoBehaviour {
 				break;
 			//Laser power
 			case (int)powerSelected.LASER:
-				//If its max, then exit
-				if(laser == 3)
-					return;
-				
-				//If the player does not have the upgrade for a better laser
-				//Don't let them go past power level 2
-				if(laser == 2 && PlayerPrefs.GetInt("LaserUpgradeBurst",0) != 1)
-				{
-					//Alert the player
-					statusText.text = "You need the burst laser upgrade first.";
-					return;
-				}
 
 				//Else increase laser level
 				laser++;
@@ -332,9 +354,6 @@ public class PowerMenu : MonoBehaviour {
 				break;
 			//Missile Power
 			case (int)powerSelected.MISSILE:
-				//If its max, then exit
-				if(missile == 4)
-					return;
 				
 				//Else increase missile level
 				missile++;
@@ -357,6 +376,9 @@ public class PowerMenu : MonoBehaviour {
 
 		//And update the power bar to reflect
 		powerBar.value = power;
+
+		//Check all the interactable buttons
+		CheckButtons ();
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -370,20 +392,13 @@ public class PowerMenu : MonoBehaviour {
 	 */
 	public void decreasePower(int station)
 	{
-		//If power is max, don't overload it
-		if(power == maxPower)
-			return;
-
 		//Determine what station is being decreased
 		switch(station)
 		{
 			//Shield power
 			case (int)powerSelected.SHIELD:
-				//If the shield is none, then exit
-				if(shield == 0)
-					return;
 
-				//Otherwise decrease the shield
+				//decrease the shield
 				shield--;
 
 				//Increase the power
@@ -399,11 +414,8 @@ public class PowerMenu : MonoBehaviour {
 				break;
 			//Engine power
 			case (int)powerSelected.ENGINE:
-				//If its none, then exit
-				if(engine == 0)
-					return;
 				
-				//Else decrease engine level
+				//decrease engine level
 				engine--;
 				
 				//Increase power level
@@ -419,11 +431,8 @@ public class PowerMenu : MonoBehaviour {
 				break;
 			//Laser power
 			case (int)powerSelected.LASER:
-				//If its none, then exit
-				if(laser == 0)
-					return;
 				
-				//Else decrease laser level
+				//decrease laser level
 				laser--;
 				
 				//Increase power level
@@ -439,11 +448,8 @@ public class PowerMenu : MonoBehaviour {
 				break;
 			//Blaster power
 			case (int)powerSelected.BLASTER:
-				//If its none, then exit
-				if(blaster == 0)
-					return;
 				
-				//Else decrease blaster level
+				//decrease blaster level
 				blaster--;
 				
 				//Increase power level
@@ -459,11 +465,8 @@ public class PowerMenu : MonoBehaviour {
 				break;
 			//Missile power
 			case (int)powerSelected.MISSILE:
-				//If its none, then exit
-				if(missile== 0)
-					return;
 				
-				//Else decrease missile level
+				//decrease missile level
 				missile--;
 				
 				//Increase power level
@@ -484,6 +487,8 @@ public class PowerMenu : MonoBehaviour {
 		
 		//And update the power bar to reflect
 		powerBar.value = power;
+
+		CheckButtons ();
 
 	}	
 }
