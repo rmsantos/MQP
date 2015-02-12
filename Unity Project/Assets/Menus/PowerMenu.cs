@@ -377,4 +377,9 @@ public class PowerMenu : MonoBehaviour {
 		CheckButtons ();
 
 	}	
+
+	public void setPowerText()
+	{
+		statusText.text = "Power Level: " + power;
+	}
 }
