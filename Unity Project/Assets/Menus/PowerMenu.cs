@@ -67,6 +67,9 @@ public class PowerMenu : MonoBehaviour {
 	//The actual displayed images
 	public Image[] powerImages;
 
+	//The Descriptions
+	public string[] descriptions;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -119,7 +122,7 @@ public class PowerMenu : MonoBehaviour {
 		CheckButtons ();
 	
 	}
-	
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Update()
 	 *
@@ -178,6 +181,12 @@ public class PowerMenu : MonoBehaviour {
 		for (int i = 0; i < 5; i++) {
 			decreaseButtons[i].interactable = (playerPowers[i] > 0);
 		}
+
+	}
+
+	public void ViewDescription(int description) {
+
+		statusText.text = descriptions[description];
 
 	}
 
