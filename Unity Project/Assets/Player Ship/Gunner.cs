@@ -256,10 +256,10 @@ public class Gunner : MonoBehaviour {
 		}
 
 		//If the user clicked the left mouse button
-		if (shootingBullet && readyBullet) {
+		if (shootingLaser && readyLaser) {
 
 			//Flag that player has just shot
-			readyBullet = false;
+			readyLaser = false;
 
 			//Instantiate a laser with laserPrefab at the players turret
 			GameObject laser = (GameObject)Instantiate(laserPrefab,turretEnd.position, Quaternion.identity);
@@ -277,7 +277,7 @@ public class Gunner : MonoBehaviour {
 			laser.GetComponent<Bullet>().setDamage(laserDamage);
 
 			//If power level 3, then enable tri-shot
-			if(PlayerPrefs.GetInt("BlasterPower",0) == 3)
+			if(PlayerPrefs.GetInt("LaserPower",0) == 3)
 			{
 				//SECOND LASER
 				//Instantiate a laser with laserPrefab at the players turret
@@ -343,11 +343,7 @@ public class Gunner : MonoBehaviour {
 		}
 
 		//If the usesr has clicked the middle mouse button
-<<<<<<< HEAD
 		if(shootingBlaster)
-=======
-		if(shootingLaser)
->>>>>>> origin/master
 		{
 			//Create the blaster object and store it
 			GameObject blaster = (GameObject)Instantiate(blasterPrefab,laserTurret.position,Quaternion.identity);
@@ -355,16 +351,9 @@ public class Gunner : MonoBehaviour {
 			//Transfer the damage to the blaster object
 			blaster.GetComponent<Laser>().setDamage(blasterDamage);
 
-<<<<<<< HEAD
 			//Flag that the blaster was shot
 			readyBlaster = false;
 			shootingBlaster = false;
-=======
-			//Flag that the laser was shot
-			readyLaser = false;
-			shootingLaser = false;
->>>>>>> origin/master
-
 		}
 	
 	}
@@ -374,17 +363,17 @@ public class Gunner : MonoBehaviour {
 		//If the game is paused, don't do anything
 		if (!pauseMenu.IsPaused()) 
 		{
-			//If the player tries to shoot a bullet and can
+			//If the player tries to shoot the laser and can
 			if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
 
 				//Flag the shoot
-				shootingBullet = true;
+				shootingLaser = true;
 
 			}
 			else if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
 				
 				//Flag the shoot
-				shootingBullet = false;
+				shootingLaser = false;
 
 			}
 
@@ -395,62 +384,17 @@ public class Gunner : MonoBehaviour {
 
 			}
 
-<<<<<<< HEAD
 			//If the player tries to shoot the blaster and can
 			if(readyBlaster && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && blasterPower > 0) {
 
 				//Flag the shoot
 				shootingBlaster= true;
-=======
-			//If the player tries to shoot a laser and can
-			if(readyLaser && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && laserPower > 0) {
-
-				//Flag the shoot
-				shootingLaser= true;
->>>>>>> origin/master
 				
 			}
 		}
 
 	}
 
-	/* ----------------------------------------------------------------------- */
-	/* Function    : setBlaser(int level)
-	 *
-	 * Description : Used to set the appropriate values based on blaster power level
-	 *
-	 * Parameters  : int level : The blaster power level
-	 *
-	 * Returns     : Void
-	 */
-	void setBlaster(int level)
-	{
-		//Set the reload and damage stats based on power level
-		switch (level)
-		{
-		case 0:
-			bulletDamage = 1;
-			bulletReloadTime = 22;
-			break;
-		case 1:
-			bulletDamage = 1;
-			bulletReloadTime = 18;
-			break;
-		case 2:
-			bulletDamage = 1;
-			bulletReloadTime = 14;
-			break;
-		case 3:
-			bulletDamage = 2;
-			bulletReloadTime = 14;
-			break;
-		}
-
-		//If the player has bought the bullet speed upgrade
-		//Then reduce reload time
-		bulletReloadTime -= PlayerPrefs.GetInt("BlasterUpgradeSpeed")*2;
-	}
-	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setLaser(int level)
 	 *
@@ -465,64 +409,71 @@ public class Gunner : MonoBehaviour {
 		//Set the reload and damage stats based on power level
 		switch (level)
 		{
-		case 0:
-<<<<<<< HEAD
-			blasterDamage = 0;
-			blasterReloadTime = 9999;
-			break;
-		case 1:
-			blasterDamage = 4;
-			blasterReloadTime = 600;
-			break;
-		case 2:
-			blasterDamage = 8;
-			blasterReloadTime = 570;
-			break;
-		case 3:
-			blasterDamage = 12;
-			blasterReloadTime = 540;
-			break;
-		case 4:
-			blasterDamage = 16;
-			blasterReloadTime = 510;
-			break;
+			case 0:
+				laserDamage = 1;
+				laserReloadTime = 22;
+				break;
+			case 1:
+				laserDamage = 1;
+				laserReloadTime = 18;
+				break;
+			case 2:
+				laserDamage = 1;
+				laserReloadTime = 14;
+				break;
+			case 3:
+				laserDamage = 2;
+				laserReloadTime = 14;
+				break;
+		}
+
+		//If the player has bought the laserspeed upgrade
+		//Then reduce reload time
+		laserReloadTime -= PlayerPrefs.GetInt("LaserUpgradeSpeed")*2;
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setBlaster(int level)
+	 *
+	 * Description : Used to set the appropriate values based on blaster power level
+	 *
+	 * Parameters  : int level : The blaster power level
+	 *
+	 * Returns     : Void
+	 */
+	void setBlaster(int level)
+	{
+		//Set the reload and damage stats based on power level
+		switch (level)
+		{
+			case 0:
+				blasterDamage = 0;
+				blasterReloadTime = 9999;
+				break;
+			case 1:
+				blasterDamage = 4;
+				blasterReloadTime = 600;
+				break;
+			case 2:
+				blasterDamage = 8;
+				blasterReloadTime = 570;
+				break;
+			case 3:
+				blasterDamage = 12;
+				blasterReloadTime = 540;
+				break;
+			case 4:
+				blasterDamage = 16;
+				blasterReloadTime = 510;
+				break;
 		}
 
 		//Subtract reload time based on blaster upgrade
 		blasterReloadTime -= PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0) * 60;
-=======
-			laserDamage = 0;
-			laserReloadTime = 9999;
-			break;
-		case 1:
-			laserDamage = 4;
-			laserReloadTime = 600;
-			break;
-		case 2:
-			laserDamage = 8;
-			laserReloadTime = 570;
-			break;
-		case 3:
-			laserDamage = 12;
-			laserReloadTime = 540;
-			break;
-		case 4:
-			laserDamage = 16;
-			laserReloadTime = 510;
-			break;
-		}
-
-		//Subtract reload time based on laser upgrade
-		laserReloadTime -= PlayerPrefs.GetInt ("LaserUpgradeFireRate", 0) * 60;
->>>>>>> origin/master
 
 		//If the player has bought the laser damage upgrade
 		//Then increase damage
-<<<<<<< HEAD
 		blasterDamage += PlayerPrefs.GetInt("BlasterUpgradeDamage",0) * 4;
-=======
-		laserDamage += PlayerPrefs.GetInt("LaserUpgradeDamage",0) * 4;
->>>>>>> origin/master
 	}
 	
 	/* ----------------------------------------------------------------------- */
