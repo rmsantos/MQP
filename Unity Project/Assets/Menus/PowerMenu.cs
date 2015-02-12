@@ -72,6 +72,10 @@ public class PowerMenu : MonoBehaviour {
 	//The status text
 	public Text statusText;
 
+	//Buttons for increasing and decreasing the power for certain stats
+	public Button[] increaseButtons;
+	public Button[] decreaseButtons;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -134,6 +138,12 @@ public class PowerMenu : MonoBehaviour {
 		}
 		
 	}
+
+	public void CheckPowerLevel (){
+
+
+
+	}
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setStart()
@@ -149,6 +159,47 @@ public class PowerMenu : MonoBehaviour {
 		startGame = start;
 	}
 
+	public bool IncreaseShield () {
+
+		//If its max, then exit
+		if (shield == 5)
+			return false;
+		
+		//If the player does not have the upgrade for shields
+		//Don't let them provide power
+		if(shield == 0 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 1)
+		{
+			//Alert the player
+			statusText.text = "You need a shield upgrade first.";
+			return false;
+		}
+		else if(shield == 2 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 2)
+		{
+			//Alert the player
+			statusText.text = "You need a lv 2 shield upgrade first.";
+			return false;
+		}
+		else if(shield == 3 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 3)
+		{
+			//Alert the player
+			statusText.text = "You need a lv 3 shield upgrade first.";
+			return false;
+		}
+		//Else increase shield level
+		shield++;
+		
+		//Decrease power level
+		power--;
+		
+		//Store the shield level as a pref
+		PlayerPrefs.SetInt ("ShieldPower", shield);
+		
+		//Update the shield bar to reflect
+		shieldBar.value = shield;
+
+		return true;
+
+	}
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : increasePower(int station)
@@ -165,49 +216,21 @@ public class PowerMenu : MonoBehaviour {
 		if(power == 0)
 			return;
 
+		bool success;
+
 		//Determine what station is being increased
 		switch(station)
 		{
 			//Shield power
 			case (int)powerSelected.SHIELD:
-				//If its max, then exit
-				if(shield == 5)
-					return;
-
-				//If the player does not have the upgrade for shields
-				//Don't let them provide power
-				if(shield == 0 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 1)
-				{
-					//Alert the player
-					statusText.text = "You need a shield upgrade first.";
-					return;
-				}
-				else if(shield == 2 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 2)
-				{
-					//Alert the player
-					statusText.text = "You need a lv 2 shield upgrade first.";
-					return;
-				}
-				else if(shield == 3 && PlayerPrefs.GetInt("ShieldUpgradeNumber",0) < 3)
-				{
-					//Alert the player
-					statusText.text = "You need a lv 3 shield upgrade first.";
-					return;
-				}
-				//Else increase shield level
-				shield++;
-
-				//Decrease power level
-				power--;
-
-				//Store the shield level as a pref
-				PlayerPrefs.SetInt ("ShieldPower", shield);
-
-				//Update the shield bar to reflect
-				shieldBar.value = shield;
 				
+				success = IncreaseShield ();
+				if (!success) {
+					return;
+				}
 				//And break the case statement
 				break;
+
 			//Engine power
 			case (int)powerSelected.ENGINE:
 				//If its max, then exit
