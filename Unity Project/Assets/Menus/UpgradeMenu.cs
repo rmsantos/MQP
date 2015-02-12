@@ -50,13 +50,13 @@ public class UpgradeMenu : MonoBehaviour {
 	int[] upgradeLevel;
 
 	string[] upgradePrefs = {"EngineUpgrade", 
-		"BlasterUpgradeSpeed", "BlasterUpgradeBurst", 
+		"BlasterUpgradeFireRate", "BlasterUpgradeDamage", 
 		"ShieldUpgradeNumber", "ShieldUpgradeRecharge", "ShieldUpgradeHardened",
 		"PowerUpgrade", 
 		"MissileUpgradePayload", "MissileUpgradeLoader", 
 		"CargoUpgradeMissiles", "CargoUpgradeCrystals", "CargoUpgradeCredits",
 		"HullUpgradeReinforced", "HullUpgradeAsteroidResistance", 
-		"LaserUpgradeFireRate", "LaserUpgradeDamage"};
+		"LaserUpgradeSpeed", "LaserUpgradeBurst"};
 	
 	public string[] descriptions;
 
