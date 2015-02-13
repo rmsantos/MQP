@@ -19,7 +19,28 @@ using System.Collections;
 public class AudioHandler : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
-	
+
+	//Randomizer script
+	GameObject randomizer;
+	Randomizer random;
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : Start()
+	 *
+	 * Description : Initializes references
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void Start()
+	{
+		//Get the randomizer script
+		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
+
+	}
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setSoundEffectsVolume()
 	 *
@@ -67,5 +88,38 @@ public class AudioHandler : MonoBehaviour {
 	public void playShieldRecharge()
 	{
 		GameObject.Find ("shieldRecharge").GetComponent<AudioSource> ().Play ();
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playMediumEnemyExplosion()
+	 *
+	 * Description : Play the sound effect for medium enemies exploding
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playMediumEnemyExplosion()
+	{
+		GameObject.Find ("mediumEnemyExplosion").GetComponent<AudioSource> ().Play ();
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playSmallEnemyExplosion()
+	 *
+	 * Description : Play the sound effect for medium enemies exploding
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playSmallEnemyExplosion()
+	{
+		//Play a random clip
+		if(random.GetRandom(1) == 0)
+			GameObject.Find ("smallEnemyExplosion1").GetComponent<AudioSource> ().Play ();
+		else
+			GameObject.Find ("smallEnemyExplosion2").GetComponent<AudioSource> ().Play ();
+
 	}
 }

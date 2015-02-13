@@ -18,61 +18,17 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Ambusher : MonoBehaviour, BasicEnemy {
+public class Ambusher : AbstractEnemy, BasicEnemy {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
-	
-	//The speed at which the enemy will move
-	public float speed;
-	
-	//Stores the boundaries of the game
-	Boundaries boundaries;
 
 	//Invisibility counter and boolean
 	int counter;
 	bool invisible;
 	float alpha;
-	
-	//Player script
-	GameObject player;
 
 	//Player position
 	Vector3 playerPosition;
-
-	//Value of destroying this enemy
-	public int value;
-	
-	//ScoreHandler object to track players score
-	public GameObject scoreObject;
-	static ScoreHandler score;
-
-	//The health of this enemy
-	public int health;
-
-	//The health per level
-	public float healthPerLevel;
-
-	//Stores the damage colliding with the player does
-	public int collisionDamage;
-
-	//The damage per level
-	public float damagePerLevel;
-
-	//Quitting boolean
-	bool isQuitting;
-
-	//Randomizer script
-	GameObject randomizer;
-	Randomizer random;
-
-	//Money drop rate 
-	public int moneyDropRate;
-
-	//Used as a reference for rotating back to normal
-	public Quaternion originalRotationValue;
-	
-	//Rotates back to normal at this speed
-	public float rotationResetSpeed;
 
 
 	/* ----------------------------------------------------------------------- */
@@ -86,10 +42,9 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
-
-		//Get the randomizer script
-		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
-		random = (Randomizer)randomizer.GetComponent("Randomizer");
+	
+		//Setup basic status for the enemy
+		enemySetup ();
 
 		//save initial rotation value
 		originalRotationValue = transform.rotation;
@@ -98,18 +53,6 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 		invisible = false;
 		counter = 200;
 		alpha = 1f;
-		
-		//Pull the boundaries script from the main camera object and store it
-		boundaries = Camera.main.GetComponent<Boundaries>();
-		
-		//Search for player
-		player = GameObject.FindGameObjectWithTag ("Player");
-
-		//Search for the ScoreHandler object for tracking score
-		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
-
-		//Get the portrait controller to play audio clips
-		PortraitController portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
 
 		//Play the ambusher spawn clip
 		portraitController.playAmbusherSpawn ();
@@ -120,7 +63,8 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 		//Set the level progression modifiers
 		health += (int)(healthPerLevel * ((float)PlayerPrefs.GetInt("Level", 0) - 1f));
 		collisionDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
-		
+
+
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -241,6 +185,9 @@ public class Ambusher : MonoBehaviour, BasicEnemy {
 			
 			//Update the players score
 			score.UpdateScore(value);
+
+			//Play the explosion clip
+			audioHandler.playSmallEnemyExplosion();
 		}
 	}
 

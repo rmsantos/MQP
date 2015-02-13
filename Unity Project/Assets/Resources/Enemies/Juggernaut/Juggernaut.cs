@@ -92,6 +92,10 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	
 	//Rotates back to normal at this speed
 	public float rotationResetSpeed;
+
+	//The audiohandler
+	GameObject audioHandlerObject;
+	AudioHandler audioHandler;
 	
 
 	/* ----------------------------------------------------------------------- */
@@ -105,6 +109,10 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		//Search for the audioHandler
+		audioHandlerObject = (GameObject)GameObject.FindGameObjectWithTag ("AudioHandler");
+		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
 
 		//Get the randomizer script
 		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
@@ -334,6 +342,9 @@ public class Juggernaut :  MonoBehaviour, BasicEnemy {
 			
 			//Update the players score
 			score.UpdateScore(value);
+
+			//Play the audio clip
+			audioHandler.playMediumEnemyExplosion();
 		}
 	}
 	

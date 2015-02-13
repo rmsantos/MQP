@@ -69,6 +69,10 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	//Rotates back to normal at this speed
 	public float rotationResetSpeed;
 
+	//The audiohandler
+	GameObject audioHandlerObject;
+	AudioHandler audioHandler;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -79,6 +83,10 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		//Search for the audioHandler
+		audioHandlerObject = (GameObject)GameObject.FindGameObjectWithTag ("AudioHandler");
+		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
 
 		//Get the randomizer script
 		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
@@ -190,6 +198,9 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 			
 			//Update the players score
 			score.UpdateScore(value);
+
+			//Play the explosion clip
+			audioHandler.playSmallEnemyExplosion();
 		}
 	}
 

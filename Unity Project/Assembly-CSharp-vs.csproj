@@ -72,6 +72,7 @@
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
      <Compile Include="Assets\Resources\Crystals\Crystals.cs" />
+     <Compile Include="Assets\Resources\Enemies\AbstractEnemy.cs" />
      <Compile Include="Assets\Resources\Enemies\Ambusher\Ambusher.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" />
