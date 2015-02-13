@@ -30,7 +30,11 @@ public class Crystals : MonoBehaviour {
 
 	//Quitting boolean
 	bool isQuitting;
-	
+
+	//Randomizer script
+	GameObject randomizer;
+	Randomizer random;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -41,7 +45,21 @@ public class Crystals : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
-		
+
+		//Get the randomizer script
+		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
+		random = (Randomizer)randomizer.GetComponent("Randomizer");
+
+		//Pick a crystal sprite number
+		int crystal = random.GetRandomInRange (1, 5);
+
+		//Load the crystal sprite
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Crystals/Crystals_" + crystal);
+
+		//Reset the collider so that it autofits
+		Destroy (GetComponent<PolygonCollider2D> ());
+		gameObject.AddComponent ("PolygonCollider2D");
+
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
 

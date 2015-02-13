@@ -1,12 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menus\PowerMenu.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelHandler\LevelHandler.cs">
     <Files>
-      <File FileName="Unity Project.sln" Line="1" Column="1" />
-      <File FileName="Assets\Menus\PowerMenu.cs" Line="136" Column="18" />
-      <File FileName="Assets\Player Ship\ShipMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player Ship\Shields.cs" Line="1" Column="1" />
-      <File FileName="Assets\Player Ship\Gunner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Menus\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="68" Column="5" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="264" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
