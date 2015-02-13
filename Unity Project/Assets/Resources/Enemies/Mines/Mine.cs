@@ -14,15 +14,12 @@
 using UnityEngine;
 using System.Collections;
 
-public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
+public class Mine : MonoBehaviour {
 
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
-	//The translation variables
+	//The translation variable
 	public float speed;
-	public float rotation;
-	public float directionRange;
-	Vector2 direction;
 	
 	//Stores the boundaries of the game
 	Boundaries boundaries;
@@ -37,10 +34,6 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	//The damage from colliding with this asteroid
 	public int collisionDamage;
 
-	//Randomizer script
-	GameObject randomizer;
-	Randomizer random;
-
 	bool isQuitting;
 
 	/* ----------------------------------------------------------------------- */
@@ -53,20 +46,6 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	 * Returns     : Void
 	 */
 	void Start () {
-
-		//Get the randomizer script
-		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
-		random = (Randomizer)randomizer.GetComponent("Randomizer");
-
-		//Pick an asteroid sprite (1- # are large asteorids)
-		int asteroid = random.GetRandom (0) + 1;
-
-		//Load the asteroid sprite
-		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroid);
-
-		//Reset the collider so that it autofits
-		Destroy (GetComponent<PolygonCollider2D> ());
-		gameObject.AddComponent ("PolygonCollider2D");
 		
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
@@ -74,11 +53,7 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 		
-		speed = Random.Range(speed, speed * 2f);
-		rotation = Random.Range(rotation * .1f, rotation);
-		float x = -1f;
-		float y = Random.Range(directionRange * -1f, directionRange);
-		direction = new Vector3(x, y);
+		speed = Random.Range(speed, speed * 1.5f);
 
 		isQuitting = false;
 		
@@ -96,10 +71,12 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	void FixedUpdate () {
 		
 		/* -- LOCAL VARIABLES ---------------------------------------------------- */
+
+		//The new position of the mine after moving
+		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
 		
-		//Move in the random direction
-		transform.Translate(direction.normalized * speed, Space.World);
-		transform.Rotate(Vector3.forward * rotation, Space.World);
+		//Apply the movement
+		transform.position = newPos;
 		
 		//If the enemy leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
@@ -128,38 +105,9 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
 
-			//Shatter this asteroid
-			shatter ();
+			Destroy(gameObject);
 			
 		}
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : shatter()
-	 *
-	 * Description : Shatters the asteroid into smaller asteroids
-	 *
-	 * Parameters  : Collision col : The other object collided with
-	 *
-	 * Returns     : Void
-	 */
-	public void shatter ()
-	{
-		//Load the medium asteroid prefab
-		GameObject mediumAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidMedium");
-
-		//Position of the asteroid
-		var position = gameObject.transform.position;
-		
-		//Destroy the asteroid
-		Destroy(this.gameObject);
-
-		//Create two new medium asteroids
-		Instantiate(mediumAsteroid, new Vector3(position.x, position.y - .5f, position.z), Quaternion.identity);
-		Instantiate(mediumAsteroid, new Vector3(position.x, position.y + .5f, position.z), Quaternion.identity);
-		
-		//Update the players score
-		score.UpdateScore(value);
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -173,7 +121,7 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	 */
 	public int getCollisionDamage()
 	{
-		return collisionDamage - PlayerPrefs.GetInt("HullUpgradeAsteroidResistance",0);
+		return collisionDamage;
 	}
 
 	void OnApplicationQuit() {
@@ -185,6 +133,9 @@ public class AsteroidLarge : MonoBehaviour, BasicAsteroid {
 	void OnDestroy() {
 		
 		if (!isQuitting) {
+
+			//Update the players score
+			score.UpdateScore(value);
 			
 			//Load the explosion
 			GameObject explosion = Resources.Load<GameObject>("Explosions/AsteroidExplosion");

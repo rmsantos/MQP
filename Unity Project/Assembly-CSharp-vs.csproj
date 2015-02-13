@@ -85,6 +85,7 @@
      <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />
      <Compile Include="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" />
      <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautShield.cs" />
+     <Compile Include="Assets\Resources\Enemies\Mines\Mine.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\Saboteur.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" />
@@ -110,7 +111,7 @@
      <Compile Include="Assets\UpgradeDescription.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/rmsantos/Desktop/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/jbmorse/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
