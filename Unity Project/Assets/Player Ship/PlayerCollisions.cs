@@ -65,6 +65,8 @@ public class PlayerCollisions : MonoBehaviour {
 		//Get the levelHandler
 		levelHandler = (LevelHandler) spawner.GetComponent("LevelHandler");
 
+		//display on the health bar
+		healthBar.value = health;
 	}
 
 
@@ -249,6 +251,9 @@ public class PlayerCollisions : MonoBehaviour {
 			//Take the damage
 			health -= damage;
 		}
+
+		//Store the new health
+		PlayerPrefs.SetInt ("Health", health);
 
 		//And display on the health bar
 		healthBar.value = health;
