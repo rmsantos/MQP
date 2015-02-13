@@ -103,6 +103,7 @@ public class PowerMenu : MonoBehaviour {
 		//Display the current power levels
 		powerBar.maxValue = maxPower;
 		powerBar.value = power;
+		powerLevels [5].text = power.ToString ();
 
 		//Setup all the image files to be easily accessible
 		powerSprites = new Sprite[][] {shieldSprites, engineSprites, laserSprites, blasterSprites, missileSprites, availablePowerSprites};
