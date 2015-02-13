@@ -87,6 +87,7 @@
      <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />
      <Compile Include="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" />
      <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautShield.cs" />
+     <Compile Include="Assets\Resources\Enemies\Mines\Mine.cs" />
      <Compile Include="Assets\Resources\Enemies\Saboteur\Saboteur.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" />
