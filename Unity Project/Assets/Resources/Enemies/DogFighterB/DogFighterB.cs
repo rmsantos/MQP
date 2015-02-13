@@ -178,6 +178,9 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 		
 		//Subtract health from the enemy
 		health -= damage;
+
+		//Show the hit fader effect
+		GetComponent<HitFader>().BeenHit();
 		
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
