@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Shields.cs">
     <Files>
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="218" Column="21" />
-      <File FileName="Assets\Player Ship\Shields.cs" Line="43" Column="2" />
+      <File FileName="Assets\Camera\VolumeControl.cs" Line="21" Column="1" />
+      <File FileName="Assets\AudioHandler\AudioHandler.cs" Line="67" Column="32" />
+      <File FileName="Assets\Player Ship\Shields.cs" Line="115" Column="39" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="18" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

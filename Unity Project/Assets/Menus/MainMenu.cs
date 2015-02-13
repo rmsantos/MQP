@@ -169,23 +169,23 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetFloat ("SoundEffectsVolume", initialSoundEffectsVolume);
 
 		//Upgrades
-		PlayerPrefs.SetInt ("PowerUpgrade", 0);
-		PlayerPrefs.SetInt ("EngineUpgrade", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeSpeed", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeDamage", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeBurst", 0);
-		PlayerPrefs.SetInt ("ShieldUpgradeRecharge", 0);
-		PlayerPrefs.SetInt ("ShieldUpgradeNumber", 0);
-		PlayerPrefs.SetInt ("ShieldUpgradeHardened", 0);
-		PlayerPrefs.SetInt ("MissileUpgradePayload", 0);
-		PlayerPrefs.SetInt ("MissileUpgradeLoader", 0);
-		PlayerPrefs.SetInt ("CargoUpgradeMissiles", 0);
-		PlayerPrefs.SetInt ("CargoUpgradeCrystals", 0);
-		PlayerPrefs.SetInt ("CargoUpgradeCredits", 0);
-		PlayerPrefs.SetInt ("HullUpgradeReinforced", 0);
-		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", 0);
-		PlayerPrefs.SetInt ("BlasterUpgradeFireRate", 0);
-		PlayerPrefs.SetInt ("BlasterUpgradeDamage", 0);
+		PlayerPrefs.SetInt ("PowerUpgrade", powerUpgrade);
+		PlayerPrefs.SetInt ("EngineUpgrade", engineUpgrade);
+		PlayerPrefs.SetInt ("LaserUpgradeSpeed", laserUpgradeSpeed);
+		PlayerPrefs.SetInt ("LaserUpgradeDamage", laserUpgradeDamage);
+		PlayerPrefs.SetInt ("LaserUpgradeBurst", laserUpgadeBurst);
+		PlayerPrefs.SetInt ("ShieldUpgradeRecharge", shieldUpgradeRecharge);
+		PlayerPrefs.SetInt ("ShieldUpgradeNumber", shieldUpgradeNumber);
+		PlayerPrefs.SetInt ("ShieldUpgradeHardened", shieldUpgradeHardened);
+		PlayerPrefs.SetInt ("MissileUpgradePayload", missileUpgradePayload);
+		PlayerPrefs.SetInt ("MissileUpgradeLoader", missileUpgradeLoader);
+		PlayerPrefs.SetInt ("CargoUpgradeMissiles", cargoUpgradeMissiles);
+		PlayerPrefs.SetInt ("CargoUpgradeCrystals", cargoUpgradeCrystals);
+		PlayerPrefs.SetInt ("CargoUpgradeCredits", cargoUpgradeCredits);
+		PlayerPrefs.SetInt ("HullUpgradeReinforced", hullUpgradeReinforced);
+		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", hullUpgradeAsteroidResistance);
+		PlayerPrefs.SetInt ("BlasterUpgradeFireRate", blasterUpgradeFireRate);
+		PlayerPrefs.SetInt ("BlasterUpgradeDamage", blasterUpgradeDamage);
 
 		//Game values
 	
