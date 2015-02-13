@@ -915,7 +915,7 @@ public class PowerMenu : MonoBehaviour {
 				statusText.text = "Engine Level 3. Decent max speed. Good acceleration. The ship moves well.";
 				break;
 			case 4:
-				statusText.text = "Enigne Level 4. Good max speed. Good acceleration. The ship moves swiftly.";
+				statusText.text = "Engine Level 4. Good max speed. Good acceleration. The ship moves swiftly.";
 				break;
 			case 5:
 			statusText.text = "Engine Level 5. Excellent max speed. Excellent acceleration. The ship is a comet!";
@@ -1046,7 +1046,7 @@ public class PowerMenu : MonoBehaviour {
 			statusText.text = "Shield Level 4. Up to three shields. Great base recharge rate. The shield is almost unstoppable.";
 			break;
 		case 5:
-			statusText.text = "Shield Level 6. Up to three shields. Amazing base recharge rate. The shield is almost impenetrable! The ship is a tank!.";
+			statusText.text = "Shield Level 5. Up to three shields. Amazing base recharge rate. The shield is almost impenetrable! The ship is a tank!.";
 			break;
 		}
 		
