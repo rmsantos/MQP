@@ -226,6 +226,8 @@ public class LevelHandler : MonoBehaviour {
 		PlayerPrefs.SetInt ("Level", level);
 		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
 		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money);
+		PlayerPrefs.SetInt ("Crystals", (int)ScoreHandler.crystals);
+
 		//Load the UpgradeScene
 		Application.LoadLevel (2);
 	}
