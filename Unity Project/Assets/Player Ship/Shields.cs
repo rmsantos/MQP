@@ -40,17 +40,15 @@ public class Shields : MonoBehaviour {
 	//The render of the shield image
 	public GameObject shieldRender;
 
-	//Audio source to play recharge sound
-	public AudioSource source;
-
-	//Recharge sound
-	public AudioClip recharge;
-
 	//Damage the shield can take before brekaing
 	public int shieldAllowance;
 
 	//Player collisions script
 	PlayerCollisions collisions;
+
+	//The audiohandler
+	GameObject audioHandlerObject;
+	AudioHandler audioHandler;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -62,7 +60,11 @@ public class Shields : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
-		
+
+		//Search for the audioHandler
+		audioHandlerObject = (GameObject)GameObject.FindGameObjectWithTag ("AudioHandler");
+		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
+
 		//Shield power starts at 0
 		shieldPower = PlayerPrefs.GetInt ("ShieldPower", 0);
 		
@@ -85,7 +87,7 @@ public class Shields : MonoBehaviour {
 
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : FixedUpdate(0
+	/* Function    : FixedUpdate()
 	 *
 	 * Description : Recharges the shields and reads the slide bar
 	 *
@@ -110,7 +112,7 @@ public class Shields : MonoBehaviour {
 
 			//Play the recharge sound if the shield is turning on
 			if(shields == 1)
-				source.PlayOneShot(recharge);
+				audioHandler.playShieldRecharge();
 
 			//And change the transparency level
 			setTransparency();

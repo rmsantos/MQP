@@ -1,120 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{BDBCE7D3-139D-3EDB-816D-FB1D73476D25}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<BaseDirectory>Assets</BaseDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BDBCE7D3-139D-3EDB-816D-FB1D73476D25}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
-    <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Background\Background.cs" />
-     <Compile Include="Assets\Camera\Boundaries.cs" />
-     <Compile Include="Assets\Camera\VolumeControl.cs" />
-     <Compile Include="Assets\FadingScript.cs" />
-     <Compile Include="Assets\LevelHandler\LevelHandler.cs" />
-     <Compile Include="Assets\Menus\CharacterSelectMenu.cs" />
-     <Compile Include="Assets\Menus\HighScoreMenu.cs" />
-     <Compile Include="Assets\Menus\MainMenu.cs" />
-     <Compile Include="Assets\Menus\PauseController.cs" />
-     <Compile Include="Assets\Menus\PowerMenu.cs" />
-     <Compile Include="Assets\Menus\UpgradeMenu.cs" />
-     <Compile Include="Assets\Particle Effects\Explosion.cs" />
-     <Compile Include="Assets\Player Ship\Blaster.cs" />
-     <Compile Include="Assets\Player Ship\Gunner.cs" />
-     <Compile Include="Assets\Player Ship\Laser.cs" />
-     <Compile Include="Assets\Player Ship\Missile.cs" />
-     <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
-     <Compile Include="Assets\Player Ship\Shields.cs" />
-     <Compile Include="Assets\Player Ship\ShipMovement.cs" />
-     <Compile Include="Assets\Player Ship\ShipUpgrades.cs" />
-     <Compile Include="Assets\Portraits\PortraitController.cs" />
-     <Compile Include="Assets\Randomizer\Randomizer.cs" />
-     <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
-     <Compile Include="Assets\Resources\Crystals\Crystals.cs" />
-     <Compile Include="Assets\Resources\Enemies\Ambusher\Ambusher.cs" />
-     <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" />
-     <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" />
-     <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" />
-     <Compile Include="Assets\Resources\Enemies\Asteroids\BasicAsteroid.cs" />
-     <Compile Include="Assets\Resources\Enemies\BasicEnemy.cs" />
-     <Compile Include="Assets\Resources\Enemies\Cruiser\Cruiser.cs" />
-     <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
-     <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
-     <Compile Include="Assets\Resources\Enemies\Flagship\Flagship.cs" />
-     <Compile Include="Assets\Resources\Enemies\Grenadier\Grenadier.cs" />
-     <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />
-     <Compile Include="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" />
-     <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautShield.cs" />
-     <Compile Include="Assets\Resources\Enemies\Saboteur\Saboteur.cs" />
-     <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />
-     <Compile Include="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" />
-     <Compile Include="Assets\Resources\Enemies\SimpleEnemyBullet.cs" />
-     <Compile Include="Assets\Resources\Instances\BoxFormation.cs" />
-     <Compile Include="Assets\Resources\Instances\DogfighterAttack.cs" />
-     <Compile Include="Assets\Resources\Instances\ExampleInstance.cs" />
-     <Compile Include="Assets\Resources\Instances\FlyingV.cs" />
-     <Compile Include="Assets\Resources\Instances\GrenadierAssault.cs" />
-     <Compile Include="Assets\Resources\Instances\HeavyWave.cs" />
-     <Compile Include="Assets\Resources\Instances\JuggernautWave.cs" />
-     <Compile Include="Assets\Resources\Instances\LargeAsteroids.cs" />
-     <Compile Include="Assets\Resources\Instances\LockOnFormation.cs" />
-     <Compile Include="Assets\Resources\Instances\MediumAsteroids.cs" />
-     <Compile Include="Assets\Resources\Instances\MixedAsteroids.cs" />
-     <Compile Include="Assets\Resources\Instances\SmallAsteroids.cs" />
-     <Compile Include="Assets\Resources\Money\Money.cs" />
-     <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
-     <Compile Include="Assets\UI\UpdateCrystal.cs" />
-     <Compile Include="Assets\UI\UpdateLevel.cs" />
-     <Compile Include="Assets\UI\UpdateMoney.cs" />
-     <Compile Include="Assets\UI\UpdateScore.cs" />
-     <Compile Include="Assets\UpgradeDescription.cs" />
-     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Background\Background.cs" />
+    <Compile Include="Assets\Camera\Boundaries.cs" />
+    <Compile Include="Assets\Camera\VolumeControl.cs" />
+    <Compile Include="Assets\FadingScript.cs" />
+    <Compile Include="Assets\LevelHandler\LevelHandler.cs" />
+    <Compile Include="Assets\Menus\CharacterSelectMenu.cs" />
+    <Compile Include="Assets\Menus\HighScoreMenu.cs" />
+    <Compile Include="Assets\Menus\MainMenu.cs" />
+    <Compile Include="Assets\Menus\PauseController.cs" />
+    <Compile Include="Assets\Menus\PowerMenu.cs" />
+    <Compile Include="Assets\Menus\UpgradeMenu.cs" />
+    <Compile Include="Assets\Particle Effects\Explosion.cs" />
+    <Compile Include="Assets\Player Ship\Blaster.cs" />
+    <Compile Include="Assets\Player Ship\Gunner.cs" />
+    <Compile Include="Assets\Player Ship\Laser.cs" />
+    <Compile Include="Assets\Player Ship\Missile.cs" />
+    <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
+    <Compile Include="Assets\Player Ship\Shields.cs" />
+    <Compile Include="Assets\Player Ship\ShipMovement.cs" />
+    <Compile Include="Assets\Player Ship\ShipUpgrades.cs" />
+    <Compile Include="Assets\Portraits\PortraitController.cs" />
+    <Compile Include="Assets\Randomizer\Randomizer.cs" />
+    <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
+    <Compile Include="Assets\Resources\Crystals\Crystals.cs" />
+    <Compile Include="Assets\Resources\Enemies\Ambusher\Ambusher.cs" />
+    <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" />
+    <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" />
+    <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" />
+    <Compile Include="Assets\Resources\Enemies\Asteroids\BasicAsteroid.cs" />
+    <Compile Include="Assets\Resources\Enemies\BasicEnemy.cs" />
+    <Compile Include="Assets\Resources\Enemies\Cruiser\Cruiser.cs" />
+    <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
+    <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
+    <Compile Include="Assets\Resources\Enemies\Flagship\Flagship.cs" />
+    <Compile Include="Assets\Resources\Enemies\Grenadier\Grenadier.cs" />
+    <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />
+    <Compile Include="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" />
+    <Compile Include="Assets\Resources\Enemies\Juggernaut\JuggernautShield.cs" />
+    <Compile Include="Assets\Resources\Enemies\Saboteur\Saboteur.cs" />
+    <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />
+    <Compile Include="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" />
+    <Compile Include="Assets\Resources\Enemies\SimpleEnemyBullet.cs" />
+    <Compile Include="Assets\Resources\Instances\BoxFormation.cs" />
+    <Compile Include="Assets\Resources\Instances\DogfighterAttack.cs" />
+    <Compile Include="Assets\Resources\Instances\ExampleInstance.cs" />
+    <Compile Include="Assets\Resources\Instances\FlyingV.cs" />
+    <Compile Include="Assets\Resources\Instances\GrenadierAssault.cs" />
+    <Compile Include="Assets\Resources\Instances\HeavyWave.cs" />
+    <Compile Include="Assets\Resources\Instances\JuggernautWave.cs" />
+    <Compile Include="Assets\Resources\Instances\LargeAsteroids.cs" />
+    <Compile Include="Assets\Resources\Instances\LockOnFormation.cs" />
+    <Compile Include="Assets\Resources\Instances\MediumAsteroids.cs" />
+    <Compile Include="Assets\Resources\Instances\MixedAsteroids.cs" />
+    <Compile Include="Assets\Resources\Instances\SmallAsteroids.cs" />
+    <Compile Include="Assets\Resources\Money\Money.cs" />
+    <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
+    <Compile Include="Assets\UI\UpdateCrystal.cs" />
+    <Compile Include="Assets\UI\UpdateLevel.cs" />
+    <Compile Include="Assets\UI\UpdateMoney.cs" />
+    <Compile Include="Assets\UI\UpdateScore.cs" />
+    <Compile Include="Assets\UpgradeDescription.cs" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\Program Files %28x86%29\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\4.6.0\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend %28Queue +100%29.shader" />
+    <Compile Include="Assets\AudioHandler\AudioHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{F6940774-7AA7-A4B8-63B4-B9ADCF2F6CB9}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{F6940774-7AA7-A4B8-63B4-B9ADCF2F6CB9}</Project>
+      <Name>Assembly-UnityScript-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -124,5 +126,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
+  <ItemGroup>
+    <Folder Include="Assets\AudioHandler\" />
+  </ItemGroup>
 </Project>

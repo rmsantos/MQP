@@ -45,6 +45,10 @@ public class PlayerCollisions : MonoBehaviour {
 	//Quitting boolean
 	bool isQuitting;
 
+	//The audiohandler
+	GameObject audioHandlerObject;
+	AudioHandler audioHandler;
+
 	void Start () {
 		
 		//Pull the values from player prefs
@@ -52,7 +56,10 @@ public class PlayerCollisions : MonoBehaviour {
 		moneyValue = PlayerPrefs.GetInt ("MoneyValue", 99999);
 		crystalValue = PlayerPrefs.GetInt ("CrystalValue", 99999);
 
-		                                                   
+		//Search for the audioHandler
+		audioHandlerObject = (GameObject)GameObject.FindGameObjectWithTag ("AudioHandler");
+		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
+
 		//Search for the ScoreHandler object for tracking score
 		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");
 
@@ -216,6 +223,8 @@ public class PlayerCollisions : MonoBehaviour {
 		}
 
 		if (health <= 0) {
+			//Play the explosion sound effect
+			audioHandler.playPlayerExplosion();
 			Destroy(this.gameObject);
 			levelHandler.PlayerDied();
 		}

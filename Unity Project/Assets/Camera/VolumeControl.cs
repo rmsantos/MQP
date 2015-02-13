@@ -24,25 +24,39 @@ public class VolumeControl : MonoBehaviour {
 	static float volume;
 	static float musicVolume;
 	static float voiceVolume;
+	static float soundEffectsVolume;
 
 	public Slider volumeSlider;
 	public Slider musicSlider;
 	public Slider voiceSlider;
+	public Slider soundEffectsSlider;
 
 	public GameObject portraitAudio;
-	
+	public GameObject audioHandlerObject;
+	AudioHandler audioHandler;
+
 	void Start () {
 		volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
 		musicVolume = PlayerPrefs.GetFloat ("MusicVolume", 0);
 		voiceVolume = PlayerPrefs.GetFloat ("VoiceVolume", 0);
+		soundEffectsVolume = PlayerPrefs.GetFloat ("SoundEffectsVolume", 0);
 
 		audio.volume = musicVolume;
-		AudioListener.volume = volume;
-		portraitAudio.audio.volume = voiceVolume;
-
 		musicSlider.value = musicVolume;
-		volumeSlider.value = volume;
+
+		portraitAudio.audio.volume = voiceVolume;
 		voiceSlider.value = voiceVolume;
+
+		AudioListener.volume = volume;
+		volumeSlider.value = volume;
+
+		//Find the audiohandler script
+		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
+
+		//Set the audio of all sound effects
+		audioHandler.setSoundEffectsVolume (soundEffectsVolume);
+		soundEffectsSlider.value = soundEffectsVolume;
+
 	}
 
 	public void SetVolume (float newVolume) {
@@ -64,6 +78,14 @@ public class VolumeControl : MonoBehaviour {
 		voiceVolume = newVolume;
 		portraitAudio.audio.volume = voiceVolume;
 
+	}
+
+	public void setSoundEffects(float newVolume) {
+
+		//Set the audio of all sound effects
+		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
+		audioHandler.setSoundEffectsVolume (newVolume);
+		soundEffectsSlider.value = newVolume;
 	}
 
 }

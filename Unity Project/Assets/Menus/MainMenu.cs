@@ -45,6 +45,7 @@ public class MainMenu : MonoBehaviour {
 	public float initialMasterVolume;
 	public float initialMusicVolume;
 	public float initialVoiceVolume;
+	public float initialSoundEffectsVolume;
 
 	//Game values
 	public int initialLevel;
@@ -165,6 +166,8 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetFloat ("MasterVolume", initialMasterVolume);
 		PlayerPrefs.SetFloat ("MusicVolume", initialMusicVolume);
 		PlayerPrefs.SetFloat ("VoiceVolume", initialVoiceVolume);
+		PlayerPrefs.SetFloat ("SoundEffectsVolume", initialSoundEffectsVolume);
+
 		//Upgrades
 		PlayerPrefs.SetInt ("PowerUpgrade", 0);
 		PlayerPrefs.SetInt ("EngineUpgrade", 0);
