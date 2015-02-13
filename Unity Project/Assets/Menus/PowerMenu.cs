@@ -1010,8 +1010,8 @@ public class PowerMenu : MonoBehaviour {
 			statusText.text = "Blaster Level 3. Great base damage. Great base reload rate. The blaster is a large threat.";
 			break;
 		case 4:
-			break;
 			statusText.text = "Blaster Level 4. Crazy base damage. Crazy base reload rate. The blaster can cut through anything!";
+			break;
 		}
 		
 	}
@@ -1042,11 +1042,11 @@ public class PowerMenu : MonoBehaviour {
 			statusText.text = "Shield Level 3. Up to two shields. Good base recharge rate. The shield is effective.";
 			break;
 		case 4:
-			break;
 			statusText.text = "Shield Level 4. Up to three shields. Great base recharge rate. The shield is almost unstoppable.";
-		case 5:
 			break;
+		case 5:
 			statusText.text = "Shield Level 6. Up to three shields. Amazing base recharge rate. The shield is almost impenetrable! The ship is a tank!.";
+			break;
 		}
 		
 	}

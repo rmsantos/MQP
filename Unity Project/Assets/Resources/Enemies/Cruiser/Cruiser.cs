@@ -50,11 +50,17 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 	//The health of this enemy
 	public int health;
 	
+	//The health per level
+	public float healthPerLevel;
+	
 	//Stores the damage colliding with the player does
 	public int collisionDamage;
 	
 	//Stores the damage the bullet does
 	public int bulletDamage;
+	
+	//The damage per level
+	public float damagePerLevel;	
 
 	//The amplitude of the wave that this ship will move in
 	public int amplitude;
@@ -120,6 +126,11 @@ public class Cruiser :  MonoBehaviour, BasicEnemy {
 
 		//Not quitting the application
 		isQuitting = false;
+
+		//Set the level progression modifiers
+		health += (int)(healthPerLevel * ((float)PlayerPrefs.GetInt("Level", 0) - 1f));
+		bulletDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
+		collisionDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
 	}
 	
 	/* ----------------------------------------------------------------------- */

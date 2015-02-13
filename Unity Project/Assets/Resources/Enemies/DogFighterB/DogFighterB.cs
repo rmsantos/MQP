@@ -43,9 +43,15 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 
 	//The health of this enemy
 	public int health;
+	
+	//The health per level
+	public float healthPerLevel;
 
 	//Stores the damage colliding with the player does
 	public int collisionDamage;
+	
+	//The damage per level
+	public float damagePerLevel;
 
 	//Quitting boolean
 	bool isQuitting;
@@ -92,6 +98,10 @@ public class DogFighterB : MonoBehaviour, BasicEnemy {
 
 		//Not quitting the application
 		isQuitting = false;
+
+		//Set the level progression modifiers
+		health += (int)(healthPerLevel * ((float)PlayerPrefs.GetInt("Level", 0) - 1f));
+		collisionDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
 
 	}
 	
