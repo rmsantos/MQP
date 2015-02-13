@@ -51,6 +51,7 @@
      <Compile Include="Assets\Camera\Boundaries.cs" />
      <Compile Include="Assets\Camera\VolumeControl.cs" />
      <Compile Include="Assets\FadingScript.cs" />
+     <Compile Include="Assets\HitFader.cs" />
      <Compile Include="Assets\LevelHandler\LevelHandler.cs" />
      <Compile Include="Assets\Menus\CharacterSelectMenu.cs" />
      <Compile Include="Assets\Menus\HighScoreMenu.cs" />
