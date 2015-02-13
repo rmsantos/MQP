@@ -134,6 +134,7 @@ public class PowerMenu : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
+
 		//If the menu theme isnt playing
 		if(!audio.isPlaying)
 		{
@@ -338,6 +339,8 @@ public class PowerMenu : MonoBehaviour {
 
 		//Display the new status text
 		setStatusText (station);
+		displayIncreaseText (station);
+
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -381,7 +384,208 @@ public class PowerMenu : MonoBehaviour {
 
 		//Display the new status text
 		setStatusText (station);
+		displayDecreaseText (station);
 	}	
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreaseText(int station)
+	 *
+	 * Description : Displays what an decreased power level will do for each station.
+	 *
+	 * Parameters  : int station : The station being viewed
+	 *
+	 * Returns     : Void
+	 */
+	public void displayDecreaseText(int station)
+	{
+		//Determine which station is being viewed
+		switch(station)
+		{
+			//Engine
+			case (int)powerSelected.ENGINE:
+				displayDecreasedEngine();
+				break;
+			//Laser
+			case (int)powerSelected.LASER:
+				displayDecreasedLaser();
+				break;
+			//Missile
+			case (int)powerSelected.MISSILE:
+				displayDecreasedMissile();
+				break;
+			//Blaster
+			case (int)powerSelected.BLASTER:
+				displayDecreasedBlaster();
+				break;
+			//Or shield
+			case (int)powerSelected.SHIELD:
+				displayDecreasedShield();
+				break;
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreasedEngine()
+	 *
+	 * Description : Displays what each engine level decrease
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayDecreasedEngine()
+	{
+		switch(playerPowers[(int)powerSelected.ENGINE]-1)
+		{
+			case -1:
+				statusText.text = "Engine are at minimal";
+				break;
+			case 0:
+				statusText.text = "Decreased acceleration (-1) ";
+				break;
+			case 1:
+				statusText.text = "Decreased max speed (-1)";
+				break;
+			case 2:
+				statusText.text = "Decreases acceleration (-1)";
+				break;
+			case 3:
+				statusText.text = "Decreases max speed (-1)";
+				break;
+			case 4:
+				statusText.text = "Decreases acceleration (-1) and decreased speed (-1)";
+				break;
+		}
+		
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreasedLaser()
+	 *
+	 * Description : Displays what each laser level decrease
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayDecreasedLaser()
+	{
+		switch(playerPowers[(int)powerSelected.LASER]-1)
+		{
+			case -1:
+				statusText.text = "Laser is at minimal";
+				break;
+			case 0:
+				statusText.text = "Slower reload time (+1)";
+				break;
+			case 1:
+				statusText.text = "Slower reload time (+1)";
+				break;
+			case 2:
+				statusText.text = "Slower reload time (+1), decreased damage (-1), and Burst Shot disabled";
+				break;
+		}
+		
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreasedMissile()
+	 *
+	 * Description : Displays what each missile level decrease
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayDecreasedMissile()
+	{
+		switch(playerPowers[(int)powerSelected.MISSILE]-1)
+		{
+			case -1:
+				statusText.text = "Missiles at minimal";
+				break;
+			case 0:
+				statusText.text = "Missiles disabled.";
+				break;
+			case 1:
+				statusText.text = "Slower loading time (+1)";
+				break;
+			case 2:
+				statusText.text = "Slower loading time (+1) and decreased damage (-1)";
+				break;
+			case 3:
+				statusText.text = "Slower loading time (+1) and decreased damage (-1)";
+				break;
+		}
+		
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreasedBlaster()
+	 *
+	 * Description : Displays what each blaster level decrease
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayDecreasedBlaster()
+	{
+		switch(playerPowers[(int)powerSelected.BLASTER]-1)
+		{
+			case -1:
+				statusText.text = "Blasters at minimal.";
+				break;
+			case 0:
+				statusText.text = "Blasters disabled.";
+				break;
+			case 1:
+				statusText.text = "Slower loading time (+1) and decreased damage (-1)";
+				break;
+			case 2:
+				statusText.text = "Slower loading time (+1) and decreased damage (-1)";
+				break;
+			case 3:
+				statusText.text = "Slower loading time (+1) and decreased damage (-1))";
+				break;
+		}
+		
+	}
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreasedShield()
+	 *
+	 * Description : Displays what each shield level decrease
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayDecreasedShield()
+	{
+		switch(playerPowers[(int)powerSelected.SHIELD]-1)
+		{
+			case -1:
+				statusText.text = "Shields at minimal";
+				break;
+			case 0:
+				statusText.text = "Shields disabled.";
+				break;
+			case 1:
+				statusText.text = "Slower recharging time (+1)";
+				break;
+			case 2:
+				statusText.text = "Slower recharging time (+1) and decreased max shields (-1)";
+				break;
+			case 3:
+				statusText.text = "Slower recharging time (+1) and decreased max shields (-1)";
+				break;
+			case 4:
+				statusText.text = "Decreased recharging time (+1)";
+				break;
+		}
+		
+	}
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : displayIncreaseText(int station)
@@ -399,23 +603,23 @@ public class PowerMenu : MonoBehaviour {
 		{
 			//Engine
 			case (int)powerSelected.ENGINE:
-				//displayIncreasedEngine();
+				displayIncreasedEngine();
 				break;
 			//Laser
 			case (int)powerSelected.LASER:
-				//displayIncreasedLaser();
+				displayIncreasedLaser();
 				break;
 			//Missile
 			case (int)powerSelected.MISSILE:
-				//displayIncreasedMissile();
+				displayIncreasedMissile();
 				break;
 			//Blaster
 			case (int)powerSelected.BLASTER:
-				//displayIncreasedBlaster();
+				displayIncreasedBlaster();
 				break;
 			//Or shield
 			case (int)powerSelected.SHIELD:
-				//displayIncreasedShield();
+				displayIncreasedShield();
 				break;
 		}
 	}
@@ -429,31 +633,204 @@ public class PowerMenu : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	/*void displayIncreasedEngine()
+	void displayIncreasedEngine()
 	{
+		int engineUpgrade = 0;
+		string newText = "";
+
 		switch(playerPowers[(int)powerSelected.ENGINE]+1)
 		{
-			case 0:
-				statusText.text = "Engine Level 0. Basic max speed. Basic acceleration. The ship moves very slowly.";
-				break;
 			case 1:
-				statusText.text = "Engine Level 1. Basic max speed. Decent acceleration. The ship moves slowly.";
+				statusText.text = "Increased acceleration (+1)";
 				break;
 			case 2:
-				statusText.text = "Engine Level 2. Decent max speed. Decent acceleration. The ship moves modestly.";
+				statusText.text = "Increased max speed (+1)";
 				break;
 			case 3:
-				statusText.text = "Engine Level 3. Decent max speed. Good acceleration. The ship moves well.";
+				newText = "Increases acceleration (+1)";
+				
+				engineUpgrade = PlayerPrefs.GetInt("EngineUpgrade",0);
+
+				if(engineUpgrade < 1)
+					newText += ". Must buy engine upgrade level 1 first";
+
+				statusText.text = newText;
 				break;
 			case 4:
-				statusText.text = "Enigne Level 4. Good max speed. Good acceleration. The ship moves swiftly.";
+				newText = "Increases max speed (+1)";
+			
+				engineUpgrade = PlayerPrefs.GetInt("EngineUpgrade",0);
+
+				if(engineUpgrade < 2)
+					newText += ". Must buy engine upgrade level 2 first";
+
+				statusText.text = newText;
 				break;
 			case 5:
-				statusText.text = "Engine Level 5. Excellent max speed. Excellent acceleration. The ship is a comet!";
+				newText = "Increases acceleration (+1) and increased speed (+1)";
+				
+				engineUpgrade = PlayerPrefs.GetInt("EngineUpgrade",0);
+				
+				if(engineUpgrade < 3)
+					newText += ". Must buy engine upgrade level 3 first";
+				
+				statusText.text = newText;
+				break;
+			case 6:
+				statusText.text = "Engine is maxed out";
 				break;
 		}
 		
-	}*/
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreasedLaser()
+	 *
+	 * Description : Displays what each laser level increase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayIncreasedLaser()
+	{
+		switch(playerPowers[(int)powerSelected.LASER]+1)
+		{
+			case 1:
+				statusText.text = "Faster reload time (-1)";
+				break;
+			case 2:
+				statusText.text = "Faster reload time (-1)";
+				break;
+			case 3:
+				string newText = "Faster reload time (-1), increased damage (+1), and Burst Shot enabled";
+				
+				int laserUpgrade = PlayerPrefs.GetInt("LaserUpgradeBurst",0);
+
+				if(laserUpgrade < 1)
+					newText += ". Must buy laser burst upgrade first";
+
+				statusText.text = newText;
+				break;
+			case 4:
+				statusText.text = "Laser is maxed out.";
+				break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreasedMissile()
+	 *
+	 * Description : Displays what each missile level increase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayIncreasedMissile()
+	{
+		switch(playerPowers[(int)powerSelected.MISSILE]+1)
+		{
+			case 1:
+				statusText.text = "Weak missile enabled.";
+				break;
+			case 2:
+				statusText.text = "Faster loading time (-1)";
+				break;
+			case 3:
+				statusText.text = "Faster loading time (-1) and increased damage (+1)";
+				break;
+			case 4:
+				statusText.text = "Faster loading time (-1) and increased damage (+1)";
+				break;
+			case 5:
+				statusText.text = "Missiles are maxed out";
+				break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreasedBlaster()
+	 *
+	 * Description : Displays what each blaster level increase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayIncreasedBlaster()
+	{
+		switch(playerPowers[(int)powerSelected.BLASTER]+1)
+		{
+			case 1:
+				string newText = "Weak blasters enabled";
+
+				int blasterUpgrade = PlayerPrefs.GetInt("BlasterUpgradeFireRate");
+
+				if(blasterUpgrade < 1)
+					newText += ". Must buy blaster fire rate upgrade first";
+
+				statusText.text = newText;
+				break;
+			case 2:
+				statusText.text = "Faster loading time (-1) and increased damage (+1)";
+				break;
+			case 3:
+				statusText.text = "Faster loading time (-1) and increased damage (+1)";
+				break;
+			case 4:
+				statusText.text = "Faster loading time (-1) and increased damage (+1)";
+				break;
+			case 5:
+				statusText.text = "Blaster is maxed out";
+				break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreasedShield()
+	 *
+	 * Description : Displays what each shield level increase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayIncreasedShield()
+	{
+		switch(playerPowers[(int)powerSelected.SHIELD]+1)
+		{
+			case 1:
+				string newText = "Weak shields enabled (up to one)";
+
+				int shieldUpgrade = PlayerPrefs.GetInt("ShieldUpgradeNumber");
+
+				if(shieldUpgrade < 1)
+					newText += ". Must buy shield number upgrade first";
+
+				statusText.text = newText;
+				break;
+			case 2:
+				statusText.text = "Faster recharging time (-1)";
+				break;
+			case 3:
+				statusText.text = "Faster recharging time (-1) and increased max shields (+1)";
+				break;
+			case 4:
+				statusText.text = "Faster recharging time (-1) and increased max shields (+1)";
+				break;
+			case 5:
+				statusText.text = "Faster recharging time (-1)";
+				break;
+			case 6:
+				statusText.text = "Shields are maxed out";
+				break;
+		}
+		
+	}
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setStatusText(int station)
