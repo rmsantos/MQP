@@ -190,6 +190,7 @@ public class UpgradeMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Missiles", missiles);
 			PlayerPrefs.SetInt("Crystals", crystals);
 			PlayerPrefs.SetInt("Score", score);
+			PlayerPrefs.SetInt("Health", playerHealth);
 			//Load the main game
 			Application.LoadLevel (4);
 		}
@@ -380,6 +381,23 @@ public class UpgradeMenu : MonoBehaviour {
 			scoreText.text = score.ToString();
 		}
 		
+	}
+
+	//Used to repair hull
+	public void RepairHull() {
+
+		if (money >= 5 && playerHealth < 100) {
+
+			money -= 5;
+			playerHealth += 5;
+			if (playerHealth > 100) {
+				playerHealth = 100;
+			}
+			moneyText.text = money.ToString();
+			playerHealthSlider.value = playerHealth;
+
+		}
+
 	}
 
 }
