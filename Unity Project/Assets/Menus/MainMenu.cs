@@ -30,21 +30,44 @@ public class MainMenu : MonoBehaviour {
 	public GameObject quitButton;
 	public GameObject highScoreButton;
 
+	//initial values
 	public int initialHealth;
 	public int initialShieldPower;
 	public int initialEnginePower;
 	public int initialMissilePower;
 	public int initialLaserPower;
+	public int initialBlasterPower;
 	public int initialMoneyValue;
 	public int initialCrystalValue;
-	public int initialPowerValue;
-	public int initialBlasterPower;
 	public int initialMissiles;
 	public int initialCrystals;
 	public int initialMoney;
 	public float initialMasterVolume;
 	public float initialMusicVolume;
 	public float initialVoiceVolume;
+
+	//Game values
+	public int initialLevel;
+	public int initialScore;
+
+	//upgrade values
+	public int engineUpgrade;
+	public int laserUpgradeSpeed;
+	public int laserUpgradeDamage;
+	public int laserUpgadeBurst;
+	public int shieldUpgradeNumber;
+	public int shieldUpgradeRecharge;
+	public int shieldUpgradeHardened;
+	public int missileUpgradePayload;
+	public int missileUpgradeLoader;
+	public int cargoUpgradeMissiles;
+	public int cargoUpgradeCrystals;
+	public int cargoUpgradeCredits;
+	public int hullUpgradeReinforced;
+	public int hullUpgradeAsteroidResistance;
+	public int blasterUpgradeFireRate;
+	public int blasterUpgradeDamage;
+	public int powerUpgrade;
 
 	public string[] initialHighScorers;
 	public int[] initialHighScores;
@@ -129,7 +152,6 @@ public class MainMenu : MonoBehaviour {
 		//Here is where we set all the upgrade values. Player0 is our first unsaved player
 		PlayerPrefs.SetString("Player", "Player0");
 		PlayerPrefs.SetInt ("ShieldPower", initialShieldPower);
-		PlayerPrefs.SetInt ("Power", initialPowerValue);
 		PlayerPrefs.SetInt ("EnginePower", initialEnginePower);
 		PlayerPrefs.SetInt ("MissilePower", initialMissilePower);
 		PlayerPrefs.SetInt ("LaserPower", initialLaserPower);
@@ -164,8 +186,8 @@ public class MainMenu : MonoBehaviour {
 
 		//Game values
 	
-		PlayerPrefs.SetInt ("Score", 0);
-		PlayerPrefs.SetInt ("Level", 1);
+		PlayerPrefs.SetInt ("Score", initialScore);
+		PlayerPrefs.SetInt ("Level", initialLevel);
 
 		startGame = start;
 	}

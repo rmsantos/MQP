@@ -52,12 +52,18 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 
 	//The health of this enemy
 	public int health;
+	
+	//The health per level
+	public float healthPerLevel;
 
 	//Stores the damage colliding with the player does
 	public int collisionDamage;
 	
 	//Stores the damage the bullet does
 	public int bulletDamage;
+	
+	//The damage per level
+	public float damagePerLevel;
 
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
@@ -119,6 +125,11 @@ public class Grenadier : MonoBehaviour, BasicEnemy {
 
 		//Not quitting the application
 		isQuitting = false;
+
+		//Set the level progression modifiers
+		health += (int)(healthPerLevel * ((float)PlayerPrefs.GetInt("Level", 0) - 1f));
+		bulletDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
+		collisionDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
 	}
 	
 	/* ----------------------------------------------------------------------- */

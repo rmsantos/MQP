@@ -59,6 +59,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	
 	//Stores the damage the bullet does
 	public int bulletDamage;
+	
+	//The damage per level
+	public float damagePerLevel;
 
 	//The Boss Instance Object
 	public GameObject boss1;
@@ -179,6 +182,11 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 		//Not quitting the application
 		isQuitting = false;
+
+		//Set the level progression modifiers
+		missileDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt("Level", 0) - 1f));
+		bulletDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
+		collisionDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
 	}
 	
 	/* ----------------------------------------------------------------------- */

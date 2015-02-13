@@ -75,10 +75,14 @@ public class ScoreHandler : MonoBehaviour {
 	}
 
 	public long UpdateCrystals(long amount) {
-		crystals += amount;
-		
-		updateCrystal.UpdateText (crystals);
-		
+
+		if (crystals + amount < 5 + (PlayerPrefs.GetInt ("Crystals", 0) * 5)) {
+
+			crystals += amount;
+			updateCrystal.UpdateText (crystals);
+
+		}
+
 		return crystals;
 	}
 
