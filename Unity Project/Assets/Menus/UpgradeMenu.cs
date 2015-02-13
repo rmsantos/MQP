@@ -42,6 +42,9 @@ public class UpgradeMenu : MonoBehaviour {
 	public int[] hull2Cost;
 	public int[] lasers1Cost;
 	public int[] lasers2Cost;
+	public int[] lasers3Cost;
+
+	public Slider playerHealthSlider;
 
 	public Button[] selectButtons;
 
@@ -56,7 +59,7 @@ public class UpgradeMenu : MonoBehaviour {
 		"MissileUpgradePayload", "MissileUpgradeLoader", 
 		"CargoUpgradeMissiles", "CargoUpgradeCrystals", "CargoUpgradeCredits",
 		"HullUpgradeReinforced", "HullUpgradeAsteroidResistance", 
-		"LaserUpgradeSpeed", "LaserUpgradeBurst"};
+		"LaserUpgradeSpeed", "LaserUpgradeDamage", "LaserUpgradeBurst"};
 	
 	public string[] descriptions;
 
@@ -71,7 +74,6 @@ public class UpgradeMenu : MonoBehaviour {
 	public Text moneyText;
 	public Text crystalText;
 	public Text missileText;
-	public Text statusText;
 	public Text descriptionText;
 	public Text scoreText;
 	public Text levelText;
@@ -82,6 +84,7 @@ public class UpgradeMenu : MonoBehaviour {
 	int missiles;
 	int crystals;
 	int score;
+	int playerHealth;
 
 	//The actively selected upgrade (very important)
 	int selected;
@@ -105,7 +108,7 @@ public class UpgradeMenu : MonoBehaviour {
 										   UpgradeMissiles1, UpgradeMissiles2,
 										   UpgradeCargo1, UpgradeCargo2, UpgradeCargo3,
 										   UpgradeHull1, UpgradeHull2,
-										   UpgradeLasers1, UpgradeLasers2};
+										   UpgradeLasers1, UpgradeLasers2, UpgradeLasers3};
 
 		//Populate the cost arrays
 		costs = new int[][] {engine1Cost, 
@@ -115,19 +118,21 @@ public class UpgradeMenu : MonoBehaviour {
 							missiles1Cost, missiles2Cost, 
 							cargo1Cost, cargo2Cost, cargo3Cost, 
 							hull1Cost, hull2Cost, 
-							lasers1Cost, lasers2Cost};
+							lasers1Cost, lasers2Cost, lasers3Cost};
 
 		//Initialize the player values from playerprefs
 		money = PlayerPrefs.GetInt ("Money", 0);
 		missiles = PlayerPrefs.GetInt ("Missiles", 0);
 		crystals = PlayerPrefs.GetInt ("Crystals", 0);
 		score = PlayerPrefs.GetInt ("Score", 0);
+		playerHealth = PlayerPrefs.GetInt ("Health", 0);
 
 		//Display the player values
 		moneyText.text = money.ToString();
 		scoreText.text = score.ToString();
 		missileText.text = missiles.ToString();
 		crystalText.text = crystals.ToString();
+		playerHealthSlider.value = playerHealth;
 		
 		//Setup and retreive the previously bought upgrade levels
 		upgradeLevel = new int[upgradePrefs.Length];
@@ -310,6 +315,10 @@ public class UpgradeMenu : MonoBehaviour {
 	}
 
 	public void UpgradeLasers2() {
+
+	}
+
+	public void UpgradeLasers3() {
 
 	}
 
