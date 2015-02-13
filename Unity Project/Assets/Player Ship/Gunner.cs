@@ -44,6 +44,9 @@ public class Gunner : MonoBehaviour {
 	//The prefab object for the laser
 	public GameObject laserPrefab;
 
+	//Displays the number of missiles available
+	public Text missileCount;
+
 	//Is the player ready to shoot the blaser?
 	bool readyBlaster;
 
@@ -147,6 +150,7 @@ public class Gunner : MonoBehaviour {
 
 		//Load the players missiles
 		missiles = PlayerPrefs.GetInt ("Missiles", 0);
+		missileCount.text = missiles.ToString();
 
 		//Find the portrait controller script
 		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
@@ -320,6 +324,7 @@ public class Gunner : MonoBehaviour {
 
 			//Subtract the number of missiles
 			missiles--;
+			missileCount.text = missiles.ToString();
 
 			//Store that pref
 			PlayerPrefs.SetInt("Missiles",missiles);
