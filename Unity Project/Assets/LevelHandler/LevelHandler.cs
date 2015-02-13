@@ -225,7 +225,7 @@ public class LevelHandler : MonoBehaviour {
 		level++;
 		PlayerPrefs.SetInt ("Level", level);
 		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
-		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money);
+		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money + 6 + (2 * level) + (10 * PlayerPrefs.GetInt("CargoUpgradeCredits", 0)));
 		PlayerPrefs.SetInt ("Crystals", (int)ScoreHandler.crystals);
 
 		//Load the UpgradeScene
