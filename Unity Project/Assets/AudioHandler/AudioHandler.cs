@@ -116,7 +116,7 @@ public class AudioHandler : MonoBehaviour {
 	public void playSmallEnemyExplosion()
 	{
 		//Play a random clip
-		if(random.GetRandom(1) == 0)
+		if(random.GetRandom(2) == 0)
 			GameObject.Find ("smallEnemyExplosion1").GetComponent<AudioSource> ().Play ();
 		else
 			GameObject.Find ("smallEnemyExplosion2").GetComponent<AudioSource> ().Play ();

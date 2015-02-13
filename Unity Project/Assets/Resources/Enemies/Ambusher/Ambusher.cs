@@ -3,7 +3,7 @@
  * Email       : jbmorse@wpi.edu
  * Course      : IMGD MQP
  *
- * Description : This file controls the behavior of the BasicEnemy
+ * Description : This file controls the behavior of the ambusher
  *
  * Date        : 2015/1/21
  * 
@@ -18,7 +18,7 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Ambusher : AbstractEnemy, BasicEnemy {
+public class Ambusher : AbstractEnemy {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 
@@ -30,12 +30,10 @@ public class Ambusher : AbstractEnemy, BasicEnemy {
 	//Player position
 	Vector3 playerPosition;
 
-
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Initializes the firing rate variables.
-	 * 				Also stores the boundaries of the game.
+	 * Description : Initializes enemy variables
 	 *
 	 * Parameters  : None
 	 *
@@ -43,11 +41,8 @@ public class Ambusher : AbstractEnemy, BasicEnemy {
 	 */
 	void Start () {
 	
-		//Setup basic status for the enemy
-		enemySetup ();
-
-		//save initial rotation value
-		originalRotationValue = transform.rotation;
+		//Finds useful gameobjects
+		setup ();
 
 		//Invisibility values
 		invisible = false;
@@ -56,14 +51,6 @@ public class Ambusher : AbstractEnemy, BasicEnemy {
 
 		//Play the ambusher spawn clip
 		portraitController.playAmbusherSpawn ();
-
-		//Not quitting the application
-		isQuitting = false;
-
-		//Set the level progression modifiers
-		health += (int)(healthPerLevel * ((float)PlayerPrefs.GetInt("Level", 0) - 1f));
-		collisionDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
-
 
 	}
 	
@@ -95,14 +82,9 @@ public class Ambusher : AbstractEnemy, BasicEnemy {
 
 		//follow the player
 		transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed);
-		
-		//If the enemy leaves the game space
-		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
-		if (transform.position.x < (boundaries.getLeft() * 1.2))
-		{
-			//Destroy the enemy
-			Destroy (this.gameObject);
-		}
+
+		//Destroy the ship if it goes off screen
+		checkBoundaries ();
 
 		counter -= 1;
 		if (invisible && counter <= 0) {
@@ -126,118 +108,7 @@ public class Ambusher : AbstractEnemy, BasicEnemy {
 				invisible = true;
 				counter = 150;
 			}
-		}
-
-		//Always try to rotate to the correct facing direction
-		transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, rotationResetSpeed); 
-		
-	}
-	
-	/* ----------------------------------------------------------------------- */
-	/* Function    : OnCollisionEnter2D(Collision2D col)
-	 *
-	 * Description : Deals with collisions between the player bullets and this enemy.
-	 *
-	 * Parameters  : Collision2D col : The other object collided with
-	 *
-	 * Returns     : Void
-	 */
-	void OnCollisionEnter2D (Collision2D col)
-	{
-		//If this is hit by a player bullet
-		if(col.gameObject.tag == "PlayerBullet")
-		{
-			//Destroy the player bullet and this object
-			Destroy(col.gameObject);
-			
-			//Get the damage the player bullet will deal
-			int damage = col.gameObject.GetComponent<Laser>().getDamage();
-			
-			//Deal the damage to this enemy
-			takeDamage(damage);
-			
-		}
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : takeDamage(float damage)
-	 *
-	 * Description : Deals damage to the enemies health
-	 *
-	 * Parameters  : int damage : The damage to be dealt
-	 *
-	 * Returns     : Void
-	 */
-	public void takeDamage(int damage)
-	{
-		
-		//Subtract health from the enemy
-		health -= damage;
-
-		//Show the hit fader effect
-		GetComponent<HitFader>().BeenHit();
-		
-		//If health hits 0, then the enemy dies
-		if(health <= 0)
-		{
-			//Destroy the enemy
-			Destroy(this.gameObject);
-			
-			//Update the players score
-			score.UpdateScore(value);
-
-			//Play the explosion clip
-			audioHandler.playSmallEnemyExplosion();
-		}
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : getCollisionDamage()
-	 *
-	 * Description : Returns the collision damage for this enemy
-	 *
-	 * Parameters  : None.
-	 *
-	 * Returns     : int:  Collision damage
-	 */
-	public int getCollisionDamage()
-	{
-		return collisionDamage;
-	}
-
-	//Only called when the application is being quit. Will disable spawning in OnDestroy
-	void OnApplicationQuit() {
-		
-		isQuitting = true;
-		
-	}
-	
-	//Used to spawn particle effects or money when destroyed
-	void OnDestroy() {
-		
-		if (!isQuitting) {
-			
-			//Load the explosion
-			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
-			
-			//Position of the enemy
-			var position = gameObject.transform.position;
-			
-			//Create the explosion at this location
-			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
-
-			//Spawn money with a certain chance
-			if(random.GetRandom(100) < moneyDropRate)
-			{
-				//Load the money prefab
-				GameObject money = Resources.Load<GameObject>("Money/Money");
-
-				//Create money at this location
-				Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
-
-			}
-		}
-		
+		}		
 	}
 
 }

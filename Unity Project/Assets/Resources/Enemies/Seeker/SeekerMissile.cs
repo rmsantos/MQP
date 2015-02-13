@@ -187,8 +187,8 @@ public class SeekerMissile : MonoBehaviour {
 				//If the collision was with an enemy or boss
 				if(collide.tag == "Enemies" || collide.tag == "Boss")
 				{
-					//Find the component that extends BasicEnemy (the enemy script)
-					BasicEnemy enemy = (BasicEnemy)collide.GetComponent(typeof(BasicEnemy));
+					//Find the component that extends AbstractEnemy (the enemy script)
+					AbstractEnemy enemy = (AbstractEnemy)collide.GetComponent(typeof(AbstractEnemy));
 
 					//Deal damage to that enemy
 					enemy.takeDamage(damage);

@@ -161,14 +161,14 @@ public class PlayerCollisions : MonoBehaviour {
 
 		if(col.gameObject.tag == "Enemies")
 		{
-			//Destroy the enemy
-			Destroy(col.gameObject);
-
 			//Find the abstract class of this collision
-			BasicEnemy enemy = (BasicEnemy)col.gameObject.GetComponent(typeof(BasicEnemy));
+			AbstractEnemy enemy = (AbstractEnemy)col.gameObject.GetComponent(typeof(AbstractEnemy));
 
 			//Subtract the health based on that enemy
 			takeDamage(enemy.getCollisionDamage());
+
+			//Destroy this enemy
+			enemy.takeDamage(99999);
 			
 		}
 
