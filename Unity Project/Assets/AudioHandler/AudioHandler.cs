@@ -162,4 +162,47 @@ public class AudioHandler : MonoBehaviour {
 			GameObject.Find ("asteroidExplosion4").GetComponent<AudioSource> ().Play ();
 
 	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playLaser()
+	 *
+	 * Description : Play the sound effect for shooting lasers
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playLaser()
+	{
+		//Pick a random sound effect
+		int number = random.GetRandom (6);
+
+		//Play that random sound effect
+		if(number == 0)
+			GameObject.Find ("laser1").GetComponent<AudioSource> ().Play ();
+		else if(number == 1)
+			GameObject.Find ("laser2").GetComponent<AudioSource> ().Play ();
+		else if(number == 2)
+			GameObject.Find ("laser3").GetComponent<AudioSource> ().Play ();
+		else if(number == 3)
+			GameObject.Find ("laser4").GetComponent<AudioSource> ().Play ();
+		else if(number == 4)
+			GameObject.Find ("laser5").GetComponent<AudioSource> ().Play ();
+		else 
+			GameObject.Find ("laser6").GetComponent<AudioSource> ().Play ();
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playBurstLaser()
+	 *
+	 * Description : Play the sound effect for shooting burst lasers
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playBurstLaser()
+	{
+		GameObject.Find ("burstLaser").GetComponent<AudioSource> ().Play ();
+	}
 }

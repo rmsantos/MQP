@@ -115,6 +115,9 @@ public class Gunner : MonoBehaviour {
 	//Flag for playing the missile audio clip
 	bool missileCheck;
 
+	//The audiohandler
+	AudioHandler audioHandler;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -125,6 +128,10 @@ public class Gunner : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		//Search for the audioHandler
+		audioHandler = GameObject.FindGameObjectWithTag ("AudioHandler").GetComponent<AudioHandler> ();
+
 		//Set the shoot timer to its reload time
 		blasterShootTimer = blasterReloadTime;
 		missileShootTimer = missileReloadTime;
@@ -283,6 +290,9 @@ public class Gunner : MonoBehaviour {
 			//If power level 3, then enable tri-shot
 			if(PlayerPrefs.GetInt("LaserPower",0) == 3)
 			{
+				//Play the burst laser sound effect
+				audioHandler.playBurstLaser();
+
 				//SECOND LASER
 				//Instantiate a laser with laserPrefab at the players turret
 				GameObject laser2 = (GameObject)Instantiate(laserPrefab,turretEnd.position, Quaternion.identity);
@@ -316,6 +326,9 @@ public class Gunner : MonoBehaviour {
 				//Send the damage the laser will deal to the enemy
 				laser3.GetComponent<Laser>().setDamage(laserDamage);
 			}
+			else
+				//Play the laser sound effect
+				audioHandler.playLaser();
 		
 		}
 
