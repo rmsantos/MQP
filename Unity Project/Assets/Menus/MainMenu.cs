@@ -37,6 +37,8 @@ public class MainMenu : MonoBehaviour {
 	public int initialMissilePower;
 	public int initialLaserPower;
 	public int initialBlasterPower;
+	public int initialRadarPower;
+	public int initialRepairPower;
 	public int initialMoneyValue;
 	public int initialCrystalValue;
 	public int initialMissiles;
@@ -157,6 +159,8 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("MissilePower", initialMissilePower);
 		PlayerPrefs.SetInt ("LaserPower", initialLaserPower);
 		PlayerPrefs.SetInt ("BlasterPower", initialBlasterPower);
+		PlayerPrefs.SetInt ("RadarPower", initialRadarPower);
+		PlayerPrefs.SetInt ("RepairPower", initialRepairPower);
 		PlayerPrefs.SetInt ("MoneyValue", initialMoneyValue);
 		PlayerPrefs.SetInt ("CrystalValue", initialCrystalValue);
 		PlayerPrefs.SetInt ("Health", initialHealth);

@@ -76,11 +76,20 @@ public class PortraitController : MonoBehaviour {
 	//Flag for the mechanic response
 	bool mechanicResponse;
 
-	//Timer to count
+	//Flag for the radar power dialogue
+	bool radarCheck;
+
+	//Timer to count tip
 	int timer;
+
+	//Timer to count radar power
+	int timer2;
 
 	//Time before a tip is said
 	public int tipTimer;
+
+	//Time before the no power radar dialogue is said
+	public int radarTimer;
 
 	//The pause controller
 	PauseController pause;
@@ -100,6 +109,9 @@ public class PortraitController : MonoBehaviour {
 	//Flag for boss phase
 	bool bossPhase;
 
+	//Radar power level
+	int radarPower;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -111,12 +123,16 @@ public class PortraitController : MonoBehaviour {
 	 */
 	void Start () {
 
+		//Set the radar power level
+		radarPower = PlayerPrefs.GetInt ("RadarPower", 0);
+
 		//Set to false to start
 		crystalCheck = false;
 		pilotThanks = false;
 		gunnerThanks = false;
 		mechanicResponse = false;
 		bossPhase = false;
+		radarCheck = false;
 		player1Speech = false;
 		player2Speech = false;
 		player3Speech = false;
@@ -239,9 +255,16 @@ public class PortraitController : MonoBehaviour {
 
 		//Increment the timer if the game isnt paused
 		if(!pause.IsPaused())
+		{
 			timer++;
 
-		//If the timer elapses
+			//If the player has not supplied any power to the radar
+			if(radarPower == 0)
+				timer2++;
+
+		}
+
+		//If the tip timer elapses
 		if(timer == tipTimer)
 		{
 			//Reset the timer
@@ -249,6 +272,16 @@ public class PortraitController : MonoBehaviour {
 
 			//Play a random info clip
 			playMiscInfo();
+		}
+
+		//If the radar timer elapses
+		if(timer2 == radarTimer)
+		{
+			//Reset the timer
+			timer2 = 0;
+
+			//Play the radar no power dialogue
+			playNoRadarPower();
 		}
 
 
@@ -662,6 +695,39 @@ public class PortraitController : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
+	/* Function    : playNoRadarPower()
+	 *
+	 * Description : Plays this clip when the player has no power to the radars
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playNoRadarPower()
+	{
+		if(!radarCheck)
+		{
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				//Play this clip always
+				print("NO POWER RADAR");
+				
+				//Load the audio clip and play it
+				source.clip = portrait4[15];
+				source.Play();
+				
+				//Flag that this audio was said
+				radarCheck = true;
+				
+				//Flag that player 4 is speaking
+				player4Speech = true;
+
+			}
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
 	/* Function    : playApproachingAsteroids()
 	 *
 	 * Description : Plays this clip when an asteroid instance spawns
@@ -745,6 +811,37 @@ public class PortraitController : MonoBehaviour {
 			}
 		}
 	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playMinefield()
+	 *
+	 * Description : Plays this clip on a 75% chance when a minefield approaches
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playMinefield()
+	{
+		//75% to play this clip
+		if(random.GetRandom(100) < 75)
+		{
+			//If audio isnt current playing
+			if(!source.isPlaying)
+			{
+				print("MINEFIELD APPROACHING");
+				
+				//Load the audio clip and play it
+				source.clip = portrait4[19];
+				source.Play();
+				
+				//Flag that player 4 is speaking
+				player4Speech = true;
+			}
+		}
+	}
+
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : playVictory()

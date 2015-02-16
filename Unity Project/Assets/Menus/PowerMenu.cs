@@ -22,7 +22,7 @@ using System.Collections;
 public class PowerMenu : MonoBehaviour {
 		
 	//Enums for all the player stations
-	enum powerSelected { SHIELD = 0, ENGINE = 1, LASER = 2, BLASTER = 3, MISSILE = 4, POWER = 5};
+	enum powerSelected { SHIELD = 0, ENGINE = 1, LASER = 2, BLASTER = 3, MISSILE = 4, POWER = 5, RADAR = 6, REPAIR = 7};
 
 	//Flags on whether to start the game
 	bool startGame;
@@ -88,7 +88,7 @@ public class PowerMenu : MonoBehaviour {
 		maxPower = 5 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
 
 		//Initialize array
-		playerPowers = new int[5];
+		playerPowers = new int[8];
 
 		//Load the player prefs of each power level
 		playerPowers[(int)powerSelected.SHIELD] = PlayerPrefs.GetInt ("ShieldPower", 0);
@@ -96,9 +96,11 @@ public class PowerMenu : MonoBehaviour {
 		playerPowers[(int)powerSelected.LASER] = PlayerPrefs.GetInt ("LaserPower", 0);
 		playerPowers[(int)powerSelected.BLASTER] = PlayerPrefs.GetInt ("BlasterPower", 0);
 		playerPowers[(int)powerSelected.MISSILE] = PlayerPrefs.GetInt ("MissilePower", 0);
+		playerPowers[(int)powerSelected.RADAR] = PlayerPrefs.GetInt ("RadarPower", 0);
+		playerPowers[(int)powerSelected.REPAIR] = PlayerPrefs.GetInt ("RepairPower", 0);
 
 		//Calculate the players power level
-		power = maxPower - playerPowers[0] - playerPowers[1] - playerPowers[2] - playerPowers[3] - playerPowers[4];
+		power = maxPower - playerPowers[0] - playerPowers[1] - playerPowers[2] - playerPowers[3] - playerPowers[4] - playerPowers[6] - playerPowers[7];
 
 		//Display the current power levels
 		powerBar.maxValue = maxPower;
