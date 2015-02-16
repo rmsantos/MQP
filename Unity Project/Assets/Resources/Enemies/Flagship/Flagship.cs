@@ -19,49 +19,12 @@ using System.Collections;
 /* -- DATA STRUCTURES ---------------------------------------------------- */
 //None
 
-public class Flagship :  MonoBehaviour, BasicEnemy {
+public class Flagship :  AbstractEnemy {
 	
 	/* -- GLOBAL VARIABLES --------------------------------------------------- */
 	
-	//The speed at which the enemy will move
-	public float speed;
-
 	//The movement speed of the boss. This variable is meant to be modified
 	float moveSpeed;
-
-	//Is the enemy ready to shoot?
-	bool ready;
-	
-	//Counter for reloading
-	int shootTimer;
-	
-	//Time before the enemy can shoot again 
-	public int reloadTime;
-	
-	//Prefab of the enemy bullet
-	public GameObject bulletPrefab;
-	
-	//Stores the boundaries of the game
-	Boundaries boundaries;
-	
-	//Value of destroying this enemy
-	public int value;
-	
-	//ScoreHandler object to track players score
-	public GameObject scoreObject;
-	static ScoreHandler score;
-
-	//The health of this enemy
-	public int health;
-
-	//Stores the damage colliding with the player does
-	public int collisionDamage;
-	
-	//Stores the damage the bullet does
-	public int bulletDamage;
-	
-	//The damage per level
-	public float damagePerLevel;
 
 	//The Boss Instance Object
 	public GameObject boss1;
@@ -98,35 +61,13 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	//The starting health of the boss
 	int startingHealth;
 
-	//Player script
-	GameObject player;
-
 	//Player position
 	Vector3 playerPosition;
-
-	//Get the portrait controller to play audio clips
-	PortraitController portraitController;
-
-	//Quitting boolean
-	bool isQuitting;
-
-	//Randomizer script
-	GameObject randomizer;
-	Randomizer random;
-	
-	//Money drop rate 
-	public int moneyDropRate;
-
-	//Used as a reference for rotating back to normal
-	public Quaternion originalRotationValue;
-	
-	//Rotates back to normal at this speed
-	public float rotationResetSpeed;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
-	 * Description : Initializes the boss variables.
+	 * Description : Initializes enemy variables
 	 *
 	 * Parameters  : None
 	 *
@@ -134,30 +75,11 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	 */
 	void Start () {
 
-		//Get the randomizer script
-		randomizer = GameObject.FindGameObjectWithTag ("Randomizer");
-		random = (Randomizer)randomizer.GetComponent("Randomizer");
-
-		//The enemy can shoot right when it spawns
-		ready = true;
-
-		//save initial rotation value
-		originalRotationValue = transform.rotation;
-		
-		//Set the shooting timer
-		shootTimer = reloadTime;
-		
-		//Pull the boundaries script from the main camera object and store it
-		boundaries = Camera.main.GetComponent<Boundaries>();
-		
-		//Search for the ScoreHandler object for tracking score
-		score = (ScoreHandler)scoreObject.GetComponent("ScoreHandler");; 
+		//Initialize base objects
+		setup ();
 
 		//Get the script that created this boss
 		bossInstance = (Boss1) boss1.GetComponent("Boss1");
-
-		//Get the script that controls the level
-		levelHandler = (LevelHandler) levelHandlerObject.GetComponent("LevelHandler");
 
 		//Initialize phase to 0 to move into place
 		phase = 0;
@@ -174,19 +96,9 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		//Store the starting health
 		startingHealth = health;
 
-		//Search for player
-		player = GameObject.FindGameObjectWithTag ("Player");
+		//Get the script that controls the level
+		levelHandler = (LevelHandler) levelHandlerObject.GetComponent("LevelHandler");
 
-		//Find the portrait controller script
-		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
-
-		//Not quitting the application
-		isQuitting = false;
-
-		//Set the level progression modifiers
-		missileDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt("Level", 0) - 1f));
-		bulletDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
-		collisionDamage += (int)(damagePerLevel * ((float)PlayerPrefs.GetInt ("Level", 0) - 1f));
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -202,7 +114,6 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 
 		//Update the health
 		levelHandler.UpdateBossHealth (health);
-		print (health);
 
 		//Phase 0 the boss moves to the center of the screen
 		if(phase == 0)
@@ -216,6 +127,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				//Play the sound effect upon boss switching phases
 				portraitController.playBossPhase();
 
+				//Move to phase 1
 				phase = 1;
 			}
 
@@ -240,44 +152,17 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				//Rotate the angle at which the boss will shoot (so that it spins uniformly
 				rotateCount += 11;
 
-				//Flag that a bullet was shot
-				ready = false;
-
 				//Spawn 4 bullets
-				GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-				GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-				GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-				GameObject bullet4 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+				GameObject bullet1 = shoot (turret);
+				GameObject bullet2 = shoot (turret);
+				GameObject bullet3 = shoot (turret);
+				GameObject bullet4 = shoot (turret);
 
 				//Rotate the bullets so that they form a "t" formation, then rotate them by rotateCount
 				bullet1.transform.Rotate(0,0,rotateCount);
 				bullet2.transform.Rotate(0,0,90+rotateCount);
 				bullet3.transform.Rotate(0,0,180+rotateCount);
 				bullet4.transform.Rotate(0,0,270+rotateCount);
-
-				//Cast to a bullet type
-				SimpleEnemyBullet simpleEnemyBullet1 = (SimpleEnemyBullet)bullet1.GetComponent(typeof(SimpleEnemyBullet));
-				
-				//Set the damage of the bullet
-				simpleEnemyBullet1.setDamage(bulletDamage);
-				
-				//Cast to a bullet type
-				SimpleEnemyBullet simpleEnemyBullet2 = (SimpleEnemyBullet)bullet2.GetComponent(typeof(SimpleEnemyBullet));
-				
-				//Set the damage of the bullet
-				simpleEnemyBullet2.setDamage(bulletDamage);
-
-				//Cast to a bullet type
-				SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
-				
-				//Set the damage of the bullet
-				simpleEnemyBullet3.setDamage(bulletDamage);
-				
-				//Cast to a bullet type
-				SimpleEnemyBullet simpleEnemyBullet4 = (SimpleEnemyBullet)bullet4.GetComponent(typeof(SimpleEnemyBullet));
-				
-				//Set the damage of the bullet
-				simpleEnemyBullet4.setDamage(bulletDamage);
 			}
 
 		}
@@ -301,7 +186,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				//Spawn two bullets
 				GameObject bullet1 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
 				GameObject bullet2 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
-
+	
 				//One bullet moves in the opposite direction
 				//This will cut the screen horizontally in half with bullets
 				bullet2.transform.Rotate(0,0,180);
@@ -330,7 +215,7 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 				if(secondShoot % 2 == 0)
 				{
 					//Spawn the bullet
-					GameObject bullet3 = (GameObject)Instantiate(bulletPrefab,transform.position,Quaternion.identity);
+					GameObject bullet3 = shoot (turret);
 
 					//Store the direction of the player in respect to the bullet
 					Vector3 direction = player.transform.position-bullet3.transform.position;
@@ -340,12 +225,6 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 					
 					//Rotate the bullet along the y so that it faces the player
 					bullet3.transform.Rotate(0,90,0);
-
-					//Cast to a bullet type
-					SimpleEnemyBullet simpleEnemyBullet3 = (SimpleEnemyBullet)bullet3.GetComponent(typeof(SimpleEnemyBullet));
-					
-					//Set the damage of the bullet
-					simpleEnemyBullet3.setDamage(bulletDamage);
 				}
 
 				//Flag the enemy has fired
@@ -504,23 +383,8 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 			}
 		}
 
-
-		//If the enemy is "reloading", don't decrement the timer
-		if (!ready) {
-			
-			//Decrements the shoot timer
-			shootTimer--;
-			
-			//If the shoot timer has reached 0, reset it and flag that the enemy can shoot
-			if (shootTimer <= 0) 
-			{	
-				//Set ready to fire
-				ready = true;
-
-				//Reset the time
-				shootTimer = reloadTime;
-			}
-		}
+		//Reload the weapon
+		reload ();
 
 		//Always try to rotate to the correct facing direction
 		transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, rotationResetSpeed); 
@@ -544,16 +408,15 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
-			
+
 			//Get the damage the player bullet will deal
 			int damage = col.gameObject.GetComponent<Laser>().getDamage();
-			
+
 			//Deal the damage to this enemy
 			takeDamage(damage);
 
 			//Play the audioclip of hitting the boss with a laser
 			portraitController.playLaserBoss();
-			
 		}
 	}
 
@@ -582,76 +445,27 @@ public class Flagship :  MonoBehaviour, BasicEnemy {
 	 */
 	public void takeDamage(int damage)
 	{
-		
 		//Subtract health from the enemy
 		health -= damage;
 
 		//Show the hit fader effect
 		GetComponent<HitFader>().BeenHit();
-		
+
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
 			//The boss has died
 			bossInstance.BossDied();
-			
+
 			//Destroy the enemy
-			Destroy(this.gameObject);	
-			
+			Destroy(this.gameObject);
+
 			//Update the players score
 			score.UpdateScore(value);
 		}
+		
 
-	}
 
-	/* ----------------------------------------------------------------------- */
-	/* Function    : getCollisionDamage()
-	 *
-	 * Description : Returns the collision damage for this enemy
-	 *
-	 * Parameters  : None.
-	 *
-	 * Returns     : int:  Collision damage
-	 */
-	public int getCollisionDamage()
-	{
-		return collisionDamage;
-	}
-
-	//Only called when the application is being quit. Will disable spawning in OnDestroy
-	void OnApplicationQuit() {
-		
-		isQuitting = true;
-		
-	}
-	
-	//Used to spawn particle effects or money when destroyed
-	void OnDestroy() {
-		
-		if (!isQuitting) {
-			
-			//Load the explosion
-			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
-			
-			//Position of the enemy
-			var position = gameObject.transform.position;
-			
-			//Create the explosion at this location
-			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
-			
-			//Spawn money with a certain chance
-			if(random.GetRandom(100) < moneyDropRate)
-			{
-				//Load the money prefab
-				GameObject money = Resources.Load<GameObject>("Money/Money");
-				
-				//Create money at this location
-				Instantiate(money, new Vector3(position.x, position.y, position.z), Quaternion.identity);
-				
-			}
-			
-		}
-		
 	}
 
 }

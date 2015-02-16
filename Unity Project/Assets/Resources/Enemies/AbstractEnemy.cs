@@ -30,7 +30,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 	Randomizer random;
 
 	//ScoreHandler object to track players score
-	static ScoreHandler score;
+	static protected ScoreHandler score;
 
 	//Portrait controller
 	protected PortraitController portraitController;
