@@ -74,11 +74,10 @@
      <Compile Include="Assets\Resources\Crystals\Crystals.cs" />
      <Compile Include="Assets\Resources\Enemies\AbstractEnemy.cs" />
      <Compile Include="Assets\Resources\Enemies\Ambusher\Ambusher.cs" />
+     <Compile Include="Assets\Resources\Enemies\Asteroids\AbstractAsteroid.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" />
-     <Compile Include="Assets\Resources\Enemies\Asteroids\BasicAsteroid.cs" />
-     <Compile Include="Assets\Resources\Enemies\BasicEnemy.cs" />
      <Compile Include="Assets\Resources\Enemies\Cruiser\Cruiser.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />

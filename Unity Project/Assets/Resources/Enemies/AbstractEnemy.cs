@@ -92,7 +92,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	public void setup()
+	protected void setup()
 	{
 		//Pull the boundaries script from the main camera object and store it
 		boundaries = Camera.main.GetComponent<Boundaries>();
@@ -187,16 +187,25 @@ public abstract class AbstractEnemy : MonoBehaviour {
 			switch(gameObject.name)
 			{
 				case "Ambusher":
+				case "Ambusher(Clone)":
 				case "DogFighterA":
+				case "DogFighterA(Clone)":
 				case "DogFighterB":
+				case "DogFighterB(Clone)":
 				case "Cruiser":
+				case "Cruiser(Clone)":
 				case "Interceptor":
+				case "Interceptor(Clone)":
 				case "Saboteur":
+				case "Saboteur(Clone)":
 				case "Seeker":
+				case "Seeker(Clone)":
 					audioHandler.playSmallEnemyExplosion();
 					break;
 				case "Grenadier":
+				case "Grenadier(Clone)":
 				case "Juggernaut":
+				case "Juggernaut(Clone)":
 					audioHandler.playMediumEnemyExplosion();
 					portraitController.playLargeEnemyDestroyed();
 					break;

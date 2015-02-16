@@ -113,7 +113,7 @@ public class Blaster : MonoBehaviour {
 				if(hit.transform.tag == "Enemies")
 				{
 					//Find the component that extends BasicEnemy (the enemy script)
-					BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
+					AbstractEnemy enemy = (AbstractEnemy)hit.transform.GetComponent(typeof(AbstractEnemy));
 						
 					//Deal damage to that enemy
 					enemy.takeDamage(damage);
@@ -123,7 +123,7 @@ public class Blaster : MonoBehaviour {
 				if(hit.transform.tag == "Asteroids")
 				{
 					//Cast to an asteroid type
-					BasicAsteroid asteroid = (BasicAsteroid)hit.transform.GetComponent(typeof(BasicAsteroid));
+					AbstractAsteroid asteroid = (AbstractAsteroid)hit.transform.GetComponent(typeof(AbstractAsteroid));
 					
 					//And shatter the asteroid
 					asteroid.shatter();
@@ -146,7 +146,7 @@ public class Blaster : MonoBehaviour {
 					if(!hit.transform.GetComponent<Flagship>().startingPhase())
 					{
 						//Find the component that extends BasicEnemy (the enemy script)
-						BasicEnemy enemy = (BasicEnemy)hit.transform.GetComponent(typeof(BasicEnemy));
+						AbstractEnemy enemy = (AbstractEnemy)hit.transform.GetComponent(typeof(AbstractEnemy));
 						
 						//Deal damage to that enemy
 						enemy.takeDamage(damage);

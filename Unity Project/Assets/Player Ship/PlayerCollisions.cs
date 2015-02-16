@@ -178,7 +178,7 @@ public class PlayerCollisions : MonoBehaviour {
 			portraitController.playAsteroidHit();
 
 			//Find the abstract class of this collision
-			BasicAsteroid asteroid = (BasicAsteroid)col.gameObject.GetComponent(typeof(BasicAsteroid));
+			AbstractAsteroid asteroid = (AbstractAsteroid)col.gameObject.GetComponent(typeof(AbstractAsteroid));
 
 			//Subtract the health based on that asteroid
 			takeDamage(asteroid.getCollisionDamage());

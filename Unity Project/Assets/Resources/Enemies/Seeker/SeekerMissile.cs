@@ -202,7 +202,7 @@ public class SeekerMissile : MonoBehaviour {
 				if(collide.tag == "Asteroids")
 				{
 					//Cast to an asteroid type
-					BasicAsteroid asteroid = (BasicAsteroid)collide.GetComponent(typeof(BasicAsteroid));
+					AbstractAsteroid asteroid = (AbstractAsteroid)collide.GetComponent(typeof(AbstractAsteroid));
 					
 					//And shatter the asteroid
 					asteroid.shatter();

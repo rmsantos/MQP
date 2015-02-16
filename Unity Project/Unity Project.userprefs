@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Flagship\Flagship.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs">
     <Files>
-      <File FileName="Assets\Resources\Enemies\Flagship\Flagship.cs" Line="459" Column="4" />
-      <File FileName="Assets\Resources\Enemies\AbstractEnemy.cs" Line="33" Column="18" />
-      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="266" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" Line="60" Column="22" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" Line="60" Column="22" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" Line="86" Column="5" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AbstractAsteroid.cs" Line="112" Column="24" />
+      <File FileName="Assets\Resources\Enemies\AbstractEnemy.cs" Line="257" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
