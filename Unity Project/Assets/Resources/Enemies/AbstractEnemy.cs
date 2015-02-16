@@ -183,8 +183,6 @@ public abstract class AbstractEnemy : MonoBehaviour {
 			//Update the players score
 			score.UpdateScore(value);
 
-			print (name);
-
 			//Play the appropriate explosions sound
 			switch(gameObject.name)
 			{
