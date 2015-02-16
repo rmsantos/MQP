@@ -122,4 +122,19 @@ public class AudioHandler : MonoBehaviour {
 			GameObject.Find ("smallEnemyExplosion2").GetComponent<AudioSource> ().Play ();
 
 	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playBossExplosion()
+	 *
+	 * Description : Play the sound effect for bosses exploding
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playBossExplosion()
+	{
+		GameObject.Find ("bossExplosion").GetComponent<AudioSource> ().Play ();
+		print ("MEEP");
+	}
 }

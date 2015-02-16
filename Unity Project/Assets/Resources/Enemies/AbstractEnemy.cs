@@ -24,7 +24,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 	protected GameObject player;
 
 	//The audiohandler
-	AudioHandler audioHandler;
+	protected AudioHandler audioHandler;
 
 	//Randomizer script
 	Randomizer random;
@@ -182,6 +182,8 @@ public abstract class AbstractEnemy : MonoBehaviour {
 			
 			//Update the players score
 			score.UpdateScore(value);
+
+			print (name);
 
 			//Play the appropriate explosions sound
 			switch(gameObject.name)
