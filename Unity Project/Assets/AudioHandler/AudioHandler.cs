@@ -135,6 +135,31 @@ public class AudioHandler : MonoBehaviour {
 	public void playBossExplosion()
 	{
 		GameObject.Find ("bossExplosion").GetComponent<AudioSource> ().Play ();
-		print ("MEEP");
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playAsteroidExplosion()
+	 *
+	 * Description : Play the sound effect for asteroids exploding
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playAsteroidExplosion()
+	{
+		//Pick a random sound effect
+		int number = random.GetRandom (4);
+
+		//Play that random sound effect
+		if(number == 0)
+			GameObject.Find ("asteroidExplosion1").GetComponent<AudioSource> ().Play ();
+		else if(number == 1)
+			GameObject.Find ("asteroidExplosion2").GetComponent<AudioSource> ().Play ();
+		else if(number == 2)
+			GameObject.Find ("asteroidExplosion3").GetComponent<AudioSource> ().Play ();
+		else
+			GameObject.Find ("asteroidExplosion4").GetComponent<AudioSource> ().Play ();
+
 	}
 }

@@ -26,6 +26,9 @@ public abstract class AbstractAsteroid : MonoBehaviour {
 	
 	protected bool isQuitting;
 
+	//The audiohandler
+	AudioHandler audioHandler;
+
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setup ()
@@ -37,7 +40,10 @@ public abstract class AbstractAsteroid : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	protected void setup () {
-		
+
+		//Search for the audioHandler
+		audioHandler = GameObject.FindGameObjectWithTag ("AudioHandler").GetComponent<AudioHandler> ();
+
 		//Get the randomizer script
 		random = GameObject.FindGameObjectWithTag ("Randomizer").GetComponent<Randomizer>();
 		
@@ -184,6 +190,9 @@ public abstract class AbstractAsteroid : MonoBehaviour {
 			Instantiate(smallAsteroid, new Vector3(position.x, position.y - .3f, position.z), Quaternion.identity);
 
 		}
+
+		//Play the asteroid explosion sound effect
+		audioHandler.playAsteroidExplosion ();
 
 		//Destroy the asteroid
 		Destroy(this.gameObject);
