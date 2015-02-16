@@ -363,8 +363,11 @@ public class Gunner : MonoBehaviour {
 		//If the usesr has clicked the middle mouse button
 		if(shootingBlaster)
 		{
+			//Play the sound effect for the blaster
+			audioHandler.playBlaster();
+
 			//Create the blaster object and store it
-			GameObject blaster = (GameObject)Instantiate(blasterPrefab,laserTurret.position,Quaternion.identity);
+			GameObject blaster = (GameObject)Instantiate(blasterPrefab,blasterTurret.position,Quaternion.identity);
 
 			//Transfer the damage to the blaster object
 			blaster.GetComponent<Blaster>().setDamage(blasterDamage);
