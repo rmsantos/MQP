@@ -399,17 +399,37 @@ public class Gunner : MonoBehaviour {
 			}
 
 			//If the player tries to shoot a missile and can
-			if(readyMissile && (Input.GetMouseButtonDown(1) || Input.GetKeyDown("m")) && missilePower > 0 && missiles > 0) {
-				//Flag the shoot
-				shootingMissile= true;
+			if(readyMissile && (Input.GetMouseButtonDown(1) || Input.GetKeyDown("m")) && missiles > 0) {
+
+				//if power is supplied to the missiles
+				if(missilePower > 0)
+				{
+					//Flag the shoot
+					shootingMissile= true;
+				}
+				else
+				{
+					//Else play the dialogue that tells the player they are without power to it
+					portraitController.playGunnerNoPower();
+				}
 
 			}
 
 			//If the player tries to shoot the blaster and can
-			if(readyBlaster && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && blasterPower > 0) {
+			if(readyBlaster && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l"))) {
 
-				//Flag the shoot
-				shootingBlaster= true;
+				//If the player supplied power to the blaster
+				if(blasterPower > 0)
+				{
+					//Flag the shoot
+					shootingBlaster= true;
+				}
+				//If the blaster has no power AND has been upgraded to appear
+				else if(PlayerPrefs.GetInt("BlasterUpgradeFireRate",0) != 0)
+				{
+					//Play the no power audio clip
+					portraitController.playGunnerNoPower();
+				}
 				
 			}
 		}

@@ -123,7 +123,7 @@ public class PortraitController : MonoBehaviour {
 	 */
 	void Start () {
 
-		//Set the radar power level
+		//Set the power levels
 		radarPower = PlayerPrefs.GetInt ("RadarPower", 0);
 
 		//Set to false to start
@@ -407,6 +407,31 @@ public class PortraitController : MonoBehaviour {
 
 			//Flag that player 1 is speaking
 			player1Speech = true;
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playGunnerNoPower()
+	 *
+	 * Description : Plays when the player tries to fire a weapon with no power supplied to it
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playGunnerNoPower()
+	{
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			print("GUNNER NO POWER");
+				
+			//Load the audio clip and play it
+			source.clip = portrait2[5];
+			source.Play();
+				
+			//Flag that player 2 is speaking
+			player2Speech = true;
 		}
 	}
 
