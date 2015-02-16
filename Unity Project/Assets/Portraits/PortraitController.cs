@@ -76,6 +76,9 @@ public class PortraitController : MonoBehaviour {
 	//Flag for the mechanic response
 	bool mechanicResponse;
 
+	//Flag for mechanic response for the power dialogue
+	bool mechanicResponse2;
+
 	//Flag for the radar power dialogue
 	bool radarCheck;
 
@@ -131,6 +134,7 @@ public class PortraitController : MonoBehaviour {
 		pilotThanks = false;
 		gunnerThanks = false;
 		mechanicResponse = false;
+		mechanicResponse2 = false;
 		bossPhase = false;
 		radarCheck = false;
 		player1Speech = false;
@@ -253,6 +257,12 @@ public class PortraitController : MonoBehaviour {
 			playMechanicResponse();
 		}
 
+		//Play the mechanicResponse audio clip after the pilot talks about power
+		if(mechanicResponse2 && !source.isPlaying)
+		{
+			playMechanicResponse2();
+		}
+
 		//Increment the timer if the game isnt paused
 		if(!pause.IsPaused())
 		{
@@ -271,7 +281,10 @@ public class PortraitController : MonoBehaviour {
 			timer = 0;
 
 			//Play a random info clip
-			playMiscInfo();
+			if(random.GetRandom(3) == 0)	
+				playPilotPower();
+			else
+				playMiscInfo();
 		}
 
 		//If the radar timer elapses
@@ -283,11 +296,37 @@ public class PortraitController : MonoBehaviour {
 			//Play the radar no power dialogue
 			playNoRadarPower();
 		}
-
-
-		
 	}
 
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playPilotPower()
+	 *
+	 * Description : Plays every so often from the pilot
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playPilotPower()
+	{
+
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			print("PILOT POWER");
+
+			//Load the audio clip and play it
+			source.clip = portrait1[0];
+			source.Play();
+				
+			//Flag the mechanic for a response
+			mechanicResponse2 = true;
+				
+			//Flag that player 1 is speaking
+			player1Speech = true;
+		}
+	}
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : playAsteroidHit()
@@ -551,6 +590,34 @@ public class PortraitController : MonoBehaviour {
 
 			//Flag that player 2 is speaking
 			player2Speech = true;
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playMechanicResponse2()
+	 *
+	 * Description : Plays when the pilot complains about power
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playMechanicResponse2()
+	{
+		//If audio isnt current playing
+		if(!source.isPlaying)
+		{
+			print("MECHANIC RESPONSE2");
+			
+			//Load the audio clip and play it
+			source.clip = portrait3[10];
+			source.Play();
+			
+			//Flag that the clip is playing
+			mechanicResponse2 = false;
+			
+			//Flag that player 3 is speaking
+			player3Speech = true;
 		}
 	}
 
