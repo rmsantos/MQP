@@ -34,7 +34,7 @@ public class PlayerCollisions : MonoBehaviour {
 	public GameObject scoreObject;
 	static ScoreHandler score;
 
-	public Slider healthBar;
+	public Image healthImage;
 
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
@@ -72,8 +72,9 @@ public class PlayerCollisions : MonoBehaviour {
 		//Get the levelHandler
 		levelHandler = (LevelHandler) spawner.GetComponent("LevelHandler");
 
-		//display on the health bar
-		healthBar.value = health;
+		//Display the players health
+		displayHealth ();
+
 	}
 
 
@@ -103,6 +104,35 @@ public class PlayerCollisions : MonoBehaviour {
 			other.enabled = false;
 			other.renderer.enabled = false;
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayHealth()
+	 *
+	 * Description : Displays the players health on screen
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayHealth() 
+	{
+		//Use an algorithm to map the images to the players health
+		int imageValue = health;
+		int healthMax = 100;
+		int healthMin = 0;
+		int imageMax = 23;
+		int imageMin = 0;
+
+		//Figure out which images go with each health value
+		int imageNumber = healthMin + (imageValue-healthMin)*(imageMax-imageMin)/(healthMax-healthMin);
+
+		//Dont go negative
+		if(imageNumber < 0)
+			imageNumber = 0;
+
+		//Load the appropriate sprite
+		healthImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Health/" + imageNumber);
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -228,8 +258,6 @@ public class PlayerCollisions : MonoBehaviour {
 			Destroy(this.gameObject);
 			levelHandler.PlayerDied();
 		}
-
-		print (health);
 	}
 
 
@@ -264,8 +292,8 @@ public class PlayerCollisions : MonoBehaviour {
 		//Store the new health
 		PlayerPrefs.SetInt ("Health", health);
 
-		//And display on the health bar
-		healthBar.value = health;
+		//Display the players health
+		displayHealth ();
 	}
 
 	//Only called when the application is being quit. Will disable spawning in OnDestroy
