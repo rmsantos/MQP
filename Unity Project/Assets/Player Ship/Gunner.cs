@@ -101,10 +101,10 @@ public class Gunner : MonoBehaviour {
 	public GameObject pauseObject;
 	PauseController pauseMenu;
 
-	//Sliders to display weapon levels
-	public Slider blasterBar;
-	public Slider laserBar;
-	public Slider missileBar;
+	//Get the images for the power levels
+	public Image laserImage;
+	public Image blasterImage;
+	public Image missileImage;
 
 	//Number of missiles the player has
 	int missiles;
@@ -150,10 +150,10 @@ public class Gunner : MonoBehaviour {
 		setLaser (laserPower);
 		setMissile (missilePower);
 
-		//Display the weapon levels
-		blasterBar.value = blasterPower;
-		laserBar.value = laserPower;
-		missileBar.value = missilePower;
+		//Load the image sprites
+		laserImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/laser power/" + laserPower);
+		blasterImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/blaster power/" + blasterPower);
+		missileImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/missile power/" + missilePower);
 
 		//Load the players missiles
 		missiles = PlayerPrefs.GetInt ("Missiles", 0);
