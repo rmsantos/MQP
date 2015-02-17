@@ -15,7 +15,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class TestInstance : AbstractInstance {
+public class SimpleInstance : AbstractInstance {
 	
 	void Start () {
 		Initialize();
