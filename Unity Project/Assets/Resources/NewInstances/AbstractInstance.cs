@@ -13,6 +13,7 @@
 
 /* -- INCLUDE FILES ------------------------------------------------------ */
 using UnityEngine;
+using System.Linq;
 using System.Collections;
 
 public abstract class AbstractInstance : MonoBehaviour {
@@ -129,13 +130,21 @@ public abstract class AbstractInstance : MonoBehaviour {
 		}
 
 	}
-	
+
 	//Uses some logic to spawn enemies
 	protected void SpawnEnemy (int enemyNumber) {
 
 		float location = GetEnemyLocation(enemyNumber);
 		Instantiate(enemiesToSpawn[enemyNumber], new Vector3(right * 1.2f, location, 0f), Quaternion.identity);
 		
+	}
+
+	//Used to retreive the length of the wave
+	//Should be useful for radar type things
+	public int GetWaveLength() {
+
+		return spawnIntervals.Sum();
+
 	}
 	
 }
