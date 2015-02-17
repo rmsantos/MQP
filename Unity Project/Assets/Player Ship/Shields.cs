@@ -50,6 +50,14 @@ public class Shields : MonoBehaviour {
 	GameObject audioHandlerObject;
 	AudioHandler audioHandler;
 
+	//The shield icon images
+	public Image shield1;
+	public Image shield2;
+	public Image shield3;
+
+	//Shield recharge bar
+	public Slider shieldRechargeBar;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -82,7 +90,12 @@ public class Shields : MonoBehaviour {
 
 		//Get the script
 		collisions = GetComponentInParent<PlayerCollisions> ();
-		
+
+		//Set the max vlaue of the recharge bar
+		shieldRechargeBar.maxValue = shieldTimer;
+
+		//Update the recharge bar
+		shieldRechargeBar.value = shieldTimer;
 	}
 
 
@@ -99,7 +112,12 @@ public class Shields : MonoBehaviour {
 	{		
 		//Incremement the shield recharge timer only if shields are not full
 		if(shields != maxShields)
+		{
 			timer++;
+
+			//Update the recharge bar
+			shieldRechargeBar.value = timer;
+		}
 		
 		//if the timer elapses
 		if(timer == shieldTimer)
@@ -110,6 +128,9 @@ public class Shields : MonoBehaviour {
 			//Increment the shield
 			shields++;
 
+			//Display the number of shields and recharge bar
+			displayShields ();
+
 			//Play the recharge sound if the shield is turning on
 			if(shields == 1)
 				audioHandler.playShieldRecharge();
@@ -119,7 +140,40 @@ public class Shields : MonoBehaviour {
 		}
 	}
 
-	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayShields()
+	 *
+	 * Description : Displays the players current shields on the UI
+	 *
+	 * Parameters  : None.
+	 *
+	 * Returns     : Void
+	 */
+	void displayShields()
+	{
+		//Set all to false by default
+		shield1.enabled = false;
+		shield2.enabled = false;
+		shield3.enabled = false;
+
+		//Render the appropriate shields
+		if(shields >= 1)
+		{
+			shield1.enabled = true;
+		}
+
+		if(shields >= 2)
+		{
+			shield2.enabled = true;
+		}
+
+		if(shields == 3)
+		{
+			shield3.enabled = true;
+		}
+
+	}
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setShields(int level)
 	 *
@@ -166,6 +220,9 @@ public class Shields : MonoBehaviour {
 
 		//Set the shields to start
 		shields = maxShields;
+
+		//Display the number of shields and recharge bar
+		displayShields ();
 	}
 
 	
@@ -233,6 +290,9 @@ public class Shields : MonoBehaviour {
 		
 		//And set the new transparency levels
 		setTransparency ();
+
+		//Display the number of shields
+		displayShields ();
 
 		//Damage taken after shield breaks
 		int newDamage = damage - shieldAllowance;
