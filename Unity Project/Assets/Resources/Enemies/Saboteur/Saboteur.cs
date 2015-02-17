@@ -39,11 +39,11 @@ public class Saboteur : AbstractEnemy {
 	 */
 	void Start () {
 
-		//Initialize base objects
-		setup ();
-
 		//Rotate the Saboteur at the start to align it properly and save it
 		transform.Rotate (0, 180, 0);
+
+		//Initialize base objects
+		setup ();
 
 		//Start at state 0
 		state = 0;
@@ -73,7 +73,7 @@ public class Saboteur : AbstractEnemy {
 			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
 
 			//If the saboteur hits its mark
-			if(transform.position.x <= boundaries.getLeft() * 1.1f)
+			if(transform.position.x <= newPos.x)
 			{
 				//Rotate the sprite 180
 				transform.Rotate(0,180,0);
@@ -96,7 +96,7 @@ public class Saboteur : AbstractEnemy {
 			transform.position = Vector3.MoveTowards(transform.position, newPos, speed);
 
 			//If the ship is locked into its horizontal position
-			if(transform.position.x >= boundaries.getLeft()*0.9f)
+			if(transform.position.x >= newPos.x)
 			{
 				//Switch to the next state
 				state = 2;
