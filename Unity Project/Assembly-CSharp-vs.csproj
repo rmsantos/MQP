@@ -81,6 +81,7 @@
      <Compile Include="Assets\Resources\Enemies\Cruiser\Cruiser.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
+     <Compile Include="Assets\Resources\Enemies\DogFighterC\DogFighterC.cs" />
      <Compile Include="Assets\Resources\Enemies\Flagship\Flagship.cs" />
      <Compile Include="Assets\Resources\Enemies\Grenadier\Grenadier.cs" />
      <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />

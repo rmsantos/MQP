@@ -27,7 +27,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 	protected AudioHandler audioHandler;
 
 	//Randomizer script
-	Randomizer random;
+	protected Randomizer random;
 
 	//ScoreHandler object to track players score
 	static protected ScoreHandler score;
