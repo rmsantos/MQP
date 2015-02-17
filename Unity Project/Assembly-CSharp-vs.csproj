@@ -91,6 +91,7 @@
      <Compile Include="Assets\Resources\Enemies\Seeker\Seeker.cs" />
      <Compile Include="Assets\Resources\Enemies\Seeker\SeekerMissile.cs" />
      <Compile Include="Assets\Resources\Enemies\SimpleEnemyBullet.cs" />
+     <Compile Include="Assets\Resources\Instances\AbstractInstance.cs" />
      <Compile Include="Assets\Resources\Instances\BoxFormation.cs" />
      <Compile Include="Assets\Resources\Instances\DogfighterAttack.cs" />
      <Compile Include="Assets\Resources\Instances\ExampleInstance.cs" />
@@ -103,6 +104,7 @@
      <Compile Include="Assets\Resources\Instances\MediumAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\MixedAsteroids.cs" />
      <Compile Include="Assets\Resources\Instances\SmallAsteroids.cs" />
+     <Compile Include="Assets\Resources\Instances\TestInstance.cs" />
      <Compile Include="Assets\Resources\Money\Money.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
      <Compile Include="Assets\UI\UpdateCrystal.cs" />
@@ -112,7 +114,7 @@
      <Compile Include="Assets\UpgradeDescription.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/rmsantos/Desktop/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/jbmorse/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
