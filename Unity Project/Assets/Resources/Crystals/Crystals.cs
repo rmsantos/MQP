@@ -35,6 +35,9 @@ public class Crystals : MonoBehaviour {
 	GameObject randomizer;
 	Randomizer random;
 
+	//The radius at which the missile will detect enemies
+	public float detectRadius;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -79,13 +82,38 @@ public class Crystals : MonoBehaviour {
 	 */
 	void FixedUpdate () {
 		
-		/* -- LOCAL VARIABLES ---------------------------------------------------- */
+		//Draw a circle with detectRadius and store everything inside it
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, detectRadius);
 		
-		//The new position of the enemy after moving
-		Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
+		//Set the player to null for now
+		GameObject player = null;
 		
-		//Apply the movement
-		transform.position = newPos;
+		//For each item that overlaps the cirlce
+		foreach( Collider2D collide in hitColliders)
+		{
+			//Check if it is the player
+			if(collide.tag == "Player")
+			{
+				//If so store the location
+				player = collide.gameObject;
+			}
+		}
+		
+		//If the player is in range
+		if(player != null)
+		{
+			//Move towards the player
+			transform.position = Vector3.MoveTowards(transform.position,player.transform.position,speed*2);
+		}
+		else
+		{
+			//Else move to the left
+			//The new position of the enemy after moving
+			Vector3 newPos = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z);
+			
+			//Apply the movement
+			transform.position = newPos;
+		}
 		
 		//If the money leaves the game space
 		//Leave some room for the enemy to fully exit the visible screen (by multiplying 1.2)
