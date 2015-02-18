@@ -120,15 +120,15 @@ public class PlayerCollisions : MonoBehaviour {
 		//Use an algorithm to map the images to the players health
 		int imageValue = health;
 		int healthMax = 100;
-		int healthMin = 0;
+		int healthMin = 1;
 		int imageMax = 23;
-		int imageMin = 0;
+		int imageMin = 1;
 
 		//Figure out which images go with each health value
 		int imageNumber = healthMin + (imageValue-healthMin)*(imageMax-imageMin)/(healthMax-healthMin);
 
-		//Dont go negative
-		if(imageNumber < 0)
+		//Only show 0 if the player has no health left
+		if(health <= 0)
 			imageNumber = 0;
 
 		//Load the appropriate sprite
@@ -264,8 +264,6 @@ public class PlayerCollisions : MonoBehaviour {
 	public void takeDamage(int damage)
 	{
 		Shields shield = GetComponent<Shields> ();
-
-		print (shield.getShields ());
 
 		//Deduct damage from health
 		if(shield.getShields() != 0)
