@@ -39,9 +39,6 @@ public class PowerMenu : MonoBehaviour {
 	//The maximum amount of power (with upgrades)
 	int maxPower;
 
-	//The slider displaying power
-	public Slider powerBar;
-
 	//The status text
 	public Text statusText;
 
@@ -95,10 +92,6 @@ public class PowerMenu : MonoBehaviour {
 
 		//Calculate the players power level
 		power = maxPower - playerPowers[0] - playerPowers[1] - playerPowers[2] - playerPowers[3] - playerPowers[4] - playerPowers[5] - playerPowers[6];
-
-		//Display the current power levels
-		powerBar.maxValue = maxPower;
-		powerBar.value = power;
 
 		//Setup all the image files to be easily accessible
 		powerSprites = new Sprite[][] {shieldSprites, engineSprites, laserSprites, blasterSprites, missileSprites, radarSprites, repairSprite, availablePowerSprites};
@@ -328,9 +321,6 @@ public class PowerMenu : MonoBehaviour {
 
 		//Decrease power level
 		power--;
-		
-		//And update the power bar to reflect
-		powerBar.value = power;
 
 		//Overwrite the image to show the value of the power
 		powerImages[(int)powerSelected.POWER].overrideSprite = powerSprites[(int)powerSelected.POWER][power];
@@ -364,9 +354,6 @@ public class PowerMenu : MonoBehaviour {
 		
 		//Increase the power
 		power++;
-		
-		//And update the power bar to reflect
-		powerBar.value = power;
 
 		//Overwrite the image to show the value of the power
 		powerImages[(int)powerSelected.POWER].overrideSprite = powerSprites[(int)powerSelected.POWER][power];
