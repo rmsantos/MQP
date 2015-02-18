@@ -42,18 +42,12 @@ public class PowerMenu : MonoBehaviour {
 	//The slider displaying power
 	public Slider powerBar;
 
-	//The slider display of the different player powers
-	public Slider[] playerPowerSliders;
-
 	//The status text
 	public Text statusText;
 
 	//Buttons for increasing and decreasing the power for certain stats
 	public Button[] increaseButtons;
 	public Button[] decreaseButtons;
-
-	//Texts displaying the power levels.
-	public Text[] powerLevels;
 
 	//The sprites for the different power levels of the different abilities
 	public Sprite[] shieldSprites;
@@ -105,7 +99,6 @@ public class PowerMenu : MonoBehaviour {
 		//Display the current power levels
 		powerBar.maxValue = maxPower;
 		powerBar.value = power;
-		powerLevels [7].text = power.ToString ();
 
 		//Setup all the image files to be easily accessible
 		powerSprites = new Sprite[][] {shieldSprites, engineSprites, laserSprites, blasterSprites, missileSprites, radarSprites, repairSprite, availablePowerSprites};
@@ -113,8 +106,6 @@ public class PowerMenu : MonoBehaviour {
 
 		//Set the sliders and the power level text to the appropriate value
 		for (int i = 0; i < 7; i++) {
-				playerPowerSliders[i].value = playerPowers[i];
-				powerLevels[i].text = playerPowers[i].ToString();
 				powerImages[i].overrideSprite = powerSprites[i][playerPowers[i]];
 		}
 
@@ -332,12 +323,6 @@ public class PowerMenu : MonoBehaviour {
 		//Increase the appropriate power level
 		playerPowers[station]++;
 
-		//Set the appropriate slider to that value
-		playerPowerSliders[station].value = playerPowers[station];
-
-		//And show the value of the slider here
-		powerLevels[station].text = playerPowers[station].ToString();
-
 		//Overwrite the image to show the value of the power
 		powerImages[station].overrideSprite = powerSprites[station][playerPowers[station]];
 
@@ -346,9 +331,6 @@ public class PowerMenu : MonoBehaviour {
 		
 		//And update the power bar to reflect
 		powerBar.value = power;
-
-		//And show the value of the slider here
-		powerLevels[(int)powerSelected.POWER].text = power.ToString();
 
 		//Overwrite the image to show the value of the power
 		powerImages[(int)powerSelected.POWER].overrideSprite = powerSprites[(int)powerSelected.POWER][power];
@@ -376,12 +358,6 @@ public class PowerMenu : MonoBehaviour {
 
 		//Decrease the appropriate power level
 		playerPowers[station]--;
-		
-		//Set the appropriate slider to that value
-		playerPowerSliders[station].value = playerPowers[station];
-
-		//And show the value of the slider here
-		powerLevels[station].text = playerPowers[station].ToString();
 
 		//Overwrite the image to show the value of the power
 		powerImages[station].overrideSprite = powerSprites[station][playerPowers[station]];
@@ -391,9 +367,6 @@ public class PowerMenu : MonoBehaviour {
 		
 		//And update the power bar to reflect
 		powerBar.value = power;
-
-		//And show the value of the slider here
-		powerLevels[(int)powerSelected.POWER].text = power.ToString();
 
 		//Overwrite the image to show the value of the power
 		powerImages[(int)powerSelected.POWER].overrideSprite = powerSprites[(int)powerSelected.POWER][power];
