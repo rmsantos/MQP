@@ -168,12 +168,14 @@ public class LevelHandler : MonoBehaviour {
 					}
 					//asteroid instance
 					else if (waveOrder[wave] == 1) {
-						Instantiate(instancesAsteroid[0]);
+						int randomInstance = GetRandomAsteroidWave();
+						Instantiate(instancesAsteroid[randomInstance]);
 						portraitController.playApproachingAsteroids();
 					}
 					//hard instance
 					else {
-						Instantiate(instancesHard[0]);
+						int randomInstance = GetRandomHardWave();
+						Instantiate(instancesHard[randomInstance]);
 					}
 
 				}
@@ -255,6 +257,14 @@ public class LevelHandler : MonoBehaviour {
 		}
 		pickedInstances[wave] = value;
 		return value;
+	}
+
+	public int GetRandomAsteroidWave() {
+		return Mathf.Min (random.GetRandomInRange (0, level - 1), instancesAsteroid.Length);
+	}
+
+	public int GetRandomHardWave() {
+		return Mathf.Min (random.GetRandomInRange (0, level - 1), instancesHard.Length);
 	}
 
 	public void SpawningHasStopped () {
