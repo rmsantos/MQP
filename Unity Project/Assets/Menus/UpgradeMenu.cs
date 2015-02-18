@@ -158,8 +158,8 @@ public class UpgradeMenu : MonoBehaviour {
 			selectButtons[4].interactable = false;
 			selectButtons[5].interactable = false;
 		}
-		if (upgradeLevel[14] < 1) {
-			selectButtons[15].interactable = false;
+		if (upgradeLevel[1] < 1) {
+			selectButtons[2].interactable = false;
 		}
 
 	}
@@ -259,7 +259,7 @@ public class UpgradeMenu : MonoBehaviour {
 	}
 
 	public void UpgradeBlaster1() {
-
+		selectButtons[2].interactable = true;
 	}
 
 	public void UpgradeBlaster2() {
@@ -312,7 +312,7 @@ public class UpgradeMenu : MonoBehaviour {
 	}
 
 	public void UpgradeLasers1() {
-		selectButtons[15].interactable = true;
+
 	}
 
 	public void UpgradeLasers2() {
