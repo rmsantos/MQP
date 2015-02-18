@@ -29,6 +29,9 @@ public class MainMenu : MonoBehaviour {
 	public GameObject startButton;
 	public GameObject quitButton;
 	public GameObject highScoreButton;
+	
+	//The options menu
+	public GameObject options;
 
 	//initial values
 	public int initialHealth;
@@ -211,6 +214,10 @@ public class MainMenu : MonoBehaviour {
 	public void setQuit(bool quit)
 	{
 		quitGame = quit;
+	}
+
+	public void Options(bool visible) {
+		options.SetActive (visible);
 	}
 
 	/* ----------------------------------------------------------------------- */
