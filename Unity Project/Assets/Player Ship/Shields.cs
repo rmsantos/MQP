@@ -33,9 +33,9 @@ public class Shields : MonoBehaviour {
 	
 	//The max shields at this level
 	int maxShields;
-	
-	//Shields
-	public Slider shieldBar;
+
+	//Shield power level
+	public Image shieldImage;
 
 	//The render of the shield image
 	public GameObject shieldRender;
@@ -75,10 +75,10 @@ public class Shields : MonoBehaviour {
 
 		//Shield power starts at 0
 		shieldPower = PlayerPrefs.GetInt ("ShieldPower", 0);
-		
-		//Set the shield slider
-		shieldBar.value = shieldPower;
-		
+
+		//Load the correct image sprite
+		shieldImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Shield power/" + shieldPower);
+
 		//Intitialize timer
 		timer = 0;
 		

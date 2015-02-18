@@ -50,12 +50,19 @@ public class PlayerCollisions : MonoBehaviour {
 	GameObject audioHandlerObject;
 	AudioHandler audioHandler;
 
+	//The image for repair power levels
+	public Image repairImage;
+
+	//The current repair power level
+	int repairPower;
+
 	void Start () {
 		
 		//Pull the values from player prefs
 		health = PlayerPrefs.GetInt ("Health", 1);
 		moneyValue = PlayerPrefs.GetInt ("MoneyValue", 99999);
 		crystalValue = PlayerPrefs.GetInt ("CrystalValue", 99999);
+		repairPower = PlayerPrefs.GetInt ("RepairPower", 0);
 
 		//Search for the audioHandler
 		audioHandlerObject = (GameObject)GameObject.FindGameObjectWithTag ("AudioHandler");
@@ -75,6 +82,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 		//Display the players health
 		displayHealth ();
+
+		//Load the correct image sprite
+		repairImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Repairing/" + repairPower);
 
 	}
 
