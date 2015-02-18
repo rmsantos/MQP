@@ -454,6 +454,9 @@ public class Flagship :  AbstractEnemy {
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
+			//Update the health
+			levelHandler.UpdateBossHealth (health);
+
 			//Play the sound effect
 			audioHandler.playBossExplosion();
 

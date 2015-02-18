@@ -64,7 +64,7 @@ public class LevelHandler : MonoBehaviour {
 	public GameObject levelComplete1;
 	public GameObject levelComplete2;
 
-	public Slider bossHealthSlider;
+	public Image healthImage;
 	static int bossHealth;
 
 	static int[] pickedInstances;
@@ -75,6 +75,9 @@ public class LevelHandler : MonoBehaviour {
 
 	//Time to spawn each wave
 	public float spawningTime;
+
+	//Boss max helath
+	int maxHealth;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -112,8 +115,9 @@ public class LevelHandler : MonoBehaviour {
 
 		updateLevel.UpdateText (level);
 
-		bossHealthSlider.active = false;
+		healthImage.enabled = false;
 		bossHealth = 100;
+		maxHealth = bossHealth;
 
 		//Find the portrait controller script
 		portraitController = GameObject.FindGameObjectWithTag ("Portrait").GetComponent<PortraitController>();
@@ -136,7 +140,12 @@ public class LevelHandler : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		bossHealthSlider.value = bossHealth;
+		//Store the max health of the boss to display
+		if(bossHealth > maxHealth)
+			maxHealth = bossHealth;
+
+		//Display the boss' health bar
+		displayHealth ();
 
 		//If spawning is occurring, don't decrement the timer
 		if (canSpawn && !levelCompleted) {
@@ -171,7 +180,7 @@ public class LevelHandler : MonoBehaviour {
 				else {
 					Instantiate(bosses[0]);
 					background.StopBackground();
-					bossHealthSlider.active = true;
+					healthImage.enabled = true;
 
 					//Play the boss spawn audio clip
 					portraitController.playBossSpawn();
@@ -258,6 +267,35 @@ public class LevelHandler : MonoBehaviour {
 
 	public void UpdateBossHealth(int health) {
 		bossHealth = health;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayHealth()
+	 *
+	 * Description : Displays the boss' health on screen
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayHealth() 
+	{
+		//Use an algorithm to map the images to the players health
+		int imageValue = bossHealth;
+		int healthMax = maxHealth;
+		int healthMin = 1;
+		int imageMax = 22;
+		int imageMin = 1;
+		
+		//Figure out which images go with each health value
+		int imageNumber = healthMin + (imageValue-healthMin)*(imageMax-imageMin)/(healthMax-healthMin);
+		
+		//Only show 0 if the player has no health left
+		if(bossHealth <= 0)
+			imageNumber = 0;
+		
+		//Load the appropriate sprite
+		healthImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Enemy health/" + imageNumber);
 	}
 
 }

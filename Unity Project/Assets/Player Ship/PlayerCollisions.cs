@@ -34,6 +34,7 @@ public class PlayerCollisions : MonoBehaviour {
 	public GameObject scoreObject;
 	static ScoreHandler score;
 
+	//Image object for the health bar
 	public Image healthImage;
 
 	//Get the portrait controller to play audio clips
