@@ -22,7 +22,7 @@ using System.Collections;
 public class PowerMenu : MonoBehaviour {
 		
 	//Enums for all the player stations
-	enum powerSelected { SHIELD = 0, ENGINE = 1, LASER = 2, BLASTER = 3, MISSILE = 4, POWER = 5, RADAR = 6, REPAIR = 7};
+	enum powerSelected { SHIELD = 0, ENGINE = 1, LASER = 2, BLASTER = 3, MISSILE = 4, RADAR = 5, REPAIR = 6, POWER = 7};
 
 	//Flags on whether to start the game
 	bool startGame;
@@ -62,13 +62,13 @@ public class PowerMenu : MonoBehaviour {
 	public Sprite[] blasterSprites;
 	public Sprite[] missileSprites;
 	public Sprite[] availablePowerSprites;
+	public Sprite[] radarSprites;
+	public Sprite[] repairSprite;
+
 	Sprite[][] powerSprites;
 
 	//The actual displayed images
 	public Image[] powerImages;
-
-	//The Descriptions
-	public string[] descriptions;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -88,7 +88,7 @@ public class PowerMenu : MonoBehaviour {
 		maxPower = 5 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
 
 		//Initialize array
-		playerPowers = new int[8];
+		playerPowers = new int[7];
 
 		//Load the player prefs of each power level
 		playerPowers[(int)powerSelected.SHIELD] = PlayerPrefs.GetInt ("ShieldPower", 0);
@@ -100,22 +100,22 @@ public class PowerMenu : MonoBehaviour {
 		playerPowers[(int)powerSelected.REPAIR] = PlayerPrefs.GetInt ("RepairPower", 0);
 
 		//Calculate the players power level
-		power = maxPower - playerPowers[0] - playerPowers[1] - playerPowers[2] - playerPowers[3] - playerPowers[4] - playerPowers[6] - playerPowers[7];
+		power = maxPower - playerPowers[0] - playerPowers[1] - playerPowers[2] - playerPowers[3] - playerPowers[4] - playerPowers[5] - playerPowers[6];
 
 		//Display the current power levels
 		powerBar.maxValue = maxPower;
 		powerBar.value = power;
-		powerLevels [5].text = power.ToString ();
+		powerLevels [7].text = power.ToString ();
 
 		//Setup all the image files to be easily accessible
-		powerSprites = new Sprite[][] {shieldSprites, engineSprites, laserSprites, blasterSprites, missileSprites, availablePowerSprites};
+		powerSprites = new Sprite[][] {shieldSprites, engineSprites, laserSprites, blasterSprites, missileSprites, radarSprites, repairSprite, availablePowerSprites};
 		
 
 		//Set the sliders and the power level text to the appropriate value
-		for (int i = 0; i < 5; i++) {
-			playerPowerSliders[i].value = playerPowers[i];
-			powerLevels[i].text = playerPowers[i].ToString();
-			powerImages[i].overrideSprite = powerSprites[i][playerPowers[i]];
+		for (int i = 0; i < 7; i++) {
+				playerPowerSliders[i].value = playerPowers[i];
+				powerLevels[i].text = playerPowers[i].ToString();
+				powerImages[i].overrideSprite = powerSprites[i][playerPowers[i]];
 		}
 
 		//Overwrite the image to show the value of the power
@@ -162,6 +162,12 @@ public class PowerMenu : MonoBehaviour {
 
 			//Store the missile level as a pref
 			PlayerPrefs.SetInt ("MissilePower", playerPowers[(int)powerSelected.MISSILE]);
+
+			//Store the radar level as a pref
+			PlayerPrefs.SetInt ("RadarPower", playerPowers[(int)powerSelected.RADAR]);
+
+			//Store the repair level as a pref
+			PlayerPrefs.SetInt ("RepairPower", playerPowers[(int)powerSelected.REPAIR]);
 			
 			//Store the new power level in player prefs
 			PlayerPrefs.SetInt ("Power", power);
@@ -180,18 +186,28 @@ public class PowerMenu : MonoBehaviour {
 		increaseButtons[(int)powerSelected.LASER].interactable = (CanLaserIncrease() && power > 0);
 		increaseButtons[(int)powerSelected.BLASTER].interactable = (CanBlasterIncrease() && power > 0);
 		increaseButtons[(int)powerSelected.MISSILE].interactable = (CanMissileIncrease() && power > 0);
+		increaseButtons[(int)powerSelected.RADAR].interactable = (CanRadarIncrease() && power > 0);
+		increaseButtons[(int)powerSelected.REPAIR].interactable = (CanRepairIncrease() && power > 0);
 
 		//Checks if the decrease buttons should be enabled
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 7; i++) {
 			decreaseButtons[i].interactable = (playerPowers[i] > 0);
 		}
 
 	}
 
-	public void ViewDescription(int description) {
+	public bool CanRadarIncrease() {
+		if(playerPowers[(int)powerSelected.RADAR] == 2)
+			return false;
+		else
+			return true;
+	}
 
-		statusText.text = descriptions[description];
-
+	public bool CanRepairIncrease() {
+		if(playerPowers[(int)powerSelected.REPAIR] == 1)
+			return false;
+		else
+			return true;
 	}
 
 	public bool CanShieldIncrease() {
