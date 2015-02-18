@@ -62,8 +62,8 @@ public class ShipMovement : MonoBehaviour {
 	//The engine power
 	int enginePower;
 
-	//Engine slider
-	public Slider engineBar;
+	//Engine image for power levels
+	public Image engineImage;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -111,8 +111,7 @@ public class ShipMovement : MonoBehaviour {
 		//Set the engine values based on the power
 		setEngine (enginePower);
 
-		//Display the engine power
-		engineBar.value = enginePower;
+		engineImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Engine Power/" + enginePower);
 
 	}
 
