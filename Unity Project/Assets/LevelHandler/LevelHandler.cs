@@ -63,6 +63,7 @@ public class LevelHandler : MonoBehaviour {
 
 	public GameObject levelComplete1;
 	public GameObject levelComplete2;
+	public Text levelComplete3;
 
 	public Image healthImage;
 	static int bossHealth;
@@ -202,7 +203,11 @@ public class LevelHandler : MonoBehaviour {
 			else if (levelCompletedTimer == 70) {
 				Instantiate(levelComplete2);
 			}
-			else if (levelCompletedTimer >= 140) {
+			else if (levelCompletedTimer == 110) {
+				levelComplete3.active = true;
+				levelComplete3.text = "Bonus Credits:  + " + (5 + (5 * level) + (10 * PlayerPrefs.GetInt("CargoUpgradeCredits", 0))).ToString();
+			}
+			else if (levelCompletedTimer >= 170) {
 				NextLevel ();
 			}
 		}
@@ -236,7 +241,7 @@ public class LevelHandler : MonoBehaviour {
 		level++;
 		PlayerPrefs.SetInt ("Level", level);
 		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
-		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money + 6 + (2 * level) + (10 * PlayerPrefs.GetInt("CargoUpgradeCredits", 0)));
+		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money + (5 * level) + (10 * PlayerPrefs.GetInt("CargoUpgradeCredits", 0)));
 		PlayerPrefs.SetInt ("Crystals", (int)ScoreHandler.crystals);
 
 		//Load the UpgradeScene
