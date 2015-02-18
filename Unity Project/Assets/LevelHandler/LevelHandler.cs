@@ -249,7 +249,7 @@ public class LevelHandler : MonoBehaviour {
 		int value = -1;
 		while (!gotInt) {
 			value = random.GetRandomInRange (lowest, highest);
-			if (!pickedInstances.Contains(value) || random.GetRandom(100) < 50) {
+			if (!pickedInstances.Contains(value) || random.GetRandom(100) < 33) {
 				gotInt = true;
 			}
 		}
