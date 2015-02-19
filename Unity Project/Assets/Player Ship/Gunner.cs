@@ -106,8 +106,9 @@ public class Gunner : MonoBehaviour {
 	public Image blasterImage;
 	public Image missileImage;
 
-	//Number of missiles the player has
+	//Number of missiles and crystals the player has
 	int missiles;
+	int crystals;
 
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
@@ -117,6 +118,9 @@ public class Gunner : MonoBehaviour {
 
 	//The audiohandler
 	AudioHandler audioHandler;
+
+	//The score handler
+	static ScoreHandler scoreHandler;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -164,6 +168,9 @@ public class Gunner : MonoBehaviour {
 
 		//The audio file should not defaultly play
 		missileCheck = false;
+
+		//Search for the ScoreHandler object for tracking crystals
+		scoreHandler = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<ScoreHandler>();
 	}
 	
 
@@ -363,6 +370,10 @@ public class Gunner : MonoBehaviour {
 		//If the usesr has clicked the middle mouse button
 		if(shootingBlaster)
 		{
+
+			//subtract the crystals
+			scoreHandler.UpdateCrystals(-1);
+
 			//Play the sound effect for the blaster
 			audioHandler.playBlaster();
 
@@ -416,7 +427,7 @@ public class Gunner : MonoBehaviour {
 			}
 
 			//If the player tries to shoot the blaster and can
-			if(readyBlaster && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l"))) {
+			if(readyBlaster && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && scoreHandler.GetCrystals() > 0) {
 
 				//If the player supplied power to the blaster
 				if(blasterPower > 0)
@@ -495,20 +506,20 @@ public class Gunner : MonoBehaviour {
 				blasterReloadTime = 9999;
 				break;
 			case 1:
-				blasterDamage = 4;
+				blasterDamage = 2;
 				blasterReloadTime = 600;
 				break;
 			case 2:
-				blasterDamage = 8;
-				blasterReloadTime = 570;
-				break;
-			case 3:
-				blasterDamage = 12;
+				blasterDamage = 4;
 				blasterReloadTime = 540;
 				break;
+			case 3:
+				blasterDamage = 6;
+				blasterReloadTime = 480;
+				break;
 			case 4:
-				blasterDamage = 16;
-				blasterReloadTime = 510;
+				blasterDamage = 8;
+				blasterReloadTime = 420;
 				break;
 		}
 
@@ -539,29 +550,29 @@ public class Gunner : MonoBehaviour {
 			missileReloadTime = 99999;
 			break;
 		case 1:
-			missileDamage = 2;
+			missileDamage = 4;
 			missileReloadTime = 720;
 			break;
 		case 2:
-			missileDamage = 2;
+			missileDamage = 8;
 			missileReloadTime = 600;
 			break;
 		case 3:
-			missileDamage = 3;
+			missileDamage = 12;
 			missileReloadTime = 480;
 			break;
 		case 4:
-			missileDamage = 3;
+			missileDamage = 16;
 			missileReloadTime = 360;
 			break;
 		}
 
 		//Subtract reload time based on missile upgrade
-		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 20;
+		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 50;
 		
 		//If the player has bought the missile payload upgrade
 		//Then increase damage
-		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 2;
+		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 6;
 	}
 
 }

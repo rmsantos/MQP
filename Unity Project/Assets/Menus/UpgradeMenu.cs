@@ -389,7 +389,7 @@ public class UpgradeMenu : MonoBehaviour {
 		if (money >= 5 && playerHealth < 100) {
 
 			money -= 5;
-			playerHealth += 5;
+			playerHealth += 25;
 			if (playerHealth > 100) {
 				playerHealth = 100;
 			}
