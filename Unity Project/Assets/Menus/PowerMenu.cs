@@ -396,9 +396,17 @@ public class PowerMenu : MonoBehaviour {
 			case (int)powerSelected.BLASTER:
 				displayDecreasedBlaster();
 				break;
-			//Or shield
+			//Shield
 			case (int)powerSelected.SHIELD:
 				displayDecreasedShield();
+				break;
+			//Radar
+			case (int)powerSelected.RADAR:
+				displayDecreasedRadar();
+				break;
+			//Or repair
+			case (int)powerSelected.REPAIR:
+				displayDecreasedRepair();
 				break;
 		}
 	}
@@ -567,6 +575,55 @@ public class PowerMenu : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreasedRadar()
+	 *
+	 * Description : Displays what each radar level decrease
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayDecreasedRadar()
+	{
+		switch(playerPowers[(int)powerSelected.RADAR]-1)
+		{
+		case -1:
+			statusText.text = "Radar is not functional";
+			break;
+		case 0:
+			statusText.text = "Radar level progression disabled";
+			break;
+		case 1:
+			statusText.text = "Deactivates radar enemy warnings";
+			break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayDecreasedRepair()
+	 *
+	 * Description : Displays what each repair level decrease
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayDecreasedRepair()
+	{
+		switch(playerPowers[(int)powerSelected.REPAIR]-1)
+		{
+		case -1:
+			statusText.text = "Repair is at minimum";
+			break;
+		case 0:
+			statusText.text = "In-combat repair disabled";
+			break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
 	/* Function    : displayIncreaseText(int station)
 	 *
 	 * Description : Displays what an increased power level will do for each station.
@@ -596,9 +653,17 @@ public class PowerMenu : MonoBehaviour {
 			case (int)powerSelected.BLASTER:
 				displayIncreasedBlaster();
 				break;
-			//Or shield
+			//Shield
 			case (int)powerSelected.SHIELD:
 				displayIncreasedShield();
+				break;
+			//Radar
+			case (int)powerSelected.RADAR:
+				displayIncreasedRadar();
+				break;
+			//Or repair
+			case (int)powerSelected.REPAIR:
+				displayIncreasedRepair();
 				break;
 		}
 	}
@@ -812,6 +877,56 @@ public class PowerMenu : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreasedRadar()
+	 *
+	 * Description : Displays what each radar level increase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayIncreasedRadar()
+	{
+		switch(playerPowers[(int)powerSelected.RADAR]+1)
+		{
+		case 1:			
+			statusText.text = "Radar shows level progression";
+			break;
+		case 2:
+			statusText.text = "Radar shows incoming enemy waves";
+			break;
+		case 3:
+			statusText.text = "Radar is maxed out";
+			break;
+		}
+		
+	}
+
+	
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayIncreasedRepair()
+	 *
+	 * Description : Displays what each repair level increase
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayIncreasedRepair()
+	{
+		switch(playerPowers[(int)powerSelected.REPAIR]+1)
+		{
+		case 1:			
+			statusText.text = "The ship can repiar in combat";
+			break;
+		case 2:
+			statusText.text = "Repair is maxed out";
+			break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
 	/* Function    : setStatusText(int station)
 	 *
 	 * Description : Displays what each power level does for each station
@@ -845,9 +960,17 @@ public class PowerMenu : MonoBehaviour {
 			case (int)powerSelected.BLASTER:
 				displayBlaster();
 				break;
-			//Or shield
+			//Shield
 			case (int)powerSelected.SHIELD:
 				displayShield();
+				break;
+			//Radar
+			case (int)powerSelected.RADAR:
+				displayRadar();
+				break;
+			//or repair
+			case (int)powerSelected.REPAIR:
+				displayRepair();
 				break;
 		}
 
@@ -1025,6 +1148,55 @@ public class PowerMenu : MonoBehaviour {
 			break;
 		case 5:
 			statusText.text = "Shield Level 5. Up to three shields. Amazing base recharge rate. The shield is almost impenetrable! The ship is a tank!.";
+			break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayRadar()
+	 *
+	 * Description : Displays what each radar level does
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayRadar()
+	{
+		switch(playerPowers[(int)powerSelected.RADAR])
+		{
+		case 0:
+			statusText.text = "Radar Level 0. Radar is not active.";
+			break;
+		case 1:
+			statusText.text = "Radar Level 1. Radar shows level progression.";
+			break;
+		case 2:
+			statusText.text = "Radar Level 2. Radar shows level progression and incoming large waves.";
+			break;
+		}
+		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayRepair()
+	 *
+	 * Description : Displays what each repair level does
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayRepair()
+	{
+		switch(playerPowers[(int)powerSelected.REPAIR])
+		{
+		case 0:
+			statusText.text = "Repair Level 0. On-board repair is not active.";
+			break;
+		case 1:
+			statusText.text = "Repair Level 1. The can be repaired in battle.";
 			break;
 		}
 		
