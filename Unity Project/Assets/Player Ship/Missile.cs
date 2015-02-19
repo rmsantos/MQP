@@ -209,10 +209,10 @@ public class Missile : MonoBehaviour {
 					if(!collide.GetComponent<Flagship>().startingPhase())
 					{
 						//Find the component that extends AbstractEnemy (the enemy script)
-						AbstractEnemy enemy = (Flagship)collide.GetComponent(typeof(Flagship));
+						Flagship enemy = (Flagship)collide.GetComponent(typeof(Flagship));
 						
 						//Deal damage to that enemy
-						enemy.takeDamage(damage);
+						enemy.TakeDamage(damage);
 					}
 				}
 				

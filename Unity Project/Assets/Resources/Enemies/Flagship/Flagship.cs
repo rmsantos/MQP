@@ -413,7 +413,7 @@ public class Flagship :  AbstractEnemy {
 			int damage = col.gameObject.GetComponent<Laser>().getDamage();
 
 			//Deal the damage to this enemy
-			takeDamage(damage);
+			TakeDamage(damage);
 
 			//Play the audioclip of hitting the boss with a laser
 			portraitController.playLaserBoss();

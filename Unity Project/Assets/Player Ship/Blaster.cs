@@ -146,10 +146,10 @@ public class Blaster : MonoBehaviour {
 					if(!hit.transform.GetComponent<Flagship>().startingPhase())
 					{
 						//Find the component that extends BasicEnemy (the enemy script)
-						AbstractEnemy enemy = (Flagship)hit.transform.GetComponent(typeof(Flagship));
+						Flagship enemy = (Flagship)hit.transform.GetComponent(typeof(Flagship));
 						
 						//Deal damage to that enemy
-						enemy.takeDamage(damage);
+						enemy.TakeDamage(damage);
 					}
 				}
 			}
