@@ -50,6 +50,10 @@ public class Boss1 : MonoBehaviour {
 	//The Portrait Controller script
 	PortraitController portraitController;
 
+	//The Radar script
+	Radar radar;
+
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -76,6 +80,12 @@ public class Boss1 : MonoBehaviour {
 
 		//Get the right boundaries
 		right = boundaries.getRight();
+
+		//Find the radar
+		radar = GameObject.FindGameObjectWithTag ("Player").GetComponent<Radar> ();
+		
+		//And set the current wave length
+		radar.setWaveLength (0);
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -139,6 +149,12 @@ public class Boss1 : MonoBehaviour {
 
 		//Flag that the boss is killed
 		killed = true;
+
+		//Find the radar
+		radar = GameObject.FindGameObjectWithTag ("Player").GetComponent<Radar> ();
+
+		//Flag the boss death
+		radar.setWaveLength (-1);
 	}
 
 }
