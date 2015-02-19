@@ -39,6 +39,9 @@ public class Radar : MonoBehaviour {
 
 	//The planet
 	public Image planet;
+
+	//Only get the distance once
+	bool gotDistance;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -51,9 +54,9 @@ public class Radar : MonoBehaviour {
 	 */
 	void Start () {
 
-		//Shield power starts at 0
+		//Find the radar power level
 		radarPower = PlayerPrefs.GetInt ("RadarPower", 0);
-		
+
 		//Load the correct image sprite
 		radarImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/radar/" + radarPower);
 
@@ -62,6 +65,9 @@ public class Radar : MonoBehaviour {
 
 		//Default length is 0
 		waveLength = 0;
+
+		//Set to false
+		gotDistance = false;
 	}
 	
 	
@@ -76,23 +82,38 @@ public class Radar : MonoBehaviour {
 	 */
 	void FixedUpdate()
 	{		
-		if(waveLength != 0)
+		//Only do things if the player has power to the radar
+		if(radarPower != 0)
 		{
-			//The new position of the enemy after moving
-			Vector3 newPos = new Vector3 (radarShip.transform.position.x + (distance/waveLength)/5, radarShip.transform.position.y, radarShip.transform.position.z);
-			
-			//Apply the movement
-			radarShip.transform.position = newPos;
-		}
-		else if(waveLength == -1)
-		{
-			distance = Vector3.Distance(radarShip.transform.position, planet.transform.position);
+			if(waveLength > 0)
+			{
+				//The new position of the enemy after moving
+				Vector3 newPos = new Vector3 (radarShip.transform.position.x + (distance/waveLength)/5, radarShip.transform.position.y, radarShip.transform.position.z);
+				
+				//Apply the movement
+				radarShip.transform.position = newPos;
+			}
+			else if(waveLength == -1)
+			{
+				//Only get the distance once
+				if(!gotDistance)
+				{
+					gotDistance = true;
+					distance = Vector3.Distance(radarShip.transform.position, planet.transform.position);
+				}
 
-			//The new position of the enemy after moving
-			Vector3 newPos = new Vector3 (radarShip.transform.position.x + (distance/50), radarShip.transform.position.y, radarShip.transform.position.z);
-			
-			//Apply the movement
-			radarShip.transform.position = newPos;
+
+				//If the ship has not reached the planet
+				if(radarShip.transform.position.x < planet.transform.position.x)
+				{
+
+					//The new position of the enemy after moving
+					Vector3 newPos = new Vector3 (radarShip.transform.position.x + (distance/50), radarShip.transform.position.y, radarShip.transform.position.z);
+					
+					//Apply the movement
+					radarShip.transform.position = newPos;
+				}
+			}
 		}
 	}
 
