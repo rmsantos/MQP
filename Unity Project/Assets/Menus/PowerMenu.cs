@@ -28,7 +28,7 @@ public class PowerMenu : MonoBehaviour {
 	bool startGame;
 	
 	//The start button
-	public Image startButton;
+	public Button startButton;
 
 	//The current power level of the player
 	int power;
@@ -332,6 +332,10 @@ public class PowerMenu : MonoBehaviour {
 		setStatusText (station);
 		displayIncreaseText (station);
 
+		if (power == 0) {
+			startButton.interactable = true;
+		}
+
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -598,6 +602,18 @@ public class PowerMenu : MonoBehaviour {
 			break;
 		}
 		
+	}
+
+	public void displayStartGame() 
+	{
+		if (power >= 1 && maxPower == 5) {
+			statusText.text = "Assign power first!";
+			startButton.interactable = false;
+		}
+		else {
+			statusText.text = "Start the game!";
+			startButton.interactable = true;
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
