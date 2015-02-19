@@ -64,6 +64,9 @@ public abstract class AbstractInstance : MonoBehaviour {
 	public GameObject randomizer;
 	protected Randomizer random;
 
+	//The Radar script
+	Radar radar;
+
 	/*
 	 * Function that initializes the instance
 	 */
@@ -82,6 +85,11 @@ public abstract class AbstractInstance : MonoBehaviour {
 		bottom = boundaries.getBottom();
 		right = boundaries.getRight();
 
+		//Find the radar
+		radar = GameObject.FindGameObjectWithTag ("Player").GetComponent<Radar> ();
+
+		//And set the current wave length
+		radar.setWaveLength (GetWaveLength ());
 	}
 	
 	/* ----------------------------------------------------------------------- */
