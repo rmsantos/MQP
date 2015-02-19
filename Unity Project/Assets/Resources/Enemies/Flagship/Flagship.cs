@@ -435,7 +435,7 @@ public class Flagship :  AbstractEnemy {
 	}
 	
 	/* ----------------------------------------------------------------------- */
-	/* Function    : takeDamage(float damage)
+	/* Function    : TakeDamage(float damage)
 	 *
 	 * Description : Deals damage to the enemies health
 	 *
@@ -443,7 +443,7 @@ public class Flagship :  AbstractEnemy {
 	 *
 	 * Returns     : Void
 	 */
-	public void takeDamage(int damage)
+	public void TakeDamage(int damage)
 	{
 		//Subtract health from the enemy
 		health -= damage;
@@ -454,6 +454,8 @@ public class Flagship :  AbstractEnemy {
 		//If health hits 0, then the enemy dies
 		if(health <= 0)
 		{
+			health = 0;
+
 			//Update the health
 			levelHandler.UpdateBossHealth (health);
 
