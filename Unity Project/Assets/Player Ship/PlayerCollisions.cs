@@ -20,7 +20,7 @@ using System.Collections;
 public class PlayerCollisions : MonoBehaviour {
 
 	int health;
-	int moneyValue;
+	public int moneyValue;
 	int crystalValue;
 
 	public int scoreFromMoney;
@@ -60,7 +60,6 @@ public class PlayerCollisions : MonoBehaviour {
 		
 		//Pull the values from player prefs
 		health = PlayerPrefs.GetInt ("Health", 1);
-		moneyValue = PlayerPrefs.GetInt ("MoneyValue", 99999);
 		crystalValue = PlayerPrefs.GetInt ("CrystalValue", 99999);
 		repairPower = PlayerPrefs.GetInt ("RepairPower", 0);
 
