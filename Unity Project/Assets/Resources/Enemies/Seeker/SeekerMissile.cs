@@ -241,6 +241,16 @@ public class SeekerMissile : MonoBehaviour {
 					player.takeDamage(damage);
 					
 				}
+
+				//If the object is another mine
+				if(collide.tag == "Mine")
+				{
+					//Cast to a mine type and explode
+					Mine mine = (Mine)collide.GetComponent(typeof(Mine));
+					
+					//The player takes damage
+					mine.explode();
+				}
 			}
 			
 			//Delete the missile 

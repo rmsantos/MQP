@@ -1,10 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Portraits\PortraitController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
     <Files>
-      <File FileName="Unity Project.sln" Line="1" Column="1" />
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="389" Column="3" />
-      <File FileName="Assets\Portraits\PortraitController.cs" Line="696" Column="27" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="271" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

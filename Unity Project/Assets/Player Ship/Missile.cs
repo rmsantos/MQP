@@ -44,7 +44,7 @@ public class Missile : MonoBehaviour {
 	int damage;
 	
 	//Is true if the missile is currently exploding
-	//Prevents infinite looks of exploding missiles
+	//Prevents infinite loops of exploding missiles
 	bool isExploding;
 
 	//The radius at which the missile will detect enemies
@@ -163,7 +163,8 @@ public class Missile : MonoBehaviour {
 		//If the missile hits an enemy or asteroid
 		if(col.gameObject.tag == "Enemies" || col.gameObject.tag == "Asteroids" || 
 		   col.gameObject.tag == "EnemeyShield" || col.gameObject.tag == "Boss" 
-		   || col.gameObject.tag == "Missile" || col.gameObject.tag == "EnemyPassable")
+		   || col.gameObject.tag == "Missile" || col.gameObject.tag == "EnemyPassable" ||
+		   col.gameObject.tag == "Mine")
 		{
 			//explode this missile
 			explode();
@@ -251,6 +252,16 @@ public class Missile : MonoBehaviour {
 					//The player takes damage
 					player.takeDamage(damage);
 					
+				}
+
+				//If the object is a mine
+				if(collide.tag == "Mine")
+				{
+					//Cast to a mine type and explode
+					Mine mine = (Mine)collide.GetComponent(typeof(Mine));
+					
+					//The player takes damage
+					mine.explode();
 				}
 			}
 			
