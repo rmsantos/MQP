@@ -45,7 +45,26 @@ public class Radar : MonoBehaviour {
 
 	//The wave order
 	int[] waveOrder;
-	
+
+	//Radar images
+	public Image normal1;
+	public Image normal2;
+	public Image normal3;
+	public Image heavy;
+	public Image asteroid;
+
+	//Array for normal images
+	Image[] normalImages;
+
+	//Counter for normal image array
+	int imageCount;
+
+	//Final image order
+	Image[] imageOrder;
+
+	//Initial setup
+	bool init;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -72,11 +91,15 @@ public class Radar : MonoBehaviour {
 		//Set to false
 		gotDistance = false;
 
-		//Get the levelhandler
-		LevelHandler levelHandler = GameObject.FindGameObjectWithTag ("LevelHandler").GetComponent<LevelHandler> ();
+		//Flag for first frame setup
+		init = false;
 
-		//Get the wave order
-		waveOrder = levelHandler.getWaveOrder ();
+		//Make all images invisible to start
+		normal1.enabled = false;
+		normal2.enabled = false;
+		normal3.enabled = false;
+		heavy.enabled = false;
+		asteroid.enabled = false;
 	}
 	
 	
@@ -91,6 +114,55 @@ public class Radar : MonoBehaviour {
 	 */
 	void FixedUpdate()
 	{		
+		//If first time setup annd radar power level 2
+		if(!init && radarPower == 2)
+		{
+			//Enable all images
+			normal1.enabled = true;
+			normal2.enabled = true;
+			normal3.enabled = true;
+			heavy.enabled = true;
+			asteroid.enabled = true;
+
+			//Get the levelhandler
+			LevelHandler levelHandler = GameObject.FindGameObjectWithTag ("LevelHandler").GetComponent<LevelHandler> ();
+
+			//Get the wave order
+			waveOrder = levelHandler.getWaveOrder ();
+
+			//Initialize imageOrder
+			imageOrder = new Image[5];
+			
+			//Store the normal wave images
+			normalImages = new Image[] {normal1, normal2, normal3};
+			
+			//Initialize imageCount
+			imageCount = 0;
+			
+			//Place the radar images accordingly on the radar
+			for(int x = 0; x<waveOrder.Length; x++)
+			{
+				//0 is for normal wave
+				if(waveOrder[x] == 0)
+				{
+					imageOrder[x] = normalImages[imageCount];
+					imageCount++;
+				}
+				//1 is for asteroid wave
+				else if(waveOrder[x] == 1)
+					imageOrder[x] = asteroid;
+				//2  is for heavy wave
+				else if(waveOrder[x] == 2)
+					imageOrder[x] = heavy;
+
+				//Set the position on the radar
+				imageOrder[x].transform.position = new Vector3(imageOrder[x].transform.position.x + ((x) * distance / 5) + distance/10, imageOrder[x].transform.position.y,
+				                                               imageOrder[x].transform.position.z);
+			}
+
+			//Flag the first time setup over
+			init = true;
+		}
 		//Only do things if the player has power to the radar
 		if(radarPower != 0)
 		{
