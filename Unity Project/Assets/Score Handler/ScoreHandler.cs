@@ -76,7 +76,11 @@ public class ScoreHandler : MonoBehaviour {
 
 	public long UpdateCrystals(long amount) {
 
-		if (crystals + amount <= 5 + (PlayerPrefs.GetInt ("CargoUpgradeCrystals", 0) * 5)) {
+		if(crystals + amount < 0)
+		{
+			return -1;
+		}
+		else if (crystals + amount <= 5 + (PlayerPrefs.GetInt ("CargoUpgradeCrystals", 0) * 5)) {
 
 			crystals += amount;
 			updateCrystal.UpdateText (crystals);

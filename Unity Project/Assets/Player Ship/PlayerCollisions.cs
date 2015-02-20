@@ -55,7 +55,7 @@ public class PlayerCollisions : MonoBehaviour {
 
 	//The current repair power level
 	int repairPower;
-
+	
 	void Start () {
 		
 		//Pull the values from player prefs
@@ -327,6 +327,30 @@ public class PlayerCollisions : MonoBehaviour {
 			
 		}
 		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : FixedUpdate()
+	 *
+	 * Description : Poll for user input to repair the ship
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void FixedUpdate() {
+
+		//Only consider if the user has power to the rapair station
+		if(repairPower > 0)
+		{
+			//If the use pressed R
+			if(Input.GetKeyDown("r"))
+			{
+				//if(score.UpdateCrystals(-1) a
+
+
+			}
+		}
 	}
 
 	void Update() {
