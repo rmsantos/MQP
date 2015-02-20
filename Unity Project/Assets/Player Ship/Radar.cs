@@ -42,6 +42,9 @@ public class Radar : MonoBehaviour {
 
 	//Only get the distance once
 	bool gotDistance;
+
+	//The wave order
+	int[] waveOrder;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -68,6 +71,12 @@ public class Radar : MonoBehaviour {
 
 		//Set to false
 		gotDistance = false;
+
+		//Get the levelhandler
+		LevelHandler levelHandler = GameObject.FindGameObjectWithTag ("LevelHandler").GetComponent<LevelHandler> ();
+
+		//Get the wave order
+		waveOrder = levelHandler.getWaveOrder ();
 	}
 	
 	
