@@ -340,15 +340,27 @@ public class PlayerCollisions : MonoBehaviour {
 	 */
 	void FixedUpdate() {
 
+		print (health);
+
 		//Only consider if the user has power to the rapair station
 		if(repairPower > 0)
 		{
-			//If the use pressed R
-			if(Input.GetKeyDown("r"))
+			//If the use pressed R and doesnt have full health
+			if(health != 100 && Input.GetKeyDown("r"))
 			{
-				//if(score.UpdateCrystals(-1) a
+				//If the player has crystals to spend
+				if(score.UpdateCrystals(-1) >= 0)
+				{
+					//Heal the player ship
+					health += 20;
 
+					//Dont go over 100 health
+					if(health > 100)
+						health = 100;
 
+					//display the health bar
+					displayHealth();
+				}
 			}
 		}
 	}
