@@ -1,9 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Gunner.cs">
     <Files>
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="394" Column="1" />
-      <File FileName="Assets\Score Handler\ScoreHandler.cs" Line="121" Column="1" />
+      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="131" Column="2" />
+      <File FileName="Assets\Player Ship\Gunner.cs" Line="609" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
