@@ -106,7 +106,7 @@ public class Boss1 : MonoBehaviour {
 			//Increment the timer at each pass
 			timer++;
 
-			if (timer % 300 == 0 && timer >= 0) {
+			if (timer % 200 == 0 && timer >= 0) {
 				SpawnEnemy();
 			}
 		}

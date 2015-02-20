@@ -154,7 +154,7 @@ public class LevelHandler : MonoBehaviour {
 		alert = false;
 
 		//Set the amount of time the alert will flash
-		alertTimerMax = 500;
+		alertTimerMax = 400;
 		alertTimer = 0;
 	}
 	
