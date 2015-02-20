@@ -123,7 +123,7 @@ public class Gunner : MonoBehaviour {
 	static ScoreHandler scoreHandler;
 
 	//Blaster recharge bar
-	public Slider blasterRechargeBar;
+	public Image blasterReloadImage;
 
 	//Missile reload bar
 	public Image missileReloadImage;
@@ -178,12 +178,6 @@ public class Gunner : MonoBehaviour {
 		//Search for the ScoreHandler object for tracking crystals
 		scoreHandler = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<ScoreHandler>();
 
-		//Set the max for the blaster recharge bar
-		blasterRechargeBar.maxValue = blasterReloadTime;
-
-		//Set the value for the blaster recharge bar
-		blasterRechargeBar.value = blasterReloadTime;
-
 	}
 	
 
@@ -220,7 +214,7 @@ public class Gunner : MonoBehaviour {
 			blasterShootTimer--;
 
 			//Update the blaster recharge bar
-			blasterRechargeBar.value = blasterReloadTime - blasterShootTimer;
+			DisplayBlaster();
 
 			//If the shoot timer has reached 0, reset it and flag that the player can shoot
 			if (blasterShootTimer <= 0) {
@@ -237,7 +231,7 @@ public class Gunner : MonoBehaviour {
 			missileShootTimer--;
 
 			//Update the missile recharge bar
-			displayMissile();
+			DisplayMissile();
 
 			//If the shoot timer has reached 0, reset it and flag that the player can shoot
 			if (missileShootTimer <= 0) {
@@ -394,7 +388,7 @@ public class Gunner : MonoBehaviour {
 		{
 
 			//Update the blaster recharge bar
-			blasterRechargeBar.value = 0;
+			blasterReloadImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/MissileReload/1");
 
 			//subtract the crystals
 			scoreHandler.UpdateCrystals(-1);
@@ -600,7 +594,7 @@ public class Gunner : MonoBehaviour {
 		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 6;
 	}
 
-	void displayMissile() 
+	void DisplayMissile() 
 	{
 		//Use an algorithm to map the images to the players missile reload time
 		int imageValue = missileReloadTime - missileShootTimer;
@@ -618,6 +612,26 @@ public class Gunner : MonoBehaviour {
 		
 		//Load the appropriate sprite
 		missileReloadImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/MissileReload/" + imageNumber);
+	}
+
+	void DisplayBlaster() 
+	{
+		//Use an algorithm to map the images to the players missile reload time
+		int imageValue = blasterReloadTime - blasterShootTimer;
+		int blasterMax = blasterReloadTime;
+		int blasterMin = 1;
+		int imageMax = 11;
+		int imageMin = 1;
+		
+		//Figure out which images go with each missile value
+		int imageNumber = blasterMin + (imageValue-blasterMin)*(imageMax-imageMin)/(blasterMax-blasterMin);
+		
+		//Only show 0 if the player has no health left
+		if(blasterShootTimer <= 0)
+			imageNumber = 0;
+		
+		//Load the appropriate sprite
+		blasterReloadImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/MissileReload/" + imageNumber);
 	}
 
 }
