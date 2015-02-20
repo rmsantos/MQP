@@ -64,6 +64,9 @@ public class Flagship :  AbstractEnemy {
 	//Player position
 	Vector3 playerPosition;
 
+	//the shield
+	public GameObject shield;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -129,6 +132,8 @@ public class Flagship :  AbstractEnemy {
 
 				//Move to phase 1
 				phase = 1;
+
+				shield.SetActive(false);
 			}
 
 
