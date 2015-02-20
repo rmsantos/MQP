@@ -125,6 +125,9 @@ public class Gunner : MonoBehaviour {
 	//Blaster recharge bar
 	public Slider blasterRechargeBar;
 
+	//Missile reload bar
+	public Slider missileRechargeBar;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -180,6 +183,13 @@ public class Gunner : MonoBehaviour {
 
 		//Set the value for the blaster recharge bar
 		blasterRechargeBar.value = blasterReloadTime;
+
+		//Set the max for the missile recharge bar
+		missileRechargeBar.maxValue = missileReloadTime;
+		
+		//Set the value for the missile recharge bar
+		missileRechargeBar.value = missileReloadTime;
+
 	}
 	
 
@@ -231,7 +241,10 @@ public class Gunner : MonoBehaviour {
 			
 			//Decrements the shoot timer
 			missileShootTimer--;
-			
+
+			//Update the missile recharge bar
+			missileRechargeBar.value = missileReloadTime - missileShootTimer;
+
 			//If the shoot timer has reached 0, reset it and flag that the player can shoot
 			if (missileShootTimer <= 0) {
 				
@@ -353,6 +366,9 @@ public class Gunner : MonoBehaviour {
 
 		//If the user clicked the right mouse button
 		if (shootingMissile) {
+
+			//Update the missile recharge bar
+			missileRechargeBar.value = 0;
 
 			//Subtract the number of missiles
 			missiles--;
