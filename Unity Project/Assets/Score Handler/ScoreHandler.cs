@@ -76,6 +76,7 @@ public class ScoreHandler : MonoBehaviour {
 
 	public long UpdateCrystals(long amount) {
 
+		//Don't let the crystals go negative. Return -1 to flag
 		if(crystals + amount < 0)
 		{
 			return -1;
