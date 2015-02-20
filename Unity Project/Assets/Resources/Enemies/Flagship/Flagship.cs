@@ -47,7 +47,7 @@ public class Flagship :  AbstractEnemy {
 	public GameObject missilePrefab;
 
 	//The prefab for ambushers
-	public GameObject ambusherPrefab;
+	public GameObject dogfighterPrefab;
 
 	//Variable to keep track of where to move the boss next in phase 3
 	int movePhase;
@@ -375,7 +375,7 @@ public class Flagship :  AbstractEnemy {
 				//For every five main bullets, an ambusher will spawn
 				if(secondShoot % 5 == 0)
 				{
-					Instantiate(ambusherPrefab,transform.position,Quaternion.identity);
+					Instantiate(dogfighterPrefab,transform.position,Quaternion.identity);
 				}
 
 				//Flag that the boss has fired

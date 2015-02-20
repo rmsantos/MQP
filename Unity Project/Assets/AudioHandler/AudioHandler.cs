@@ -225,5 +225,19 @@ public class AudioHandler : MonoBehaviour {
 	{
 		GameObject.Find ("blaster").GetComponent<AudioSource> ().Play ();
 	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playAlarm()
+	 *
+	 * Description : Play the sound effect for shooting the blaster
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void playAlarm()
+	{
+		GameObject.Find ("alarm").GetComponent<AudioSource> ().Play ();
+	}
 	
 }

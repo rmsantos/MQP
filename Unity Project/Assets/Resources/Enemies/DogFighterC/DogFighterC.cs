@@ -38,6 +38,9 @@ public class DogFighterC :  AbstractEnemy {
 	//Position of the player
 	Vector3 playerPosition;
 
+	//The transform of the end of the turret
+	public Transform turretEnd;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -48,7 +51,10 @@ public class DogFighterC :  AbstractEnemy {
 	 * Returns     : Void
 	 */
 	void Start () {
-		
+
+		//Rotate the Saboteur at the start to align it properly and save it
+		transform.Rotate (0, 180, 0);
+
 		//Initialize base objects
 		setup ();
 
@@ -109,7 +115,7 @@ public class DogFighterC :  AbstractEnemy {
 			if(canShoot())
 			{
 				//Shoot the weapon
-				GameObject bullet = shoot (turret);
+				GameObject bullet = shoot (turretEnd);
 
 				//If the player was destroyed
 				if(player == null)
@@ -145,6 +151,12 @@ public class DogFighterC :  AbstractEnemy {
 		
 		}
 		
+		//Store the direction of the player in respect to the turret
+		Vector3 turretDirection = player.transform.position-turret.position;
+
+		//Rotate the turret towards theplayer
+		turret.rotation = Quaternion.LookRotation(turretDirection, turret.up);
+
 		//Destroy the ship if it goes off screen
 		checkBoundaries ();
 		

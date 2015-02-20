@@ -80,6 +80,9 @@ public class LevelHandler : MonoBehaviour {
 	//Boss max helath
 	int maxHealth;
 
+	//The audiohandler
+	AudioHandler audioHandler;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -92,6 +95,9 @@ public class LevelHandler : MonoBehaviour {
 
 	void Start () {
 	
+		//Search for the audioHandler
+		audioHandler = GameObject.FindGameObjectWithTag ("AudioHandler").GetComponent<AudioHandler> ();
+
 		//Get the randomizer script
 		random = (Randomizer)randomizer.GetComponent("Randomizer");
 
@@ -187,6 +193,9 @@ public class LevelHandler : MonoBehaviour {
 
 					//Play the boss spawn audio clip
 					portraitController.playBossSpawn();
+
+					//Play the alarm sound clip
+					audioHandler.playAlarm();
 				}
 
 				wave++;
