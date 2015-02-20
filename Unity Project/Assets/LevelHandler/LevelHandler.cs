@@ -265,11 +265,11 @@ public class LevelHandler : MonoBehaviour {
 	}
 
 	public int GetRandomAsteroidWave() {
-		return Mathf.Min (random.GetRandomInRange (0, level - 1), instancesAsteroid.Length);
+		return Mathf.Min (random.GetRandomInRange (0, level - 1), instancesAsteroid.Length - 1);
 	}
 
 	public int GetRandomHardWave() {
-		return Mathf.Min (random.GetRandomInRange (0, level - 1), instancesHard.Length);
+		return Mathf.Min (random.GetRandomInRange (0, level - 1), instancesHard.Length - 1);
 	}
 
 	public void SpawningHasStopped () {

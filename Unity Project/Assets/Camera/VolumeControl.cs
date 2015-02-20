@@ -41,12 +41,15 @@ public class VolumeControl : MonoBehaviour {
 		voiceVolume = PlayerPrefs.GetFloat ("VoiceVolume", 0);
 		soundEffectsVolume = PlayerPrefs.GetFloat ("SoundEffectsVolume", 0);
 
-		audio.volume = musicVolume;
+		//Music volume
+		audio.volume = .2f * musicVolume;
 		musicSlider.value = musicVolume;
 
+		//Portrait Volume
 		portraitAudio.audio.volume = voiceVolume;
 		voiceSlider.value = voiceVolume;
 
+		//Master volume
 		AudioListener.volume = volume;
 		volumeSlider.value = volume;
 
@@ -54,7 +57,7 @@ public class VolumeControl : MonoBehaviour {
 		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
 
 		//Set the audio of all sound effects
-		audioHandler.setSoundEffectsVolume (soundEffectsVolume);
+		audioHandler.setSoundEffectsVolume (.2f * soundEffectsVolume);
 		soundEffectsSlider.value = soundEffectsVolume;
 
 	}
@@ -68,7 +71,7 @@ public class VolumeControl : MonoBehaviour {
 
 	public void SetMusic (float newVolume) {
 
-		musicVolume = newVolume;
+		musicVolume = .2f * newVolume;
 		audio.volume = musicVolume;
 
 	}
@@ -84,7 +87,7 @@ public class VolumeControl : MonoBehaviour {
 
 		//Set the audio of all sound effects
 		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
-		audioHandler.setSoundEffectsVolume (newVolume);
+		audioHandler.setSoundEffectsVolume (.2f * newVolume);
 		soundEffectsSlider.value = newVolume;
 	}
 

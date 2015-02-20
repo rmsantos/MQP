@@ -468,11 +468,13 @@ public class Flagship :  AbstractEnemy {
 			//Destroy the enemy
 			Destroy(this.gameObject);
 
+			//Create the explosion at this location
+			Instantiate(Resources.Load<GameObject>("Explosions/BigExplosion"), new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);	
+
 			//Update the players score
 			score.UpdateScore(value);
 		}
 		
-
 
 	}
 
