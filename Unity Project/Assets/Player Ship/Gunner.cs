@@ -122,6 +122,9 @@ public class Gunner : MonoBehaviour {
 	//The score handler
 	static ScoreHandler scoreHandler;
 
+	//Blaster recharge bar
+	public Slider blasterRechargeBar;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -171,6 +174,12 @@ public class Gunner : MonoBehaviour {
 
 		//Search for the ScoreHandler object for tracking crystals
 		scoreHandler = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<ScoreHandler>();
+
+		//Set the max for the blaster recharge bar
+		blasterRechargeBar.maxValue = blasterReloadTime;
+
+		//Set the value for the blaster recharge bar
+		blasterRechargeBar.value = blasterReloadTime;
 	}
 	
 
@@ -205,7 +214,10 @@ public class Gunner : MonoBehaviour {
 			
 			//Decrements the shoot timer
 			blasterShootTimer--;
-			
+
+			//Update the blaster recharge bar
+			blasterRechargeBar.value = blasterReloadTime - blasterShootTimer;
+
 			//If the shoot timer has reached 0, reset it and flag that the player can shoot
 			if (blasterShootTimer <= 0) {
 				
@@ -370,6 +382,9 @@ public class Gunner : MonoBehaviour {
 		//If the usesr has clicked the middle mouse button
 		if(shootingBlaster)
 		{
+
+			//Update the blaster recharge bar
+			blasterRechargeBar.value = 0;
 
 			//subtract the crystals
 			scoreHandler.UpdateCrystals(-1);
