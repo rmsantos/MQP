@@ -55,6 +55,9 @@ public class PlayerCollisions : MonoBehaviour {
 
 	//The current repair power level
 	int repairPower;
+
+	//The text for the repair button
+	public Text repairText;
 	
 	void Start () {
 		
@@ -340,17 +343,27 @@ public class PlayerCollisions : MonoBehaviour {
 	 */
 	void FixedUpdate() {
 
-		print (health);
-
 		//Only consider if the user has power to the rapair station
 		if(repairPower > 0)
 		{
-			//If the use pressed R and doesnt have full health
-			if(health != 100 && Input.GetKeyDown("r"))
+			//If the player has max health or no crystals
+			if(health == 100 || score.GetCrystals() == 0)
 			{
-				//If the player has crystals to spend
-				if(score.UpdateCrystals(-1) >= 0)
+				//Color the repair text red and exit
+				repairText.color = Color.red;
+				return;
+			}
+			else 
+			{
+				//Else color it white (that its available)
+				repairText.color = Color.white;
+
+				//if the user repairs
+				if(Input.GetKeyDown("r"))
 				{
+					//Update crystals
+					score.UpdateCrystals(-1);
+					
 					//Heal the player ship
 					health += 20;
 
@@ -363,6 +376,10 @@ public class PlayerCollisions : MonoBehaviour {
 				}
 			}
 		}
+		//Else make the text red to signify that it cant be used
+		else
+			repairText.color = Color.red;
+
 	}
 
 	void Update() {
