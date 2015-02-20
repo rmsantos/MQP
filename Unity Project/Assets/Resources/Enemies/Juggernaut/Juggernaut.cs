@@ -129,27 +129,27 @@ public class Juggernaut :  AbstractEnemy {
 
 				//Bullet 1 shoots perpindicular to the shield
 				bullet1.transform.rotation = shieldRotation.rotation;
-				bullet1.transform.Rotate (0,0,75);
+				bullet1.transform.Rotate (0,0,60);
 
 				//Bullet 2 shoots perpendicular and shootAngle to the shield
 				bullet2.transform.rotation = shieldRotation.rotation;
-				bullet2.transform.Rotate(new Vector3(0,0,shootAngle+75));
+				bullet2.transform.Rotate(new Vector3(0,0,shootAngle+60));
 
 				//Bullet 3 shoots perpendicular and -shootAngle to the shield
 				bullet3.transform.rotation = shieldRotation.rotation;
-				bullet3.transform.Rotate(new Vector3(0,0,-shootAngle+75));
+				bullet3.transform.Rotate(new Vector3(0,0,-shootAngle+60));
 
 				//Bullet 4 shoots -perpendicular to the shield
 				bullet4.transform.rotation = shieldRotation.rotation;
-				bullet4.transform.Rotate(new Vector3(0,180,-75));
+				bullet4.transform.Rotate(new Vector3(0,180,-60));
 
 				//Bullet 5 shoots -perpendicular and shootAngle to the shield
 				bullet5.transform.rotation = shieldRotation.rotation;
-				bullet5.transform.Rotate(new Vector3(0,180,shootAngle-75));
+				bullet5.transform.Rotate(new Vector3(0,180,shootAngle-60));
 
 				//Bullet 6 shoots -perpendicular and -shootAngle to the shield
 				bullet6.transform.rotation = shieldRotation.rotation;
-				bullet6.transform.Rotate(new Vector3(0,180,-shootAngle-75));
+				bullet6.transform.Rotate(new Vector3(0,180,-shootAngle-60));
 			}
 		}
 		

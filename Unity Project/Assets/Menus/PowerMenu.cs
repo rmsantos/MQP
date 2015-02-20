@@ -61,6 +61,9 @@ public class PowerMenu : MonoBehaviour {
 	//The actual displayed images
 	public Image[] powerImages;
 
+	//The missile count
+	public Text missileCount;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -107,6 +110,9 @@ public class PowerMenu : MonoBehaviour {
 
 		//Enable or disable buttons to reflect what can be done
 		CheckButtons ();
+
+		//Set the missile count
+		missileCount.text = PlayerPrefs.GetInt ("Missiles", 0).ToString();
 	
 	}
 
@@ -987,6 +993,10 @@ public class PowerMenu : MonoBehaviour {
 			//or repair
 			case (int)powerSelected.REPAIR:
 				displayRepair();
+				break;
+			//Or missile count
+			case 8:
+				statusText.text = "Missile Count: " + missileCount.text;
 				break;
 		}
 
