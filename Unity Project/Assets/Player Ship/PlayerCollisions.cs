@@ -265,6 +265,16 @@ public class PlayerCollisions : MonoBehaviour {
 			takeDamage(boss.getCollisionDamage());
 		}
 
+		//If the object is another mine
+		if(col.gameObject.tag == "Mine")
+		{
+			//Cast to a mine type and explode
+			Mine mine = (Mine)col.gameObject.GetComponent(typeof(Mine));
+			
+			//The player takes damage
+			mine.explode();
+		}
+
 		if (health <= 0) {
 			//Play the explosion sound effect
 			audioHandler.playPlayerExplosion();

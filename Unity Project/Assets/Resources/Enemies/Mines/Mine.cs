@@ -16,6 +16,10 @@ using System.Collections;
 
 public class Mine : AbstractEnemy {
 
+	//Is true if the mine is currently exploding
+	//Prevents infinite loops of exploding mines
+	bool isExploding;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -33,6 +37,9 @@ public class Mine : AbstractEnemy {
 
 		//Play the minefield audio
 		portraitController.playMinefield ();
+
+		//The mine is not exploding
+		isExploding = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -57,6 +64,131 @@ public class Mine : AbstractEnemy {
 		//Destroy the ship if it goes off screen
 		checkBoundaries ();
 		
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : OnCollisionEnter2D(Collision2D col)
+	 *
+	 * Description : Deals with collisions between the player bullets and this enemy.
+	 *
+	 * Parameters  : Collision2D col : The other object collided with
+	 *
+	 * Returns     : Void
+	 */
+	void OnCollisionEnter2D (Collision2D col)
+	{
+		//If this is hit by a player bullet
+		if(col.gameObject.tag == "PlayerBullet")
+		{
+			//Destroy the player bullet and this object
+			Destroy(col.gameObject);
+			
+			//explode
+			explode();
+			
+		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : explode()
+	 *
+	 * Description : Explodes the mine and damages enemies in the area
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	public void explode()
+	{
+		//Only explode if this missile isnt currently in the process of exploding
+		//Prevents infinite loops
+		if(!isExploding)
+		{
+			//Flag that the missile is exploding
+			isExploding = true;
+			
+			//Draw a sphere at this position and track everything that overlaps it
+			Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, 1);
+			
+			//For each item that overlaps the sphere
+			foreach( Collider2D collide in hitColliders)
+			{
+				//If the collision was with an enemy or boss
+				if(collide.tag == "Enemies")
+				{
+					//Find the component that extends AbstractEnemy (the enemy script)
+					AbstractEnemy enemy = (AbstractEnemy)collide.GetComponent(typeof(AbstractEnemy));
+					
+					//Deal damage to that enemy
+					enemy.takeDamage(collisionDamage);
+				}
+				
+				if(collide.tag == "Boss")
+				{
+					if(!collide.GetComponent<Flagship>().startingPhase())
+					{
+						//Find the component that extends AbstractEnemy (the enemy script)
+						Flagship enemy = (Flagship)collide.GetComponent(typeof(Flagship));
+						
+						//Deal damage to that enemy
+						enemy.TakeDamage(collisionDamage);
+					}
+				}
+				
+				//Delete the object if it is an enemy or player laser
+				if(collide.tag == "EnemyLaser" || collide.tag == "PlayerLaser")
+					Destroy (collide.gameObject);
+				
+				//If the object is an asteroid
+				if(collide.tag == "Asteroids")
+				{
+					//Cast to an asteroid type
+					AbstractAsteroid asteroid = (AbstractAsteroid)collide.GetComponent(typeof(AbstractAsteroid));
+					
+					//And shatter the asteroid
+					asteroid.shatter();
+					
+				}
+				
+				//If the object is an enemy missile
+				if(collide.tag == "EnemyMissile")
+				{
+					//Cast to an asteroid type
+					SeekerMissile seekerMissile = (SeekerMissile)collide.GetComponent(typeof(SeekerMissile));
+					
+					//And explode the missile
+					seekerMissile.explode();
+					
+				}
+				
+				//If the object is a missile
+				if(collide.tag == "Player")
+				{
+					//Cast to the player collisions type
+					PlayerCollisions player = (PlayerCollisions)collide.GetComponent(typeof(PlayerCollisions));
+					
+					//The player takes damage
+					player.takeDamage(collisionDamage);
+					
+				}
+
+				//If the object is another mine
+				if(collide.tag == "Mine")
+				{
+					//Cast to a mine type and explode
+					Mine mine = (Mine)collide.GetComponent(typeof(Mine));
+					
+					//The player takes damage
+					mine.explode();
+				}
+			}
+
+			//Play the explosion sound
+			audioHandler.playMediumEnemyExplosion();
+
+			//Delete the mine
+			Destroy (this.gameObject);
+		}
 	}
 
 }

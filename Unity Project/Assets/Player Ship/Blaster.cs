@@ -135,7 +135,7 @@ public class Blaster : MonoBehaviour {
 				{
 					//Cast to an asteroid type
 					SeekerMissile seekerMissile = (SeekerMissile)hit.transform.GetComponent(typeof(SeekerMissile));
-					
+
 					//And explode the missile
 					seekerMissile.explode();
 					
@@ -151,6 +151,16 @@ public class Blaster : MonoBehaviour {
 						//Deal damage to that enemy
 						enemy.TakeDamage(damage);
 					}
+				}
+
+				//If the object is another mine
+				if(hit.transform.tag == "Mine")
+				{
+					//Cast to a mine type and explode
+					Mine mine = (Mine)hit.transform.GetComponent(typeof(Mine));
+					
+					//The player takes damage
+					mine.explode();
 				}
 			}
 		}
