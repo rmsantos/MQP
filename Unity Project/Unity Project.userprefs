@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menus\MainMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Radar.cs">
     <Files>
-      <File FileName="Unity Project.sln" Line="77" Column="1" />
-      <File FileName="Assets\Menus\MainMenu.cs" Line="107" Column="2" />
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="60" Column="25" />
-      <File FileName="Assets\Score Handler\ScoreHandler.cs" Line="121" Column="1" />
+      <File FileName="Assets\Player Ship\Radar.cs" Line="215" Column="1" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="415" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
