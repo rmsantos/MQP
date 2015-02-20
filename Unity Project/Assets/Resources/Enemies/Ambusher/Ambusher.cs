@@ -46,11 +46,14 @@ public class Ambusher : AbstractEnemy {
 
 		//Invisibility values
 		invisible = false;
-		counter = 200;
+		counter = 150;
 		alpha = 1f;
 
 		//Play the ambusher spawn clip
 		portraitController.playAmbusherSpawn ();
+		if (PlayerPrefs.GetInt ("Level", 0) > 5) {
+			speed += .015f;
+		}
 
 	}
 	
@@ -99,7 +102,7 @@ public class Ambusher : AbstractEnemy {
 			}
 		}
 		else if (!invisible && counter <= 0) {
-			if (alpha > .20f) {
+			if (alpha > .05f) {
 				alpha -= .05f;
 				var originalColour = renderer.material.color;
 				renderer.material.color = new Color(originalColour.r, originalColour.g, originalColour.b, alpha);
