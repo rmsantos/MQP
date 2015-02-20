@@ -202,6 +202,8 @@ public abstract class AbstractEnemy : MonoBehaviour {
 				case "Saboteur(Clone)":
 				case "Seeker":
 				case "Seeker(Clone)":
+				case "DogFighterC":
+				case "DogFighterC(Clone)":
 					audioHandler.playSmallEnemyExplosion();
 					break;
 				case "Grenadier":
@@ -210,6 +212,10 @@ public abstract class AbstractEnemy : MonoBehaviour {
 				case "Juggernaut(Clone)":
 					audioHandler.playMediumEnemyExplosion();
 					portraitController.playLargeEnemyDestroyed();
+					break;
+				case "Mine":
+				case "Mine(Clone)":
+					audioHandler.playMediumEnemyExplosion();
 					break;
 			}
 

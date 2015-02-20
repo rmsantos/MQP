@@ -333,7 +333,7 @@ public class PlayerCollisions : MonoBehaviour {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : FixedUpdate()
+	/* Function    : Update()
 	 *
 	 * Description : Poll for user input to repair the ship
 	 *
@@ -341,7 +341,13 @@ public class PlayerCollisions : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void FixedUpdate() {
+	void Update() {
+
+		if(Input.GetKeyDown ("6")) {
+			//#dead
+			health = 0;
+			
+		}
 
 		//Only consider if the user has power to the rapair station
 		if(repairPower > 0)
@@ -380,14 +386,5 @@ public class PlayerCollisions : MonoBehaviour {
 		else
 			repairText.color = Color.red;
 
-	}
-
-	void Update() {
-
-		if(Input.GetKeyDown ("6")) {
-			//#dead
-			health = 0;
-			
-		}
 	}
 }
