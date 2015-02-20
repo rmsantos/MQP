@@ -83,6 +83,19 @@ public class LevelHandler : MonoBehaviour {
 	//The audiohandler
 	AudioHandler audioHandler;
 
+	//Alarm image
+	public Image alarmImage;
+
+	//Last edge alpha the alarm was at
+	float edge;
+
+	//Alert flag
+	bool alert;
+
+	//Alert timer
+	int alertTimerMax;
+	int alertTimer;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -133,6 +146,16 @@ public class LevelHandler : MonoBehaviour {
 
 		waveOrder = new int[] {0, 0, 0, 1, 2};
 		waveOrder = random.Shuffle(waveOrder);
+
+		//Set the egde to the default value of the image
+		edge = alarmImage.color.a;
+
+		//Flag not to start the alert
+		alert = false;
+
+		//Set the amount of time the alert will flash
+		alertTimerMax = 500;
+		alertTimer = 0;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -196,10 +219,60 @@ public class LevelHandler : MonoBehaviour {
 
 					//Play the alarm sound clip
 					audioHandler.playAlarm();
+
+					//Flag to start the alert animation
+					alert = true;
 				}
 
 				wave++;
 				
+			}
+		}
+
+		//If the boss is incoming, then flash the alert image
+		if(alert)
+		{
+			//Count how long to be here
+			alertTimer++;
+
+			//If the alpha value is at the 1 edge
+			if(edge == 1f)
+			{
+				//Slowly decrease the alpha
+				var originalColour = alarmImage.color;
+				alarmImage.color = new Color(originalColour.r, originalColour.g, originalColour.b, originalColour.a-0.1f);
+
+				//When hitting 0 make the new edge 0
+				if(originalColour.a <= 0)
+				{
+					edge = 0;
+				}
+			}
+			//Else if the edge is 0 do the opposite
+			else if(edge == 0f)
+			{
+				//Increase the alpha
+				var originalColour = alarmImage.color;
+				alarmImage.color = new Color(originalColour.r, originalColour.g, originalColour.b, originalColour.a+0.1f);
+
+				//Flip the egde
+				if(originalColour.a >= 1f)
+				{
+					edge = 1f;
+				}
+			}
+
+			//Count how long the flashing should occur for
+			if(alertTimer == alertTimerMax)
+			{
+				//And reset everything afterwards
+				alert = false;
+				alertTimer = 0;
+				edge = 1f;
+
+				var originalColour = alarmImage.color;
+				alarmImage.color = new Color(originalColour.r, originalColour.g, originalColour.b, 1f);
+
 			}
 		}
 
