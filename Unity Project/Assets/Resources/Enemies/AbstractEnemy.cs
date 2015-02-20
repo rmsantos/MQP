@@ -82,6 +82,8 @@ public abstract class AbstractEnemy : MonoBehaviour {
 
 	//The place to spawn bullets
 	public Transform turret;
+
+	public float reloadTimePerLevel;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setup()
@@ -250,7 +252,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
 			//Spawn money with a certain chance
-			if(random.GetRandom(100) < moneyDropRate + PlayerPrefs.GetInt("Level"));
+			if(random.GetRandom(100) < moneyDropRate + PlayerPrefs.GetInt("Level", 0));
 			{
 				//Load the money prefab
 				GameObject money = Resources.Load<GameObject>("Money/Money");
@@ -307,7 +309,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 			if (shootTimer <= 0) {
 				
 				ready = true;
-				shootTimer = reloadTime;
+				shootTimer = (int)((float)reloadTime - (reloadTimePerLevel * (float) PlayerPrefs.GetInt("Level", 0)));
 			}
 		}
 	}
