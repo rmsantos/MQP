@@ -395,6 +395,20 @@ public class LevelHandler : MonoBehaviour {
 		healthImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Enemy health/" + imageNumber);
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : getWaveOrder()
+	 *
+	 * Description : Returns the wave order
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : int[] waveOrder : The wave order
+	 */
+	public int[] getWaveOrder()
+	{
+		return waveOrder;
+	}
+
 }
 
 
