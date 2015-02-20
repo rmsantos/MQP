@@ -60,6 +60,12 @@ public class AudioHandler : MonoBehaviour {
 		{
 			source.volume = newVolume;
 		}
+		GameObject.Find ("laser1").GetComponent<AudioSource> ().volume = .25f * newVolume;
+		GameObject.Find ("laser2").GetComponent<AudioSource> ().volume = .25f * newVolume;
+		GameObject.Find ("laser3").GetComponent<AudioSource> ().volume = .25f * newVolume;
+		GameObject.Find ("laser4").GetComponent<AudioSource> ().volume = .25f * newVolume;
+		GameObject.Find ("laser5").GetComponent<AudioSource> ().volume = .25f * newVolume;
+		GameObject.Find ("laser6").GetComponent<AudioSource> ().volume = .25f * newVolume;
 	}
 
 	/* ----------------------------------------------------------------------- */

@@ -250,7 +250,7 @@ public abstract class AbstractEnemy : MonoBehaviour {
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);	
 			
 			//Spawn money with a certain chance
-			if(random.GetRandom(100) < moneyDropRate)
+			if(random.GetRandom(100) < moneyDropRate + PlayerPrefs.GetInt("Level"));
 			{
 				//Load the money prefab
 				GameObject money = Resources.Load<GameObject>("Money/Money");
