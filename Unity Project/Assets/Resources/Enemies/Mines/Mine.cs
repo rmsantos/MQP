@@ -30,6 +30,9 @@ public class Mine : AbstractEnemy {
 		//Initialize base objects
 		setup ();
 		speed = Random.Range(speed, speed * 1.5f);
+
+		//Play the minefield audio
+		portraitController.playMinefield ();
 	}
 	
 	/* ----------------------------------------------------------------------- */

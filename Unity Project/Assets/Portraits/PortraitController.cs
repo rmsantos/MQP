@@ -82,6 +82,12 @@ public class PortraitController : MonoBehaviour {
 	//Flag for the radar power dialogue
 	bool radarCheck;
 
+	//Ambusher speech flag
+	bool ambushFlag;
+
+	//Mine appear flag
+	bool mineFlag;
+
 	//Timer to count tip
 	int timer;
 
@@ -137,6 +143,7 @@ public class PortraitController : MonoBehaviour {
 		mechanicResponse2 = false;
 		bossPhase = false;
 		radarCheck = false;
+		ambushFlag = false;
 		player1Speech = false;
 		player2Speech = false;
 		player3Speech = false;
@@ -886,20 +893,26 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playAmbusherSpawn()
 	{
-		//75% to play this clip
-		if(random.GetRandom(100) < 75)
+		if(!ambushFlag)
 		{
-			//If audio isnt current playing
-			if(!source.isPlaying)
+			//75% to play this clip
+			if(random.GetRandom(100) < 75)
 			{
-				print("AMBUSHER SPAWN");
+				//If audio isnt current playing
+				if(!source.isPlaying)
+				{
+					print("AMBUSHER SPAWN");
 
-				//Load the audio clip and play it
-				source.clip = portrait4[18];
-				source.Play();
+					//Load the audio clip and play it
+					source.clip = portrait4[18];
+					source.Play();
 
-				//Flag that player 4 is speaking
-				player4Speech = true;
+					//Flag that player 4 is speaking
+					player4Speech = true;
+
+					//Flag the audio
+					ambushFlag = true;
+				}
 			}
 		}
 	}
@@ -915,20 +928,26 @@ public class PortraitController : MonoBehaviour {
 	 */
 	public void playMinefield()
 	{
-		//75% to play this clip
-		if(random.GetRandom(100) < 75)
+		if(!mineFlag)
 		{
-			//If audio isnt current playing
-			if(!source.isPlaying)
+			//75% to play this clip
+			if(random.GetRandom(100) < 75)
 			{
-				print("MINEFIELD APPROACHING");
-				
-				//Load the audio clip and play it
-				source.clip = portrait4[19];
-				source.Play();
-				
-				//Flag that player 4 is speaking
-				player4Speech = true;
+				//If audio isnt current playing
+				if(!source.isPlaying)
+				{
+					print("MINEFIELD APPROACHING");
+					
+					//Load the audio clip and play it
+					source.clip = portrait4[19];
+					source.Play();
+					
+					//Flag that player 4 is speaking
+					player4Speech = true;
+
+					//Flag the mine spawn
+					mineFlag = true;
+				}
 			}
 		}
 	}

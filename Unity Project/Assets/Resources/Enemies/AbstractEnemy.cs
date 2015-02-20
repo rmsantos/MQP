@@ -202,6 +202,8 @@ public abstract class AbstractEnemy : MonoBehaviour {
 				case "Saboteur(Clone)":
 				case "Seeker":
 				case "Seeker(Clone)":
+				case "DogFighterC":
+				case "DogFighterC(Clone)":
 					audioHandler.playSmallEnemyExplosion();
 					break;
 				case "Grenadier":
