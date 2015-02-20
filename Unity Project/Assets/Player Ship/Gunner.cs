@@ -126,7 +126,7 @@ public class Gunner : MonoBehaviour {
 	public Slider blasterRechargeBar;
 
 	//Missile reload bar
-	public Slider missileRechargeBar;
+	public Image missileReloadImage;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -184,12 +184,6 @@ public class Gunner : MonoBehaviour {
 		//Set the value for the blaster recharge bar
 		blasterRechargeBar.value = blasterReloadTime;
 
-		//Set the max for the missile recharge bar
-		missileRechargeBar.maxValue = missileReloadTime;
-		
-		//Set the value for the missile recharge bar
-		missileRechargeBar.value = missileReloadTime;
-
 	}
 	
 
@@ -243,7 +237,7 @@ public class Gunner : MonoBehaviour {
 			missileShootTimer--;
 
 			//Update the missile recharge bar
-			missileRechargeBar.value = missileReloadTime - missileShootTimer;
+			displayMissile();
 
 			//If the shoot timer has reached 0, reset it and flag that the player can shoot
 			if (missileShootTimer <= 0) {
@@ -368,7 +362,7 @@ public class Gunner : MonoBehaviour {
 		if (shootingMissile) {
 
 			//Update the missile recharge bar
-			missileRechargeBar.value = 0;
+			missileReloadImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/MissileReload/1");
 
 			//Subtract the number of missiles
 			missiles--;
@@ -604,6 +598,26 @@ public class Gunner : MonoBehaviour {
 		//If the player has bought the missile payload upgrade
 		//Then increase damage
 		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 6;
+	}
+
+	void displayMissile() 
+	{
+		//Use an algorithm to map the images to the players missile reload time
+		int imageValue = missileReloadTime - missileShootTimer;
+		int missileMax = missileReloadTime;
+		int missileMin = 1;
+		int imageMax = 11;
+		int imageMin = 1;
+		
+		//Figure out which images go with each missile value
+		int imageNumber = missileMin + (imageValue-missileMin)*(imageMax-imageMin)/(missileMax-missileMin);
+		
+		//Only show 0 if the player has no health left
+		if(missileShootTimer <= 0)
+			imageNumber = 0;
+		
+		//Load the appropriate sprite
+		missileReloadImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/MissileReload/" + imageNumber);
 	}
 
 }
