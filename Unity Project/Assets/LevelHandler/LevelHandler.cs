@@ -250,8 +250,8 @@ public class LevelHandler : MonoBehaviour {
 
 	public int GetRandomBasedOnLevel() {
 
-		int highest = Mathf.Min (level + 2, instances.GetLength(0));
-		int lowest = Mathf.Max ((level / 2) - 1, 0);
+		int highest = Mathf.Min (level + 2, instances.GetLength(0) - 1);
+		int lowest = Mathf.Min (instances.GetLength(0) - 1, Mathf.Max ((level / 2) - 1, 0));
 		bool gotInt = false;
 		int value = -1;
 		while (!gotInt) {
