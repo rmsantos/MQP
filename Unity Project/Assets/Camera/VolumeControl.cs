@@ -42,7 +42,7 @@ public class VolumeControl : MonoBehaviour {
 		soundEffectsVolume = PlayerPrefs.GetFloat ("SoundEffectsVolume", 0);
 
 		//Music volume
-		audio.volume = .2f * musicVolume;
+		audio.volume = .05f * musicVolume;
 		musicSlider.value = musicVolume;
 
 		//Portrait Volume
@@ -71,7 +71,7 @@ public class VolumeControl : MonoBehaviour {
 
 	public void SetMusic (float newVolume) {
 
-		musicVolume = .2f * newVolume;
+		musicVolume = .05f * newVolume;
 		audio.volume = musicVolume;
 
 	}

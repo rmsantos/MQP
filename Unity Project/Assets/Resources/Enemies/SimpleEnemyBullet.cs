@@ -46,7 +46,6 @@ public class SimpleEnemyBullet : MonoBehaviour {
 		boundaries = Camera.main.GetComponent<Boundaries>();
 
 		speed += (float)PlayerPrefs.GetInt ("Level", 0) * .002f;
-		print (speed);
 		
 	}
 	
