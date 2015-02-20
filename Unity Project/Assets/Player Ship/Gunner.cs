@@ -493,8 +493,8 @@ public class Gunner : MonoBehaviour {
 				laserReloadTime = 14;
 				break;
 			case 3:
-				laserDamage = 2;
-				laserReloadTime = 14;
+				laserDamage = 1;
+				laserReloadTime = 22;
 				break;
 		}
 
