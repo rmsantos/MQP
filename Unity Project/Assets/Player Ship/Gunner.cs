@@ -415,13 +415,13 @@ public class Gunner : MonoBehaviour {
 		if (!pauseMenu.IsPaused()) 
 		{
 			//If the player tries to shoot the laser and can
-			if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
+			if(Input.GetMouseButtonDown(0)) {
 
 				//Flag the shoot
 				shootingLaser = true;
 
 			}
-			else if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
+			else if(Input.GetMouseButtonUp(0)) {
 				
 				//Flag the shoot
 				shootingLaser = false;
@@ -429,7 +429,7 @@ public class Gunner : MonoBehaviour {
 			}
 
 			//If the player tries to shoot a missile and can
-			if(readyMissile && (Input.GetMouseButtonDown(1) || Input.GetKeyDown("m")) && missiles > 0) {
+			if(readyMissile && Input.GetKeyDown(KeyCode.Space) && missiles > 0) {
 
 				//if power is supplied to the missiles
 				if(missilePower > 0)
@@ -446,7 +446,7 @@ public class Gunner : MonoBehaviour {
 			}
 
 			//If the player tries to shoot the blaster and can
-			if(readyBlaster && (Input.GetMouseButtonDown(2) || Input.GetKeyDown("l")) && scoreHandler.GetCrystals() > 0) {
+			if(readyBlaster && Input.GetMouseButtonDown(1) && scoreHandler.GetCrystals() > 0) {
 
 				//If the player supplied power to the blaster
 				if(blasterPower > 0)
