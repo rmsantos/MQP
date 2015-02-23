@@ -97,6 +97,7 @@
      <Compile Include="Assets\Resources\NewInstances\AbstractInstance.cs" />
      <Compile Include="Assets\Resources\NewInstances\SimpleInstance.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
+     <Compile Include="Assets\Tutorial.cs" />
      <Compile Include="Assets\UI\UpdateCrystal.cs" />
      <Compile Include="Assets\UI\UpdateLevel.cs" />
      <Compile Include="Assets\UI\UpdateMoney.cs" />

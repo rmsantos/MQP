@@ -24,11 +24,13 @@ public class MainMenu : MonoBehaviour {
 	bool startGame;
 	bool quitGame;
 	bool highScores;
+	bool startTutorial;
 
 	//The start and quit buttons
 	public GameObject startButton;
 	public GameObject quitButton;
 	public GameObject highScoreButton;
+	public GameObject tutorialButton;
 	
 	//The options menu
 	public GameObject options;
@@ -142,6 +144,13 @@ public class MainMenu : MonoBehaviour {
 			//Load the high scores
 			Application.LoadLevel (5);
 		}
+
+		//If the user clicked tutorial and the audio file is done
+		if(startTutorial && !tutorialButton.audio.isPlaying)
+		{
+			//Load the tutorial
+			Application.LoadLevel (6);
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -202,6 +211,58 @@ public class MainMenu : MonoBehaviour {
 		startGame = start;
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setTutorialStart()
+	 *
+	 * Description : Sets the start tutorial bool to true
+	 *
+	 * Parameters  : bool start : Start the tutorial?
+	 *
+	 * Returns     : Void
+	 */
+	public void setTutorialStart()
+	{
+		//Set the games power and upgrade levels for the tutorial
+		//Power Levels
+		PlayerPrefs.SetInt ("ShieldPower", 2);
+		PlayerPrefs.SetInt ("EnginePower", 2);
+		PlayerPrefs.SetInt ("MissilePower", 2);
+		PlayerPrefs.SetInt ("LaserPower", 2);
+		PlayerPrefs.SetInt ("BlasterPower", 2);
+		PlayerPrefs.SetInt ("RadarPower", 0);
+		PlayerPrefs.SetInt ("RepairPower", 0);
+		PlayerPrefs.SetInt ("MoneyValue", 0);
+		PlayerPrefs.SetInt ("CrystalValue", 0);
+		PlayerPrefs.SetInt ("Health", 100);
+		PlayerPrefs.SetInt ("Missiles", 5);
+		PlayerPrefs.SetInt ("Crystals", 5);
+		PlayerPrefs.SetInt ("Money", 0);
+		PlayerPrefs.SetFloat ("MasterVolume", 1);
+		PlayerPrefs.SetFloat ("MusicVolume", 1);
+		PlayerPrefs.SetFloat ("VoiceVolume", 1);
+		PlayerPrefs.SetFloat ("SoundEffectsVolume", 1);
+		
+		//Upgrades
+		PlayerPrefs.SetInt ("PowerUpgrade", 0);
+		PlayerPrefs.SetInt ("EngineUpgrade", 0);
+		PlayerPrefs.SetInt ("LaserUpgradeSpeed", 0);
+		PlayerPrefs.SetInt ("LaserUpgradeDamage", 0);
+		PlayerPrefs.SetInt ("LaserUpgradeBurst", 0);
+		PlayerPrefs.SetInt ("ShieldUpgradeRecharge",1);
+		PlayerPrefs.SetInt ("ShieldUpgradeNumber", 1);
+		PlayerPrefs.SetInt ("ShieldUpgradeHardened",0);
+		PlayerPrefs.SetInt ("MissileUpgradePayload", 0);
+		PlayerPrefs.SetInt ("MissileUpgradeLoader", 0);
+		PlayerPrefs.SetInt ("CargoUpgradeMissiles", 0);
+		PlayerPrefs.SetInt ("CargoUpgradeCrystals", 0);
+		PlayerPrefs.SetInt ("CargoUpgradeCredits", 0);
+		PlayerPrefs.SetInt ("HullUpgradeReinforced", 0);
+		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", 0);
+		PlayerPrefs.SetInt ("BlasterUpgradeFireRate", 1);
+		PlayerPrefs.SetInt ("BlasterUpgradeDamage", 0);
+
+		startTutorial = true;
+	}
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setQuit()
 	 *
