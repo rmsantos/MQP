@@ -44,7 +44,7 @@ public class UpgradeMenu : MonoBehaviour {
 	public int[] lasers2Cost;
 	public int[] lasers3Cost;
 
-	public Slider playerHealthSlider;
+	public Image healthImage;
 
 	public Button[] selectButtons;
 
@@ -132,7 +132,7 @@ public class UpgradeMenu : MonoBehaviour {
 		scoreText.text = score.ToString();
 		missileText.text = missiles.ToString();
 		crystalText.text = crystals.ToString();
-		playerHealthSlider.value = playerHealth;
+		DisplayHealth ();
 		
 		//Setup and retreive the previously bought upgrade levels
 		upgradeLevel = new int[upgradePrefs.Length];
@@ -394,10 +394,30 @@ public class UpgradeMenu : MonoBehaviour {
 				playerHealth = 100;
 			}
 			moneyText.text = money.ToString();
-			playerHealthSlider.value = playerHealth;
+			DisplayHealth();
 
 		}
 
+	}
+
+	void DisplayHealth() 
+	{
+		//Use an algorithm to map the images to the players health
+		int imageValue = playerHealth;
+		int healthMax = 100;
+		int healthMin = 1;
+		int imageMax = 23;
+		int imageMin = 1;
+		
+		//Figure out which images go with each health value
+		int imageNumber = healthMin + (imageValue-healthMin)*(imageMax-imageMin)/(healthMax-healthMin);
+		
+		//Only show 0 if the player has no health left
+		if(playerHealth <= 0)
+			imageNumber = 0;
+		
+		//Load the appropriate sprite
+		healthImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Health/" + imageNumber);
 	}
 
 }
