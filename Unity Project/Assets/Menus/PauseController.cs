@@ -90,4 +90,9 @@ public class PauseController : MonoBehaviour {
 
 	}
 
+	//Used to return the cursor back to the screen
+	void OnDestroy() {
+		Screen.showCursor = true;
+	}
+
 }
