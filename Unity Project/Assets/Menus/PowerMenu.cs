@@ -769,7 +769,7 @@ public class PowerMenu : MonoBehaviour {
 				statusText.text = "Faster reload time (-1)";
 				break;
 			case 3:
-				string newText = "Faster reload time (-1), increased damage (+1), and Burst Shot enabled";
+				string newText = "Slower reload time (-2), Tri-Burst Shot enabled";
 				
 				int laserUpgrade = PlayerPrefs.GetInt("LaserUpgradeBurst",0);
 
