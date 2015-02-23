@@ -31,6 +31,7 @@ public class PauseController : MonoBehaviour {
 		paused = false;
 		pauseMenu.active = false;
 		Time.timeScale = 1;
+		Screen.showCursor = false;
 	}
 
 	void Update () {
@@ -39,10 +40,12 @@ public class PauseController : MonoBehaviour {
 		if (Input.GetKeyDown ("p")) {
 			paused = !paused;
 			if (paused) {
+				Screen.showCursor = true;
 				Time.timeScale = 0;
 				pauseMenu.active = true;
 			}
 			else {
+				Screen.showCursor = false;
 				Time.timeScale = 1;
 				pauseMenu.active = false;
 			}
@@ -63,10 +66,12 @@ public class PauseController : MonoBehaviour {
 		if (pauseState != paused) {
 			paused = pauseState;
 			if (paused) {
+				Screen.showCursor = true;
 				Time.timeScale = 0;
 				pauseMenu.active = true;
 			}
 			else {
+				Screen.showCursor = false;
 				Time.timeScale = 1;
 				pauseMenu.active = false;
 			}
