@@ -81,7 +81,7 @@ public class Tutorial : MonoBehaviour {
 			//if the tutorial is over then go to the main menu
 			if(index == 16)
 			{
-				Application.LoadLevel(1);
+				Application.LoadLevel(0);
 			}
 
 			//Play the next audio clip
