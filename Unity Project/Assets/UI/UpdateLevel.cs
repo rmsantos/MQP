@@ -20,6 +20,6 @@ public class UpdateLevel : MonoBehaviour {
 	public Text text;
 
 	public void UpdateText(int level) {
-		text.text = "Level : " + level.ToString ();
+		text.text = level.ToString ();
 	}
 }
