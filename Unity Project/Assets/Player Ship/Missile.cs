@@ -164,7 +164,7 @@ public class Missile : MonoBehaviour {
 		if(col.gameObject.tag == "Enemies" || col.gameObject.tag == "Asteroids" || 
 		   col.gameObject.tag == "EnemeyShield" || col.gameObject.tag == "Boss" 
 		   || col.gameObject.tag == "Missile" || col.gameObject.tag == "EnemyPassable" ||
-		   col.gameObject.tag == "Mine")
+		   col.gameObject.tag == "Mine" || col.gameObject.tag == "Boss2")
 		{
 			//explode this missile
 			explode();
@@ -211,6 +211,18 @@ public class Missile : MonoBehaviour {
 					{
 						//Find the component that extends AbstractEnemy (the enemy script)
 						Flagship enemy = (Flagship)collide.GetComponent(typeof(Flagship));
+						
+						//Deal damage to that enemy
+						enemy.TakeDamage(damage);
+					}
+				}
+
+				if(collide.tag == "Boss2")
+				{
+					if(!collide.GetComponent<FlagshipB>().startingPhase())
+					{
+						//Find the component that extends AbstractEnemy (the enemy script)
+						FlagshipB enemy = (FlagshipB)collide.GetComponent(typeof(FlagshipB));
 						
 						//Deal damage to that enemy
 						enemy.TakeDamage(damage);

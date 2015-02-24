@@ -276,6 +276,15 @@ public class PlayerCollisions : MonoBehaviour {
 			takeDamage(boss.getCollisionDamage());
 		}
 
+		if(col.gameObject.tag == "Boss2")
+		{
+			//Find the class of this collision
+			FlagshipB boss = (FlagshipB)col.gameObject.GetComponent(typeof(FlagshipB));
+			
+			//Subtract the health based on that boss
+			takeDamage(boss.getCollisionDamage());
+		}
+
 		//If the object is another mine
 		if(col.gameObject.tag == "Mine")
 		{

@@ -153,6 +153,18 @@ public class Blaster : MonoBehaviour {
 					}
 				}
 
+				if(hit.transform.tag == "Boss2")
+				{
+					if(!hit.transform.GetComponent<FlagshipB>().startingPhase())
+					{
+						//Find the component that extends BasicEnemy (the enemy script)
+						FlagshipB enemy = (FlagshipB)hit.transform.GetComponent(typeof(FlagshipB));
+						
+						//Deal damage to that enemy
+						enemy.TakeDamage(damage);
+					}
+				}
+
 				//If the object is another mine
 				if(hit.transform.tag == "Mine")
 				{

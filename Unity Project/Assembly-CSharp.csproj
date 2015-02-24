@@ -73,6 +73,7 @@
      <Compile Include="Assets\Portraits\PortraitController.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
+     <Compile Include="Assets\Resources\BossInstances\Boss2.cs" />
      <Compile Include="Assets\Resources\Crystals\Crystals.cs" />
      <Compile Include="Assets\Resources\Enemies\AbstractEnemy.cs" />
      <Compile Include="Assets\Resources\Enemies\Ambusher\Ambusher.cs" />
@@ -85,6 +86,7 @@
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterC\DogFighterC.cs" />
      <Compile Include="Assets\Resources\Enemies\Flagship\Flagship.cs" />
+     <Compile Include="Assets\Resources\Enemies\FlagshipB\FlagshipB.cs" />
      <Compile Include="Assets\Resources\Enemies\Grenadier\Grenadier.cs" />
      <Compile Include="Assets\Resources\Enemies\Interceptor\Interceptor.cs" />
      <Compile Include="Assets\Resources\Enemies\Juggernaut\Juggernaut.cs" />

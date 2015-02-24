@@ -210,7 +210,7 @@ public class LevelHandler : MonoBehaviour {
 
 				}
 				else {
-					Instantiate(bosses[0]);
+					Instantiate(bosses[random.GetRandom(2)]);
 					background.StopBackground();
 					healthImage.enabled = true;
 
