@@ -90,9 +90,6 @@ public class Shields : MonoBehaviour {
 
 		//Get the script
 		collisions = GetComponentInParent<PlayerCollisions> ();
-
-		//Update the recharge bar
-		//shieldRechargeBar.value = shieldTimer;
 	}
 
 	/* ----------------------------------------------------------------------- */
