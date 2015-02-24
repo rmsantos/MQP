@@ -56,7 +56,7 @@ public class Shields : MonoBehaviour {
 	public Image shield3;
 
 	//Shield recharge bar
-	public Slider shieldRechargeBar;
+	public Image shieldRechargeBar;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -91,13 +91,34 @@ public class Shields : MonoBehaviour {
 		//Get the script
 		collisions = GetComponentInParent<PlayerCollisions> ();
 
-		//Set the max vlaue of the recharge bar
-		shieldRechargeBar.maxValue = shieldTimer;
-
 		//Update the recharge bar
-		shieldRechargeBar.value = shieldTimer;
+		//shieldRechargeBar.value = shieldTimer;
 	}
 
+	/* ----------------------------------------------------------------------- */
+	/* Function    : displayShieldBar()
+	 *
+	 * Description : Displays the players shields on screen
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void displayShieldBar() 
+	{
+		//Use an algorithm to map the images to the players health
+		int imageValue = timer;
+		int shieldMax = shieldTimer;
+		int shieldMin = 0;
+		int imageMax = 11;
+		int imageMin = 0;
+		
+		//Figure out which images go with each health value
+		int imageNumber = shieldMin + (imageValue-shieldMin)*(imageMax-imageMin)/(shieldMax-shieldMin);
+
+		//Load the appropriate sprite
+		shieldRechargeBar.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/shield_recharge_bar/" + imageNumber);
+	}
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : FixedUpdate()
@@ -116,7 +137,7 @@ public class Shields : MonoBehaviour {
 			timer++;
 
 			//Update the recharge bar
-			shieldRechargeBar.value = timer;
+			displayShieldBar();
 		}
 		
 		//if the timer elapses
