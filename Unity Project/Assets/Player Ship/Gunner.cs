@@ -128,6 +128,12 @@ public class Gunner : MonoBehaviour {
 	//Missile reload bar
 	public Image missileReloadImage;
 
+	//Sprite for the tri-shot
+	public Sprite triShot;
+
+	//The turret object for the tri-shot
+	public GameObject laserTurretObject;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -177,6 +183,10 @@ public class Gunner : MonoBehaviour {
 
 		//Search for the ScoreHandler object for tracking crystals
 		scoreHandler = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<ScoreHandler>();
+
+		//If the player upgrade to tri-shot, then display the new sprite
+		if(laserPower == 3)
+			laserTurretObject.GetComponent<SpriteRenderer>().sprite = triShot;
 
 	}
 	
