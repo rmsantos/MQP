@@ -35,11 +35,11 @@ public class AsteroidSmall : AbstractAsteroid {
 		//Setup other asteroid variables
 		setup ();
 		
-		//Pick an asteroid sprite (9 to 11 are small asteroids)
-		int asteroid = random.GetRandomInRange (9, 12);
+		//Pick an asteroid sprite (13 to 16 are small asteroids)
+		asteroidNumber = random.GetRandomInRange (13, 17);
 
 		//Load the asteroid sprite
-		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroid);
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroidNumber);
 		
 		//Reset the collider so that it autofits
 		Destroy (GetComponent<PolygonCollider2D> ());
@@ -79,7 +79,8 @@ public class AsteroidSmall : AbstractAsteroid {
 			Instantiate(explosion, new Vector3(position.x, position.y, position.z), Quaternion.identity);
 
 			//Spawn a crystal with a certain chance
-			if(random.GetRandom(100) < crystalDropRate)
+			//if(random.GetRandom(100) < crystalDropRate)
+			if(asteroidNumber == 16)
 			{
 				//Load the crystal prefab
 				GameObject crystal = Resources.Load<GameObject>("Crystals/Crystal");

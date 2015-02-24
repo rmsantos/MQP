@@ -29,6 +29,8 @@ public abstract class AbstractAsteroid : MonoBehaviour {
 	//The audiohandler
 	AudioHandler audioHandler;
 
+	//The image number for this asteroid
+	protected int asteroidNumber;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : setup ()
@@ -167,6 +169,11 @@ public abstract class AbstractAsteroid : MonoBehaviour {
 	{
 		if(name == "AsteroidLarge" || name == "AsteroidLarge(Clone)")
 		{
+			//if(asteroidNumber == 1 || asteroidNumber == 2)
+			//{
+
+
+			//}
 			//Load the medium asteroid prefab
 			GameObject mediumAsteroid = Resources.Load<GameObject>("Enemies/Asteroids/AsteroidMedium");
 			

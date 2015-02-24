@@ -30,11 +30,11 @@ public class AsteroidMedium : AbstractAsteroid {
 		//Setup other asteroid variables
 		setup ();
 		
-		//Pick an asteroid sprite (2 to 8 are medium asteroids)
-		int asteroid = random.GetRandomInRange (2, 9);
+		//Pick an asteroid sprite (4 to 12 are medium asteroids)
+		asteroidNumber = random.GetRandomInRange (4, 13);
 		
 		//Load the asteroid sprite
-		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroid);
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroidNumber);
 
 		//Reset the collider so that it autofits
 		Destroy (GetComponent<PolygonCollider2D> ());

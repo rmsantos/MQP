@@ -30,11 +30,11 @@ public class AsteroidLarge : AbstractAsteroid {
 		//Setup other asteroid variables
 		setup ();
 
-		//Pick an asteroid sprite (1- # are large asteorids)
-		int asteroid = random.GetRandom (0) + 1;
+		//Pick an asteroid sprite (1 - 3 are lage asteroids)
+		asteroidNumber = random.GetRandomInRange(1,4);
 
 		//Load the asteroid sprite
-		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroid);
+		GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("Asteroid Sprites/ast" + asteroidNumber);
 
 		//Reset the collider so that it autofits
 		Destroy (GetComponent<PolygonCollider2D> ());
