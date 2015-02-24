@@ -62,6 +62,7 @@ public class UpgradeMenu : MonoBehaviour {
 		"LaserUpgradeSpeed", "LaserUpgradeDamage", "LaserUpgradeBurst"};
 	
 	public string[] descriptions;
+	char[][] descriptionChars;
 
 	//Flags on whether to start the game
 	bool startGame;
@@ -89,6 +90,12 @@ public class UpgradeMenu : MonoBehaviour {
 	//The actively selected upgrade (very important)
 	int selected;
 
+	//The counter to keep track of the typing
+	int typeCounter;
+
+	//flag if the first time with this text
+	bool done;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -99,6 +106,22 @@ public class UpgradeMenu : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Start () {
+
+		//Start false as default
+		done = false;
+
+		//Initialize selected to -1 to flag no action
+		selected = -1;
+
+		//Initialize the type counter
+		typeCounter = 0;
+
+		//Initialize the char array
+		descriptionChars = new char[17][];
+
+		//Cast each description to a char array
+		for(int x = 0; x < 17; x++)
+			descriptionChars[x] = descriptions[x].ToCharArray();
 
 		//Populate the upgrade functions
 		upgradeFunction = new Upgrade[] {UpgradeEngine1,
@@ -194,7 +217,26 @@ public class UpgradeMenu : MonoBehaviour {
 			//Load the main game
 			Application.LoadLevel (4);
 		}
-	
+
+		//If the player has something selected and the text is not done writing
+		if(selected > -1 && !done)
+		{
+			//Write the text one letter at a time
+			descriptionText.text += descriptionChars[selected][typeCounter];
+
+			//Increase the index
+			typeCounter++;
+
+			//If hitting the end
+			if(typeCounter == descriptions[selected].Length)
+			{
+				//Flag the end
+				done = true;
+
+				//And reset the index
+				typeCounter = 0;
+			}
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -222,12 +264,20 @@ public class UpgradeMenu : MonoBehaviour {
 			PlayerPrefs.SetInt(upgradePrefs[selected], upgradeLevel[selected]);
 			Select(selected);
 			descriptionText.text = "Upgrade purchased!";
+
+			//Flag not to add text
+			typeCounter = 0;
+			done = true;
 				
 			//Do the specific upgrade logic
 			upgradeFunction[selected]();
 
 		}
 		else {
+			//Flag not to add text
+			typeCounter = 0;
+			done = true;
+
 			descriptionText.text = "Not enough money!";
 		}
 
@@ -237,6 +287,13 @@ public class UpgradeMenu : MonoBehaviour {
 
 		//Set selected variable to appropriate value
 		selected = select;
+
+		//Flag that theres text to be written and reset the count
+		done = false;
+		typeCounter = 0;
+
+		//Clear the description box
+		descriptionText.text = "";
 
 		//Display the appropriate cost 
 		if (costs[selected].GetLength(0) > upgradeLevel[selected]) {
@@ -249,7 +306,6 @@ public class UpgradeMenu : MonoBehaviour {
 		}
 
 		//Set descriptive texts
-		descriptionText.text = descriptions[selected];
 		levelText.text = "lvl: " + upgradeLevel[selected].ToString();
 
 	}
