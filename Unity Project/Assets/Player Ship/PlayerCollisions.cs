@@ -90,6 +90,17 @@ public class PlayerCollisions : MonoBehaviour {
 
 	}
 
+	void FixedUpdate()
+	{
+		//If player ded
+		if (health <= 0) {
+			//Play the explosion sound effect
+			audioHandler.playPlayerExplosion();
+			levelHandler.PlayerDied();
+			Destroy(this.gameObject);
+		}
+	}
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : OnTriggerEnter2D (Collider2D other)
@@ -274,13 +285,6 @@ public class PlayerCollisions : MonoBehaviour {
 			//The player takes damage
 			mine.explode();
 		}
-
-		if (health <= 0) {
-			//Play the explosion sound effect
-			audioHandler.playPlayerExplosion();
-			Destroy(this.gameObject);
-			levelHandler.PlayerDied();
-		}
 	}
 
 
@@ -352,12 +356,6 @@ public class PlayerCollisions : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update() {
-
-		if(Input.GetKeyDown ("6")) {
-			//#dead
-			health = 0;
-			
-		}
 
 		//Only consider if the user has power to the rapair station
 		if(repairPower > 0)

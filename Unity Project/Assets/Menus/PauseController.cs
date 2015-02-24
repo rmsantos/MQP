@@ -37,7 +37,7 @@ public class PauseController : MonoBehaviour {
 	void Update () {
 	
 		//pause key
-		if (Input.GetKeyDown ("p")) {
+		if (Input.GetKeyDown ("p") || Input.GetKeyDown(KeyCode.Escape)) {
 			paused = !paused;
 			if (paused) {
 				Screen.showCursor = true;
