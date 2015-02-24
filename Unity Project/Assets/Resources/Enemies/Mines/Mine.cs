@@ -20,6 +20,9 @@ public class Mine : AbstractEnemy {
 	//Prevents infinite loops of exploding mines
 	bool isExploding;
 
+	//The raduis to explode
+	public float explodeRadius;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -60,7 +63,21 @@ public class Mine : AbstractEnemy {
 		
 		//Apply the movement
 		transform.position = newPos;
-		
+
+		//Draw a sphere at this position and track everything that overlaps it
+		Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, explodeRadius);
+
+		//For each item that overlaps the sphere
+		foreach( Collider2D collide in hitColliders)
+		{
+			//If the mine gets close enough to the player
+			if(collide.tag == "Player")
+			{
+				//Then explode
+				explode();
+			}
+		}
+
 		//Destroy the ship if it goes off screen
 		checkBoundaries ();
 		
