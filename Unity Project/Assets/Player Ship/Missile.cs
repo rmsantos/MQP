@@ -207,7 +207,7 @@ public class Missile : MonoBehaviour {
 
 				if(collide.tag == "Boss")
 				{
-					if(!collide.GetComponent<Flagship>().startingPhase())
+					if(!collide.GetComponent<Flagship>().shieldPhase())
 					{
 						//Find the component that extends AbstractEnemy (the enemy script)
 						Flagship enemy = (Flagship)collide.GetComponent(typeof(Flagship));
@@ -219,7 +219,7 @@ public class Missile : MonoBehaviour {
 
 				if(collide.tag == "Boss2")
 				{
-					if(!collide.GetComponent<FlagshipB>().startingPhase())
+					if(!collide.GetComponent<FlagshipB>().shieldPhase())
 					{
 						//Find the component that extends AbstractEnemy (the enemy script)
 						FlagshipB enemy = (FlagshipB)collide.GetComponent(typeof(FlagshipB));

@@ -409,7 +409,7 @@ public class Flagship :  AbstractEnemy {
 	{
 		//If this is hit by a player bullet
 		//Ignore collisions while in phase 0
-		if(col.gameObject.tag == "PlayerBullet" && !startingPhase())
+		if(col.gameObject.tag == "PlayerBullet" && !shieldPhase())
 		{
 			//Destroy the player bullet and this object
 			Destroy(col.gameObject);
@@ -426,15 +426,15 @@ public class Flagship :  AbstractEnemy {
 	}
 
 	/* ----------------------------------------------------------------------- */
-	/* Function    : startingPhase()
+	/* Function    : shieldPhase()
 	 *
-	 * Description : Returns true if the boss is in its starting phase
+	 * Description : Returns true if the boss is in its shield phase
 	 *
 	 * Parameters  : None
 	 *
-	 * Returns     : bool : True if the boss is in starting phase. False otherwise.
+	 * Returns     : bool : True if the boss is in shield phase. False otherwise.
 	 */
-	public bool startingPhase()
+	public bool shieldPhase()
 	{
 		return phase == 0;
 	}

@@ -1,10 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\Missile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Camera\VolumeControl.cs">
     <Files>
-      <File FileName="Assets\Menus\UpgradeMenu.cs" Line="410" Column="15" />
-      <File FileName="Assets\Player Ship\Gunner.cs" Line="554" Column="54" />
-      <File FileName="Assets\Player Ship\Missile.cs" Line="307" Column="38" />
+      <File FileName="Assets\Player Ship\Blaster.cs" Line="1" Column="1" />
+      <File FileName="Assets\Camera\VolumeControl.cs" Line="45" Column="37" />
+      <File FileName="Assets\Menus\UpgradeMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\Gunner.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\Missile.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

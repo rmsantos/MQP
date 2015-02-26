@@ -143,7 +143,7 @@ public class Blaster : MonoBehaviour {
 
 				if(hit.transform.tag == "Boss")
 				{
-					if(!hit.transform.GetComponent<Flagship>().startingPhase())
+					if(!hit.transform.GetComponent<Flagship>().shieldPhase())
 					{
 						//Find the component that extends BasicEnemy (the enemy script)
 						Flagship enemy = (Flagship)hit.transform.GetComponent(typeof(Flagship));
@@ -155,7 +155,7 @@ public class Blaster : MonoBehaviour {
 
 				if(hit.transform.tag == "Boss2")
 				{
-					if(!hit.transform.GetComponent<FlagshipB>().startingPhase())
+					if(!hit.transform.GetComponent<FlagshipB>().shieldPhase())
 					{
 						//Find the component that extends BasicEnemy (the enemy script)
 						FlagshipB enemy = (FlagshipB)hit.transform.GetComponent(typeof(FlagshipB));

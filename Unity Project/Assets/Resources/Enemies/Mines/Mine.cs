@@ -140,18 +140,6 @@ public class Mine : AbstractEnemy {
 					enemy.takeDamage(collisionDamage);
 				}
 				
-				if(collide.tag == "Boss")
-				{
-					if(!collide.GetComponent<Flagship>().startingPhase())
-					{
-						//Find the component that extends AbstractEnemy (the enemy script)
-						Flagship enemy = (Flagship)collide.GetComponent(typeof(Flagship));
-						
-						//Deal damage to that enemy
-						enemy.TakeDamage(collisionDamage);
-					}
-				}
-				
 				//Delete the object if it is an enemy or player laser
 				if(collide.tag == "EnemyLaser" || collide.tag == "PlayerLaser")
 					Destroy (collide.gameObject);
