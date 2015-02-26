@@ -394,9 +394,9 @@ public class UpgradeMenu : MonoBehaviour {
 	//Used to purchase missile
 	public void PurchaseMissile() {
 
-		if (money >= 2 && missiles < 5 + (PlayerPrefs.GetInt("CargoUpgradeMissiles", 0) * 5)) {
+		if (money >= 1 && missiles < 5 + (PlayerPrefs.GetInt("CargoUpgradeMissiles", 0) * 5)) {
 			missiles++;
-			money -= 2;
+			money -= 1;
 			moneyText.text = money.ToString ();
 			missileText.text = missiles.ToString ();
 		}
@@ -420,7 +420,7 @@ public class UpgradeMenu : MonoBehaviour {
 
 		if (crystals >= 1) {
 			crystals--;
-			money += 2;
+			money += 4;
 			moneyText.text = money.ToString();
 			crystalText.text = crystals.ToString();
 		}

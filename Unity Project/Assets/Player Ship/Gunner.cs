@@ -532,28 +532,28 @@ public class Gunner : MonoBehaviour {
 		{
 			case 0:
 				blasterDamage = 0;
-				blasterReloadTime = 9999;
+				blasterReloadTime = 99999;
 				break;
 			case 1:
 				blasterDamage = 2;
-				blasterReloadTime = 600;
+				blasterReloadTime = 360;
 				break;
 			case 2:
 				blasterDamage = 4;
-				blasterReloadTime = 540;
+				blasterReloadTime = 300;
 				break;
 			case 3:
 				blasterDamage = 6;
-				blasterReloadTime = 480;
+				blasterReloadTime = 240;
 				break;
 			case 4:
 				blasterDamage = 8;
-				blasterReloadTime = 420;
+				blasterReloadTime = 180;
 				break;
 		}
 
 		//Subtract reload time based on blaster upgrade
-		blasterReloadTime -= PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0) * 60;
+		blasterReloadTime -= PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0) * 30;
 
 		//If the player has bought the laser damage upgrade
 		//Then increase damage
@@ -580,28 +580,28 @@ public class Gunner : MonoBehaviour {
 			break;
 		case 1:
 			missileDamage = 4;
-			missileReloadTime = 720;
+			missileReloadTime = 360;
 			break;
 		case 2:
 			missileDamage = 8;
-			missileReloadTime = 600;
+			missileReloadTime = 300;
 			break;
 		case 3:
 			missileDamage = 12;
-			missileReloadTime = 480;
+			missileReloadTime = 240;
 			break;
 		case 4:
 			missileDamage = 16;
-			missileReloadTime = 360;
+			missileReloadTime = 180;
 			break;
 		}
 
 		//Subtract reload time based on missile upgrade
-		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 50;
+		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 30;
 		
 		//If the player has bought the missile payload upgrade
 		//Then increase damage
-		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 6;
+		missileDamage += PlayerPrefs.GetInt("MissileUpgradePayload",0) * 10;
 	}
 
 	void DisplayMissile() 
