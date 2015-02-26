@@ -394,6 +394,9 @@ public class PlayerCollisions : MonoBehaviour {
 					if(health > 100)
 						health = 100;
 
+					//Store the new health
+					PlayerPrefs.SetInt ("Health", health);
+
 					//display the health bar
 					displayHealth();
 				}
