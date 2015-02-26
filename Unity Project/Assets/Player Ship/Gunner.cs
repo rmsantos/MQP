@@ -108,7 +108,6 @@ public class Gunner : MonoBehaviour {
 
 	//Number of missiles and crystals the player has
 	int missiles;
-	int crystals;
 
 	//Get the portrait controller to play audio clips
 	PortraitController portraitController;
@@ -400,9 +399,6 @@ public class Gunner : MonoBehaviour {
 			//Update the blaster recharge bar
 			blasterReloadImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/MissileReload/1");
 
-			//subtract the crystals
-			scoreHandler.UpdateCrystals(-1);
-
 			//Play the sound effect for the blaster
 			audioHandler.playBlaster();
 
@@ -456,7 +452,7 @@ public class Gunner : MonoBehaviour {
 			}
 
 			//If the player tries to shoot the blaster and can
-			if(readyBlaster && Input.GetMouseButtonDown(1) && scoreHandler.GetCrystals() > 0) {
+			if(readyBlaster && Input.GetMouseButtonDown(1)) {
 
 				//If the player supplied power to the blaster
 				if(blasterPower > 0)
@@ -553,7 +549,7 @@ public class Gunner : MonoBehaviour {
 		}
 
 		//Subtract reload time based on blaster upgrade
-		blasterReloadTime -= PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0) * 30;
+		blasterReloadTime -= PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0) * 20;
 
 		//If the player has bought the laser damage upgrade
 		//Then increase damage
@@ -597,7 +593,7 @@ public class Gunner : MonoBehaviour {
 		}
 
 		//Subtract reload time based on missile upgrade
-		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 30;
+		missileReloadTime -= PlayerPrefs.GetInt ("MissileUpgradeLoader", 0) * 20;
 		
 		//If the player has bought the missile payload upgrade
 		//Then increase damage
