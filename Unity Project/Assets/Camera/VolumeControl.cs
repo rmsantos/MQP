@@ -66,6 +66,7 @@ public class VolumeControl : MonoBehaviour {
 
 		volume = newVolume;
 		AudioListener.volume = volume;
+		PlayerPrefs.SetFloat ("MasterVolume", volume);
 
 	}
 
@@ -73,6 +74,7 @@ public class VolumeControl : MonoBehaviour {
 
 		musicVolume = .05f * newVolume;
 		audio.volume = musicVolume;
+		PlayerPrefs.SetFloat ("MusicVolume", newVolume);
 
 	}
 
@@ -80,6 +82,7 @@ public class VolumeControl : MonoBehaviour {
 
 		voiceVolume = newVolume;
 		portraitAudio.audio.volume = voiceVolume;
+		PlayerPrefs.SetFloat ("VoiceVolume", voiceVolume);
 
 	}
 
@@ -89,6 +92,7 @@ public class VolumeControl : MonoBehaviour {
 		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
 		audioHandler.setSoundEffectsVolume (.2f * newVolume);
 		soundEffectsSlider.value = newVolume;
+		PlayerPrefs.SetFloat ("SoundEffectsVolume", newVolume);
 	}
 
 }
