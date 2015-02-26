@@ -939,7 +939,7 @@ public class PowerMenu : MonoBehaviour {
 		switch(playerPowers[(int)powerSelected.REPAIR]+1)
 		{
 		case 1:			
-			statusText.text = "The ship can repiar in combat";
+			statusText.text = "The ship can repair in combat";
 			break;
 		case 2:
 			statusText.text = "Repair is maxed out";
@@ -1222,7 +1222,7 @@ public class PowerMenu : MonoBehaviour {
 			statusText.text = "Repair Level 0. On-board repair is not active.";
 			break;
 		case 1:
-			statusText.text = "Repair Level 1. The can be repaired in battle.";
+			statusText.text = "Repair Level 1. The ship can be repaired in battle.";
 			break;
 		}
 		
