@@ -97,13 +97,6 @@ public class CharacterSelectMenu : MonoBehaviour {
 	 */
 	void Update () {
 
-		//If the menu theme isnt playing
-		if(!audio.isPlaying)
-		{
-			//Play it!
-			audio.Play();
-		}
-
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
 		{
