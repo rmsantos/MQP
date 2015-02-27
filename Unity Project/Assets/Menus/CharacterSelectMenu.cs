@@ -171,7 +171,8 @@ public class CharacterSelectMenu : MonoBehaviour {
 	public void SelectCharacter(int character) {
 
 		//Play the character catch phrase
-		source.PlayOneShot (catchPhrases[character]);
+		source.clip = catchPhrases [character];
+		source.Play ();
 
 		//Select the character
 		selected = character;
