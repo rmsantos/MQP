@@ -1,13 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Enemies\AbstractEnemy.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Menus\CharacterSelectMenu.cs">
     <Files>
-      <File FileName="Assets\Player Ship\Missile.cs" Line="207" Column="5" />
-      <File FileName="Assets\Player Ship\Blaster.cs" Line="156" Column="37" />
-      <File FileName="Assets\Resources\Enemies\Flagship\Flagship.cs" Line="437" Column="20" />
-      <File FileName="Assets\Resources\Enemies\FlagshipB\FlagshipB.cs" Line="400" Column="53" />
-      <File FileName="Assets\Resources\Enemies\Mines\Mine.cs" Line="141" Column="6" />
-      <File FileName="Assets\Resources\Enemies\AbstractEnemy.cs" Line="258" Column="1" />
+      <File FileName="Assets\Menus\CharacterSelectMenu.cs" Line="173" Column="36" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
