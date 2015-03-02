@@ -224,42 +224,48 @@ public class MainMenu : MonoBehaviour {
 	{
 		//Set the games power and upgrade levels for the tutorial
 		//Power Levels
+		PlayerPrefs.SetString("Player", "Player0");
 		PlayerPrefs.SetInt ("ShieldPower", 2);
 		PlayerPrefs.SetInt ("EnginePower", 2);
 		PlayerPrefs.SetInt ("MissilePower", 2);
 		PlayerPrefs.SetInt ("LaserPower", 2);
 		PlayerPrefs.SetInt ("BlasterPower", 2);
-		PlayerPrefs.SetInt ("RadarPower", 0);
-		PlayerPrefs.SetInt ("RepairPower", 0);
-		PlayerPrefs.SetInt ("MoneyValue", 0);
-		PlayerPrefs.SetInt ("CrystalValue", 0);
-		PlayerPrefs.SetInt ("Health", 100);
-		PlayerPrefs.SetInt ("Missiles", 5);
-		PlayerPrefs.SetInt ("Crystals", 5);
-		PlayerPrefs.SetInt ("Money", 0);
-		PlayerPrefs.SetFloat ("MasterVolume", 1);
-		PlayerPrefs.SetFloat ("MusicVolume", 1);
-		PlayerPrefs.SetFloat ("VoiceVolume", 1);
-		PlayerPrefs.SetFloat ("SoundEffectsVolume", 1);
+		PlayerPrefs.SetInt ("RadarPower", initialRadarPower);
+		PlayerPrefs.SetInt ("RepairPower", initialRepairPower);
+		PlayerPrefs.SetInt ("MoneyValue", initialMoneyValue);
+		PlayerPrefs.SetInt ("CrystalValue", initialCrystalValue);
+		PlayerPrefs.SetInt ("Health", initialHealth);
+		PlayerPrefs.SetInt ("Missiles", initialMissiles);
+		PlayerPrefs.SetInt ("Crystals", initialCrystals);
+		PlayerPrefs.SetInt ("Money", initialMoney);
+		PlayerPrefs.SetFloat ("MasterVolume", initialMasterVolume);
+		PlayerPrefs.SetFloat ("MusicVolume", initialMusicVolume);
+		PlayerPrefs.SetFloat ("VoiceVolume", initialVoiceVolume);
+		PlayerPrefs.SetFloat ("SoundEffectsVolume", initialSoundEffectsVolume);
 		
 		//Upgrades
-		PlayerPrefs.SetInt ("PowerUpgrade", 0);
-		PlayerPrefs.SetInt ("EngineUpgrade", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeSpeed", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeDamage", 0);
-		PlayerPrefs.SetInt ("LaserUpgradeBurst", 0);
+		PlayerPrefs.SetInt ("PowerUpgrade", powerUpgrade);
+		PlayerPrefs.SetInt ("EngineUpgrade", engineUpgrade);
+		PlayerPrefs.SetInt ("LaserUpgradeSpeed", laserUpgradeSpeed);
+		PlayerPrefs.SetInt ("LaserUpgradeDamage", laserUpgradeDamage);
+		PlayerPrefs.SetInt ("LaserUpgradeBurst", laserUpgadeBurst);
 		PlayerPrefs.SetInt ("ShieldUpgradeRecharge",1);
 		PlayerPrefs.SetInt ("ShieldUpgradeNumber", 1);
-		PlayerPrefs.SetInt ("ShieldUpgradeHardened",0);
-		PlayerPrefs.SetInt ("MissileUpgradePayload", 0);
-		PlayerPrefs.SetInt ("MissileUpgradeLoader", 0);
-		PlayerPrefs.SetInt ("CargoUpgradeMissiles", 0);
-		PlayerPrefs.SetInt ("CargoUpgradeCrystals", 0);
-		PlayerPrefs.SetInt ("CargoUpgradeCredits", 0);
-		PlayerPrefs.SetInt ("HullUpgradeReinforced", 0);
-		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", 0);
+		PlayerPrefs.SetInt ("ShieldUpgradeHardened",shieldUpgradeHardened);
+		PlayerPrefs.SetInt ("MissileUpgradePayload", missileUpgradePayload);
+		PlayerPrefs.SetInt ("MissileUpgradeLoader", missileUpgradeLoader);
+		PlayerPrefs.SetInt ("CargoUpgradeMissiles", cargoUpgradeMissiles);
+		PlayerPrefs.SetInt ("CargoUpgradeCrystals", cargoUpgradeCrystals);
+		PlayerPrefs.SetInt ("CargoUpgradeCredits", cargoUpgradeCredits);
+		PlayerPrefs.SetInt ("HullUpgradeReinforced", hullUpgradeReinforced);
+		PlayerPrefs.SetInt ("HullUpgradeAsteroidResistance", hullUpgradeAsteroidResistance);
 		PlayerPrefs.SetInt ("BlasterUpgradeFireRate", 1);
-		PlayerPrefs.SetInt ("BlasterUpgradeDamage", 0);
+		PlayerPrefs.SetInt ("BlasterUpgradeDamage", blasterUpgradeDamage);
+
+		//Game values
+		
+		PlayerPrefs.SetInt ("Score", initialScore);
+		PlayerPrefs.SetInt ("Level", initialLevel);
 
 		startTutorial = true;
 	}

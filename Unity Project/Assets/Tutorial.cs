@@ -78,52 +78,67 @@ public class Tutorial : MonoBehaviour {
 			//Reset the timer
 			timer = 0;
 
-			//if the tutorial is over then go to the main menu
+			//if the tutorial is over then go to the character select screen
 			if(index == 16)
 			{
-				Application.LoadLevel(0);
-			}
+				//Load the character select scree
+				Application.LoadLevel(3);
 
-			//Play the next audio clip
-			source.clip = tutorialClips[index];
-			source.Play();
+				//Reset the power levels to start the main game
+				PlayerPrefs.SetInt ("ShieldPower", 0);
+				PlayerPrefs.SetInt ("EnginePower", 0);
+				PlayerPrefs.SetInt ("MissilePower", 0);
+				PlayerPrefs.SetInt ("LaserPower", 0);
+				PlayerPrefs.SetInt ("BlasterPower", 0);
+				
+				//Upgrades
+				PlayerPrefs.SetInt ("ShieldUpgradeRecharge", 0);
+				PlayerPrefs.SetInt ("ShieldUpgradeNumber", 0);
+				PlayerPrefs.SetInt ("BlasterUpgradeFireRate", 0);
+			}
+			else
+			{
+				//Play the next audio clip
+				source.clip = tutorialClips[index];
+				source.Play();
 
-			//Increment the index
-			index++;
+				//Increment the index
+				index++;
 
-			//Disable all arrows
-			arrow1.enabled = false;
-			arrow2.enabled = false;
-			arrow3.enabled = false;
-			arrow4.enabled = false;
-			arrow5.enabled = false;
-			arrow6.enabled = false;
+				//Disable all arrows
+				arrow1.enabled = false;
+				arrow2.enabled = false;
+				arrow3.enabled = false;
+				arrow4.enabled = false;
+				arrow5.enabled = false;
+				arrow6.enabled = false;
 
-			//Enabled arrows at certain audio cues
-			if(index == 6)
-			{
-				//Direct the tutorial arrow
-				arrow1.enabled = true;
-			}
-			else if(index == 8)
-			{
-				arrow2.enabled = true;
-			}
-			else if(index == 10)
-			{
-				arrow3.enabled = true;
-			}
-			else if(index == 11)
-			{
-				arrow4.enabled = true;
-			}
-			else if(index == 12)
-			{
-				arrow5.enabled = true;
-			}
-			else if(index == 14)
-			{
-				arrow6.enabled = true;
+				//Enabled arrows at certain audio cues
+				if(index == 6)
+				{
+					//Direct the tutorial arrow
+					arrow1.enabled = true;
+				}
+				else if(index == 8)
+				{
+					arrow2.enabled = true;
+				}
+				else if(index == 10)
+				{
+					arrow3.enabled = true;
+				}
+				else if(index == 11)
+				{
+					arrow4.enabled = true;
+				}
+				else if(index == 12)
+				{
+					arrow5.enabled = true;
+				}
+				else if(index == 14)
+				{
+					arrow6.enabled = true;
+				}
 			}
 		}
 	
