@@ -1129,10 +1129,10 @@ public class PowerMenu : MonoBehaviour {
 			statusText.text = "Blaster Level 0. Blaster disabled.";
 			break;
 		case 1:
-			statusText.text = "Blaster Level 1. Low base damage. Low base reload rate. The blaster is a snail's pace.";
+			statusText.text = "Blaster Level 1. Low base damage. Low base reload rate. The blaster is at a snail's pace.";
 			break;
 		case 2:
-			statusText.text = "Blaster Level 2. Good base damage. Good base reload rate. The blaster is a intimidating.";
+			statusText.text = "Blaster Level 2. Good base damage. Good base reload rate. The blaster is intimidating.";
 			break;
 		case 3:
 			statusText.text = "Blaster Level 3. Great base damage. Great base reload rate. The blaster is a large threat.";
