@@ -37,7 +37,7 @@ public class ShipUpgrades : MonoBehaviour {
 
 		if (MissileLevel == 5) {
 			transform.Find("MissileUpgrade").GetComponent<SpriteRenderer>().sprite = maxMissile;
-		} else if(MissileLevel < 5) {
+		} else if(MissileLevel > 2) {
 			transform.Find("MissileUpgrade").GetComponent<SpriteRenderer>().sprite = upgradedMissile;
 		}
 

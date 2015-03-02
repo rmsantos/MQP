@@ -68,6 +68,7 @@
      <Compile Include="Assets\Player Ship\PlayerCollisions.cs" />
      <Compile Include="Assets\Player Ship\Radar.cs" />
      <Compile Include="Assets\Player Ship\Shields.cs" />
+     <Compile Include="Assets\Player Ship\ShipDisplay.cs" />
      <Compile Include="Assets\Player Ship\ShipMovement.cs" />
      <Compile Include="Assets\Player Ship\ShipUpgrades.cs" />
      <Compile Include="Assets\Portraits\PortraitController.cs" />

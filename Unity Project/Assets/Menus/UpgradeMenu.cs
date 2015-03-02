@@ -56,7 +56,7 @@ public class UpgradeMenu : MonoBehaviour {
 		"BlasterUpgradeFireRate", "BlasterUpgradeDamage", 
 		"ShieldUpgradeNumber", "ShieldUpgradeRecharge", "ShieldUpgradeHardened",
 		"PowerUpgrade", 
-		"MissileUpgradePayload", "MissileUpgradeLoader", 
+		"MissileUpgradeLoader", "MissileUpgradePayload",  
 		"CargoUpgradeMissiles", "CargoUpgradeCrystals", "CargoUpgradeCredits",
 		"HullUpgradeReinforced", "HullUpgradeAsteroidResistance", 
 		"LaserUpgradeSpeed", "LaserUpgradeDamage", "LaserUpgradeBurst"};
@@ -474,6 +474,11 @@ public class UpgradeMenu : MonoBehaviour {
 		
 		//Load the appropriate sprite
 		healthImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/Health/" + imageNumber);
+	}
+
+	public int getSelected()
+	{
+		return selected;
 	}
 
 }
