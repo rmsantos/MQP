@@ -272,7 +272,7 @@ public class FlagshipB :  AbstractEnemy {
 			}
 
 			//Move towards the player
-			transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed);
+			transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed/2);
 
 			//If ready to shoot
 			if(ready)
