@@ -100,6 +100,8 @@ public class Radar : MonoBehaviour {
 		normal3.enabled = false;
 		heavy.enabled = false;
 		asteroid.enabled = false;
+		radarShip.enabled = false;
+		planet.enabled = false;
 	}
 	
 	
@@ -166,6 +168,10 @@ public class Radar : MonoBehaviour {
 		//Only do things if the player has power to the radar
 		if(radarPower != 0)
 		{
+			//Enable the player radar ship and planet
+			radarShip.enabled = true;
+			planet.enabled = true;
+
 			if(waveLength > 0)
 			{
 				//The new position of the enemy after moving
