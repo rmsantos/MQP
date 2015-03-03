@@ -58,9 +58,27 @@ public class PlayerCollisions : MonoBehaviour {
 
 	//The text for the repair button
 	public Text repairText;
-	
+
+	//The image for the damage tint
+	public Image damageImage;
+
+	//The counter for the damage animation
+	int damageCounter;
+
+	//Animation start
+	bool start;
+
+	//Step for the animation
+	int step;
+
 	void Start () {
-		
+
+		//Initialize the animation variables
+		damageCounter = 0;
+		start = false;
+
+		//Start the step at 1
+		step = 1;
 		//Pull the values from player prefs
 		health = PlayerPrefs.GetInt ("Health", 1);
 		crystalValue = PlayerPrefs.GetInt ("CrystalValue", 99999);
@@ -98,6 +116,24 @@ public class PlayerCollisions : MonoBehaviour {
 			audioHandler.playPlayerExplosion();
 			levelHandler.PlayerDied();
 			Destroy(this.gameObject);
+		}
+
+		if(start)
+		{
+			damageImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/player_gethit/" + damageCounter);
+
+			damageCounter+= step;
+
+			if(damageCounter == 5)
+				step = -step;
+
+			if(step < 0 && damageCounter == 0)
+			{
+				step = -step;
+				start = false;
+
+				damageImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/player_gethit/0");
+			}
 		}
 	}
 
@@ -318,6 +354,21 @@ public class PlayerCollisions : MonoBehaviour {
 			//Don't reduce all damage
 			if(damage < 1)
 				damage = 1;
+
+			//Start the damage taken animation
+			start = true;
+
+			//Load the initial sprite
+			damageImage.sprite = Resources.Load<UnityEngine.Sprite> ("UI Sprites/player_gethit/0");
+
+			//Reset the counter
+			damageCounter = 0;
+
+			//Start the initial step
+			step = Mathf.Abs(step);
+
+			//Show the hit fader effect
+			GetComponent<HitFader>().BeenHit();
 
 			//Take the damage
 			health -= damage;
