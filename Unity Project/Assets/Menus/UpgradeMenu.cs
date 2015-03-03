@@ -70,6 +70,7 @@ public class UpgradeMenu : MonoBehaviour {
 	//The buttons available to press
 	public Button startButton;
 	public Button purchaseButton;
+	public Button repairButton;
 
 	//The dynamic text found on the screen
 	public Text moneyText;
@@ -212,13 +213,6 @@ public class UpgradeMenu : MonoBehaviour {
 	 */
 	void Update () {
 
-		//If the menu theme isnt playing
-		if(!audio.isPlaying)
-		{
-			//Play it!
-			audio.Play();
-		}
-
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
 		{
@@ -274,6 +268,12 @@ public class UpgradeMenu : MonoBehaviour {
 				purchaseAnimation.GetComponent<Image> ().overrideSprite = Resources.Load<Sprite> ("UI Sprites/Purchase/purchase_0");
 			}
 		}
+
+		//If the player health is full, then grey out the repair hull button
+		if(PlayerPrefs.GetInt("Health",0) == 100)
+			repairButton.interactable = false;
+		else
+			repairButton.interactable = true;
 	}
 
 	/* ----------------------------------------------------------------------- */
