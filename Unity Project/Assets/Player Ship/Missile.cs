@@ -276,7 +276,10 @@ public class Missile : MonoBehaviour {
 					mine.explode();
 				}
 			}
-			
+
+			//Play the explosion sound effect
+			GameObject.FindGameObjectWithTag("AudioHandler").GetComponent<AudioHandler>().playSmallEnemyExplosion();
+
 			//Delete the missile 
 			Destroy (this.gameObject);
 		}

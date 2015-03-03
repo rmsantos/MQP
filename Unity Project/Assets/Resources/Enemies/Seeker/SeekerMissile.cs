@@ -252,7 +252,10 @@ public class SeekerMissile : MonoBehaviour {
 					mine.explode();
 				}
 			}
-			
+
+			//Play the explosion sound effect
+			GameObject.FindGameObjectWithTag("AudioHandler").GetComponent<AudioHandler>().playSmallEnemyExplosion();
+
 			//Delete the missile 
 			Destroy (this.gameObject);
 		}
@@ -300,7 +303,7 @@ public class SeekerMissile : MonoBehaviour {
 		if (!isQuitting) {
 			
 			//Load the explosion
-			GameObject explosion = Resources.Load<GameObject>("Explosions/SimpleExplosion");
+			GameObject explosion = Resources.Load<GameObject>("Explosions/MissileExplosion");
 			
 			//Position of the enemy
 			var position = gameObject.transform.position;
