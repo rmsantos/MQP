@@ -96,6 +96,15 @@ public class UpgradeMenu : MonoBehaviour {
 	//flag if the first time with this text
 	bool done;
 
+	//Purcahse animation
+	public Image purchaseAnimation;
+
+	//Animation count
+	int animationCount;
+
+	//Flag if the animation is done
+	bool animationDone;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -109,12 +118,16 @@ public class UpgradeMenu : MonoBehaviour {
 
 		//Start false as default
 		done = false;
+		animationDone = false;
 
 		//Initialize selected to -1 to flag no action
 		selected = -1;
 
 		//Initialize the type counter
 		typeCounter = 0;
+
+		//Initialize the animation count
+		animationCount = 0;
 
 		//Initialize the char array
 		descriptionChars = new char[17][];
@@ -237,6 +250,30 @@ public class UpgradeMenu : MonoBehaviour {
 				typeCounter = 0;
 			}
 		}
+
+		//If the player has clicked a button
+		if(selected > -1 && !animationDone)
+		{
+			//Load the new sprite in the animation
+			//Load the sprite
+			purchaseAnimation.GetComponent<Image> ().overrideSprite = Resources.Load<Sprite> ("UI Sprites/Purchase/purchase_" + animationCount);
+
+			//Increment the counter
+			animationCount++;
+
+			//If hitting the end of the animation
+			if(animationCount == 10)
+			{
+				//Flag the end
+				animationDone = true;
+
+				//And reset the count
+				animationCount = 0;
+
+				//Load the default image
+				purchaseAnimation.GetComponent<Image> ().overrideSprite = Resources.Load<Sprite> ("UI Sprites/Purchase/purchase_0");
+			}
+		}
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -291,6 +328,10 @@ public class UpgradeMenu : MonoBehaviour {
 		//Flag that theres text to be written and reset the count
 		done = false;
 		typeCounter = 0;
+
+		//Also reset the animation count
+		animationDone = false;
+		animationCount = 0;
 
 		//Clear the description box
 		descriptionText.text = "";
