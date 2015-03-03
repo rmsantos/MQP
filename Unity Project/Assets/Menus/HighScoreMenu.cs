@@ -93,6 +93,10 @@ public class HighScoreMenu : MonoBehaviour {
 			scoreListings[i].text = name[i];
 			scoreNames[i].text = score[i].ToString();
 		}
+
+		//Play the audio from where it left off
+		Camera.main.audio.time = PlayerPrefs.GetFloat ("MainMenuLocation", 0);
+		Camera.main.audio.Play ();
 		
 	}
 	
@@ -111,6 +115,9 @@ public class HighScoreMenu : MonoBehaviour {
 		//If the user clicked save and the audio file is done
 		if(saveScore && !saveButton.audio.isPlaying)
 		{
+			//Set the location of the music
+			PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
+
 			//Load the main game
 			Application.LoadLevel (0);
 		}
@@ -135,6 +142,19 @@ public class HighScoreMenu : MonoBehaviour {
 		}
 		saveScore = save;
 		PlayerPrefs.SetInt ("Score", 0);
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : OnApplicationQuit()
+	 *
+	 * Description : Sets the FirstStaer pref to 0
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void OnApplicationQuit() {
+		PlayerPrefs.SetInt ("FirstStart", 0);
 	}
 	
 }

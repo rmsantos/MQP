@@ -91,6 +91,24 @@ public class MainMenu : MonoBehaviour {
 	 */
 	void Start () {
 
+		//If this is a new start
+		if(PlayerPrefs.GetInt("FirstStart",0) == 0)
+		{
+			//Start the audio at 0
+			Camera.main.audio.time = 0;
+
+			//And flag a new game has started
+			PlayerPrefs.SetInt ("FirstStart", 1);
+		}
+		else
+		{
+			//Else load the musics location
+			Camera.main.audio.time = PlayerPrefs.GetFloat ("MainMenuLocation", 0);
+		}
+
+		//Play the menu music
+		Camera.main.audio.Play ();
+
 		//Initialize states to not pressed
 		startGame = false;
 		quitGame = false;
@@ -134,6 +152,9 @@ public class MainMenu : MonoBehaviour {
 		//If the user clicked high scores and the audio file is done
 		if(highScores && !highScoreButton.audio.isPlaying)
 		{
+			//Set the location of the music
+			PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
+
 			//Load the high scores
 			Application.LoadLevel (5);
 		}
@@ -176,6 +197,9 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetFloat ("MusicVolume", initialMusicVolume);
 		PlayerPrefs.SetFloat ("VoiceVolume", initialVoiceVolume);
 		PlayerPrefs.SetFloat ("SoundEffectsVolume", initialSoundEffectsVolume);
+
+		//Set the music to the start
+		PlayerPrefs.SetInt ("FirstStart", 0);
 
 		//Upgrades
 		PlayerPrefs.SetInt ("PowerUpgrade", powerUpgrade);
@@ -235,6 +259,9 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetFloat ("MusicVolume", initialMusicVolume);
 		PlayerPrefs.SetFloat ("VoiceVolume", initialVoiceVolume);
 		PlayerPrefs.SetFloat ("SoundEffectsVolume", initialSoundEffectsVolume);
+
+		//Set the music to the start
+		PlayerPrefs.SetInt ("FirstStart", 0);
 		
 		//Upgrades
 		PlayerPrefs.SetInt ("PowerUpgrade", powerUpgrade);
@@ -292,5 +319,18 @@ public class MainMenu : MonoBehaviour {
 	public void setHighScores(bool clicked)
 	{
 		highScores = clicked;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : OnApplicationQuit()
+	 *
+	 * Description : Sets the FirstStaer pref to 0
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
+	void OnApplicationQuit() {
+		PlayerPrefs.SetInt ("FirstStart", 0);
 	}
 }
