@@ -232,6 +232,10 @@ public class LevelHandler : MonoBehaviour {
 					//Play the boss music
 					Camera.main.audio.clip = bossMusic;
 					Camera.main.audio.Play();
+
+					//Adjust the music scale to be lower volume (since the boss music is louder)
+					Camera.main.GetComponent<VolumeControl>().setMusicScale(0.03f);
+					Camera.main.GetComponent<VolumeControl>().SetMusic(1f);
 				}
 
 				wave++;
@@ -316,6 +320,10 @@ public class LevelHandler : MonoBehaviour {
 		//Play the victory music
 		Camera.main.audio.clip = victoryMusic;
 		Camera.main.audio.Play();
+
+		//Adjust the music scale to be lower volume (since the victory music is quieter)
+		Camera.main.GetComponent<VolumeControl>().setMusicScale(0.3f);
+		Camera.main.GetComponent<VolumeControl>().SetMusic(1f);
 
 		var enemies = GameObject.FindGameObjectsWithTag("Enemies");
 		foreach (var obj in enemies) {

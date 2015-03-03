@@ -35,14 +35,26 @@ public class VolumeControl : MonoBehaviour {
 	public GameObject audioHandlerObject;
 	AudioHandler audioHandler;
 
+	//The scale that affects the music volume
+	float musicScale;
+
+	//The scale that affects the sound effects volume
+	float effectsScale;
+
 	void Start () {
+		//Start the scale at .05f
+		musicScale = .05f;
+
+		//Start the scale at 0.1f
+		effectsScale = 0.1f;
+
 		volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
 		musicVolume = PlayerPrefs.GetFloat ("MusicVolume", 0);
 		voiceVolume = PlayerPrefs.GetFloat ("VoiceVolume", 0);
 		soundEffectsVolume = PlayerPrefs.GetFloat ("SoundEffectsVolume", 0);
 
 		//Music volume
-		audio.volume = .05f * musicVolume;
+		audio.volume = musicScale * musicVolume;
 		musicSlider.value = musicVolume;
 
 		//Portrait Volume
@@ -57,7 +69,7 @@ public class VolumeControl : MonoBehaviour {
 		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
 
 		//Set the audio of all sound effects
-		audioHandler.setSoundEffectsVolume (.2f * soundEffectsVolume);
+		audioHandler.setSoundEffectsVolume (effectsScale * soundEffectsVolume);
 		soundEffectsSlider.value = soundEffectsVolume;
 
 	}
@@ -72,7 +84,7 @@ public class VolumeControl : MonoBehaviour {
 
 	public void SetMusic (float newVolume) {
 
-		musicVolume = .05f * newVolume;
+		musicVolume = musicScale * newVolume;
 		audio.volume = musicVolume;
 		PlayerPrefs.SetFloat ("MusicVolume", newVolume);
 
@@ -90,9 +102,14 @@ public class VolumeControl : MonoBehaviour {
 
 		//Set the audio of all sound effects
 		audioHandler = audioHandlerObject.GetComponent<AudioHandler> ();
-		audioHandler.setSoundEffectsVolume (.2f * newVolume);
+		audioHandler.setSoundEffectsVolume (effectsScale * newVolume);
 		soundEffectsSlider.value = newVolume;
 		PlayerPrefs.SetFloat ("SoundEffectsVolume", newVolume);
+	}
+
+	public void setMusicScale(float newScale)
+	{
+		musicScale = newScale;
 	}
 
 }
