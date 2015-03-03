@@ -26,9 +26,15 @@ public class PowerMenu : MonoBehaviour {
 
 	//Flags on whether to start the game
 	bool startGame;
-	
+
+	//Flag on whether to go bcak
+	bool goBack;
+
 	//The start button
 	public Button startButton;
+
+	//The back button
+	public Button backButton;
 
 	//The current power level of the player
 	int power;
@@ -77,6 +83,7 @@ public class PowerMenu : MonoBehaviour {
 		
 		//Initialize states to not pressed
 		startGame = false;
+		goBack = false;
 
 		//Load the players current power and max power from player prefs
 		maxPower = 5 + PlayerPrefs.GetInt ("PowerUpgrade", 0);
@@ -113,6 +120,19 @@ public class PowerMenu : MonoBehaviour {
 
 		//Set the missile count
 		missileCount.text = PlayerPrefs.GetInt ("Missiles", 0).ToString();
+
+		//If the player is on the first level, hide the back button
+		if(PlayerPrefs.GetInt("Level",0) != 1)
+		{
+			backButton.image.enabled = true;
+			backButton.enabled = true;
+		}
+		else
+		{
+			backButton.image.enabled = false;
+			backButton.enabled = false;
+		}
+
 	
 	}
 
@@ -127,7 +147,8 @@ public class PowerMenu : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
-		
+
+
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
 		{
@@ -161,7 +182,16 @@ public class PowerMenu : MonoBehaviour {
 			//Load the main game
 			Application.LoadLevel (1);
 		}
-		
+
+		//If the player wants to go back
+		if(goBack && !backButton.audio.isPlaying)
+		{
+			//Set the victory theme to start a t0
+			PlayerPrefs.SetFloat("VictoryLocation",0);
+
+			//Load the upgrade screen
+			Application.LoadLevel(2);
+		}
 	}
 
 	public void CheckButtons() {
@@ -303,6 +333,21 @@ public class PowerMenu : MonoBehaviour {
 	{
 		//Start the game
 		startGame = start;
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setBack()
+	 *
+	 * Description : Sets the back bool to true
+	 *
+	 * Parameters  : bool back : Go back to the upgrade screen?
+	 *
+	 * Returns     : Void
+	 */
+	public void setBack(bool back)
+	{
+		//Go back to the upgrade screen
+		goBack = back;
 	}
 
 	/* ----------------------------------------------------------------------- */
