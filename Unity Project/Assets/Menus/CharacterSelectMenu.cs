@@ -58,9 +58,11 @@ public class CharacterSelectMenu : MonoBehaviour {
 	//Catch phrases of each character
 	public AudioClip[] catchPhrases = new AudioClip[22];
 
-	//AudioClip of a button press
-	public AudioClip buttonClick;
-
+	//AudioSources of each station
+	public AudioSource pilotSource;
+	public AudioSource gunnerSource;
+	public AudioSource mechanicSource;
+	public AudioSource navigatorSource;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -128,8 +130,6 @@ public class CharacterSelectMenu : MonoBehaviour {
 	 */
 	public void playButtonClick(int position)
 	{
-		print (position);
-
 		//If a portrait is selected
 		if(selected >= 0)
 		{
@@ -138,20 +138,20 @@ public class CharacterSelectMenu : MonoBehaviour {
 			if(position == 0)
 			{
 				if(gunner != selected && mechanic != selected && navigator != selected)
-					audio.PlayOneShot (buttonClick);
+					pilotSource.Play();
 			}
 			else if(position == 1)
 			{
 				if(pilot != selected && mechanic != selected && navigator != selected)
-					audio.PlayOneShot (buttonClick);
+					gunnerSource.Play();
 			}
 			else if(position == 2)
 			{
 				if(pilot != selected && gunner != selected && navigator != selected)
-					audio.PlayOneShot (buttonClick);
+					mechanicSource.Play();
 			}
 			else if(pilot!= selected && gunner != selected && mechanic != selected)
-				audio.PlayOneShot (buttonClick);
+				navigatorSource.Play ();
 		}
 			
 	}
