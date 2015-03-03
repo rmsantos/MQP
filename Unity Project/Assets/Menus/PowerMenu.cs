@@ -127,13 +127,6 @@ public class PowerMenu : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
-
-		//If the menu theme isnt playing
-		if(!audio.isPlaying)
-		{
-			//Play it!
-			audio.Play();
-		}
 		
 		//If the user clicked start and the audio file is done
 		if(startGame && !startButton.audio.isPlaying)
@@ -161,7 +154,10 @@ public class PowerMenu : MonoBehaviour {
 			
 			//Store the new power level in player prefs
 			PlayerPrefs.SetInt ("Power", power);
-			
+
+			//Set the location in the audio
+			PlayerPrefs.SetFloat ("RunnerLocation", Camera.main.audio.time);
+
 			//Load the main game
 			Application.LoadLevel (1);
 		}
@@ -305,6 +301,7 @@ public class PowerMenu : MonoBehaviour {
 	 */
 	public void setStart(bool start)
 	{
+		//Start the game
 		startGame = start;
 	}
 

@@ -72,6 +72,10 @@ public class VolumeControl : MonoBehaviour {
 		audioHandler.setSoundEffectsVolume (effectsScale * soundEffectsVolume);
 		soundEffectsSlider.value = soundEffectsVolume;
 
+		//Play the track at its last location
+		Camera.main.audio.time = PlayerPrefs.GetFloat ("RunnerLocation", 0);
+		Camera.main.audio.Play ();
+
 	}
 
 	public void SetVolume (float newVolume) {

@@ -231,6 +231,7 @@ public class LevelHandler : MonoBehaviour {
 
 					//Play the boss music
 					Camera.main.audio.clip = bossMusic;
+					Camera.main.audio.time = 0;
 					Camera.main.audio.Play();
 
 					//Adjust the music scale to be lower volume (since the boss music is louder)
@@ -319,6 +320,7 @@ public class LevelHandler : MonoBehaviour {
 
 		//Play the victory music
 		Camera.main.audio.clip = victoryMusic;
+		Camera.main.audio.time = 0;
 		Camera.main.audio.Play();
 
 		//Adjust the music scale to be lower volume (since the victory music is quieter)

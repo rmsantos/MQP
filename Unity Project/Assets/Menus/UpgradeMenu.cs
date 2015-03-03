@@ -226,6 +226,7 @@ public class UpgradeMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Crystals", crystals);
 			PlayerPrefs.SetInt("Score", score);
 			PlayerPrefs.SetInt("Health", playerHealth);
+
 			//Load the main game
 			Application.LoadLevel (4);
 		}
