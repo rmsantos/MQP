@@ -199,6 +199,11 @@ public class UpgradeMenu : MonoBehaviour {
 			selectButtons[2].interactable = false;
 		}
 
+		print (PlayerPrefs.GetFloat ("VictoryLocation", 0));
+
+		//Play the victory music where it left off on the game screen
+		Camera.main.audio.time = PlayerPrefs.GetFloat ("VictoryLocation", 0);
+		Camera.main.audio.Play();
 	}
 	
 	/* ----------------------------------------------------------------------- */

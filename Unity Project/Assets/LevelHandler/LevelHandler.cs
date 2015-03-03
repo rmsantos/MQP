@@ -312,9 +312,10 @@ public class LevelHandler : MonoBehaviour {
 	}
 
 	public void LevelComplete() {
+
 		//Play the victory music
 		Camera.main.audio.clip = victoryMusic;
-		Camera.main.audio.Play ();
+		Camera.main.audio.Play();
 
 		var enemies = GameObject.FindGameObjectsWithTag("Enemies");
 		foreach (var obj in enemies) {
@@ -339,6 +340,9 @@ public class LevelHandler : MonoBehaviour {
 		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
 		PlayerPrefs.SetInt ("Money", (int)ScoreHandler.money + (5 * level) + (10 * PlayerPrefs.GetInt("CargoUpgradeCredits", 0)));
 		PlayerPrefs.SetInt ("Crystals", (int)ScoreHandler.crystals);
+
+		//Store the location of the audio at this time
+		PlayerPrefs.SetFloat ("VictoryLocation", Camera.main.audio.time);
 
 		//Load the UpgradeScene
 		Application.LoadLevel (2);
