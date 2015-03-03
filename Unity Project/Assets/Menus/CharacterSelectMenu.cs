@@ -58,8 +58,9 @@ public class CharacterSelectMenu : MonoBehaviour {
 	//Catch phrases of each character
 	public AudioClip[] catchPhrases = new AudioClip[22];
 
-	//Audiosource to play character catch phrase
-	public AudioSource source;
+	//AudioClip of a button press
+	public AudioClip buttonClick;
+
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -83,6 +84,8 @@ public class CharacterSelectMenu : MonoBehaviour {
 		selected = -1;
 
 		name = "";
+
+
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -111,6 +114,46 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 
 	
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : playButtonClick()
+	 *
+	 * Description : Plays the button click sound effect if the user has a portrait
+	 * 				selected (that hasn't been selected already)
+	 *
+	 * Parameters  : int position : The position being locked into
+	 *
+	 * Returns     : Void
+	 */
+	public void playButtonClick(int position)
+	{
+		print (position);
+
+		//If a portrait is selected
+		if(selected >= 0)
+		{
+			//Check if the current selected hasnt been selected already
+			//If not then play the sound effect
+			if(position == 0)
+			{
+				if(gunner != selected && mechanic != selected && navigator != selected)
+					audio.PlayOneShot (buttonClick);
+			}
+			else if(position == 1)
+			{
+				if(pilot != selected && mechanic != selected && navigator != selected)
+					audio.PlayOneShot (buttonClick);
+			}
+			else if(position == 2)
+			{
+				if(pilot != selected && gunner != selected && navigator != selected)
+					audio.PlayOneShot (buttonClick);
+			}
+			else if(pilot!= selected && gunner != selected && mechanic != selected)
+				audio.PlayOneShot (buttonClick);
+		}
+			
 	}
 
 	/* ----------------------------------------------------------------------- */
@@ -164,8 +207,8 @@ public class CharacterSelectMenu : MonoBehaviour {
 	public void SelectCharacter(int character) {
 
 		//Play the character catch phrase
-		source.clip = catchPhrases [character];
-		source.Play ();
+		audio.clip = catchPhrases [character];
+		audio.Play ();
 
 		//Select the character
 		selected = character;
