@@ -28,6 +28,10 @@ public class CharacterSelectMenu : MonoBehaviour {
 	public Button lockGunnerButton;
 	public Button lockNavigatorButton;
 	public Button lockMechanicButton;
+	public Button lockPilotButton2;
+	public Button lockGunnerButton2;
+	public Button lockNavigatorButton2;
+	public Button lockMechanicButton2;
 
 	public Text descriptionText;
 	public Text nameText;
@@ -114,46 +118,38 @@ public class CharacterSelectMenu : MonoBehaviour {
 			Application.LoadLevel (4);
 		}
 
+		//Don't allow the player to click the start button unless the crew is locked in
+		if(pilot == -1 || gunner == -1 || mechanic == -1 || navigator == -1)
+			startButton.interactable = false;
+		else
+			startButton.interactable = true;
+
+		//If there is no character selected or the character has already been selected, then disable the lock buttons
+		if(selected == -1 || pilot == selected || gunner == selected || mechanic == selected || navigator == selected)
+		{
+			lockNavigatorButton.interactable = false;
+			lockGunnerButton.interactable = false;
+			lockPilotButton.interactable = false;
+			lockMechanicButton.interactable = false;
+			lockNavigatorButton2.interactable = false;
+			lockGunnerButton2.interactable = false;
+			lockPilotButton2.interactable = false;
+			lockMechanicButton2.interactable = false;
+		}
+		else
+		{
+			//Else enable all the buttons
+			lockNavigatorButton.interactable = true;
+			lockGunnerButton.interactable = true;
+			lockPilotButton.interactable = true;
+			lockMechanicButton.interactable = true;
+			lockNavigatorButton2.interactable = true;
+			lockGunnerButton2.interactable = true;
+			lockPilotButton2.interactable = true;
+			lockMechanicButton2.interactable = true;
+		}
 
 	
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : playButtonClick()
-	 *
-	 * Description : Plays the button click sound effect if the user has a portrait
-	 * 				selected (that hasn't been selected already)
-	 *
-	 * Parameters  : int position : The position being locked into
-	 *
-	 * Returns     : Void
-	 */
-	public void playButtonClick(int position)
-	{
-		//If a portrait is selected
-		if(selected >= 0)
-		{
-			//Check if the current selected hasnt been selected already
-			//If not then play the sound effect
-			if(position == 0)
-			{
-				if(gunner != selected && mechanic != selected && navigator != selected)
-					pilotSource.Play();
-			}
-			else if(position == 1)
-			{
-				if(pilot != selected && mechanic != selected && navigator != selected)
-					gunnerSource.Play();
-			}
-			else if(position == 2)
-			{
-				if(pilot != selected && gunner != selected && navigator != selected)
-					mechanicSource.Play();
-			}
-			else if(pilot!= selected && gunner != selected && mechanic != selected)
-				navigatorSource.Play ();
-		}
-			
 	}
 
 	/* ----------------------------------------------------------------------- */
