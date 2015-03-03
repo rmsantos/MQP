@@ -112,7 +112,7 @@ public class Missile : MonoBehaviour {
 		foreach( Collider2D collide in hitColliders)
 		{
 			//Check if it is an enemy
-			if(collide.tag == "Enemies" || collide.tag == "EnemyPassable" || collide.tag == "Boss")
+			if(collide.tag == "Enemies" || collide.tag == "EnemyPassable" || collide.tag == "Boss" || collide.tag == "Boss2")
 			{
 				//Get the distance between the missile and that enemy
 				float distance = Vector2.Distance(transform.position,collide.gameObject.transform.position);

@@ -96,6 +96,12 @@ public class LevelHandler : MonoBehaviour {
 	int alertTimerMax;
 	int alertTimer;
 
+	//The music for the boss fight
+	public AudioClip bossMusic;
+
+	//The music for the victory music
+	public AudioClip victoryMusic;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -222,6 +228,10 @@ public class LevelHandler : MonoBehaviour {
 
 					//Flag to start the alert animation
 					alert = true;
+
+					//Play the boss music
+					Camera.main.audio.clip = bossMusic;
+					Camera.main.audio.Play();
 				}
 
 				wave++;
@@ -302,6 +312,10 @@ public class LevelHandler : MonoBehaviour {
 	}
 
 	public void LevelComplete() {
+		//Play the victory music
+		Camera.main.audio.clip = victoryMusic;
+		Camera.main.audio.Play ();
+
 		var enemies = GameObject.FindGameObjectsWithTag("Enemies");
 		foreach (var obj in enemies) {
 			Destroy(obj);
