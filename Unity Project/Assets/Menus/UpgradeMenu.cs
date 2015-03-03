@@ -276,7 +276,7 @@ public class UpgradeMenu : MonoBehaviour {
 		}
 
 		//If the player health is full, then grey out the repair hull button
-		if(PlayerPrefs.GetInt("Health",0) == 100)
+		if(playerHealth == 100)
 			repairButton.interactable = false;
 		else
 			repairButton.interactable = true;
