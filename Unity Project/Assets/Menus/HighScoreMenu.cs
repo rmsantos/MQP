@@ -107,14 +107,7 @@ public class HighScoreMenu : MonoBehaviour {
 	 * Returns     : Void
 	 */
 	void Update () {
-
-		//If the menu theme isnt playing
-		if(!audio.isPlaying)
-		{
-			//Play it!
-			audio.Play();
-		}
-
+	
 		//If the user clicked save and the audio file is done
 		if(saveScore && !saveButton.audio.isPlaying)
 		{
