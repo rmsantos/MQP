@@ -1,13 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Background Images\BackgroundImage.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\ShipDisplay.cs">
     <Files>
-      <File FileName="Assets\Player Ship\ShipDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets\Menus\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Video Folder\Play.cs" Line="23" Column="2" />
-      <File FileName="Assets\Camera\VolumeControlMainMenu.cs" Line="135" Column="1" />
-      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="270" Column="57" />
-      <File FileName="Assets\Resources\Background Images\BackgroundImage.cs" Line="97" Column="39" />
+      <File FileName="Assets\Player Ship\ShipDisplay.cs" Line="130" Column="30" />
+      <File FileName="Assets\Menus\MainMenu.cs" Line="192" Column="62" />
+      <File FileName="Assets\Menus\UpgradeMenu.cs" Line="530" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
