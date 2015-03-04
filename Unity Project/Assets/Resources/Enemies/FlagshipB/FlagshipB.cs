@@ -46,9 +46,6 @@ public class FlagshipB :  AbstractEnemy {
 	//The prefab for missiles
 	public GameObject missilePrefab;
 	
-	//Variable to keep track of where to move the boss next in phase 3
-	int movePhase;
-	
 	//The last position (in phase 2) before the boss starts moving
 	Vector3 lastPos;
 	
@@ -86,9 +83,6 @@ public class FlagshipB :  AbstractEnemy {
 		
 		//Initialize phase to 0 to move into place
 		phase = 0;
-		
-		//Move phase is initially 0
-		movePhase = 0;
 		
 		//Move speed is set to speed
 		moveSpeed = speed;
