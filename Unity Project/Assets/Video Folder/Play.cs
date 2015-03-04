@@ -61,8 +61,6 @@ public class Play : MonoBehaviour {
 		//if the movie is done
 		if(!movie.isPlaying)
 		{
-			print (Camera.main.audio.time);
-
 			//Store the location in the menu music
 			PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
 

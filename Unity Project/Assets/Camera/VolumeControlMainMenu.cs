@@ -40,24 +40,24 @@ public class VolumeControlMainMenu: MonoBehaviour {
 	public Text voice;
 	public Text effects;
 
-	public GameObject audioSource;
-
 	//The scale that affects the music volume
 	float musicScale;
 
 	bool controls;
 
 	void Start () {
-		//Start the scale at .05f
-		musicScale = .05f;
+		//Start the scale at .3f
+		musicScale = .3f;
 
 		volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
 		musicVolume = PlayerPrefs.GetFloat ("MusicVolume", 0);
 		voiceVolume = PlayerPrefs.GetFloat ("VoiceVolume", 0);
 		soundEffectsVolume = PlayerPrefs.GetFloat ("SoundEffectsVolume", 0);
 
+		print (audio);
+
 		//Music volume
-		audioSource.audio.volume = musicScale * musicVolume;
+		audio.volume = musicScale * musicVolume;
 		musicSlider.value = musicVolume;
 
 		//Portrait Volume
@@ -85,7 +85,7 @@ public class VolumeControlMainMenu: MonoBehaviour {
 	public void SetMusic (float newVolume) {
 
 		musicVolume = musicScale * newVolume;
-		audioSource.audio.volume = musicVolume;
+		audio.volume = musicVolume;
 		PlayerPrefs.SetFloat ("MusicVolume", newVolume);
 
 	}

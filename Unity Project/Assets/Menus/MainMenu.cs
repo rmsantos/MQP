@@ -94,6 +94,8 @@ public class MainMenu : MonoBehaviour {
 		//Play the menu music
 		Camera.main.audio.Play ();
 
+		print ("PLAY!");
+
 		//Initialize states to not pressed
 		startGame = false;
 		quitGame = false;
