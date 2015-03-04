@@ -54,8 +54,6 @@ public class VolumeControlMainMenu: MonoBehaviour {
 		voiceVolume = PlayerPrefs.GetFloat ("VoiceVolume", 0);
 		soundEffectsVolume = PlayerPrefs.GetFloat ("SoundEffectsVolume", 0);
 
-		print (audio);
-
 		//Music volume
 		audio.volume = musicScale * musicVolume;
 		musicSlider.value = musicVolume;
