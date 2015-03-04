@@ -53,7 +53,7 @@ public class PauseController : MonoBehaviour {
 
 		if(menu && !audio.isPlaying)
 		{
-			Application.LoadLevel(0);
+			Application.LoadLevel(1);
 		}
 
 	}

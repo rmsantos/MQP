@@ -340,7 +340,7 @@ public class LevelHandler : MonoBehaviour {
 
 	public void GameOver() {
 		PlayerPrefs.SetInt ("Score", (int)ScoreHandler.score);
-		Application.LoadLevel (5);
+		Application.LoadLevel (6);
 	}
 
 	public void NextLevel() {
@@ -355,7 +355,7 @@ public class LevelHandler : MonoBehaviour {
 		PlayerPrefs.SetFloat ("VictoryLocation", Camera.main.audio.time);
 
 		//Load the UpgradeScene
-		Application.LoadLevel (2);
+		Application.LoadLevel (3);
 	}
 
 	public int GetRandomBasedOnLevel() {

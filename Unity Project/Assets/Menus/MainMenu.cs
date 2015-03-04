@@ -88,20 +88,8 @@ public class MainMenu : MonoBehaviour {
 	 */
 	void Start () {
 
-		//If this is a new start
-		if(PlayerPrefs.GetInt("FirstStart",0) == 0)
-		{
-			//Start the audio at 0
-			Camera.main.audio.time = 0;
-
-			//And flag a new game has started
-			PlayerPrefs.SetInt ("FirstStart", 1);
-		}
-		else
-		{
-			//Else load the musics location
-			Camera.main.audio.time = PlayerPrefs.GetFloat ("MainMenuLocation", 0);
-		}
+		//Load the location in music
+		Camera.main.audio.time = PlayerPrefs.GetFloat ("MainMenuLocation", 0);
 
 		//Play the menu music
 		Camera.main.audio.Play ();
@@ -136,7 +124,7 @@ public class MainMenu : MonoBehaviour {
 		if(startGame && !startButton.audio.isPlaying)
 		{
 			//Load the main game
-			Application.LoadLevel (3);
+			Application.LoadLevel (4);
 		}
 
 		//If the user clicked quit and the audio file is done
@@ -153,14 +141,14 @@ public class MainMenu : MonoBehaviour {
 			PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
 
 			//Load the high scores
-			Application.LoadLevel (5);
+			Application.LoadLevel (6);
 		}
 
 		//If the user clicked tutorial and the audio file is done
 		if(startTutorial && !tutorialButton.audio.isPlaying)
 		{
 			//Load the tutorial
-			Application.LoadLevel (6);
+			Application.LoadLevel (7);
 		}
 	}
 
@@ -191,8 +179,8 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("Crystals", initialCrystals);
 		PlayerPrefs.SetInt ("Money", initialMoney);
 
-		//Set the music to the start
-		PlayerPrefs.SetInt ("FirstStart", 0);
+		//Set the main menu music to start at 0
+		PlayerPrefs.SetFloat("MainMenuLocation",0);
 
 		//Upgrades
 		PlayerPrefs.SetInt ("PowerUpgrade", powerUpgrade);
@@ -249,9 +237,9 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("Crystals", initialCrystals);
 		PlayerPrefs.SetInt ("Money", initialMoney);
 
-		//Set the music to the start
-		PlayerPrefs.SetInt ("FirstStart", 0);
-		
+		//Set the main menu music to start at 0
+		PlayerPrefs.SetFloat("MainMenuLocation",0);
+
 		//Upgrades
 		PlayerPrefs.SetInt ("PowerUpgrade", powerUpgrade);
 		PlayerPrefs.SetInt ("EngineUpgrade", engineUpgrade);
@@ -308,18 +296,5 @@ public class MainMenu : MonoBehaviour {
 	public void setHighScores(bool clicked)
 	{
 		highScores = clicked;
-	}
-
-	/* ----------------------------------------------------------------------- */
-	/* Function    : OnApplicationQuit()
-	 *
-	 * Description : Sets the FirstStaer pref to 0
-	 *
-	 * Parameters  : None
-	 *
-	 * Returns     : Void
-	 */
-	void OnApplicationQuit() {
-		PlayerPrefs.SetInt ("FirstStart", 0);
 	}
 }

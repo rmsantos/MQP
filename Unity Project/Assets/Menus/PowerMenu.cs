@@ -180,7 +180,7 @@ public class PowerMenu : MonoBehaviour {
 			PlayerPrefs.SetFloat ("RunnerLocation", Camera.main.audio.time);
 
 			//Load the main game
-			Application.LoadLevel (1);
+			Application.LoadLevel (2);
 		}
 
 		//If the player wants to go back
@@ -190,7 +190,7 @@ public class PowerMenu : MonoBehaviour {
 			PlayerPrefs.SetFloat("VictoryLocation",0);
 
 			//Load the upgrade screen
-			Application.LoadLevel(2);
+			Application.LoadLevel(3);
 		}
 	}
 

@@ -228,7 +228,7 @@ public class UpgradeMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Health", playerHealth);
 
 			//Load the main game
-			Application.LoadLevel (4);
+			Application.LoadLevel (5);
 		}
 
 		//If the player has something selected and the text is not done writing
