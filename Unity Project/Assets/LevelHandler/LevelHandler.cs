@@ -102,6 +102,13 @@ public class LevelHandler : MonoBehaviour {
 	//The music for the victory music
 	public AudioClip victoryMusic;
 
+	//Timer to spawn background objects
+	int backgroundObjectsTimer;
+	int backgroundObjectsTimerMax;
+
+	//prefab to spawn background objects
+	public GameObject backgroundObjects;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -114,6 +121,9 @@ public class LevelHandler : MonoBehaviour {
 
 	void Start () {
 	
+		//Set the timer to be 1000. Spawn every 1000 updates
+		backgroundObjectsTimerMax = 1000;
+
 		//Search for the audioHandler
 		audioHandler = GameObject.FindGameObjectWithTag ("AudioHandler").GetComponent<AudioHandler> ();
 
@@ -175,6 +185,20 @@ public class LevelHandler : MonoBehaviour {
 	 */
 
 	void FixedUpdate () {
+
+		//Increment the timer
+		backgroundObjectsTimer++;
+
+		//If the timer interrupts
+		if(backgroundObjectsTimer == backgroundObjectsTimerMax)
+		{
+			//Reset the timer
+			backgroundObjectsTimer = 0;
+
+			//Spawn a background object
+			Instantiate(backgroundObjects, new Vector3(100,100,0), Quaternion.identity);
+		}
+
 
 		//Store the max health of the boss to display
 		if(bossHealth > maxHealth)
