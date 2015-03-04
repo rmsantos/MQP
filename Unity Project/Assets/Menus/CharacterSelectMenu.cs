@@ -115,7 +115,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Portrait4", navigator);
 			PlayerPrefs.SetString("Name", name);
 			//Load the main game
-			Application.LoadLevel (4);
+			Application.LoadLevel (5);
 		}
 
 		//Don't allow the player to click the start button unless the crew is locked in
