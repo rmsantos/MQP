@@ -29,7 +29,15 @@ public class BackgroundImage : MonoBehaviour {
 	//Randomizer script
 	Randomizer random;
 
-	// Use this for initialization
+	/* ----------------------------------------------------------------------- */
+	/* Function    : Start()
+	 *
+	 * Description : Picks a random speed
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	void Start () {
 
 		//Start to false
@@ -40,7 +48,15 @@ public class BackgroundImage : MonoBehaviour {
 	
 	}
 	
-	// Update is called once per frame
+	/* ----------------------------------------------------------------------- */
+	/* Function    : Start()
+	 *
+	 * Description : Setups the sprites and locations and moves the image to the left
+	 *
+	 * Parameters  : None
+	 *
+	 * Returns     : Void
+	 */
 	void FixedUpdate () {
 
 		//If setup has not been done yet
@@ -53,7 +69,7 @@ public class BackgroundImage : MonoBehaviour {
 			random = GameObject.FindGameObjectWithTag ("Randomizer").GetComponent<Randomizer>();
 
 			//Find the number of the image to load
-			int imageNumber = random.GetRandomInRange(0,9);
+			int imageNumber = random.GetRandomInRange(1,9);
 
 			//Load the correct image sprite
 			GetComponent<SpriteRenderer> ().sprite = Resources.Load<UnityEngine.Sprite> ("planets/" + imageNumber);
@@ -62,7 +78,10 @@ public class BackgroundImage : MonoBehaviour {
 			boundaries = Camera.main.GetComponent<Boundaries>();
 
 			//Spawn the object off screen to the right
-			float xPos = boundaries.getRight () * 1.5f;
+			float xPos = boundaries.getRight () * 2f;
+
+			if(imageNumber == 7)
+				xPos *= 2;
 
 			//And at a random y position
 			float yPos = Random.Range (boundaries.getBottom (), boundaries.getTop ());
@@ -85,5 +104,19 @@ public class BackgroundImage : MonoBehaviour {
 			//Destroy the object
 			Destroy (this.gameObject);
 		}
+	}
+
+	/* ----------------------------------------------------------------------- */
+	/* Function    : setSpeed(float newSpeed)
+	 *
+	 * Description : Sets the new speed of the image
+	 *
+	 * Parameters  : float newSpeed : The new speed of the image
+	 *
+	 * Returns     : Void
+	 */
+	public void setSpeed(float newSpeed)
+	{
+		speed = newSpeed;
 	}
 }

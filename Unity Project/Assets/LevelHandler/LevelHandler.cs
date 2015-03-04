@@ -261,6 +261,14 @@ public class LevelHandler : MonoBehaviour {
 					//Adjust the music scale to be lower volume (since the boss music is louder)
 					Camera.main.GetComponent<VolumeControl>().setMusicScale(0.03f);
 					Camera.main.GetComponent<VolumeControl>().SetMusic(1f);
+
+					//Search for all background images
+					GameObject[] images = GameObject.FindGameObjectsWithTag("BackgroundImages");
+
+					//Stop all the background images from moving
+					foreach(GameObject image in images)
+						image.GetComponent<BackgroundImage>().setSpeed(0);
+
 				}
 
 				wave++;
