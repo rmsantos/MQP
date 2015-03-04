@@ -65,8 +65,8 @@ public class Laser : MonoBehaviour {
 		transform.Translate( -transform.right * speed, Space.World);
 
 		//If the laser leaves the game space
-		//Leave some room for the laser to fully exit the visible screen (by multiplying 1.2)
-		if (!boundaries.inBoundaries(transform.position, 1.2f))
+		//Leave some room for the laser to fully exit the visible screen (by multiplying 1.0)
+		if (!boundaries.inBoundaries(transform.position, 1.0f))
 		{
 			//Destroy the laser
 			Destroy (this.gameObject);

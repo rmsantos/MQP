@@ -13,6 +13,7 @@
 
 /* -- INCLUDE FILES ------------------------------------------------------ */
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 /* -- DATA STRUCTURES ---------------------------------------------------- */
@@ -49,10 +50,6 @@ public class MainMenu : MonoBehaviour {
 	public int initialMissiles;
 	public int initialCrystals;
 	public int initialMoney;
-	public float initialMasterVolume;
-	public float initialMusicVolume;
-	public float initialVoiceVolume;
-	public float initialSoundEffectsVolume;
 
 	//Game values
 	public int initialLevel;
@@ -181,10 +178,6 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("Missiles", initialMissiles);
 		PlayerPrefs.SetInt ("Crystals", initialCrystals);
 		PlayerPrefs.SetInt ("Money", initialMoney);
-		PlayerPrefs.SetFloat ("MasterVolume", initialMasterVolume);
-		PlayerPrefs.SetFloat ("MusicVolume", initialMusicVolume);
-		PlayerPrefs.SetFloat ("VoiceVolume", initialVoiceVolume);
-		PlayerPrefs.SetFloat ("SoundEffectsVolume", initialSoundEffectsVolume);
 
 		//Set the main menu music to start at 0
 		PlayerPrefs.SetFloat("MainMenuLocation",0);
@@ -243,10 +236,6 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt ("Missiles", initialMissiles);
 		PlayerPrefs.SetInt ("Crystals", initialCrystals);
 		PlayerPrefs.SetInt ("Money", initialMoney);
-		PlayerPrefs.SetFloat ("MasterVolume", initialMasterVolume);
-		PlayerPrefs.SetFloat ("MusicVolume", initialMusicVolume);
-		PlayerPrefs.SetFloat ("VoiceVolume", initialVoiceVolume);
-		PlayerPrefs.SetFloat ("SoundEffectsVolume", initialSoundEffectsVolume);
 
 		//Set the main menu music to start at 0
 		PlayerPrefs.SetFloat("MainMenuLocation",0);

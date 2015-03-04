@@ -118,9 +118,6 @@ public class Gunner : MonoBehaviour {
 	//The audiohandler
 	AudioHandler audioHandler;
 
-	//The score handler
-	static ScoreHandler scoreHandler;
-
 	//Blaster recharge bar
 	public Image blasterReloadImage;
 
@@ -179,9 +176,6 @@ public class Gunner : MonoBehaviour {
 
 		//The audio file should not defaultly play
 		missileCheck = false;
-
-		//Search for the ScoreHandler object for tracking crystals
-		scoreHandler = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<ScoreHandler>();
 
 		//If the player upgrade to tri-shot, then display the new sprite
 		if(laserPower == 3)
@@ -500,7 +494,7 @@ public class Gunner : MonoBehaviour {
 				break;
 			case 3:
 				laserDamage = 1;
-				laserReloadTime = 22;
+				laserReloadTime = 18;
 				break;
 		}
 

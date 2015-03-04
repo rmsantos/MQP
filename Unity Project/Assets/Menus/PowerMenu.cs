@@ -521,7 +521,7 @@ public class PowerMenu : MonoBehaviour {
 				statusText.text = "Slower reload time (+1)";
 				break;
 			case 2:
-				statusText.text = "Slower reload time (+1), decreased damage (-1), and Burst Shot disabled";
+				statusText.text = "Faster reload time (-1), and Burst Shot disabled";
 				break;
 		}
 		
@@ -811,7 +811,7 @@ public class PowerMenu : MonoBehaviour {
 				statusText.text = "Faster reload time (-1)";
 				break;
 			case 3:
-				string newText = "Slower reload time (-2), Tri-Burst Shot enabled";
+				string newText = "Slower reload time (+1), Tri-Burst Shot enabled";
 				
 				int laserUpgrade = PlayerPrefs.GetInt("LaserUpgradeBurst",0);
 
@@ -1113,10 +1113,10 @@ public class PowerMenu : MonoBehaviour {
 			statusText.text = "Laser Level 1. Low base damage. Decent base reload rate. The laser is acceptable.";
 			break;
 		case 2:
-			statusText.text = "Laser Level 2. Low base damage. Good base reload rate. The laser is swift.";
+			statusText.text = "Laser Level 2. Low base damage. Great base reload rate. The laser is swift.";
 			break;
 		case 3:
-			statusText.text = "Laser Level 3. Better base damage. Better reload rate. Burst Shot enabled! The laser is unstoppable!";
+			statusText.text = "Laser Level 3. Low base damage. Decent reload rate. Burst Shot enabled! The laser is unstoppable!";
 			break;
 		}
 		

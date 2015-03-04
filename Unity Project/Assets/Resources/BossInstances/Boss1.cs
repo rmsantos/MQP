@@ -32,9 +32,6 @@ public class Boss1 : MonoBehaviour {
 	
 	//The current time of the instance
 	int timer;
-	
-	//The final time of the instance when it self destructs
-	int finalTime;
 
 	//Stores the boundaries of the game
 	Boundaries boundaries;
@@ -67,7 +64,6 @@ public class Boss1 : MonoBehaviour {
 	void Start () {
 
 		timer = 0;
-		finalTime = 1000;
 		spawned = false;
 		killed = false;
 		bossTimer = 0;

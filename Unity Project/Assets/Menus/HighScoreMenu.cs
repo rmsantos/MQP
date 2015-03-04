@@ -97,7 +97,9 @@ public class HighScoreMenu : MonoBehaviour {
 		//Play the audio from where it left off
 		Camera.main.audio.time = PlayerPrefs.GetFloat ("MainMenuLocation", 0);
 		Camera.main.audio.Play ();
-		
+
+		AudioListener.volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
+		Camera.main.audio.volume = PlayerPrefs.GetFloat ("MusicVolume", 0) * .05f;
 	}
 	
 	/* ----------------------------------------------------------------------- */
