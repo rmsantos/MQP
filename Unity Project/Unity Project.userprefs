@@ -1,12 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Player Ship\PlayerCollisions.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Resources\Background Images\BackgroundImage.cs">
     <Files>
-      <File FileName="Assets\Player Ship\PlayerCollisions.cs" Line="244" Column="10" />
-      <File FileName="Assets\Player Ship\Shields.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\SimpleEnemyBullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" Line="1" Column="1" />
-      <File FileName="Assets\Resources\Enemies\AbstractEnemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player Ship\ShipDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets\Menus\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Video Folder\Play.cs" Line="23" Column="2" />
+      <File FileName="Assets\Camera\VolumeControlMainMenu.cs" Line="135" Column="1" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="270" Column="57" />
+      <File FileName="Assets\Resources\Background Images\BackgroundImage.cs" Line="97" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

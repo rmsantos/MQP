@@ -23,11 +23,16 @@ public class ShipDisplay : MonoBehaviour {
 	int ShieldLevel;
 	int EngineLevel;
 	int BlasterLevel;
+	int TriShot;
 
 	//Store the images for the missile upgrades
 	public Sprite normalMissile;
 	public Sprite upgradedMissile;
 	public Sprite maxMissile;
+
+	//Images for the tri-shot
+	public Sprite normalShot;
+	public Sprite triShot;
 
 	//The UpgradeMenu script for determining what upgrade is selected
 	public UpgradeMenu menu;
@@ -39,6 +44,7 @@ public class ShipDisplay : MonoBehaviour {
 		BlasterLevel = PlayerPrefs.GetInt ("BlasterUpgradeFireRate", 0);
 		EngineLevel = PlayerPrefs.GetInt ("EngineUpgrade", 0);
 		ShieldLevel = PlayerPrefs.GetInt ("ShieldUpgradeNumber", 0);
+		TriShot = PlayerPrefs.GetInt ("LaserUpgradeBurst", 0);
 
 		//Set everything invisible by default
 		transform.Find("ShipShieldLines").GetComponent<Image>().enabled = false;
@@ -49,6 +55,9 @@ public class ShipDisplay : MonoBehaviour {
 
 		//Set the missiles to normal
 		transform.Find("ShipMissiles").GetComponent<Image>().sprite= normalMissile;
+
+		//Set the lasers to normal
+		transform.Find ("ShipLaser").GetComponent<Image> ().sprite = normalShot;
 
 		//If the player is upgrading to ship engines level 3 or has ship engines level 3
 		if(((menu.getSelected() == 0) && EngineLevel == 2) || EngineLevel == 3)
@@ -115,6 +124,13 @@ public class ShipDisplay : MonoBehaviour {
 		{
 			//Display the max level missiles
 			transform.Find("ShipMissiles").GetComponent<Image>().sprite= maxMissile;
+		}
+
+		//If the player is upgrading to the trishot or has the trishot
+		if(menu.getSelected() == 16 || TriShot == 1)
+		{
+			//Display the max level missiles
+			transform.Find("ShipLaser").GetComponent<Image>().sprite= triShot;
 		}
 	}
 	
