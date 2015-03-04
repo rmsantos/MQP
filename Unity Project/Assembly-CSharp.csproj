@@ -50,6 +50,7 @@
      <Compile Include="Assets\Background\Background.cs" />
      <Compile Include="Assets\Camera\Boundaries.cs" />
      <Compile Include="Assets\Camera\VolumeControl.cs" />
+     <Compile Include="Assets\Camera\VolumeControlMainMenu.cs" />
      <Compile Include="Assets\Crosshair.cs" />
      <Compile Include="Assets\FadingScript.cs" />
      <Compile Include="Assets\HitFader.cs" />
