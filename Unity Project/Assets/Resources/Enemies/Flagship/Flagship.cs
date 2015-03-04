@@ -67,6 +67,10 @@ public class Flagship :  AbstractEnemy {
 	//the shield
 	public GameObject shield;
 
+	//The level that is used for scaling
+	int level;
+	int dogFighterLevelScale;
+
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -101,6 +105,13 @@ public class Flagship :  AbstractEnemy {
 
 		//Get the script that controls the level
 		levelHandler = (LevelHandler) levelHandlerObject.GetComponent("LevelHandler");
+
+		//get the current level
+		level = PlayerPrefs.GetInt ("Level", 0);
+
+		//scale
+		dogFighterLevelScale = SetLevelScale();
+		reloadTime -= dogFighterLevelScale;
 
 	}
 	
@@ -307,7 +318,7 @@ public class Flagship :  AbstractEnemy {
 				//This will increment every 100 updates
 				secondShoot++;
 
-				//For every three main bullets, a missile will shoot at the player
+				//For every 3 main bullets, a missile will shoot at the player
 				if(secondShoot % 3 == 0)
 				{
 					//Spawn the missle and store it
@@ -357,7 +368,7 @@ public class Flagship :  AbstractEnemy {
 			}
 		}
 
-		//Phase 4 spawns ambushers
+		//Phase 4 spawns dogfighters
 		if(phase == 4)
 		{
 			//The new position of the enemy after moving
@@ -377,8 +388,8 @@ public class Flagship :  AbstractEnemy {
 				//This will increment every 100 updates
 				secondShoot++;
 
-				//For every five main bullets, an ambusher will spawn
-				if(secondShoot % 5 == 0)
+				//For every x main bullets, an ambusher will spawn
+				if(secondShoot % (10 - dogFighterLevelScale) == 0)
 				{
 					Instantiate(dogfighterPrefab,transform.position,Quaternion.identity);
 				}
@@ -480,6 +491,29 @@ public class Flagship :  AbstractEnemy {
 			score.UpdateScore(value);
 		}
 		
+
+	}
+
+	public int SetLevelScale() {
+
+		if (level < 5) {
+			return 0;
+		}
+		else if (level < 10) {
+			return 2;
+		}
+		else if (level < 15) {
+			return 5;
+		}
+		else if (level < 20) {
+			return 6;
+		}
+		else if (level < 30) {
+			return 7;
+		}
+		else {
+			return 8;
+		}
 
 	}
 

@@ -63,6 +63,10 @@ public class FlagshipB :  AbstractEnemy {
 
 	//Direction to rotate
 	int sign;
+
+	//The level that is used for scaling
+	int level;
+	int dogFighterLevelScale;
 	
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -98,6 +102,14 @@ public class FlagshipB :  AbstractEnemy {
 
 		//Rotate up to start
 		sign = 1;
+
+		//get the current level
+		level = PlayerPrefs.GetInt ("Level", 0);
+		
+		//scale
+		dogFighterLevelScale = SetLevelScale();
+		reloadTime -= dogFighterLevelScale;
+
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -201,8 +213,8 @@ public class FlagshipB :  AbstractEnemy {
 				//This will increment every 100 updates
 				secondShoot++;
 				
-				//For every five main bullets, shoot a missile
-				if(secondShoot % 5 == 0)
+				//For every 8 main bullets, shoot a missile
+				if(secondShoot % 8 == 0)
 				{
 					//Spawn the missle and store it
 					GameObject missile = (GameObject)Instantiate(missilePrefab,transform.position,Quaternion.identity);
@@ -266,7 +278,7 @@ public class FlagshipB :  AbstractEnemy {
 			}
 
 			//Move towards the player
-			transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed/2);
+			transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed/3);
 
 			//If ready to shoot
 			if(ready)
@@ -462,6 +474,29 @@ public class FlagshipB :  AbstractEnemy {
 			score.UpdateScore(value);
 		}
 		
+		
+	}
+
+	public int SetLevelScale() {
+		
+		if (level < 5) {
+			return 0;
+		}
+		else if (level < 10) {
+			return 2;
+		}
+		else if (level < 15) {
+			return 5;
+		}
+		else if (level < 20) {
+			return 6;
+		}
+		else if (level < 30) {
+			return 7;
+		}
+		else {
+			return 8;
+		}
 		
 	}
 	
