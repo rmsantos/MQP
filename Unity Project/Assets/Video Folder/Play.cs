@@ -20,12 +20,6 @@ public class Play : MonoBehaviour {
 	//The into movie to play
 	MovieTexture movie;
 
-	//The scrolling plot text to play
-	public GameObject plotVideo;
-
-	//Flag to start the second video
-	bool start;
-
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
 	 *
@@ -44,20 +38,11 @@ public class Play : MonoBehaviour {
 		//Scale the video to be full screen
 		transform.localScale = new Vector3(width/10, 0, (height/10) + 0.01f);
 
-		//Scale the second video as well
-		plotVideo.transform.localScale = new Vector3(width/10, 0, (height/10) + 0.01f);
-
 		//Cast the video to a movie texture
 		movie = (MovieTexture)GetComponent<Renderer>().material.mainTexture;
 
 		//Play the movie!
 		movie.Play ();
-
-		//Don't play the second video
-		start = false;
-
-		//Make the other video invisible
-		plotVideo.renderer.enabled = false;
 	
 	}
 
@@ -70,40 +55,23 @@ public class Play : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void Update()
+	void FixedUpdate()
 	{
 		//if the movie is done
 		if(!movie.isPlaying)
 		{
-			//If its the first video
-			if(!start)
-			{
-				//Make the second movie visible
-				plotVideo.renderer.enabled = true;
-
-				//Make this video invisible
-				renderer.enabled = false;
-
-				//Cast the video to a movie texture
-				movie = (MovieTexture)plotVideo.GetComponent<Renderer>().material.mainTexture;
-
-				//Play it
-				movie.Play();
-
-				//Set the flag to true
-				start = true;
-			}
-			else //if start is true
-			{
-				//Store the location in the menu music
-				PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
+			//Store the location in the menu music
+			PlayerPrefs.SetFloat("MainMenuLocation",0);
 				
-				//Load the menu
-				Application.LoadLevel(1);
-			}
+			//Load the menu
+			Application.LoadLevel(1);
 		}
-
-
+	
+		//Skip the intro if the user presses any key
+		if(Input.anyKey)
+		{
+			Application.LoadLevel(1);
+		}
 	
 	}
 }
