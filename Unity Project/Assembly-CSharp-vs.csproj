@@ -74,6 +74,7 @@
      <Compile Include="Assets\Player Ship\ShipUpgrades.cs" />
      <Compile Include="Assets\Portraits\PortraitController.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
+     <Compile Include="Assets\Resize.cs" />
      <Compile Include="Assets\Resources\Background Images\BackgroundImage.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss2.cs" />
@@ -84,6 +85,7 @@
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidLarge.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidMedium.cs" />
      <Compile Include="Assets\Resources\Enemies\Asteroids\AsteroidSmall.cs" />
+     <Compile Include="Assets\Resources\Enemies\Asteroids\MainMenuAsteroid.cs" />
      <Compile Include="Assets\Resources\Enemies\Cruiser\Cruiser.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterA\DogFighterA.cs" />
      <Compile Include="Assets\Resources\Enemies\DogFighterB\DogFighterB.cs" />
@@ -101,6 +103,7 @@
      <Compile Include="Assets\Resources\Enemies\SimpleEnemyBullet.cs" />
      <Compile Include="Assets\Resources\Money\Money.cs" />
      <Compile Include="Assets\Resources\NewInstances\AbstractInstance.cs" />
+     <Compile Include="Assets\Resources\NewInstances\MainMenuInstance.cs" />
      <Compile Include="Assets\Resources\NewInstances\SimpleInstance.cs" />
      <Compile Include="Assets\Score Handler\ScoreHandler.cs" />
      <Compile Include="Assets\Tutorial.cs" />
