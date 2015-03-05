@@ -35,6 +35,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 	public Text descriptionText;
 	public Text nameText;
+	public Text upgradeText;
 
 	public Image pilotImage;
 	public Image gunnerImage;
@@ -49,6 +50,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 	public string[] characterDescriptions;
 	public string[] characterNames;
+	public string[] characterUpgrades;
 	
 	int pilot;
 	int gunner;
@@ -114,6 +116,10 @@ public class CharacterSelectMenu : MonoBehaviour {
 			PlayerPrefs.SetInt("Portrait3", mechanic);
 			PlayerPrefs.SetInt("Portrait4", navigator);
 			PlayerPrefs.SetString("Name", name);
+			SetUpgrades(pilot);
+			SetUpgrades(gunner);
+			SetUpgrades(mechanic);
+			SetUpgrades(navigator);
 			//Load the main game
 			Application.LoadLevel (5);
 		}
@@ -211,6 +217,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 		selectedImage.overrideSprite = characterImages[character];
 		descriptionText.text = characterDescriptions[character];
 		nameText.text = characterNames [character];
+		upgradeText.text = characterUpgrades [character];
 	}
 
 	public void SetName(string enteredName) {
@@ -223,6 +230,56 @@ public class CharacterSelectMenu : MonoBehaviour {
 
 		namePanel.active = false;
 
+	}
+
+	public void SetUpgrades(int character) {
+
+		switch (character) {
+		case 0:
+			PlayerPrefs.SetInt ("CargoUpgradeCrystals", PlayerPrefs.GetInt("CargoUpgradeCrystals", 0) + 1);
+			PlayerPrefs.SetInt ("Crystals", PlayerPrefs.GetInt("Crystals", 0) + 5);
+			break;
+		case 1:
+			PlayerPrefs.SetInt ("MissileUpgradePayload", PlayerPrefs.GetInt("MissileUpgradePayload", 0) + 1);
+			break;
+		case 2:
+			PlayerPrefs.SetInt ("PowerUpgrade", PlayerPrefs.GetInt("PowerUpgrade", 0) + 1);
+			break;
+		case 3:
+			PlayerPrefs.SetInt ("EngineUpgrade", PlayerPrefs.GetInt("EngineUpgrade", 0) + 1);
+			break;
+		case 4:
+			PlayerPrefs.SetInt ("BlasterUpgradeFireRate", PlayerPrefs.GetInt("BlasterUpgradeFireRate", 0) + 1);
+			break;
+		case 5:
+			PlayerPrefs.SetInt ("LaserUpgradeDamage", PlayerPrefs.GetInt("LaserUpgradeDamage", 0) + 1);
+			break;
+		case 6:
+			PlayerPrefs.SetInt ("MissileUpgradeLoader", PlayerPrefs.GetInt("MissileUpgradeLoader", 0) + 1);
+			break;
+		case 7:
+			PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt("Money", 0) + 20);
+			break;
+		case 8:
+			PlayerPrefs.SetInt ("Score", PlayerPrefs.GetInt("Score", 0) + 50);
+			break;
+		case 9:
+			PlayerPrefs.SetInt ("LaserUpgradeSpeed", PlayerPrefs.GetInt("LaserUpgradeSpeed", 0) + 1);
+			break;
+		case 10:
+			PlayerPrefs.SetInt ("HullUpgradeReinforced", PlayerPrefs.GetInt("HullUpgradeReinforced", 0) + 1);
+			break;
+		case 11:
+			PlayerPrefs.SetInt ("ShieldUpgradeNumber", PlayerPrefs.GetInt("ShieldUpgradeNumber", 0) + 1);
+			break;
+		case 12:
+			PlayerPrefs.SetInt ("CargoUpgradeMissiles", PlayerPrefs.GetInt("CargoUpgradeMissiles", 0) + 1);
+			PlayerPrefs.SetInt ("Missiles", PlayerPrefs.GetInt("Missiles", 0) + 5);
+			break;
+		case 13:
+			PlayerPrefs.SetInt ("CargoUpgradeCredits", PlayerPrefs.GetInt("CargoUpgradeCredits", 0) + 1);
+			break;
+		}
 	}
 
 }
