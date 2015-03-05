@@ -1,4 +1,4 @@
-﻿/* Module      : Play.cs
+/* Module      : Play.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
@@ -17,8 +17,14 @@ using System.Collections;
 
 public class Play : MonoBehaviour {
 
-	//The movie to play
+	//The into movie to play
 	MovieTexture movie;
+
+	//The scrolling plot text to play
+	public GameObject plotVideo;
+
+	//Flag to start the second video
+	bool start;
 
 	/* ----------------------------------------------------------------------- */
 	/* Function    : Start()
@@ -38,12 +44,20 @@ public class Play : MonoBehaviour {
 		//Scale the video to be full screen
 		transform.localScale = new Vector3(width/10, 0, (height/10) + 0.01f);
 
+		//Scale the second video as well
+		plotVideo.transform.localScale = new Vector3(width/10, 0, (height/10) + 0.01f);
+
 		//Cast the video to a movie texture
 		movie = (MovieTexture)GetComponent<Renderer>().material.mainTexture;
 
 		//Play the movie!
 		movie.Play ();
 
+		//Don't play the second video
+		start = false;
+
+		//Make the other video invisible
+		plotVideo.renderer.enabled = false;
 	
 	}
 
@@ -61,11 +75,35 @@ public class Play : MonoBehaviour {
 		//if the movie is done
 		if(!movie.isPlaying)
 		{
-			//Store the location in the menu music
-			PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
+			//If its the first video
+			if(!start)
+			{
+				//Make the second movie visible
+				plotVideo.renderer.enabled = true;
 
-			//Load the menu
-			Application.LoadLevel(1);
+				//Make this video invisible
+				renderer.enabled = false;
+
+				//Cast the video to a movie texture
+				movie = (MovieTexture)plotVideo.GetComponent<Renderer>().material.mainTexture;
+
+				//Play it
+				movie.Play();
+
+				//Set the flag to true
+				start = true;
+			}
+			else //if start is true
+			{
+				//Store the location in the menu music
+				PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
+				
+				//Load the menu
+				Application.LoadLevel(1);
+			}
 		}
+
+
+	
 	}
 }
