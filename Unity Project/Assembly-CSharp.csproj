@@ -114,6 +114,7 @@
      <Compile Include="Assets\UI\UpdateScore.cs" />
      <Compile Include="Assets\UpgradeDescription.cs" />
      <Compile Include="Assets\Video Folder\Play.cs" />
+     <Compile Include="Assets\Video Folder\Play2.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
