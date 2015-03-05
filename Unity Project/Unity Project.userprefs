@@ -1,8 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Video Folder\Play.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\LevelHandler\LevelHandler.cs">
     <Files>
-      <File FileName="Assets\Video Folder\Play.cs" Line="73" Column="1" />
+      <File FileName="Assets\Resources\NewInstances\MainMenuInstance.cs" Line="93" Column="1" />
+      <File FileName="Assets\Resources\NewInstances\SimpleInstance.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\AbstractAsteroid.cs" Line="1" Column="1" />
+      <File FileName="Assets\Resources\Enemies\Asteroids\MainMenuAsteroid.cs" Line="1" Column="1" />
+      <File FileName="Assets\ResizeGame.cs" Line="22" Column="51" />
+      <File FileName="Assets\Tutorial.cs" Line="147" Column="1" />
+      <File FileName="Assets\Resources\Background Images\BackgroundImage.cs" Line="1" Column="1" />
+      <File FileName="Assets\LevelHandler\LevelHandler.cs" Line="140" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

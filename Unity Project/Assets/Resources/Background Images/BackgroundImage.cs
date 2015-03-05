@@ -44,7 +44,7 @@ public class BackgroundImage : MonoBehaviour {
 		setup = false;
 
 		//Find the speed of the objects
-		speed = Random.Range(0.01f, 0.02f);
+		speed = Random.Range(0.006f, 0.01f);
 	
 	}
 	

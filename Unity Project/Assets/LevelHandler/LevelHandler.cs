@@ -173,6 +173,8 @@ public class LevelHandler : MonoBehaviour {
 		alertTimer = 0;
 
 		bossSpawned = false;
+
+		backgroundObjectsTimer = backgroundObjectsTimerMax / 2;
 	}
 	
 	/* ----------------------------------------------------------------------- */
