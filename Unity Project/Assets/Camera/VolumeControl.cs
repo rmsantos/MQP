@@ -36,17 +36,12 @@ public class VolumeControl : MonoBehaviour {
 	AudioHandler audioHandler;
 
 	//The scale that affects the music volume
-	float musicScale;
+	public float musicScale;
 
 	//The scale that affects the sound effects volume
-	float effectsScale;
+	public float effectsScale;
 
 	void Start () {
-		//Start the scale at .05f
-		musicScale = .05f;
-
-		//Start the scale at 0.1f
-		effectsScale = 0.1f;
 
 		volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
 		musicVolume = PlayerPrefs.GetFloat ("MusicVolume", 0);
