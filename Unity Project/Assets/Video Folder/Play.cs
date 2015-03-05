@@ -57,8 +57,8 @@ public class Play : MonoBehaviour {
 	 */
 	void FixedUpdate()
 	{
-		//if the movie is done
-		if(!movie.isPlaying)
+		//if the movie is done or the user presses any button
+		if(!movie.isPlaying || Input.anyKey)
 		{
 			//Store the location in the menu music
 			PlayerPrefs.SetFloat("MainMenuLocation",0);
@@ -67,11 +67,6 @@ public class Play : MonoBehaviour {
 			Application.LoadLevel(1);
 		}
 	
-		//Skip the intro if the user presses any key
-		if(Input.anyKey)
-		{
-			Application.LoadLevel(1);
-		}
 	
 	}
 }
