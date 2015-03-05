@@ -75,6 +75,7 @@
      <Compile Include="Assets\Portraits\PortraitController.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
      <Compile Include="Assets\Resize.cs" />
+     <Compile Include="Assets\ResizeGame.cs" />
      <Compile Include="Assets\Resources\Background Images\BackgroundImage.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss2.cs" />
@@ -115,7 +116,7 @@
      <Compile Include="Assets\Video Folder\Play.cs" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>C:/Users/rmsantos/Desktop/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/jbmorse/MQP/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
