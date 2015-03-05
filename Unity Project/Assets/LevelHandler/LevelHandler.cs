@@ -92,6 +92,8 @@ public class LevelHandler : MonoBehaviour {
 	//Alert flag
 	bool alert;
 
+	bool bossSpawned;
+
 	//Alert timer
 	int alertTimerMax;
 	int alertTimer;
@@ -104,7 +106,7 @@ public class LevelHandler : MonoBehaviour {
 
 	//Timer to spawn background objects
 	int backgroundObjectsTimer;
-	int backgroundObjectsTimerMax;
+	public int backgroundObjectsTimerMax;
 
 	//prefab to spawn background objects
 	public GameObject backgroundObjects;
@@ -120,9 +122,6 @@ public class LevelHandler : MonoBehaviour {
 	 */
 
 	void Start () {
-	
-		//Set the timer to be 1000. Spawn every 1000 updates
-		backgroundObjectsTimerMax = 1000;
 
 		//Search for the audioHandler
 		audioHandler = GameObject.FindGameObjectWithTag ("AudioHandler").GetComponent<AudioHandler> ();
@@ -172,6 +171,8 @@ public class LevelHandler : MonoBehaviour {
 		//Set the amount of time the alert will flash
 		alertTimerMax = 420;
 		alertTimer = 0;
+
+		bossSpawned = false;
 	}
 	
 	/* ----------------------------------------------------------------------- */
@@ -190,7 +191,7 @@ public class LevelHandler : MonoBehaviour {
 		backgroundObjectsTimer++;
 
 		//If the timer interrupts
-		if(backgroundObjectsTimer == backgroundObjectsTimerMax)
+		if(backgroundObjectsTimer == backgroundObjectsTimerMax && !bossSpawned)
 		{
 			//Reset the timer
 			backgroundObjectsTimer = 0;
@@ -243,6 +244,7 @@ public class LevelHandler : MonoBehaviour {
 					Instantiate(bosses[random.GetRandom(2)]);
 					background.StopBackground();
 					healthImage.enabled = true;
+					bossSpawned = true;
 
 					//Play the boss spawn audio clip
 					portraitController.playBossSpawn();

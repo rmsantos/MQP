@@ -75,6 +75,7 @@
      <Compile Include="Assets\Portraits\PortraitController.cs" />
      <Compile Include="Assets\Randomizer\Randomizer.cs" />
      <Compile Include="Assets\Resize.cs" />
+     <Compile Include="Assets\ResizeGame.cs" />
      <Compile Include="Assets\Resources\Background Images\BackgroundImage.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss1.cs" />
      <Compile Include="Assets\Resources\BossInstances\Boss2.cs" />
