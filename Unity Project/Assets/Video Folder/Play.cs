@@ -1,4 +1,4 @@
-﻿/* Module      : Play.cs
+/* Module      : Play.cs
  * Author      : Ryan Santos
  * Email       : rmsantos@wpi.edu
  * Course      : IMGD MQP
@@ -17,7 +17,7 @@ using System.Collections;
 
 public class Play : MonoBehaviour {
 
-	//The movie to play
+	//The into movie to play
 	MovieTexture movie;
 
 	/* ----------------------------------------------------------------------- */
@@ -43,7 +43,6 @@ public class Play : MonoBehaviour {
 
 		//Play the movie!
 		movie.Play ();
-
 	
 	}
 
@@ -56,16 +55,23 @@ public class Play : MonoBehaviour {
 	 *
 	 * Returns     : Void
 	 */
-	void Update()
+	void FixedUpdate()
 	{
 		//if the movie is done
 		if(!movie.isPlaying)
 		{
 			//Store the location in the menu music
-			PlayerPrefs.SetFloat("MainMenuLocation",Camera.main.audio.time);
-
+			PlayerPrefs.SetFloat("MainMenuLocation",0);
+				
 			//Load the menu
 			Application.LoadLevel(1);
 		}
+	
+		//Skip the intro if the user presses any key
+		if(Input.anyKey)
+		{
+			Application.LoadLevel(1);
+		}
+	
 	}
 }
