@@ -264,7 +264,7 @@ public class LevelHandler : MonoBehaviour {
 
 					//Adjust the music scale to be lower volume (since the boss music is louder)
 					Camera.main.GetComponent<VolumeControl>().setMusicScale(0.03f);
-					Camera.main.GetComponent<VolumeControl>().SetMusic(1f);
+					Camera.main.GetComponent<VolumeControl>().SetMusic(PlayerPrefs.GetFloat ("MusicVolume", 0));
 
 					//Search for all background images
 					GameObject[] images = GameObject.FindGameObjectsWithTag("BackgroundImages");
@@ -361,7 +361,7 @@ public class LevelHandler : MonoBehaviour {
 
 		//Adjust the music scale to be lower volume (since the victory music is quieter)
 		Camera.main.GetComponent<VolumeControl>().setMusicScale(0.3f);
-		Camera.main.GetComponent<VolumeControl>().SetMusic(1f);
+		Camera.main.GetComponent<VolumeControl>().SetMusic(PlayerPrefs.GetFloat ("MusicVolume", 0));
 
 		var enemies = GameObject.FindGameObjectsWithTag("Enemies");
 		foreach (var obj in enemies) {

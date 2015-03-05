@@ -99,7 +99,7 @@ public class HighScoreMenu : MonoBehaviour {
 		Camera.main.audio.Play ();
 
 		AudioListener.volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
-		Camera.main.audio.volume = PlayerPrefs.GetFloat ("MusicVolume", 0) * .05f;
+		Camera.main.audio.volume = PlayerPrefs.GetFloat ("MusicVolume", 0) * .3f;
 	}
 	
 	/* ----------------------------------------------------------------------- */

@@ -133,7 +133,9 @@ public class PowerMenu : MonoBehaviour {
 			backButton.enabled = false;
 		}
 
-	
+		//Have the volume sliders affect this screen
+		AudioListener.volume = PlayerPrefs.GetFloat ("MasterVolume", 0);
+		Camera.main.audio.volume = PlayerPrefs.GetFloat ("MusicVolume", 0) * .05f;
 	}
 
 	/* ----------------------------------------------------------------------- */
