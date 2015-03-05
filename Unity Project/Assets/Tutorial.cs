@@ -82,7 +82,7 @@ public class Tutorial : MonoBehaviour {
 			if(index == 16)
 			{
 				//Load the character select scree
-				Application.LoadLevel(3);
+				Application.LoadLevel(4);
 
 				//Reset the power levels to start the main game
 				PlayerPrefs.SetInt ("ShieldPower", 0);
