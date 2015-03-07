@@ -41,6 +41,13 @@ public class Play : MonoBehaviour {
 		//Cast the video to a movie texture
 		movie = (MovieTexture)GetComponent<Renderer>().material.mainTexture;
 
+		if (!PlayerPrefs.HasKey ("HighScores")) {
+			PlayerPrefs.SetFloat ("MasterVolume", 1f);
+			PlayerPrefs.SetFloat ("MusicVolume", 1f);
+			PlayerPrefs.SetFloat ("VoiceVolume", 1f);
+			PlayerPrefs.SetFloat ("SoundEffectsVolume", 1f);
+		}
+
 		//Play the movie!
 		movie.Play ();
 	

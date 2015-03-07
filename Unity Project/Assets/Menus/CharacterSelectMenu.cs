@@ -258,7 +258,7 @@ public class CharacterSelectMenu : MonoBehaviour {
 			PlayerPrefs.SetInt ("MissileUpgradeLoader", PlayerPrefs.GetInt("MissileUpgradeLoader", 0) + 1);
 			break;
 		case 7:
-			PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt("Money", 0) + 20);
+			PlayerPrefs.SetInt ("Money", PlayerPrefs.GetInt("Money", 0) + 30);
 			break;
 		case 8:
 			PlayerPrefs.SetInt ("Score", PlayerPrefs.GetInt("Score", 0) + 50);
